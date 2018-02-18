@@ -79,6 +79,7 @@
             this.MenuBar.BackColor = System.Drawing.Color.DodgerBlue;
             this.MenuBar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.MenuBar.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MenuBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -87,7 +88,8 @@
             this.accountToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
-            this.MenuBar.Size = new System.Drawing.Size(1049, 25);
+            this.MenuBar.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.MenuBar.Size = new System.Drawing.Size(1399, 28);
             this.MenuBar.TabIndex = 0;
             this.MenuBar.Text = "MenuBar";
             // 
@@ -99,31 +101,31 @@
             this.importSongToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(40, 21);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newPlaylistToolStripMenuItem
             // 
             this.newPlaylistToolStripMenuItem.Name = "newPlaylistToolStripMenuItem";
-            this.newPlaylistToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.newPlaylistToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.newPlaylistToolStripMenuItem.Text = "New Playlist";
             // 
             // importToolStripMenuItem
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.importToolStripMenuItem.Text = "Import Folder";
             // 
             // importSongToolStripMenuItem
             // 
             this.importSongToolStripMenuItem.Name = "importSongToolStripMenuItem";
-            this.importSongToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.importSongToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.importSongToolStripMenuItem.Text = "Import Song";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -138,55 +140,55 @@
             this.searchToolStripMenuItem,
             this.getInfoToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 21);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.undoToolStripMenuItem.Text = "Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.redoToolStripMenuItem.Text = "Redo";
             // 
             // cutToolStripMenuItem
             // 
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.cutToolStripMenuItem.Text = "Cut";
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.copyToolStripMenuItem.Text = "Copy";
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.pasteToolStripMenuItem.Text = "Paste";
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.selectAllToolStripMenuItem.Text = "Select All";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.searchToolStripMenuItem.Text = "Search";
             // 
             // getInfoToolStripMenuItem
             // 
             this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.getInfoToolStripMenuItem.Text = "Get Info";
             // 
             // viewToolStripMenuItem
@@ -196,7 +198,7 @@
             this.changeAppearanceToolStripMenuItem,
             this.sortByToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(50, 21);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // changeViewToolStripMenuItem
@@ -205,25 +207,25 @@
             this.albumViewToolStripMenuItem,
             this.listViewToolStripMenuItem});
             this.changeViewToolStripMenuItem.Name = "changeViewToolStripMenuItem";
-            this.changeViewToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.changeViewToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
             this.changeViewToolStripMenuItem.Text = "Change View";
             // 
             // albumViewToolStripMenuItem
             // 
             this.albumViewToolStripMenuItem.Name = "albumViewToolStripMenuItem";
-            this.albumViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.albumViewToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.albumViewToolStripMenuItem.Text = "Album View";
             // 
             // listViewToolStripMenuItem
             // 
             this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
-            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.listViewToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.listViewToolStripMenuItem.Text = "List View";
             // 
             // changeAppearanceToolStripMenuItem
             // 
             this.changeAppearanceToolStripMenuItem.Name = "changeAppearanceToolStripMenuItem";
-            this.changeAppearanceToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.changeAppearanceToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
             this.changeAppearanceToolStripMenuItem.Text = "Change Appearance";
             // 
             // sortByToolStripMenuItem
@@ -233,25 +235,25 @@
             this.albumToolStripMenuItem,
             this.songToolStripMenuItem});
             this.sortByToolStripMenuItem.Name = "sortByToolStripMenuItem";
-            this.sortByToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.sortByToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
             this.sortByToolStripMenuItem.Text = "Sort By...";
             // 
             // artistToolStripMenuItem
             // 
             this.artistToolStripMenuItem.Name = "artistToolStripMenuItem";
-            this.artistToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.artistToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
             this.artistToolStripMenuItem.Text = "Artist";
             // 
             // albumToolStripMenuItem
             // 
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
-            this.albumToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
             this.albumToolStripMenuItem.Text = "Album";
             // 
             // songToolStripMenuItem
             // 
             this.songToolStripMenuItem.Name = "songToolStripMenuItem";
-            this.songToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.songToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
             this.songToolStripMenuItem.Text = "Song";
             // 
             // playbackToolStripMenuItem
@@ -266,55 +268,55 @@
             this.volumeUpToolStripMenuItem,
             this.volumeDownToolStripMenuItem});
             this.playbackToolStripMenuItem.Name = "playbackToolStripMenuItem";
-            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(74, 21);
+            this.playbackToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
             this.playbackToolStripMenuItem.Text = "Playback";
             // 
             // nextToolStripMenuItem
             // 
             this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
-            this.nextToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.nextToolStripMenuItem.Text = "Next";
             // 
             // previousToolStripMenuItem
             // 
             this.previousToolStripMenuItem.Name = "previousToolStripMenuItem";
-            this.previousToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.previousToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.previousToolStripMenuItem.Text = "Previous";
             // 
             // scrubForwardToolStripMenuItem
             // 
             this.scrubForwardToolStripMenuItem.Name = "scrubForwardToolStripMenuItem";
-            this.scrubForwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.scrubForwardToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.scrubForwardToolStripMenuItem.Text = "Scrub Forward";
             // 
             // scrubBackwardToolStripMenuItem
             // 
             this.scrubBackwardToolStripMenuItem.Name = "scrubBackwardToolStripMenuItem";
-            this.scrubBackwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.scrubBackwardToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.scrubBackwardToolStripMenuItem.Text = "Scrub Backward";
             // 
             // shuffleToolStripMenuItem
             // 
             this.shuffleToolStripMenuItem.Name = "shuffleToolStripMenuItem";
-            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.shuffleToolStripMenuItem.Text = "Shuffle";
             // 
             // repeatToolStripMenuItem
             // 
             this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
-            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.repeatToolStripMenuItem.Text = "Repeat";
             // 
             // volumeUpToolStripMenuItem
             // 
             this.volumeUpToolStripMenuItem.Name = "volumeUpToolStripMenuItem";
-            this.volumeUpToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.volumeUpToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.volumeUpToolStripMenuItem.Text = "Volume Up ";
             // 
             // volumeDownToolStripMenuItem
             // 
             this.volumeDownToolStripMenuItem.Name = "volumeDownToolStripMenuItem";
-            this.volumeDownToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.volumeDownToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.volumeDownToolStripMenuItem.Text = "Volume Down";
             // 
             // accountToolStripMenuItem
@@ -323,38 +325,44 @@
             this.switchUserToolStripMenuItem,
             this.logOffToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            this.accountToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
+            this.accountToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
             this.accountToolStripMenuItem.Text = "Account";
             // 
             // switchUserToolStripMenuItem
             // 
             this.switchUserToolStripMenuItem.Name = "switchUserToolStripMenuItem";
-            this.switchUserToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.switchUserToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.switchUserToolStripMenuItem.Text = "Switch User";
             // 
             // logOffToolStripMenuItem
             // 
             this.logOffToolStripMenuItem.Name = "logOffToolStripMenuItem";
-            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.logOffToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.logOffToolStripMenuItem.Text = "Log Off";
             // 
             // treeView1
             // 
             this.treeView1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.treeView1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Indent = 7;
-            this.treeView1.ItemHeight = 30;
-            this.treeView1.Location = new System.Drawing.Point(0, 25);
+            this.treeView1.ItemHeight = 40;
+            this.treeView1.Location = new System.Drawing.Point(0, 28);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Artists";
+            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode1.Text = "Artists";
             treeNode2.Name = "Albums";
+            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode2.Text = "Albums";
             treeNode3.Name = "Songs";
+            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode3.Text = "Songs";
             treeNode4.Name = "New Playlist";
             treeNode4.Text = "New Playlist";
             treeNode5.Name = "Playlists";
+            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode5.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
@@ -364,18 +372,20 @@
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
-            this.treeView1.Size = new System.Drawing.Size(136, 530);
+            this.treeView1.Size = new System.Drawing.Size(180, 657);
             this.treeView1.TabIndex = 1;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // BearPlayer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1049, 611);
+            this.ClientSize = new System.Drawing.Size(1399, 752);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.MainMenuStrip = this.MenuBar;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "BearPlayer";
             this.Text = "Bear Player";
             this.Load += new System.EventHandler(this.BearPlayer_Load);

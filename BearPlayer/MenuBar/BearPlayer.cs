@@ -30,5 +30,10 @@ namespace MenuBar
             brush.Dispose();
             draw.Dispose();
         }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
     }
 }
