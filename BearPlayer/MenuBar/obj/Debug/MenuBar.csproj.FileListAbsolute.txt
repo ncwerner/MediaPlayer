@@ -8,3 +8,13 @@ C:\Users\calec\Desktop\Programming Projects\CEN 3031\MediaPlayer\MenuBar\MenuBar
 C:\Users\calec\Desktop\Programming Projects\CEN 3031\MediaPlayer\MenuBar\MenuBar\obj\Debug\MenuBar.pdb
 C:\Users\calec\Desktop\Programming Projects\CEN 3031\MediaPlayer\MenuBar\MenuBar\obj\Debug\MenuBar.csprojResolveAssemblyReference.cache
 C:\Users\calec\Desktop\Programming Projects\CEN 3031\MediaPlayer\MenuBar\MenuBar\obj\Debug\MenuBar.BearPlayer.resources
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\bin\Debug\MenuBar.exe.config
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\bin\Debug\MenuBar.exe
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\bin\Debug\MenuBar.pdb
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.csprojResolveAssemblyReference.cache
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.BearPlayer.resources
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.Properties.Resources.resources
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.csproj.GenerateResource.Cache
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.csproj.CoreCompileInputs.cache
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.exe
+C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\MenuBar\obj\Debug\MenuBar.pdb

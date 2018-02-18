@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +87,7 @@
             this.accountToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
-            this.MenuBar.Size = new System.Drawing.Size(1049, 25);
+            this.MenuBar.Size = new System.Drawing.Size(1048, 25);
             this.MenuBar.TabIndex = 0;
             this.MenuBar.Text = "MenuBar";
             // 
@@ -346,21 +346,21 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Artists";
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "New Playlist";
-            treeNode4.Text = "New Playlist";
-            treeNode5.Name = "Playlists";
-            treeNode5.Text = "Playlists";
+            treeNode6.Name = "Artists";
+            treeNode6.Text = "Artists";
+            treeNode7.Name = "Albums";
+            treeNode7.Text = "Albums";
+            treeNode8.Name = "Songs";
+            treeNode8.Text = "Songs";
+            treeNode9.Name = "New Playlist";
+            treeNode9.Text = "New Playlist";
+            treeNode10.Name = "Playlists";
+            treeNode10.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode5});
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode10});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -372,7 +372,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1049, 611);
+            this.ClientSize = new System.Drawing.Size(1048, 617);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.MainMenuStrip = this.MenuBar;
