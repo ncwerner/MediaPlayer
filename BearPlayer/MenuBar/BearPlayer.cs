@@ -14,6 +14,7 @@ namespace MenuBar
     {
         public BearPlayer()
         {
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
         }
 
@@ -26,7 +27,11 @@ namespace MenuBar
         {
             SolidBrush brush = new SolidBrush(Color.DimGray);
             Graphics draw = this.CreateGraphics();
-            draw.FillRectangle(brush, new Rectangle(0, 555, 1065, 120));
+
+            int height = Screen.PrimaryScreen.Bounds.Height;
+            int width = Screen.PrimaryScreen.Bounds.Width;
+
+            draw.FillRectangle(brush, new Rectangle(0, height - 150, width, 150));
             brush.Dispose();
             draw.Dispose();
         }
