@@ -14,7 +14,7 @@ namespace MenuBar
     {
         public BearPlayer()
         {
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
         }
 
@@ -36,4 +36,5 @@ namespace MenuBar
             draw.Dispose();
         }
     }
+
 }
