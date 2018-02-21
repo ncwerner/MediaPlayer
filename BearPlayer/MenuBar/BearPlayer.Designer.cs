@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode24});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,15 +71,20 @@
             this.switchUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.shuffle_toggle = new System.Windows.Forms.PictureBox();
+            this.repeat_button = new System.Windows.Forms.PictureBox();
+            this.previous_button = new System.Windows.Forms.PictureBox();
+            this.next_button = new System.Windows.Forms.PictureBox();
+            this.playBar = new System.Windows.Forms.PictureBox();
+            this.searchBar = new System.Windows.Forms.TextBox();
+            this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.MenuBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previous_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -350,72 +355,114 @@
             // 
             this.treeView1.BackColor = System.Drawing.Color.DodgerBlue;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeView1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Indent = 7;
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Artists";
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "New Playlist";
-            treeNode4.Text = "New Playlist";
-            treeNode5.Name = "Playlists";
-            treeNode5.Text = "Playlists";
+            treeNode21.Name = "Artists";
+            treeNode21.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode21.Text = "Artists";
+            treeNode22.Name = "Albums";
+            treeNode22.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode22.Text = "Albums";
+            treeNode23.Name = "Songs";
+            treeNode23.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode23.Text = "Songs";
+            treeNode24.Name = "New Playlist";
+            treeNode24.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode24.Text = "New Playlist";
+            treeNode25.Name = "Playlists";
+            treeNode25.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode25.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode5});
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode25});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
             this.treeView1.Size = new System.Drawing.Size(136, 499);
             this.treeView1.TabIndex = 1;
             // 
-            // pictureBox4
+            // shuffle_toggle
             // 
-            this.pictureBox4.Image = global::MenuBar.Properties.Resources.Repeat;
-            this.pictureBox4.Location = new System.Drawing.Point(693, 552);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(57, 35);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 5;
-            this.pictureBox4.TabStop = false;
+            this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.shuffle_toggle.Image = global::MenuBar.Properties.Resources.shuffleButton;
+            this.shuffle_toggle.Location = new System.Drawing.Point(360, 554);
+            this.shuffle_toggle.Name = "shuffle_toggle";
+            this.shuffle_toggle.Size = new System.Drawing.Size(61, 40);
+            this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.shuffle_toggle.TabIndex = 6;
+            this.shuffle_toggle.TabStop = false;
             // 
-            // pictureBox3
+            // repeat_button
             // 
-            this.pictureBox3.Image = global::MenuBar.Properties.Resources.Previous_Button;
-            this.pictureBox3.Location = new System.Drawing.Point(460, 547);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(56, 45);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 4;
-            this.pictureBox3.TabStop = false;
+            this.repeat_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.repeat_button.Image = global::MenuBar.Properties.Resources.Repeat;
+            this.repeat_button.Location = new System.Drawing.Point(680, 553);
+            this.repeat_button.Name = "repeat_button";
+            this.repeat_button.Size = new System.Drawing.Size(57, 35);
+            this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.repeat_button.TabIndex = 5;
+            this.repeat_button.TabStop = false;
             // 
-            // pictureBox2
+            // previous_button
             // 
-            this.pictureBox2.Image = global::MenuBar.Properties.Resources.Next_Previous;
-            this.pictureBox2.Location = new System.Drawing.Point(580, 547);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(56, 45);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
+            this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.previous_button.Image = global::MenuBar.Properties.Resources.Previous_Button;
+            this.previous_button.Location = new System.Drawing.Point(460, 547);
+            this.previous_button.Name = "previous_button";
+            this.previous_button.Size = new System.Drawing.Size(56, 45);
+            this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.previous_button.TabIndex = 4;
+            this.previous_button.TabStop = false;
             // 
-            // pictureBox1
+            // next_button
             // 
-            this.pictureBox1.Image = global::MenuBar.Properties.Resources.playButton1;
-            this.pictureBox1.Location = new System.Drawing.Point(520, 544);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 49);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.next_button.Image = global::MenuBar.Properties.Resources.Next_Previous;
+            this.next_button.Location = new System.Drawing.Point(580, 547);
+            this.next_button.Name = "next_button";
+            this.next_button.Size = new System.Drawing.Size(56, 45);
+            this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.next_button.TabIndex = 3;
+            this.next_button.TabStop = false;
+            // 
+            // playBar
+            // 
+            this.playBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playBar.Image = global::MenuBar.Properties.Resources.playButton1;
+            this.playBar.Location = new System.Drawing.Point(520, 544);
+            this.playBar.Name = "playBar";
+            this.playBar.Size = new System.Drawing.Size(56, 49);
+            this.playBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playBar.TabIndex = 2;
+            this.playBar.TabStop = false;
+            this.playBar.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // searchBar
+            // 
+            this.searchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchBar.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchBar.Location = new System.Drawing.Point(875, 28);
+            this.searchBar.Name = "searchBar";
+            this.searchBar.Size = new System.Drawing.Size(161, 23);
+            this.searchBar.TabIndex = 7;
+            this.searchBar.Text = "Search ";
+            // 
+            // volumeSlider
+            // 
+            this.volumeSlider.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.volumeSlider.Location = new System.Drawing.Point(827, 560);
+            this.volumeSlider.Maximum = 100;
+            this.volumeSlider.Name = "volumeSlider";
+            this.volumeSlider.Size = new System.Drawing.Size(195, 45);
+            this.volumeSlider.SmallChange = 5;
+            this.volumeSlider.TabIndex = 0;
+            this.volumeSlider.TickFrequency = 0;
+            this.volumeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // BearPlayer
             // 
@@ -423,24 +470,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.volumeSlider);
+            this.Controls.Add(this.searchBar);
+            this.Controls.Add(this.shuffle_toggle);
+            this.Controls.Add(this.repeat_button);
+            this.Controls.Add(this.previous_button);
+            this.Controls.Add(this.next_button);
+            this.Controls.Add(this.playBar);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.MainMenuStrip = this.MenuBar;
             this.Name = "BearPlayer";
             this.Text = "Bear Player";
             this.Load += new System.EventHandler(this.BearPlayer_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.BearPlayer_Paint);
             this.MouseHover += new System.EventHandler(this.BearPlayer_Load);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -485,10 +536,13 @@
         private System.Windows.Forms.ToolStripMenuItem switchUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOffToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox playBar;
+        private System.Windows.Forms.PictureBox next_button;
+        private System.Windows.Forms.PictureBox previous_button;
+        private System.Windows.Forms.PictureBox repeat_button;
+        private System.Windows.Forms.PictureBox shuffle_toggle;
+        private System.Windows.Forms.TextBox searchBar;
+        private System.Windows.Forms.TrackBar volumeSlider;
     }
 }
 

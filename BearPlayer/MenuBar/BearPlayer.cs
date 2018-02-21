@@ -27,25 +27,12 @@ namespace MenuBar
 
         }
 
-        private void BearPlayer_Paint(object sender, PaintEventArgs e)
-        {
-            SolidBrush brush = new SolidBrush(Color.DimGray);
-            Graphics draw = this.CreateGraphics();
-
-            int height = Screen.PrimaryScreen.Bounds.Height;
-            int width = Screen.PrimaryScreen.Bounds.Width;
-
-            draw.FillRectangle(brush, new Rectangle(0, height - 150, width, 150));
-            brush.Dispose();
-            draw.Dispose();
-        }
-
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (play)
-                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
             else
-                this.pictureBox1.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
 
             play = !play;
         }
