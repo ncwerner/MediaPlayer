@@ -14,7 +14,7 @@ namespace MenuBar
     {
         public BearPlayer()
         {
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
+            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
         }
 
@@ -34,6 +34,11 @@ namespace MenuBar
             draw.FillRectangle(brush, new Rectangle(0, height - 150, width, 150));
             brush.Dispose();
             draw.Dispose();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
