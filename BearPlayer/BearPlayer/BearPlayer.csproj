@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A45999FB-6887-4D07-8C94-D3CD26374695}</ProjectGuid>
+    <ProjectGuid>{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>MenuBar</RootNamespace>
-    <AssemblyName>MenuBar</AssemblyName>
+    <RootNamespace>BearPlayer</RootNamespace>
+    <AssemblyName>BearPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -80,28 +80,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\playButton.png" />
+    <None Include="Resources\shuffleButton1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Next-Previous.PNG" />
+    <None Include="Resources\Next-Previous1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Previous Button.PNG" />
+    <None Include="Resources\Previous Button1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\playButton1.png" />
+    <None Include="Resources\Repeat1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Repeat.png" />
+    <None Include="Resources\pauseButton1.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pauseButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shuffle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shuffleButton.png" />
+    <None Include="Resources\playButton2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

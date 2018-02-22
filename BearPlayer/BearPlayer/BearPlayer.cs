@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MenuBar
+namespace BearPlayer
 {
     public partial class BearPlayer : Form
     {
@@ -31,12 +31,12 @@ namespace MenuBar
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (play)
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");   
-           
-            else
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");   
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
 
-            play = !play;   
+            else
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
+
+            play = !play;
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,7 +69,5 @@ namespace MenuBar
             }
             path.Text = file_path;
         }
-
     }
-
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MenuBar.Properties
+namespace BearPlayer.Properties
 {
 
 
