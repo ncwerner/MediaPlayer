@@ -12,8 +12,15 @@ namespace MenuBar
 {
     public partial class BearPlayer : Form
     {
+        bool play; 
+
         public BearPlayer()
         {
+<<<<<<< HEAD
+=======
+            play = true;
+
+>>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
         }
@@ -23,17 +30,14 @@ namespace MenuBar
 
         }
 
-        private void BearPlayer_Paint(object sender, PaintEventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            SolidBrush brush = new SolidBrush(Color.DimGray);
-            Graphics draw = this.CreateGraphics();
+            if (play)
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+            else
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
 
-            int height = Screen.PrimaryScreen.Bounds.Height;
-            int width = Screen.PrimaryScreen.Bounds.Width;
-
-            draw.FillRectangle(brush, new Rectangle(0, height - 150, width, 150));
-            brush.Dispose();
-            draw.Dispose();
+            play = !play;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -41,4 +45,5 @@ namespace MenuBar
 
         }
     }
+
 }

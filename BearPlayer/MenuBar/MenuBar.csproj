@@ -80,7 +80,32 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="Resources\ff.png" />
+=======
+    <None Include="Resources\playButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Next-Previous.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Previous Button.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\playButton1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Repeat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pauseButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shuffle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shuffleButton.png" />
+>>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
