@@ -17,15 +17,8 @@ namespace MenuBar
 
         public BearPlayer()
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            play = true;
-=======
             play = true;   // Begin program with play button
->>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
 
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
         }
@@ -46,12 +39,6 @@ namespace MenuBar
             play = !play;   
         }
 
-<<<<<<< HEAD
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-=======
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -83,7 +70,6 @@ namespace MenuBar
             path.Text = file_path;
         }
 
->>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
     }
 
 }

@@ -71,11 +71,6 @@
             this.switchUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView1 = new System.Windows.Forms.TreeView();
-<<<<<<< HEAD
-            this.fastFoward = new System.Windows.Forms.PictureBox();
-            this.MenuBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fastFoward)).BeginInit();
-=======
             this.shuffle_toggle = new System.Windows.Forms.PictureBox();
             this.repeat_button = new System.Windows.Forms.PictureBox();
             this.previous_button = new System.Windows.Forms.PictureBox();
@@ -91,7 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             this.SuspendLayout();
             // 
             // MenuBar
@@ -107,7 +101,7 @@
             this.accountToolStripMenuItem});
             this.MenuBar.Location = new System.Drawing.Point(0, 0);
             this.MenuBar.Name = "MenuBar";
-            this.MenuBar.Size = new System.Drawing.Size(1003, 25);
+            this.MenuBar.Size = new System.Drawing.Size(1048, 25);
             this.MenuBar.TabIndex = 0;
             this.MenuBar.Text = "MenuBar";
             // 
@@ -364,49 +358,11 @@
             // 
             this.treeView1.BackColor = System.Drawing.Color.DodgerBlue;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-<<<<<<< HEAD
-            this.treeView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-=======
             this.treeView1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             this.treeView1.Indent = 7;
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-<<<<<<< HEAD
-<<<<<<< HEAD
-            treeNode6.Name = "Artists";
-            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Artists";
-            treeNode7.Name = "Albums";
-            treeNode7.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode7.Text = "Albums";
-            treeNode8.Name = "Songs";
-            treeNode8.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode8.Text = "Songs";
-            treeNode9.Name = "New Playlist";
-            treeNode9.Text = "New Playlist";
-            treeNode10.Name = "Playlists";
-            treeNode10.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode10.Text = "Playlists";
-=======
-            treeNode21.Name = "Artists";
-            treeNode21.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode21.Text = "Artists";
-            treeNode22.Name = "Albums";
-            treeNode22.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode22.Text = "Albums";
-            treeNode23.Name = "Songs";
-            treeNode23.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode23.Text = "Songs";
-            treeNode24.Name = "New Playlist";
-            treeNode24.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode24.Text = "New Playlist";
-            treeNode25.Name = "Playlists";
-            treeNode25.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode25.Text = "Playlists";
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
-=======
             treeNode1.Name = "Artists";
             treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode1.Text = "Artists";
@@ -422,7 +378,6 @@
             treeNode5.Name = "Playlists";
             treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode5.Text = "Playlists";
->>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
@@ -431,21 +386,6 @@
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
-<<<<<<< HEAD
-            this.treeView1.Size = new System.Drawing.Size(132, 517);
-            this.treeView1.TabIndex = 1;
-            // 
-            // fastFoward
-            // 
-            this.fastFoward.Image = global::MenuBar.Properties.Resources.ff;
-            this.fastFoward.Location = new System.Drawing.Point(636, 566);
-            this.fastFoward.Name = "fastFoward";
-            this.fastFoward.Size = new System.Drawing.Size(45, 37);
-            this.fastFoward.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.fastFoward.TabIndex = 2;
-            this.fastFoward.TabStop = false;
-            this.fastFoward.Click += new System.EventHandler(this.pictureBox1_Click);
-=======
             this.treeView1.Size = new System.Drawing.Size(136, 499);
             this.treeView1.TabIndex = 1;
             // 
@@ -526,7 +466,6 @@
             this.volumeSlider.TabIndex = 0;
             this.volumeSlider.TickFrequency = 0;
             this.volumeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             // 
             // path
             // 
@@ -540,10 +479,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-<<<<<<< HEAD
-            this.ClientSize = new System.Drawing.Size(1003, 615);
-            this.Controls.Add(this.fastFoward);
-=======
             this.ClientSize = new System.Drawing.Size(1048, 617);
             this.Controls.Add(this.path);
             this.Controls.Add(this.volumeSlider);
@@ -553,7 +488,6 @@
             this.Controls.Add(this.previous_button);
             this.Controls.Add(this.next_button);
             this.Controls.Add(this.playBar);
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.MainMenuStrip = this.MenuBar;
@@ -563,16 +497,12 @@
             this.MouseHover += new System.EventHandler(this.BearPlayer_Load);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.fastFoward)).EndInit();
-=======
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).EndInit();
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,9 +547,6 @@
         private System.Windows.Forms.ToolStripMenuItem switchUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOffToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
-<<<<<<< HEAD
-        private System.Windows.Forms.PictureBox fastFoward;
-=======
         private System.Windows.Forms.PictureBox playBar;
         private System.Windows.Forms.PictureBox next_button;
         private System.Windows.Forms.PictureBox previous_button;
@@ -627,11 +554,7 @@
         private System.Windows.Forms.PictureBox shuffle_toggle;
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.TrackBar volumeSlider;
-<<<<<<< HEAD
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
-=======
         private System.Windows.Forms.TextBox path;
->>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
     }
 }
 

@@ -118,25 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-<<<<<<< HEAD
-  <data name="ff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Next_Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Next_Previous.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-=======
   <data name="Repeat" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Repeat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="playButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\playButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
   </data>
   <data name="Next-Previous" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Next-Previous.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-<<<<<<< HEAD
-=======
   <data name="shuffle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shuffle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -155,5 +145,4 @@
   <data name="shuffleButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shuffleButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
 </root>

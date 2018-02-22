@@ -63,11 +63,6 @@ namespace MenuBar.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-<<<<<<< HEAD
-        internal static System.Drawing.Bitmap ff {
-            get {
-                object obj = ResourceManager.GetObject("ff", resourceCulture);
-=======
         internal static System.Drawing.Bitmap Next_Previous {
             get {
                 object obj = ResourceManager.GetObject("Next-Previous", resourceCulture);
@@ -151,7 +146,6 @@ namespace MenuBar.Properties {
         internal static System.Drawing.Bitmap shuffleButton {
             get {
                 object obj = ResourceManager.GetObject("shuffleButton", resourceCulture);
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

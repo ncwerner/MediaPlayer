@@ -80,9 +80,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <None Include="Resources\ff.png" />
-=======
     <None Include="Resources\playButton.png" />
   </ItemGroup>
   <ItemGroup>
@@ -105,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\shuffleButton.png" />
->>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
