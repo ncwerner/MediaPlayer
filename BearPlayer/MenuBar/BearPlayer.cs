@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,17 @@ namespace MenuBar
 {
     public partial class BearPlayer : Form
     {
-        bool play; 
+        bool play;   // Global variable for controling play/pause state
 
         public BearPlayer()
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             play = true;
+=======
+            play = true;   // Begin program with play button
+>>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
 
 >>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
@@ -33,17 +38,52 @@ namespace MenuBar
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (play)
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");   
+           
             else
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");   
 
-            play = !play;
+            play = !play;   
         }
 
+<<<<<<< HEAD
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
+=======
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            string folder_path = "";
+            using (var folderDialog = new FolderBrowserDialog())
+            {
+                if (folderDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    folder_path = folderDialog.SelectedPath;
+                }
+            }
+            path.Text = folder_path;
+        }
+
+        private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Music Files| *.mp3";
+            openFileDialog1.Title = "Select a Song";
+            string file_path = "";
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                file_path = openFileDialog1.FileName;
+
+            }
+            path.Text = file_path;
+        }
+
+>>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
     }
 
 }

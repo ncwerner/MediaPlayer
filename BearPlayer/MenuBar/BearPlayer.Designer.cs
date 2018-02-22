@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode24});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +83,7 @@
             this.playBar = new System.Windows.Forms.PictureBox();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
+            this.path = new System.Windows.Forms.TextBox();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -132,12 +133,14 @@
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.importToolStripMenuItem.Text = "Import Folder";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // importSongToolStripMenuItem
             // 
             this.importSongToolStripMenuItem.Name = "importSongToolStripMenuItem";
             this.importSongToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.importSongToolStripMenuItem.Text = "Import Song";
+            this.importSongToolStripMenuItem.Click += new System.EventHandler(this.importSongToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -371,6 +374,7 @@
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
 <<<<<<< HEAD
+<<<<<<< HEAD
             treeNode6.Name = "Artists";
             treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode6.Text = "Artists";
@@ -402,11 +406,28 @@
             treeNode25.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode25.Text = "Playlists";
 >>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
+=======
+            treeNode1.Name = "Artists";
+            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.Text = "Artists";
+            treeNode2.Name = "Albums";
+            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.Text = "Albums";
+            treeNode3.Name = "Songs";
+            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode3.Text = "Songs";
+            treeNode4.Name = "New Playlist";
+            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode4.Text = "New Playlist";
+            treeNode5.Name = "Playlists";
+            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode5.Text = "Playlists";
+>>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode22,
-            treeNode23,
-            treeNode25});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode5});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -507,6 +528,13 @@
             this.volumeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
 >>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
             // 
+            // path
+            // 
+            this.path.Location = new System.Drawing.Point(580, 65);
+            this.path.Name = "path";
+            this.path.Size = new System.Drawing.Size(281, 20);
+            this.path.TabIndex = 6;
+            // 
             // BearPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -517,6 +545,7 @@
             this.Controls.Add(this.fastFoward);
 =======
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.path);
             this.Controls.Add(this.volumeSlider);
             this.Controls.Add(this.searchBar);
             this.Controls.Add(this.shuffle_toggle);
@@ -598,7 +627,11 @@
         private System.Windows.Forms.PictureBox shuffle_toggle;
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.TrackBar volumeSlider;
+<<<<<<< HEAD
 >>>>>>> c7f0e88401065373f3cc2d0c31250a164ba8491d
+=======
+        private System.Windows.Forms.TextBox path;
+>>>>>>> 51fe74eeffb9093045cc1966f4eec414138b9d9f
     }
 }
 
