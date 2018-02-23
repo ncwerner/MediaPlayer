@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode14});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,6 +79,7 @@
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.path = new System.Windows.Forms.TextBox();
+            this.scrubBar = new System.Windows.Forms.TrackBar();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -86,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -363,30 +365,30 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "New Playlist";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "New Playlist";
-            treeNode5.Name = "Playlists";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "Playlists";
+            treeNode11.Name = "Artists";
+            treeNode11.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode11.Text = "Artists";
+            treeNode12.Name = "Albums";
+            treeNode12.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode12.Text = "Albums";
+            treeNode13.Name = "Songs";
+            treeNode13.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode13.Text = "Songs";
+            treeNode14.Name = "New Playlist";
+            treeNode14.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode14.Text = "New Playlist";
+            treeNode15.Name = "Playlists";
+            treeNode15.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode15.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode5});
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode15});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
-            this.treeView1.Size = new System.Drawing.Size(136, 499);
+            this.treeView1.Size = new System.Drawing.Size(136, 478);
             this.treeView1.TabIndex = 1;
             // 
             // shuffle_toggle
@@ -457,11 +459,12 @@
             // 
             // volumeSlider
             // 
+            this.volumeSlider.AutoSize = false;
             this.volumeSlider.Cursor = System.Windows.Forms.Cursors.Hand;
             this.volumeSlider.Location = new System.Drawing.Point(827, 560);
             this.volumeSlider.Maximum = 100;
             this.volumeSlider.Name = "volumeSlider";
-            this.volumeSlider.Size = new System.Drawing.Size(195, 45);
+            this.volumeSlider.Size = new System.Drawing.Size(195, 28);
             this.volumeSlider.SmallChange = 5;
             this.volumeSlider.TabIndex = 0;
             this.volumeSlider.TickFrequency = 0;
@@ -473,6 +476,19 @@
             this.path.Name = "path";
             this.path.Size = new System.Drawing.Size(281, 20);
             this.path.TabIndex = 6;
+            // 
+            // scrubBar
+            // 
+            this.scrubBar.AutoSize = false;
+            this.scrubBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.scrubBar.LargeChange = 0;
+            this.scrubBar.Location = new System.Drawing.Point(171, 517);
+            this.scrubBar.Maximum = 100;
+            this.scrubBar.Name = "scrubBar";
+            this.scrubBar.Size = new System.Drawing.Size(830, 24);
+            this.scrubBar.SmallChange = 0;
+            this.scrubBar.TabIndex = 8;
+            this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // BearPlayer
             // 
@@ -490,6 +506,7 @@
             this.Controls.Add(this.playBar);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
+            this.Controls.Add(this.scrubBar);
             this.MainMenuStrip = this.MenuBar;
             this.Name = "BearPlayer";
             this.Text = "Bear Player";
@@ -503,6 +520,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,6 +573,7 @@
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.TrackBar volumeSlider;
         private System.Windows.Forms.TextBox path;
+        private System.Windows.Forms.TrackBar scrubBar;
     }
 }
 
