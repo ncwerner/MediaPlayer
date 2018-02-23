@@ -70,5 +70,10 @@ namespace BearPlayer
             }
             path.Text = file_path;
         }
+        
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
