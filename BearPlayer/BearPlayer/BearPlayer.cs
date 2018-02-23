@@ -25,7 +25,8 @@ namespace BearPlayer
 
         private void BearPlayer_Load(object sender, EventArgs e)
         {
-   
+            this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
+            this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
