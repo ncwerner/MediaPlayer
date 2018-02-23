@@ -25,7 +25,7 @@ namespace BearPlayer
 
         private void BearPlayer_Load(object sender, EventArgs e)
         {
-
+   
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
