@@ -28,21 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
+
             System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Artists");
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Albums");
             System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Songs");
             System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("New Playlist");
             System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
             treeNode14});
-=======
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode19});
->>>>>>> 978064056b95707fe9de91fdc9aab0f34591fc9a
+
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -374,7 +367,7 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-<<<<<<< HEAD
+
             treeNode11.Name = "Artists";
             treeNode11.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode11.Text = "Artists";
@@ -395,28 +388,7 @@
             treeNode12,
             treeNode13,
             treeNode15});
-=======
-            treeNode16.Name = "Artists";
-            treeNode16.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode16.Text = "Artists";
-            treeNode17.Name = "Albums";
-            treeNode17.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode17.Text = "Albums";
-            treeNode18.Name = "Songs";
-            treeNode18.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode18.Text = "Songs";
-            treeNode19.Name = "New Playlist";
-            treeNode19.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode19.Text = "New Playlist";
-            treeNode20.Name = "Playlists";
-            treeNode20.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode20.Text = "Playlists";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode20});
->>>>>>> 978064056b95707fe9de91fdc9aab0f34591fc9a
+
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -521,10 +493,7 @@
             this.scrubBar.SmallChange = 0;
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
-<<<<<<< HEAD
-=======
-            
->>>>>>> 978064056b95707fe9de91fdc9aab0f34591fc9a
+
             // 
             // BearPlayer
             // 

@@ -51,7 +51,6 @@
     <Compile Include="BearPlayer.Designer.cs">
       <DependentUpon>BearPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="BearPlayer.resx">
