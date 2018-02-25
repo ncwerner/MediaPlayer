@@ -1,4 +1,5 @@
 ﻿using System;
+using BearPlayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -7,13 +8,9 @@ namespace Test
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TestPlayButton()
         {
-            Assert.IsTrue(BearPlayer.Test.test);
-<<<<<<< HEAD
-            
-=======
->>>>>>> 3a019f7bf16e62075493d88fbb4988fcf1b86d57
+            BearPlayer player = new BearPlayer();
         }
     }
 }

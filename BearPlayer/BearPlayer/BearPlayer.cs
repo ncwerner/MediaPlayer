@@ -17,10 +17,9 @@ namespace BearPlayer
 
         public BearPlayer()
         {
-            play = true;   // Begin program with play button
-
-            //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
+            play = true;   // Begin program with play button
+            
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
