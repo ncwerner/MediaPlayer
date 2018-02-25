@@ -16,7 +16,7 @@ namespace BearPlayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BearPlayer());
+            Application.Run(new Bear_Player());
         }
     }
 }

@@ -8,6 +8,6 @@ namespace BearPlayer
 {
     public class Test
     {
-        public static bool test = true;
+
     }
 }

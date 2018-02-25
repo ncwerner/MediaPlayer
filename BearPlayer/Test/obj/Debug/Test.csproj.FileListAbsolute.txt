@@ -30,3 +30,4 @@ C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\Test\obj\Debug\Test.cspro
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\Test\obj\Debug\Test.csproj.CoreCompileInputs.cache
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\Test\obj\Debug\Test.dll
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\Test\obj\Debug\Test.pdb
+C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\Test\bin\Debug\taglib-sharp.dll
