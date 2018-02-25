@@ -86,6 +86,10 @@ namespace BearPlayer
                 file_path = openFileDialog1.FileName;
             }
             path.Text = file_path;
+            //get song name from file
+            TagLib.File file = TagLib.File.Create(path.Text);
+            song_name = file.Tag.Title;
+            SongName.Text = song_name;
             //set the path that is saved to be the text for the textbox in the gui
 
         }
@@ -105,6 +109,13 @@ namespace BearPlayer
         {
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
+        }
+        //testing play with button
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Player.URL = file_path;
+            Player.controls.play();
+            this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
         }
     }
 }
