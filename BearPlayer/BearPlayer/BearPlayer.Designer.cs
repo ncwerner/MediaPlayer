@@ -80,6 +80,7 @@
             this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.path = new System.Windows.Forms.TextBox();
             this.scrubBar = new System.Windows.Forms.TrackBar();
+            this.SongName = new System.Windows.Forms.Button();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -500,13 +501,25 @@
             this.scrubBar.SmallChange = 0;
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            //
+            // SongName
+            // 
+            this.SongName.Location = new System.Drawing.Point(188, 150);
+            this.SongName.Name = "SongName";
+            this.SongName.Size = new System.Drawing.Size(228, 54);
+            this.SongName.TabIndex = 9;
+            this.SongName.Text = "Song-Import to play";
+            this.SongName.UseVisualStyleBackColor = true;
+            this.SongName.Click += new System.EventHandler(this.button1_Click);
             // 
             // BearPlayer
             // 
+            
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.SongName);
             this.Controls.Add(this.path);
             this.Controls.Add(this.volumeSlider);
             this.Controls.Add(this.searchBar);
@@ -585,6 +598,7 @@
         private System.Windows.Forms.TrackBar volumeSlider;
         private System.Windows.Forms.TextBox path;
         private System.Windows.Forms.TrackBar scrubBar;
+        private System.Windows.Forms.Button SongName;
     }
 }
 
