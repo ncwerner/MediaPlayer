@@ -18,13 +18,13 @@ C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\Bear
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.CoreCompileInputs.cache
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.exe
 C:\Users\calec\Documents\GitHub\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.pdb
+C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.exe.config
+C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.exe
+C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.pdb
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csprojResolveAssemblyReference.cache
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.BearPlayer.resources
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.Properties.Resources.resources
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.GenerateResource.Cache
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.CoreCompileInputs.cache
-C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.pdb
-C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.exe.config
-C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.exe
-C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\BearPlayer.pdb
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.exe
+C:\Users\calec\Desktop\Programming Projects\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.pdb
