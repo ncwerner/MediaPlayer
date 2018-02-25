@@ -15,6 +15,7 @@ namespace BearPlayer
     {
         bool play;   // Global variable for controling play/pause state
         string file_path;   // directory of chosed song
+        string song_name; //song name pulled from imported file
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
 
         public BearPlayer()
