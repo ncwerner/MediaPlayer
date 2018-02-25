@@ -1,4 +1,5 @@
 ﻿using System;
+using BearPlayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -9,7 +10,9 @@ namespace Test
         [TestMethod]
         public void TestMethod1()
         {
-            Assert.IsTrue(BearPlayer.Test.test);
+            Bear_Player player = new Bear_Player();
+            player.pictureBox1_Click(null, null);
+            Assert.AreEqual(player.play, false);
         }
     }
 }
