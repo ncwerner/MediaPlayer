@@ -10,7 +10,7 @@ namespace Test
         [TestMethod]
         public void TestMethod1()
         {
-            Bear_Player player = new Bear_Player();
+            var player = new BearPlayer.BearPlayer();
             player.pictureBox1_Click(null, null);
             Assert.AreEqual(player.play, false);
         }

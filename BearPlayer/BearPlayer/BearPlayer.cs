@@ -13,7 +13,7 @@ namespace BearPlayer
 {
     public partial class BearPlayer : Form
     {
-        bool play;   // Global variable for controling play/pause state
+        public bool play;   // Global variable for controling play/pause state
         string file_path;   // directory of chosed song
         string song_name; //song name pulled from imported file
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
@@ -32,7 +32,7 @@ namespace BearPlayer
    
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        public void pictureBox1_Click(object sender, EventArgs e)
         {
             if (play)
             {
@@ -53,7 +53,7 @@ namespace BearPlayer
             play = !play;
         }
 
-        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        public void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             string folder_path = "";
