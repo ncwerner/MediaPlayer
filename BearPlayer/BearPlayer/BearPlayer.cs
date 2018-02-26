@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,10 +14,7 @@ namespace BearPlayer
 {
     public partial class BearPlayer : Form
     {
-        public bool play;   // Global variable for controling play/pause state
-        string file_path;   // directory of chosed song
-        string song_name; //song name pulled from imported file
-        WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
+        bool play;   // Global variable for controling play/pause state
 
         public BearPlayer()
         {
@@ -24,99 +22,65 @@ namespace BearPlayer
 
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
-            Player = new WMPLib.WindowsMediaPlayer();
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
         {
-   
+
         }
 
-        public void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             if (play)
-            {
-                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
-                if (Player.URL != file_path)
-                {
-                    Player.URL = file_path;
-                }
-                //sets the URL for the player as the file path
-                Player.controls.play();
-                //plays the file that is currently set as the URL
-            }
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+
             else
-            {
-                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
-                Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
-            }
+                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
+
             play = !play;
         }
 
-        public void importToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void importToolStripMenuItem_ClickAsync(object sender, EventArgs e)
         {
 
             string folder_path = "";
-            //initializes the folder path
             using (var folderDialog = new FolderBrowserDialog())
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
 
                     folder_path = folderDialog.SelectedPath;
-                    //saves the selected folder as folder path
                 }
             }
             path.Text = folder_path;
-            //shows the path in the text box
+            path.Text = "Finding songs";
+            string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
+            path.Text = "Songs: " + songs.Length;
+            foreach (string s in songs)
+            {
+                listBox1.Items.Add(s);
+            }
         }
 
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            //creates a new file dialog each time the inport song button is clicked
             openFileDialog1.Filter = "Music Files| *.mp3";
-            //sets the filter to only show mp3 files
             openFileDialog1.Title = "Select a Song";
-            file_path = "";
-            //initializes the file path
+            string file_path = "";
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
 
                 file_path = openFileDialog1.FileName;
+
             }
             path.Text = file_path;
-            //get song name from file
-            TagLib.File file = TagLib.File.Create(path.Text);
-            song_name = file.Tag.Title;
-            SongName.Text = song_name;
-            //set the path that is saved to be the text for the textbox in the gui
-
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-        private void volumeUpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void path_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void volumeSlider_Scroll_1(object sender, EventArgs e)
-        {
-            Player.settings.volume = volumeSlider.Value;
-            //path.Text = (volumeSlider.Value).ToString();
-        }
-        //testing play with button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Player.URL = file_path;
-            Player.controls.play();
-            this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
         }
     }
 }
