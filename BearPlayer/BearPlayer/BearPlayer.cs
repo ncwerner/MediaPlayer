@@ -36,7 +36,7 @@ namespace BearPlayer
         {
             if (play)
             {
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
                 if (Player.URL != file_path)
                 {
                     Player.URL = file_path;
@@ -47,7 +47,7 @@ namespace BearPlayer
             }
             else
             {
-                this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "playButton1.png");
+                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
             }
             play = !play;
@@ -116,7 +116,7 @@ namespace BearPlayer
         {
             Player.URL = file_path;
             Player.controls.play();
-            this.playBar.Image = Image.FromFile(Application.StartupPath + "\\" + "pauseButton.png");
+            this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
         }
     }
 }
