@@ -122,14 +122,14 @@ namespace BearPlayer
             if (!album_map.ContainsKey(file.Tag.Album))
             {
                 List<string> new_list = new List<string>();
-                new_list.Add(s);
+                new_list.Add(path);
                 album_map.Add(file.Tag.Album, new_list);
             }
             else
             {
                 album_map[file.Tag.Album].Add(path);
             }
-            foreach (string art in file.Tag.Artists)
+            foreach (string art in file.Tag.Performers)
             {
                 if (!artist_map.ContainsKey(art))
                 {
