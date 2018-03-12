@@ -20,7 +20,7 @@ namespace Sprint1_UnitTest
         public void PlayButton_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Change_PlayState();
@@ -33,7 +33,7 @@ namespace Sprint1_UnitTest
         public void PauseButton_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Change_PlayState();
@@ -47,7 +47,7 @@ namespace Sprint1_UnitTest
         public void PlayButton_StartsPlay_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
 
@@ -59,7 +59,7 @@ namespace Sprint1_UnitTest
         public void PlayPicture_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             String result = player.Get_Picture(0);
@@ -72,7 +72,7 @@ namespace Sprint1_UnitTest
         public void PausePicture_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             String result = player.Get_Picture(1);
@@ -85,7 +85,7 @@ namespace Sprint1_UnitTest
         public void ChangePicture_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             String result = player.Get_Picture(1);
@@ -99,7 +99,7 @@ namespace Sprint1_UnitTest
         public void NullPicture_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             String result = player.Get_Picture(3);
@@ -112,7 +112,7 @@ namespace Sprint1_UnitTest
         public void FolderPathNull_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
 
@@ -124,7 +124,7 @@ namespace Sprint1_UnitTest
         public void FolderPath_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
             player.Set_FolderPath(@"C:\Users\calec\Music\Anberlin\Never Take Friendship Personal");
@@ -137,7 +137,7 @@ namespace Sprint1_UnitTest
         public void ChangeFolderPath_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
             player.Set_FolderPath(@"C:\Users\calec\Music\Anberlin\Never Take Friendship Personal");
@@ -152,7 +152,7 @@ namespace Sprint1_UnitTest
         public void FilePathNull_Test()
         {
             // Arrage
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
 
@@ -164,7 +164,7 @@ namespace Sprint1_UnitTest
         public void FilePath_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
             player.Set_FilePath(@"‪C:\Users\calec\Music\Cities\02 - Godspeed.mp3");
@@ -177,7 +177,7 @@ namespace Sprint1_UnitTest
         public void ChangeFilePath_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act 
             player.Set_FilePath(@"‪C:\Users\calec\Music\Amazon MP3\Anberlin\Devotion\01-12-Ijsw.mp3");
@@ -192,7 +192,7 @@ namespace Sprint1_UnitTest
         public void Get_Song_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory0);
@@ -207,7 +207,7 @@ namespace Sprint1_UnitTest
         public void Get_SongAlbum_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory0);
@@ -222,7 +222,7 @@ namespace Sprint1_UnitTest
         public void Get_SongArtist_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory0);
@@ -237,7 +237,7 @@ namespace Sprint1_UnitTest
         public void Get_SongYear_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory0);
@@ -252,7 +252,7 @@ namespace Sprint1_UnitTest
         public void Change_Song_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory1);
@@ -270,7 +270,7 @@ namespace Sprint1_UnitTest
         public void Change_SongAlbum_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory1);
@@ -288,7 +288,7 @@ namespace Sprint1_UnitTest
         public void Change_SongArtist_Test()
         {
             // Arrange
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory1);
@@ -306,7 +306,7 @@ namespace Sprint1_UnitTest
         public void Change_SongYear_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory1);
@@ -324,7 +324,7 @@ namespace Sprint1_UnitTest
         public void SongTitleNull_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
 
@@ -336,7 +336,7 @@ namespace Sprint1_UnitTest
         public void Set_SongTitle_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory0);
@@ -351,7 +351,7 @@ namespace Sprint1_UnitTest
         public void Change_SongTitle_Test()
         {
             // Arrange 
-            var player = new BearPlayer.BearPlayer();
+            var player = new BearPlayer.Bear_Player();
 
             // Act
             player.Set_FilePath(file_directory1);

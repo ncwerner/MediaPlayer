@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace BearPlayer
 {
     public partial class Bear_Player : Form
@@ -21,6 +22,9 @@ namespace BearPlayer
         string[] songs = new String[0];
         int playing_index = 0;
         Timer song_time;
+        Dictionary<string, string> song_map = new Dictionary<string,string>();
+        Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
+        Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
 
         public Bear_Player()
         {
@@ -79,20 +83,61 @@ namespace BearPlayer
                 {
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
-                    songs = Directory.GetFiles(@folder_path, "*.mp3");               
+                    songs = Directory.GetFiles(@folder_path, "*.mp3");
+                    if (songs.Length > 0)
+                    {
+                        file_path = songs[0];
+                    }
+                    foreach (string s in songs)
+                    {
+                        TagLib.File file = TagLib.File.Create(s);
+
+                        add_new_song(s);
+
+                        listBox1.Items.Add(file.Tag.Title);
+                    }
+                    playing_index = 0;
                 }
             }
-            if( songs.Length > 0)
+            
+        }
+        
+        public void add_new_song( string path)
+        {
+            TagLib.File file = TagLib.File.Create(path);
+
+            if (!song_map.ContainsKey(file.Tag.Title))
             {
-                file_path = songs[0];
+                song_map.Add(file.Tag.Title, path);
             }
-            foreach (string s in songs)
+            else
             {
-                TagLib.File file = TagLib.File.Create(s);
-                listBox1.Items.Add(file.Tag.Title);
+                song_map[file.Tag.Title] = path;
             }
-            playing_index = 0;
-            //shows the path in the text box
+
+            if (!album_map.ContainsKey(file.Tag.Album))
+            {
+                List<string> new_list = new List<string>();
+                new_list.Add(path);
+                album_map.Add(file.Tag.Album, new_list);
+            }
+            else
+            {
+                album_map[file.Tag.Album].Add(path);
+            }
+            foreach (string art in file.Tag.Performers)
+            {
+                if (!artist_map.ContainsKey(art))
+                {
+                    List<string> new_list = new List<string>();
+                    new_list.Add(path);
+                    artist_map.Add(art, new_list);
+                }
+                else
+                {
+                    artist_map[art].Add(path);
+                }
+            }
         }
 
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,11 +160,9 @@ namespace BearPlayer
                 songs = new string[1];
                 songs[0] = file_path;
                 playing_index = 0;
-
+                //set the path that is saved to be the text for the textbox in the gui
             }
-            
-            
-            //set the path that is saved to be the text for the textbox in the gui
+
 
         }
 
@@ -193,7 +236,6 @@ namespace BearPlayer
                 play_new_song(songs[playing_index]);
                 listBox1.SelectedIndex = playing_index;
             }
-            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
