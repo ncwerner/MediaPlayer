@@ -1,6 +1,6 @@
 ﻿namespace BearPlayer
 {
-    partial class BearPlayer
+    partial class Bear_Player
     {
         /// <summary>
         /// Required designer variable.
@@ -78,9 +78,11 @@
             this.playBar = new System.Windows.Forms.PictureBox();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
-            this.path = new System.Windows.Forms.TextBox();
             this.scrubBar = new System.Windows.Forms.TrackBar();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.Albums_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Songs_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -394,6 +396,7 @@
             this.treeView1.ShowPlusMinus = false;
             this.treeView1.Size = new System.Drawing.Size(136, 478);
             this.treeView1.TabIndex = 1;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // shuffle_toggle
             // 
@@ -485,13 +488,6 @@
             this.volumeSlider.Value = 100;
             this.volumeSlider.Scroll += new System.EventHandler(this.volumeSlider_Scroll_1);
             // 
-            // path
-            // 
-            this.path.Location = new System.Drawing.Point(580, 65);
-            this.path.Name = "path";
-            this.path.Size = new System.Drawing.Size(281, 20);
-            this.path.TabIndex = 6;
-            // 
             // scrubBar
             // 
             this.scrubBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -515,14 +511,39 @@
             this.listBox1.TabIndex = 9;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // BearPlayer
+            // Albums_View
+            // 
+            this.Albums_View.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Albums_View.Location = new System.Drawing.Point(136, 75);
+            this.Albums_View.Name = "Albums_View";
+            this.Albums_View.Size = new System.Drawing.Size(900, 428);
+            this.Albums_View.TabIndex = 10;
+            this.Albums_View.Visible = false;
+            // 
+            // Songs_View
+            // 
+            this.Songs_View.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Songs_View.Location = new System.Drawing.Point(136, 75);
+            this.Songs_View.Name = "Songs_View";
+            this.Songs_View.Size = new System.Drawing.Size(900, 428);
+            this.Songs_View.TabIndex = 11;
+            this.Songs_View.Visible = false;
+            // 
+            // Playlists_View
+            // 
+            this.Playlists_View.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Playlists_View.Location = new System.Drawing.Point(136, 75);
+            this.Playlists_View.Name = "Playlists_View";
+            this.Playlists_View.Size = new System.Drawing.Size(900, 428);
+            this.Playlists_View.TabIndex = 0;
+            this.Playlists_View.Visible = false;
+            // 
+            // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.path);
             this.Controls.Add(this.volumeSlider);
             this.Controls.Add(this.searchBar);
             this.Controls.Add(this.shuffle_toggle);
@@ -533,8 +554,12 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
+            this.Controls.Add(this.Playlists_View);
+            this.Controls.Add(this.Songs_View);
+            this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.listBox1);
             this.MainMenuStrip = this.MenuBar;
-            this.Name = "BearPlayer";
+            this.Name = "Bear_Player";
             this.Text = "Bear Player";
             this.Load += new System.EventHandler(this.BearPlayer_Load);
             this.MouseHover += new System.EventHandler(this.BearPlayer_Load);
@@ -598,9 +623,11 @@
         private System.Windows.Forms.PictureBox shuffle_toggle;
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.TrackBar volumeSlider;
-        private System.Windows.Forms.TextBox path;
         private System.Windows.Forms.TrackBar scrubBar;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.FlowLayoutPanel Albums_View;
+        private System.Windows.Forms.FlowLayoutPanel Songs_View;
+        private System.Windows.Forms.FlowLayoutPanel Playlists_View;
     }
 }
 

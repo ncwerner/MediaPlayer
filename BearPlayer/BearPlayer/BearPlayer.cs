@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace BearPlayer
 {
-    public partial class BearPlayer : Form
+    public partial class Bear_Player : Form
     {
         public bool play;   // Global variable for controling play/pause state
         string file_path;   // directory of chosed song
@@ -22,7 +22,7 @@ namespace BearPlayer
         int playing_index = 0;
         Timer song_time;
 
-        public BearPlayer()
+        public Bear_Player()
         {
             play = true;   // Begin program with play button
 
@@ -77,12 +77,9 @@ namespace BearPlayer
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
-                    path.Text = folder_path;
-                    songs = Directory.GetFiles(@folder_path, "*.mp3");
-                    path.Text = "Songs: " + songs.Length;
+                    songs = Directory.GetFiles(@folder_path, "*.mp3");               
                 }
             }
             if( songs.Length > 0)
@@ -110,11 +107,9 @@ namespace BearPlayer
             //initializes the file path
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-
-                file_path = openFileDialog1.FileName;
-                path.Text = file_path;
+                file_path = openFileDialog1.FileName;                
                 //get song name from file
-                TagLib.File file = TagLib.File.Create(path.Text);
+                TagLib.File file = TagLib.File.Create(file_path);
                 song_name = file.Tag.Title;
                 listBox1.Items.Add(song_name);
                 songs = new string[1];
@@ -168,13 +163,6 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
-        //testing play with button
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Player.URL = file_path;
-            Player.controls.play();
-            this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
-        }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -208,5 +196,35 @@ namespace BearPlayer
             
         }
 
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Text.Equals("Artists"))
+            {
+                Albums_View.Visible = false;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = false;
+            }
+
+            else if (e.Node.Text.Equals("Albums"))
+            {
+                Albums_View.Visible = true;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = false;
+            }
+
+            else if (e.Node.Text.Equals("Songs"))
+            {
+                Albums_View.Visible = false;
+                Songs_View.Visible = true;
+                Playlists_View.Visible = false;
+            }
+
+            else if (e.Node.Text.Equals("Playlists"))
+            {
+                Albums_View.Visible = false;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = true;
+            }
+        }
     }
 }

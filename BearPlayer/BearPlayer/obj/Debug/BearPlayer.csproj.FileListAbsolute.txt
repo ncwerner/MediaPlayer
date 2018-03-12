@@ -9,7 +9,6 @@ C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.cs
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\Interop.MediaPlayer.dll
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\Interop.WMPLib.dll
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.ResolveComReference.cache
-C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.BearPlayer.resources
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.Properties.Resources.resources
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.GenerateResource.Cache
 C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.csproj.CoreCompileInputs.cache
@@ -32,3 +31,4 @@ C:\Users\calec\Desktop\Programming Projects\MediaPlayer - Copy\BearPlayer\BearPl
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer - Copy\BearPlayer\BearPlayer\bin\Debug\policy.2.0.taglib-sharp.dll
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer - Copy\BearPlayer\BearPlayer\bin\Debug\taglib-sharp.dll
 C:\Users\calec\Desktop\Programming Projects\MediaPlayer - Copy\BearPlayer\BearPlayer\bin\Debug\policy.2.0.taglib-sharp.config
+C:\Users\calec\Desktop\MediaPlayer\BearPlayer\BearPlayer\obj\Debug\BearPlayer.Bear_Player.resources
