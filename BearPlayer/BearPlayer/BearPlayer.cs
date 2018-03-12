@@ -20,6 +20,7 @@ namespace BearPlayer
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
         string[] songs = new String[0];
         int playing_index = 0;
+        Timer song_time;
 
         public BearPlayer()
         {
@@ -28,6 +29,10 @@ namespace BearPlayer
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
             Player = new WMPLib.WindowsMediaPlayer();
+            Player.settings.volume = 100;
+            song_time = new Timer();
+            //timer that will update the scrub bar when the location in the song changes
+            song_time.Interval = 10;
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -125,10 +130,34 @@ namespace BearPlayer
             this.Close();
         }
 
-
         private void volumeUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (Player.settings.volume < 90)
+            {
+                //if the volume can be increased by 10 then it adds ten to volume
+                Player.settings.volume = Player.settings.volume + 10;
+            }
+            else
+            {
+                //if volume is greater than 90 already sets the volume to 100
+                Player.settings.volume = 100;
+            }
+            volumeSlider.Value = Player.settings.volume;
+        }
 
+        private void volumeDownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Player.settings.volume > 10)
+            {
+                //if the volume can be decreased by 10 then it subtracts ten from the volume
+                Player.settings.volume = Player.settings.volume - 10;
+            }
+            else
+            {
+                //if volume is less than 10 already sets the volume to 0
+                Player.settings.volume = 0;
+            }
+            volumeSlider.Value = Player.settings.volume;
         }
 
         private void volumeSlider_Scroll_1(object sender, EventArgs e)
@@ -174,5 +203,6 @@ namespace BearPlayer
             }
             listBox1.SelectedIndex = playing_index;
         }
+
     }
 }
