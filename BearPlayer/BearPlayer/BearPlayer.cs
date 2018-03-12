@@ -80,11 +80,11 @@ namespace BearPlayer
 
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
+                    path.Text = folder_path;
+                    songs = Directory.GetFiles(@folder_path, "*.mp3");
+                    path.Text = "Songs: " + songs.Length;
                 }
             }
-            path.Text = folder_path;
-            songs = Directory.GetFiles(@folder_path, "*.mp3");
-            path.Text = "Songs: " + songs.Length;
             if( songs.Length > 0)
             {
                 file_path = songs[0];
@@ -112,15 +112,18 @@ namespace BearPlayer
             {
 
                 file_path = openFileDialog1.FileName;
+                path.Text = file_path;
+                //get song name from file
+                TagLib.File file = TagLib.File.Create(path.Text);
+                song_name = file.Tag.Title;
+                listBox1.Items.Add(song_name);
+                songs = new string[1];
+                songs[0] = file_path;
+                playing_index = 0;
+
             }
-            path.Text = file_path;
-            //get song name from file
-            TagLib.File file = TagLib.File.Create(path.Text);
-            song_name = file.Tag.Title;
-            listBox1.Items.Add(song_name);
-            songs = new string[1];
-            songs[0] = file_path;
-            playing_index = 0;
+            
+            
             //set the path that is saved to be the text for the textbox in the gui
 
         }
@@ -190,8 +193,8 @@ namespace BearPlayer
             {
                 playing_index++;
                 play_new_song(songs[playing_index]);
+                listBox1.SelectedIndex = playing_index;
             }
-            listBox1.SelectedIndex = playing_index;
         }
 
         private void previous_button_Click(object sender, EventArgs e)
@@ -200,8 +203,9 @@ namespace BearPlayer
             {
                 playing_index--;
                 play_new_song(songs[playing_index]);
+                listBox1.SelectedIndex = playing_index;
             }
-            listBox1.SelectedIndex = playing_index;
+            
         }
 
     }
