@@ -95,38 +95,7 @@ namespace BearPlayer
                     {
                         TagLib.File file = TagLib.File.Create(s);
 
-                        if (!song_map.ContainsKey(file.Tag.Title))
-                        {
-                            song_map.Add(file.Tag.Title, s);
-                        }
-                        else
-                        {
-                            song_map[file.Tag.Title] = s;
-                        }
-
-                        if (!album_map.ContainsKey(file.Tag.Album))
-                        {
-                            List<string> new_list = new List<string>();
-                            new_list.Add(s);
-                            album_map.Add(file.Tag.Album, new_list);
-                        }
-                        else
-                        {
-                            album_map[file.Tag.Album].Add(s);
-                        }
-                        foreach (string art in file.Tag.Artists)
-                        {
-                            if (!artist_map.ContainsKey(art))
-                            {
-                                List<string> new_list = new List<string>();
-                                new_list.Add(s);
-                                artist_map.Add(art, new_list);
-                            }
-                            else
-                            {
-                                artist_map[art].Add(s);
-                            }
-                        }
+                        add_new_song(s);
 
                         listBox1.Items.Add(file.Tag.Title);
                     }
@@ -135,6 +104,44 @@ namespace BearPlayer
                 }
             }
             
+        }
+        
+        public void add_new_song( string path)
+        {
+            TagLib.File file = TagLib.File.Create(path);
+
+            if (!song_map.ContainsKey(file.Tag.Title))
+            {
+                song_map.Add(file.Tag.Title, path);
+            }
+            else
+            {
+                song_map[file.Tag.Title] = path;
+            }
+
+            if (!album_map.ContainsKey(file.Tag.Album))
+            {
+                List<string> new_list = new List<string>();
+                new_list.Add(s);
+                album_map.Add(file.Tag.Album, new_list);
+            }
+            else
+            {
+                album_map[file.Tag.Album].Add(path);
+            }
+            foreach (string art in file.Tag.Artists)
+            {
+                if (!artist_map.ContainsKey(art))
+                {
+                    List<string> new_list = new List<string>();
+                    new_list.Add(path);
+                    artist_map.Add(art, new_list);
+                }
+                else
+                {
+                    artist_map[art].Add(path);
+                }
+            }
         }
 
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
