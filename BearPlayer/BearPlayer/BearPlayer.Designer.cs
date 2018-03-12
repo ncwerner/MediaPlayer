@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode19});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +80,7 @@
             this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.path = new System.Windows.Forms.TextBox();
             this.scrubBar = new System.Windows.Forms.TrackBar();
-            this.SongName = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -368,26 +368,26 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "New Playlist";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "New Playlist";
-            treeNode5.Name = "Playlists";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "Playlists";
+            treeNode16.Name = "Artists";
+            treeNode16.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode16.Text = "Artists";
+            treeNode17.Name = "Albums";
+            treeNode17.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode17.Text = "Albums";
+            treeNode18.Name = "Songs";
+            treeNode18.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode18.Text = "Songs";
+            treeNode19.Name = "New Playlist";
+            treeNode19.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode19.Text = "New Playlist";
+            treeNode20.Name = "Playlists";
+            treeNode20.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode20.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode5});
+            treeNode16,
+            treeNode17,
+            treeNode18,
+            treeNode20});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -429,6 +429,7 @@
             this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.previous_button.TabIndex = 4;
             this.previous_button.TabStop = false;
+            this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
             // 
             // next_button
             // 
@@ -441,6 +442,7 @@
             this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.next_button.TabIndex = 3;
             this.next_button.TabStop = false;
+            this.next_button.Click += new System.EventHandler(this.next_button_Click);
             // 
             // playBar
             // 
@@ -453,7 +455,7 @@
             this.playBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playBar.TabIndex = 2;
             this.playBar.TabStop = false;
-            this.playBar.Click += new System.EventHandler(this.PlayButton_Click);
+            this.playBar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // searchBar
             // 
@@ -503,15 +505,14 @@
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
-            // SongName
+            // listBox1
             // 
-            this.SongName.Location = new System.Drawing.Point(188, 150);
-            this.SongName.Name = "SongName";
-            this.SongName.Size = new System.Drawing.Size(228, 54);
-            this.SongName.TabIndex = 9;
-            this.SongName.Text = "Song-Import to play";
-            this.SongName.UseVisualStyleBackColor = true;
-            this.SongName.Click += new System.EventHandler(this.button1_Click);
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(171, 115);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(851, 368);
+            this.listBox1.TabIndex = 9;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // BearPlayer
             // 
@@ -519,7 +520,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.SongName);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.path);
             this.Controls.Add(this.volumeSlider);
             this.Controls.Add(this.searchBar);
@@ -598,7 +599,7 @@
         private System.Windows.Forms.TrackBar volumeSlider;
         private System.Windows.Forms.TextBox path;
         private System.Windows.Forms.TrackBar scrubBar;
-        private System.Windows.Forms.Button SongName;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

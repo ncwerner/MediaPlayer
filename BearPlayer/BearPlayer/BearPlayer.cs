@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,22 +14,20 @@ namespace BearPlayer
 {
     public partial class BearPlayer : Form
     {
-        bool play = true;   // Global variable for controling play/pause state
+        public bool play;   // Global variable for controling play/pause state
         string file_path;   // directory of chosed song
-        string folder_path;   // Directory address to folder
         string song_name; //song name pulled from imported file
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
+        string[] songs = new String[0];
+        int playing_index = 0;
 
         public BearPlayer()
         {
-            InitializeComponent();
-            Player = new WMPLib.WindowsMediaPlayer();
+            play = true;   // Begin program with play button
 
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
-            
-            // Set minimum window size for application 
-            this.MinimumSize = new System.Drawing.Size(this.Width, this.Height);
-            this.MaximumSize = new System.Drawing.Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            InitializeComponent();
+            Player = new WMPLib.WindowsMediaPlayer();
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -36,100 +35,95 @@ namespace BearPlayer
    
         }
 
-        public bool Get_Play() { return play; }  // Accessor for play state
-        public void Change_PlayState() { play = !play; }   // Back-end function to change play state
-
-        public void Set_FilePath(string path) { file_path = path;  }   // Mutator for file path
-        public string Get_FilePath() { return file_path;  }   // Accessor for file path
-
-        public void Set_FolderPath(string path) { folder_path = path; }   // Mutator for folder path
-        public string Get_FolderPath() { return folder_path;  }   // Accessor for folder path
-
-        public void Set_Song_Name(string name) { song_name = name;  }  // Mutator for song name
-        public string Get_Song_Name() { return song_name; }   // Accessor for song name
-
-
-        // Function that returns the address of a specified picture
-        public String Get_Picture(int choice)
+        public void pictureBox1_Click(object sender, EventArgs e)
         {
-            switch (choice)
-            {
-                case 0: return @"C:\BearPlayer\Resources\playButton1.png";
-                case 1: return @"C:\BearPlayer\Resources\pauseButton.png";
-                default: return null; 
-            }
-        }
-
-
-        private void PlayButton_Click(object sender, EventArgs e)
-        {
+            if (songs.Length <= 0) return;
             if (play)
             {
-                this.playBar.Image = Image.FromFile(Get_Picture(1));
-                if (Player.URL != file_path)
-                {
-                    Player.URL = file_path;
-                }
-                //sets the URL for the player as the file path
-                Player.controls.play();
-                //plays the file that is currently set as the URL
+                play_new_song(songs[playing_index]);
             }
             else
             {
-                this.playBar.Image = Image.FromFile(Get_Picture(0));
+                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
             }
+            play = !play;
+        }
+        public void play_new_song(string url)
+        {
+            if (songs.Length <= 0) return;
 
-            Change_PlayState();  // Alternate play-pause button
+            this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
+            if (Player.URL != url)
+            {
+                Player.URL = url;
+            }
+            //sets the URL for the player as the file path
+            Player.controls.play();
+            //plays the file that is currently set as the URL
         }
 
-
-        // Import Folder
         public void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            folder_path = "";
+
+            string folder_path = "";
             //initializes the folder path
             using (var folderDialog = new FolderBrowserDialog())
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Set_FolderPath(@folderDialog.SelectedPath);
+
+                    folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
                 }
             }
-            path.Text = Get_FolderPath();
+            path.Text = folder_path;
+            songs = Directory.GetFiles(@folder_path, "*.mp3");
+            path.Text = "Songs: " + songs.Length;
+            if( songs.Length > 0)
+            {
+                file_path = songs[0];
+            }
+            foreach (string s in songs)
+            {
+                TagLib.File file = TagLib.File.Create(s);
+                listBox1.Items.Add(file.Tag.Title);
+            }
+            playing_index = 0;
             //shows the path in the text box
         }
 
-        // Import song
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            
             //creates a new file dialog each time the inport song button is clicked
             openFileDialog1.Filter = "Music Files| *.mp3";
-            
             //sets the filter to only show mp3 files
             openFileDialog1.Title = "Select a Song";
             file_path = "";
-            
             //initializes the file path
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                Set_FilePath(@openFileDialog1.FileName);
+            {
 
-            path.Text = Get_FilePath();
-
+                file_path = openFileDialog1.FileName;
+            }
+            path.Text = file_path;
             //get song name from file
             TagLib.File file = TagLib.File.Create(path.Text);
-            Set_Song_Name(file.Tag.Title);
-            SongName.Text = Get_Song_Name();
-
+            song_name = file.Tag.Title;
+            listBox1.Items.Add(song_name);
+            songs = new string[1];
+            songs[0] = file_path;
+            playing_index = 0;
             //set the path that is saved to be the text for the textbox in the gui
 
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {   this.Close();   }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
 
         private void volumeUpToolStripMenuItem_Click(object sender, EventArgs e)
@@ -142,13 +136,43 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
-
         //testing play with button
         private void button1_Click(object sender, EventArgs e)
         {
-            Player.URL = Get_FilePath();
+            Player.URL = file_path;
             Player.controls.play();
-            this.playBar.Image = Image.FromFile(Get_Picture(1));
+            this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = listBox1.SelectedIndex;
+            if( i >= 0 && i < songs.Length )
+            {
+                play_new_song(songs[i]);
+                playing_index = i;
+            }
+            
+        }
+
+        private void next_button_Click(object sender, EventArgs e)
+        {
+            if( playing_index < songs.Length - 1)
+            {
+                playing_index++;
+                play_new_song(songs[playing_index]);
+            }
+            listBox1.SelectedIndex = playing_index;
+        }
+
+        private void previous_button_Click(object sender, EventArgs e)
+        {
+            if (playing_index > 0)
+            {
+                playing_index--;
+                play_new_song(songs[playing_index]);
+            }
+            listBox1.SelectedIndex = playing_index;
         }
     }
 }
