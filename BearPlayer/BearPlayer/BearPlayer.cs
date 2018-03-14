@@ -398,6 +398,7 @@ namespace BearPlayer
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
+                Queue_View.Visible = false;
                 curr_view = view.Artists;
             }
 
@@ -407,6 +408,7 @@ namespace BearPlayer
                 Albums_View.Visible = true;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
+                Queue_View.Visible = false;
                 curr_view = view.Albums;
             }
 
@@ -416,6 +418,7 @@ namespace BearPlayer
                 Albums_View.Visible = false;
                 Songs_View.Visible = true;
                 Playlists_View.Visible = false;
+                Queue_View.Visible = false;
                 curr_view = view.Songs;
             }
 
@@ -425,8 +428,18 @@ namespace BearPlayer
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = true;
+                Queue_View.Visible = false;
                 curr_view = view.Playlists;
             }
+            else if (e.Node.Text.Equals("Queue"))
+            {
+                Artists_View.Visible = false;
+                Albums_View.Visible = false;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = false;
+                Queue_View.Visible = true;
+            }
+
             update_list_disp();
         }
 
@@ -489,10 +502,32 @@ namespace BearPlayer
             int i = curr_list_box.SelectedIndices[0];
             if (i >= 0 && i < curr_list_box.Items.Count)
             {
-                fill_unshuffled_queue(curr_list_box.Items[i].ToString());
+                fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
                 play_next_song();
                 //playing_index = i;
             }
+        }
+
+        // Method for list view on menu bar
+        private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artists_View.Visible = false;
+            Albums_View.Visible = false;
+            Songs_View.Visible = true;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            curr_view = view.Songs;
+        }
+
+        // Method for album view on menu bar
+        private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Artists_View.Visible = false;
+            Albums_View.Visible = true;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            curr_view = view.Albums;
         }
     }
 }
