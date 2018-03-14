@@ -82,7 +82,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
-*.csproj
+*.resx
 
 # Chutzpah Test files
 _Chutzpah*
