@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode17});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,10 +80,15 @@
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.scrubBar = new System.Windows.Forms.TrackBar();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.Albums_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Songs_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Song_List = new System.Windows.Forms.ListView();
+            this.TitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AlbumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ArtistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LengthColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Artists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -91,6 +97,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
+            this.Songs_View.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -371,26 +378,30 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "New Playlist";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "New Playlist";
-            treeNode5.Name = "Playlists";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "Playlists";
+            treeNode13.Name = "Artists";
+            treeNode13.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode13.Text = "Artists";
+            treeNode14.Name = "Albums";
+            treeNode14.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode14.Text = "Albums";
+            treeNode15.Name = "Songs";
+            treeNode15.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode15.Text = "Songs";
+            treeNode16.Name = "Node0";
+            treeNode16.NodeFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode16.Text = "Queue";
+            treeNode17.Name = "New Playlist";
+            treeNode17.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode17.Text = "New Playlist";
+            treeNode18.Name = "Playlists";
+            treeNode18.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode18.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode5});
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16,
+            treeNode18});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -502,15 +513,6 @@
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(171, 115);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(851, 368);
-            this.listBox1.TabIndex = 9;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            // 
             // Albums_View
             // 
             this.Albums_View.BackColor = System.Drawing.SystemColors.ButtonShadow;
@@ -522,12 +524,53 @@
             // 
             // Songs_View
             // 
-            this.Songs_View.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Songs_View.Location = new System.Drawing.Point(136, 75);
+            this.Songs_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Songs_View.Controls.Add(this.Song_List);
+            this.Songs_View.Location = new System.Drawing.Point(180, 75);
             this.Songs_View.Name = "Songs_View";
-            this.Songs_View.Size = new System.Drawing.Size(900, 428);
+            this.Songs_View.Size = new System.Drawing.Size(804, 428);
             this.Songs_View.TabIndex = 11;
             this.Songs_View.Visible = false;
+            // 
+            // Song_List
+            // 
+            this.Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TitleColumn,
+            this.AlbumColumn,
+            this.ArtistColumn,
+            this.LengthColumn});
+            this.Songs_View.SetFlowBreak(this.Song_List, true);
+            this.Song_List.FullRowSelect = true;
+            this.Song_List.Location = new System.Drawing.Point(3, 3);
+            this.Song_List.Name = "Song_List";
+            this.Song_List.Size = new System.Drawing.Size(801, 425);
+            this.Song_List.TabIndex = 0;
+            this.Song_List.UseCompatibleStateImageBehavior = false;
+            this.Song_List.View = System.Windows.Forms.View.Details;
+            this.Song_List.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.Song_List_SelectedIndexChanged);
+            this.Song_List.SelectedIndexChanged += new System.EventHandler(this.Song_List_SelectedIndexChanged);
+            this.Song_List.Click += new System.EventHandler(this.Song_List_SelectedIndexChanged);
+            // 
+            // TitleColumn
+            // 
+            this.TitleColumn.Text = "Title";
+            this.TitleColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TitleColumn.Width = 265;
+            // 
+            // AlbumColumn
+            // 
+            this.AlbumColumn.Text = "Album";
+            this.AlbumColumn.Width = 195;
+            // 
+            // ArtistColumn
+            // 
+            this.ArtistColumn.Text = "Artist";
+            this.ArtistColumn.Width = 194;
+            // 
+            // LengthColumn
+            // 
+            this.LengthColumn.Text = "Length";
+            this.LengthColumn.Width = 143;
             // 
             // Playlists_View
             // 
@@ -537,6 +580,14 @@
             this.Playlists_View.Size = new System.Drawing.Size(900, 428);
             this.Playlists_View.TabIndex = 0;
             this.Playlists_View.Visible = false;
+            // 
+            // Artists_View
+            // 
+            this.Artists_View.BackColor = System.Drawing.SystemColors.Info;
+            this.Artists_View.Location = new System.Drawing.Point(136, 75);
+            this.Artists_View.Name = "Artists_View";
+            this.Artists_View.Size = new System.Drawing.Size(900, 428);
+            this.Artists_View.TabIndex = 0;
             // 
             // Bear_Player
             // 
@@ -554,10 +605,10 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
-            this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Songs_View);
+            this.Controls.Add(this.Playlists_View);
+            this.Controls.Add(this.Artists_View);
             this.Controls.Add(this.Albums_View);
-            this.Controls.Add(this.listBox1);
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
             this.Text = "Bear Player";
@@ -572,6 +623,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).EndInit();
+            this.Songs_View.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -624,10 +676,15 @@
         private System.Windows.Forms.TextBox searchBar;
         private System.Windows.Forms.TrackBar volumeSlider;
         private System.Windows.Forms.TrackBar scrubBar;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.FlowLayoutPanel Albums_View;
         private System.Windows.Forms.FlowLayoutPanel Songs_View;
         private System.Windows.Forms.FlowLayoutPanel Playlists_View;
+        private System.Windows.Forms.ListView Song_List;
+        private System.Windows.Forms.ColumnHeader TitleColumn;
+        private System.Windows.Forms.ColumnHeader AlbumColumn;
+        private System.Windows.Forms.ColumnHeader ArtistColumn;
+        private System.Windows.Forms.ColumnHeader LengthColumn;
+        private System.Windows.Forms.FlowLayoutPanel Artists_View;
     }
 }
 
