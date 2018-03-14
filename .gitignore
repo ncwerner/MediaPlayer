@@ -83,6 +83,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.resx
+TemporaryGeneratedFile*.cs
 
 # Chutzpah Test files
 _Chutzpah*
