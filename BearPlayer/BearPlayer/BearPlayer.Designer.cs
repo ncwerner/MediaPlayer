@@ -83,6 +83,8 @@
             this.Albums_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Songs_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Current_position_label = new System.Windows.Forms.Label();
+            this.Song_length_label = new System.Windows.Forms.Label();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -364,6 +366,8 @@
             // 
             // treeView1
             // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.treeView1.BackColor = System.Drawing.Color.DodgerBlue;
             this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeView1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -501,6 +505,7 @@
             this.scrubBar.SmallChange = 0;
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.scrubBar.Scroll += new System.EventHandler(this.scrubBar_Scroll);
             // 
             // listBox1
             // 
@@ -538,12 +543,32 @@
             this.Playlists_View.TabIndex = 0;
             this.Playlists_View.Visible = false;
             // 
+            // Current_position_label
+            // 
+            this.Current_position_label.AutoSize = true;
+            this.Current_position_label.Location = new System.Drawing.Point(143, 522);
+            this.Current_position_label.Name = "Current_position_label";
+            this.Current_position_label.Size = new System.Drawing.Size(22, 13);
+            this.Current_position_label.TabIndex = 12;
+            this.Current_position_label.Text = "--:--";
+            // 
+            // Song_length_label
+            // 
+            this.Song_length_label.AutoSize = true;
+            this.Song_length_label.Location = new System.Drawing.Point(1005, 522);
+            this.Song_length_label.Name = "Song_length_label";
+            this.Song_length_label.Size = new System.Drawing.Size(22, 13);
+            this.Song_length_label.TabIndex = 13;
+            this.Song_length_label.Text = "--:--";
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.Song_length_label);
+            this.Controls.Add(this.Current_position_label);
             this.Controls.Add(this.volumeSlider);
             this.Controls.Add(this.searchBar);
             this.Controls.Add(this.shuffle_toggle);
@@ -628,6 +653,8 @@
         private System.Windows.Forms.FlowLayoutPanel Albums_View;
         private System.Windows.Forms.FlowLayoutPanel Songs_View;
         private System.Windows.Forms.FlowLayoutPanel Playlists_View;
+        private System.Windows.Forms.Label Current_position_label;
+        private System.Windows.Forms.Label Song_length_label;
     }
 }
 

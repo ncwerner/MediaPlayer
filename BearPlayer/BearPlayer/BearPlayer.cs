@@ -42,7 +42,9 @@ namespace BearPlayer
             Player.settings.volume = 25;
             song_time = new Timer();
             //timer that will update the scrub bar when the location in the song changes
-            song_time.Interval = 10;
+            song_time.Interval = 100;
+            song_time.Tick += new EventHandler(song_time_Elapsed);
+            //causes the event to go whenever the timer elapses
 
             curr_list_box = listBox1;
             curr_view = view.Artists;
@@ -116,6 +118,23 @@ namespace BearPlayer
             Player.controls.play();
             this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             play = false;
+            TagLib.File song_file = TagLib.File.Create(url);
+            //creates a file to get the duration for the scrub bar
+            if (song_file.Properties.Duration.Seconds >= 10)
+                //checks the amount of digits in seconds
+            {
+                Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":" + song_file.Properties.Duration.Seconds.ToString();
+            }
+            else
+            {
+                Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":0" + song_file.Properties.Duration.Seconds.ToString();
+            }
+            scrubBar.Maximum = song_file.Properties.Duration.Seconds + (song_file.Properties.Duration.Minutes * 60);
+            Current_position_label.Text = "0:00";
+            scrubBar.Value = 0;
+            //sets the starting position to the current label and the scrub bar
+            song_time.Start();
+
             return new_song;
         }
 
@@ -310,6 +329,32 @@ namespace BearPlayer
             play_prev_song();
         }
 
+        private void scrubBar_Scroll(object sender, EventArgs e)
+        {
+            //path.Text = Player.controls.currentPosition.ToString();
+            //path.Text = scrubBar.Value.ToString();
+            Player.controls.pause();
+            Player.controls.currentPosition = scrubBar.Value;
+            Player.controls.play();
+            //add clicking onto the slide bar to change to the location
+            //maybe add functionality to change to parts of the song using number keys
+
+        }
+
+        private void song_time_Elapsed(object sender, EventArgs e)
+        {
+            scrubBar.Value = (int)Player.controls.currentPosition;
+            //makes the scrub bar follow the song as it plays
+            if (scrubBar.Value % 60 >= 10)
+            {
+                Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":" + (scrubBar.Value % 60).ToString();
+            }
+            else
+            {
+                Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":0" + (scrubBar.Value % 60).ToString();
+            }
+        }
+
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Text.Equals("Artists"))
@@ -378,5 +423,7 @@ namespace BearPlayer
             
         }
         private enum view { Albums, Artists, Songs, Playlists };
+
+        
     }
 }
