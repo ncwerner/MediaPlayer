@@ -23,6 +23,10 @@ namespace BearPlayer
        // List<string> disp_song_paths = new List<string>();
         //int playing_index = 0;
         Timer song_time;
+        PictureBox[] albums = new PictureBox[50];
+        int album_num;
+        int album_x = 190;
+        int album_y = 100;
         Dictionary<string, string> song_map = new Dictionary<string,string>();
         Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
         Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
