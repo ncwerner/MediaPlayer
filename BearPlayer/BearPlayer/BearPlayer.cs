@@ -29,6 +29,7 @@ namespace BearPlayer
         view curr_view;
         Queue<string> queue = new Queue<string>();
         Stack<string> prev_songs = new Stack<string>();
+        string curr_song;
         ListBox curr_list_box;
 
         public Bear_Player()
@@ -45,6 +46,7 @@ namespace BearPlayer
 
             curr_list_box = listBox1;
             curr_view = view.Artists;
+            curr_song = null;
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -80,12 +82,17 @@ namespace BearPlayer
         public void play_next_song()
         {
             
-            if(queue.Count != 0)
+            if(queue.Count > 0)
             {
                 string removed = queue.Dequeue();
                 play_song( song_map[removed] );
-                
-                prev_songs.Push(removed);
+
+                if(curr_song != null)
+                {
+                    prev_songs.Push(curr_song);
+                }
+
+                curr_song = removed;
                 
                 //sets the URL for the player as the file path
                 
@@ -118,7 +125,9 @@ namespace BearPlayer
             {
                 string removed = prev_songs.Pop();
                 play_song(song_map[removed]);
-                queue.Enqueue(removed);                                                                             //////////////////////////to be changed when dequeue made
+
+                queue.Enqueue(curr_song);                                                           //////////////////////////to be changed when dequeue made
+                curr_song = removed;
                 //sets the URL for the player as the file path
                 //plays the file that is currently set as the URL
             }
