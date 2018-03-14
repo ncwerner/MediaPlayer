@@ -327,7 +327,7 @@ namespace BearPlayer
 
             for(int i = 0; i < curr_list_box.Items.Count; ++i)
             {
-                string s = curr_list_box.Items[i].SubItems[0].ToString();
+                string s = curr_list_box.Items[i].Text.ToString();
                 if (found)
                 {
                     queue.Enqueue(s);
@@ -493,7 +493,6 @@ namespace BearPlayer
                 play_next_song();
                 //playing_index = i;
             }
-
         }
     }
 }
