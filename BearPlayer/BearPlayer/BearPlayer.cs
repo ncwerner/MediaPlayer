@@ -216,28 +216,6 @@ namespace BearPlayer
             }
 
         }
-
-
-        //method that gets album artwork of file
-        private void getAlbumArtwork(TagLib.File file)
-        {
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            Album_Artwork_Box.Image = artwork;
-            Album_Artwork_Box.SizeMode = PictureBoxSizeMode.StretchImage;
-        }
-
-        //gets song name of file
-        private string getSongName(TagLib.File file)
-        {
-            return file.Tag.Title;
-        }
-
-        //gets the album name
-        private string getAlbumName(TagLib.File file)
-        {
-            return file.Tag.Album;
-        }
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
