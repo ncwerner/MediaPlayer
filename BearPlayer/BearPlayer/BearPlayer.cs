@@ -69,7 +69,7 @@ namespace BearPlayer
                 //string curr_song = curr_list_box.Items[playing_index].ToString();
                 if(Player.URL == null)
                 {
-                    play = false;
+                    play = false;                //for case where nothing is selected and they try to click play
                 }
                 else
                 {
@@ -85,7 +85,7 @@ namespace BearPlayer
             }
             play = !play;
         }
-
+        //method sets cure song to next in queue, pushes old curt song to stack
         public void play_next_song()
         {
             
@@ -143,7 +143,7 @@ namespace BearPlayer
 
             return new_song;
         }
-
+        //pushes cure song to the front of queue, make curr song the pop of the stack 
         private void play_prev_song()
         {
             if(prev_songs.Count != 0)
@@ -157,7 +157,7 @@ namespace BearPlayer
                 //plays the file that is currently set as the URL
             }
         }
-
+         //imports all songs in folder and updates the screen
         public void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string folder_path = "";
@@ -181,21 +181,21 @@ namespace BearPlayer
             }
             
         }
-        
+        //adds a song too the maps 
         private void add_new_song(string path)
         {
             TagLib.File file = TagLib.File.Create(path);
 
-            if (!song_map.ContainsKey(file.Tag.Title))
+            if (!song_map.ContainsKey(file.Tag.Title)) //if not in map add it
             {
                 song_map.Add(file.Tag.Title, path);
             }
             else
             {
-                song_map[file.Tag.Title] = path;
+                song_map[file.Tag.Title] = path;      //if in map make update its url to the new one
             }
 
-            if (!album_map.ContainsKey(file.Tag.Album))
+            if (!album_map.ContainsKey(file.Tag.Album)) //if album not in map, make that key and assign it to a new list containing added song
             {
                 List<string> new_list = new List<string>();
                 new_list.Add(path);
@@ -203,7 +203,7 @@ namespace BearPlayer
             }
             else
             {
-                album_map[file.Tag.Album].Add(path);
+                album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
             }
             foreach (string art in file.Tag.Performers)
             {
@@ -219,7 +219,7 @@ namespace BearPlayer
                 }
             }
         }
-
+        //imports single song and updates display
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -319,7 +319,7 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
-
+        //fills queue with selected song and all following songs,takes a song name
         private void fill_unshuffled_queue(string start_name)
         {
             queue.Clear();
@@ -446,7 +446,7 @@ namespace BearPlayer
             update_list_disp();
         }
 
-
+        //updates whatever list box is currently being viewed with the current map information 
         private void update_list_disp()
         {
             curr_list_box.Items.Clear();
