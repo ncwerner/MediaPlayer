@@ -495,7 +495,7 @@ namespace BearPlayer
             ListViewItem item = new ListViewItem();
             item.Text = file.Tag.Title;   // Add title 
             item.SubItems.Add(file.Tag.Album);   // Add album
-            item.SubItems.Add(file.Tag.FirstAlbumArtist);   // Add artist
+            item.SubItems.Add(file.Tag.FirstPerformer);   // Add artist
 
             // Parse minutes and seconds together for duration
             string duration = file.Properties.Duration.Minutes.ToString();
