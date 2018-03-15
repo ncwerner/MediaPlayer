@@ -420,6 +420,7 @@ namespace BearPlayer
                 Playlists_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Songs;
+                curr_list_box = Song_List;   // Change to song list box
             }
 
             else if (e.Node.Text.Equals("Playlists"))
@@ -438,6 +439,8 @@ namespace BearPlayer
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
                 Queue_View.Visible = true;
+                curr_view = view.Queue;
+                curr_list_box = Queue_List;   // Change to queue list box
             }
 
             update_list_disp();
@@ -466,36 +469,50 @@ namespace BearPlayer
                 foreach (string s in song_map.Keys)
                 {
                     TagLib.File file = TagLib.File.Create(song_map[s]);
-           
-                    // Create new entry into list table
-                    ListViewItem item = new ListViewItem();
-                    item.Text = file.Tag.Title;   // Add title 
-                    item.SubItems.Add(file.Tag.Album);   // Add album
-                    item.SubItems.Add(file.Tag.FirstAlbumArtist);   // Add artist
-
-                    // Parse minutes and seconds together for duration
-                    string duration = file.Properties.Duration.Minutes.ToString();
-                    string seconds = ":" + file.Properties.Duration.Seconds.ToString();
-
-                    // If seconds is less than 10, add an additional 0 in front
-                    if (file.Properties.Duration.Seconds < 10)
-                        seconds = ":0" + file.Properties.Duration.Seconds.ToString();
-
-                    duration = duration + seconds;
-                    item.SubItems.Add(duration);   // Add time
-
-                    curr_list_box.Items.Add(item);   // Push new entry into list table
+                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
 
                     //(!play && playing_index < disp_song_paths.Count() ) curr_list_box.SelectedIndex = playing_index;
                 }
             }
-            else
+            else if (curr_view == view.Queue)
             {
-
-            }
-            
+                int size = queue.Count;
+                // Parse through every element in the queue
+                for (int i = 0; i < size; ++i)
+                {
+                    string dequeue = queue.ElementAt(i);   // Retrieve each element in queue
+                    TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
+                    curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                }
+            }    
         }
-        private enum view { Albums, Artists, Songs, Playlists };
+
+
+        // Method to retrieve the title, album, artist, and duration information from a song, and add it to a list row
+        private ListViewItem List_Column_Info(ref TagLib.File file)
+        {
+            // Create new entry into list table
+            ListViewItem item = new ListViewItem();
+            item.Text = file.Tag.Title;   // Add title 
+            item.SubItems.Add(file.Tag.Album);   // Add album
+            item.SubItems.Add(file.Tag.FirstAlbumArtist);   // Add artist
+
+            // Parse minutes and seconds together for duration
+            string duration = file.Properties.Duration.Minutes.ToString();
+            string seconds = ":" + file.Properties.Duration.Seconds.ToString();
+
+            // If seconds is less than 10, add an additional 0 in front
+            if (file.Properties.Duration.Seconds < 10)
+                seconds = ":0" + file.Properties.Duration.Seconds.ToString();
+
+            duration = duration + seconds;
+            item.SubItems.Add(duration);   // Add time
+
+            return item;
+        }
+
+
+        private enum view { Albums, Artists, Songs, Playlists, Queue };
 
         private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
