@@ -82,6 +82,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+TemporaryGeneratedFile*.cs
 
 # Chutzpah Test files
 _Chutzpah*
