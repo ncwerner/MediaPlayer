@@ -35,6 +35,7 @@ namespace BearPlayer
         Stack<string> prev_songs = new Stack<string>();
         string curr_song;
         ListView curr_list_box;
+        bool song_selected;
 
         public Bear_Player()
         {
@@ -53,6 +54,7 @@ namespace BearPlayer
             curr_list_box = Song_List;
             curr_view = view.Artists;
             curr_song = null;
+            song_selected = false;
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -67,7 +69,7 @@ namespace BearPlayer
             {
                 //curr_list_box.SelectedIndex = playing_index;
                 //string curr_song = curr_list_box.Items[playing_index].ToString();
-                if(Player.URL == null)
+                if (!song_selected)
                 {
                     play = false;                //for case where nothing is selected and they try to click play
                 }
@@ -112,6 +114,7 @@ namespace BearPlayer
         private bool play_song(string url)
         {
             bool new_song = false;
+            song_selected = true;
             if (Player.URL != url)
             {
                 Player.URL = url;
