@@ -186,20 +186,20 @@ namespace BearPlayer
         {
             TagLib.File file = TagLib.File.Create(path);
 
-            if (!song_map.ContainsKey(file.Tag.Title)) //if not in map add it
+            if (!song_map.ContainsKey(getSongName(file))) //if not in map add it
             {
-                song_map.Add(file.Tag.Title, path);
+                song_map.Add(getSongName(file), path);
             }
             else
             {
-                song_map[file.Tag.Title] = path;      //if in map make update its url to the new one
+                song_map[getSongName(file)] = path;      //if in map make update its url to the new one
             }
 
-            if (!album_map.ContainsKey(file.Tag.Album)) //if album not in map, make that key and assign it to a new list containing added song
+            if (!album_map.ContainsKey(getAlbumName(file))) //if album not in map, make that key and assign it to a new list containing added song
             {
                 List<string> new_list = new List<string>();
                 new_list.Add(path);
-                album_map.Add(file.Tag.Album, new_list);
+                album_map.Add(getAlbumName(file), new_list);
             }
             else
             {
@@ -493,8 +493,8 @@ namespace BearPlayer
         {
             // Create new entry into list table
             ListViewItem item = new ListViewItem();
-            item.Text = file.Tag.Title;   // Add title 
-            item.SubItems.Add(file.Tag.Album);   // Add album
+            item.Text =getSongName(file);   // Add title 
+            item.SubItems.Add(getAlbumName(file));   // Add album
             item.SubItems.Add(file.Tag.FirstPerformer);   // Add artist
 
             // Parse minutes and seconds together for duration
