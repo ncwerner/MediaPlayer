@@ -24,9 +24,9 @@ namespace BearPlayer
         //int playing_index = 0;
         Timer song_time;
         PictureBox[] albums = new PictureBox[50];
-        int album_num;
-        int album_x = 190;
-        int album_y = 100;
+        int album_num, album_size = 50;
+        //int album_x = 190;
+        //int album_y = 100;
         Dictionary<string, string> song_map = new Dictionary<string,string>();
         Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
         Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
@@ -36,6 +36,7 @@ namespace BearPlayer
         string curr_song;
         ListView curr_list_box;
         bool song_selected;
+
 
         public Bear_Player()
         {
@@ -179,6 +180,9 @@ namespace BearPlayer
                         add_new_song(s);
 
                     }
+                    TagLib.File album = TagLib.File.Create(songs[0]);
+                    GetAlbumArtist_AlbumView(album);
+
                     update_list_disp();
                 }
             }
@@ -245,7 +249,7 @@ namespace BearPlayer
         }
         
         //method that gets album artwork of file
-        private void getAlbumArtwork(TagLib.File file)
+        private void GetAlbumArtist_AlbumView(TagLib.File file)
         {
             album_num++;
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
@@ -253,19 +257,36 @@ namespace BearPlayer
             albums[album_num] = new PictureBox
             {
                 Visible = true,
-                Location = new Point(album_x, album_y),
-                Size = new Size(250,250),
+                // Location = new Point(album_x, album_y),
+                Size = new Size(150,150),
                 Image = artwork,
                 SizeMode = PictureBoxSizeMode.StretchImage,
             };
-            this.Controls.Add(albums[album_num]);
-            album_x = album_x + 350;
+
+            Albums_View.Controls.Add(albums[album_num]);
+            /* album_x = album_x + 350;
             if(album_num % 4 == 0)
             {
                 album_x = 190;
                 album_y = album_y + 350;
             }
+            */
         }
+
+
+        private void increase_album_array()
+        {
+            if (album_num >= album_size)
+            {
+                album_size = 2 * album_size;
+                PictureBox[] new_albums = new PictureBox[album_size];
+                for (int i = 0; i < album_num; ++i)
+                    new_albums[i] = albums[i];
+
+                new_albums = albums;
+            }
+        }
+
 
         //gets song name of file
         private string getSongName(TagLib.File file)
@@ -322,6 +343,8 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
+
+
         //fills queue with selected song and all following songs,takes a song name
         private void fill_unshuffled_queue(string start_name)
         {
@@ -460,13 +483,16 @@ namespace BearPlayer
                     curr_list_box.Items.Add(s);
                 }
             }
+
             else if (curr_view == view.Albums)
             {
                 foreach (string s in album_map.Keys)
                 {
-                    curr_list_box.Items.Add(s);
+
                 }
             }
+
+        
             else if (curr_view == view.Songs)
             {
                 foreach (string s in song_map.Keys)
@@ -477,6 +503,8 @@ namespace BearPlayer
                     //(!play && playing_index < disp_song_paths.Count() ) curr_list_box.SelectedIndex = playing_index;
                 }
             }
+
+
             else if (curr_view == view.Queue)
             {
                 int size = queue.Count;

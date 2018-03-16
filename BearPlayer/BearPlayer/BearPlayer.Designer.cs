@@ -82,21 +82,23 @@
             this.scrubBar = new System.Windows.Forms.TrackBar();
             this.Albums_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Songs_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Song_List = new System.Windows.Forms.ListView();
+            this.TitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AlbumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ArtistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LengthColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Queue_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Queue_List = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Song_List = new System.Windows.Forms.ListView();
-            this.TitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AlbumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ArtistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LengthColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Artists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Current_position_label = new System.Windows.Forms.Label();
             this.Song_length_label = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.listView2 = new System.Windows.Forms.ListView();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
@@ -107,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
             this.Songs_View.SuspendLayout();
             this.Queue_View.SuspendLayout();
+            this.Artists_View.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -546,6 +549,44 @@
             this.Songs_View.TabIndex = 11;
             this.Songs_View.Visible = false;
             // 
+            // Song_List
+            // 
+            this.Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TitleColumn,
+            this.AlbumColumn,
+            this.ArtistColumn,
+            this.LengthColumn});
+            this.Songs_View.SetFlowBreak(this.Song_List, true);
+            this.Song_List.FullRowSelect = true;
+            this.Song_List.Location = new System.Drawing.Point(3, 3);
+            this.Song_List.Name = "Song_List";
+            this.Song_List.Size = new System.Drawing.Size(801, 425);
+            this.Song_List.TabIndex = 0;
+            this.Song_List.UseCompatibleStateImageBehavior = false;
+            this.Song_List.View = System.Windows.Forms.View.Details;
+            this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
+            // 
+            // TitleColumn
+            // 
+            this.TitleColumn.Text = "Title";
+            this.TitleColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TitleColumn.Width = 265;
+            // 
+            // AlbumColumn
+            // 
+            this.AlbumColumn.Text = "Album";
+            this.AlbumColumn.Width = 195;
+            // 
+            // ArtistColumn
+            // 
+            this.ArtistColumn.Text = "Artist";
+            this.ArtistColumn.Width = 194;
+            // 
+            // LengthColumn
+            // 
+            this.LengthColumn.Text = "Length";
+            this.LengthColumn.Width = 143;
+            // 
             // Queue_View
             // 
             this.Queue_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -595,44 +636,6 @@
             this.columnHeader4.Text = "Length";
             this.columnHeader4.Width = 143;
             // 
-            // Song_List
-            // 
-            this.Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.TitleColumn,
-            this.AlbumColumn,
-            this.ArtistColumn,
-            this.LengthColumn});
-            this.Songs_View.SetFlowBreak(this.Song_List, true);
-            this.Song_List.FullRowSelect = true;
-            this.Song_List.Location = new System.Drawing.Point(3, 3);
-            this.Song_List.Name = "Song_List";
-            this.Song_List.Size = new System.Drawing.Size(801, 425);
-            this.Song_List.TabIndex = 0;
-            this.Song_List.UseCompatibleStateImageBehavior = false;
-            this.Song_List.View = System.Windows.Forms.View.Details;
-            this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
-            // 
-            // TitleColumn
-            // 
-            this.TitleColumn.Text = "Title";
-            this.TitleColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TitleColumn.Width = 265;
-            // 
-            // AlbumColumn
-            // 
-            this.AlbumColumn.Text = "Album";
-            this.AlbumColumn.Width = 195;
-            // 
-            // ArtistColumn
-            // 
-            this.ArtistColumn.Text = "Artist";
-            this.ArtistColumn.Width = 194;
-            // 
-            // LengthColumn
-            // 
-            this.LengthColumn.Text = "Length";
-            this.LengthColumn.Width = 143;
-            // 
             // Playlists_View
             // 
             this.Playlists_View.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -645,6 +648,8 @@
             // Artists_View
             // 
             this.Artists_View.BackColor = System.Drawing.SystemColors.Info;
+            this.Artists_View.Controls.Add(this.listView1);
+            this.Artists_View.Controls.Add(this.listView2);
             this.Artists_View.Location = new System.Drawing.Point(136, 75);
             this.Artists_View.Name = "Artists_View";
             this.Artists_View.Size = new System.Drawing.Size(900, 428);
@@ -668,12 +673,29 @@
             this.Song_length_label.TabIndex = 13;
             this.Song_length_label.Text = "--:--";
             // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(3, 3);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(430, 425);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView2
+            // 
+            this.listView2.Location = new System.Drawing.Point(439, 3);
+            this.listView2.Name = "listView2";
+            this.listView2.Size = new System.Drawing.Size(445, 425);
+            this.listView2.TabIndex = 1;
+            this.listView2.UseCompatibleStateImageBehavior = false;
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.Albums_View);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Song_length_label);
             this.Controls.Add(this.Current_position_label);
@@ -690,7 +712,6 @@
             this.Controls.Add(this.Songs_View);
             this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Artists_View);
-            this.Controls.Add(this.Albums_View);
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
             this.Text = "Bear Player";
@@ -707,6 +728,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).EndInit();
             this.Songs_View.ResumeLayout(false);
             this.Queue_View.ResumeLayout(false);
+            this.Artists_View.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,6 +798,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView2;
     }
 }
 
