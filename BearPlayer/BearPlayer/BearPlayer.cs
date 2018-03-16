@@ -24,9 +24,11 @@ namespace BearPlayer
         //int playing_index = 0;
         Timer song_time;
         PictureBox[] albums = new PictureBox[50];
-        int album_num;
-        int album_x = 190;
-        int album_y = 100;
+        Label[] albumLabel = new Label[50];
+        Label[] albumArtistLabel = new Label[50];
+        int album_num, album_size = 50;
+        //int album_x = 190;
+        //int album_y = 100;
         Dictionary<string, string> song_map = new Dictionary<string,string>();
         Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
         Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
@@ -254,7 +256,7 @@ namespace BearPlayer
         }
         
         //method that gets album artwork of file
-        private void getAlbumArtwork(TagLib.File file)
+        private void GetAlbumArtwork_AlbumView(TagLib.File file)
         {
             album_num++;
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
@@ -262,17 +264,60 @@ namespace BearPlayer
             albums[album_num] = new PictureBox
             {
                 Visible = true,
-                Location = new Point(album_x, album_y),
+                //Location = new Point(album_x, album_y),
                 Size = new Size(250,250),
                 Image = artwork,
                 SizeMode = PictureBoxSizeMode.StretchImage,
             };
-            this.Controls.Add(albums[album_num]);
-            album_x = album_x + 350;
+            albumLabel[album_num] = new Label
+            {
+                Visible = true,
+                //Location = new Point(album_x, album_y),
+                Size = new Size(100,100),
+                Text = getAlbumName(file),
+            };
+            albumArtistLabel[album_num] = new Label
+            {
+                Visible = true,
+                //Location = new Point(album_x, album_y),
+                Size = new Size(100, 100),
+                Text = getAlbumArtist(file),
+            };
+            Albums_View.Controls.Add(albums[album_num]);
+            Albums_View.Controls.Add(albumLabel[album_num]);
+            Albums_View.Controls.Add(albumArtistLabel[album_num]);
+            /* album_x = album_x + 350;
             if(album_num % 4 == 0)
             {
                 album_x = 190;
                 album_y = album_y + 350;
+            }
+            */
+        }
+        
+        //increases album array when close to full
+        private void increase_album_array()
+        {
+            if (album_num >= album_size)
+            {
+                album_size = 2 * album_size;
+                PictureBox[] new_albums = new PictureBox[album_size];
+                for (int i = 0; i < album_num; ++i)
+                    new_albums[i] = albums[i];
+
+                new_albums = albums;
+
+                Label[] new_albumLabel = new Label[album_size];
+                for (int i = 0; i < album_num; ++i)
+                    new_albumLabel[i] = albumLabel[i];
+
+                new_albumLabel = albumLabel;
+
+                Label[] new_albumArtist = new Label[album_size];
+                for (int i = 0; i < album_num; ++i)
+                    new_albumArtist[i] = albumArtistLabel[i];
+
+                new_albumLabel = albumArtistLabel;
             }
         }
 
@@ -286,6 +331,12 @@ namespace BearPlayer
         private string getAlbumName(TagLib.File file)
         {
             return file.Tag.Album;
+        }
+        
+        //gets the album artist
+        private string getAlbumArtist(TagLib.File file)
+        {
+            return file.Tag.Performers[0];
         }
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -498,9 +549,11 @@ namespace BearPlayer
             }
             else if (curr_view == view.Albums)
             {
-                foreach (string s in album_map.Keys)
+                foreach (List<string> s in album_map.Values)
                 {
-                    curr_list_box.Items.Add(s);
+                    string temp = s.ToArray()[0];
+                    TagLib.File file = TagLib.File.Create(temp);
+                    GetAlbumArtwork_AlbumView(file);
                 }
             }
             else if (curr_view == view.Songs)
