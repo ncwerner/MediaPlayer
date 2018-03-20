@@ -57,7 +57,7 @@ namespace BearPlayer
             song_time.Tick += new EventHandler(song_time_Elapsed);
             //causes the event to go whenever the timer elapses
 
-            curr_list_box = Song_List;
+            curr_list_box = Artist_List;
             curr_view = view.Artists;
             curr_song = null;
             song_selected = false;
@@ -483,36 +483,7 @@ namespace BearPlayer
 
         private void song_time_Elapsed(object sender, EventArgs e)
         {
-            scrubBar.Value = (int)Player.controls.currentPosition;
-            //makes the scrub bar follow the song as it plays
-            if (scrubBar.Value % 60 >= 10)
-            {
-                Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":" + (scrubBar.Value % 60).ToString();
-            }
-            else
-            {
-                Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":0" + (scrubBar.Value % 60).ToString();
-            }
-            if(scrubBar.Value >= scrubBar.Maximum)
-            {
-                play_next_song();
-            }
-            if(scrubBar.Value % 8 == 5)
-            {
-                if (blink_count < 20)
-                {
-                    //this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear_blink.png");
-                    blink_count++;
-                }
-            }
-            else
-            {
-                blink_count = 0;
-            }
-            if (blink_count == 20)
-            {
-                //this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }     
+
         }
 
 
@@ -526,6 +497,7 @@ namespace BearPlayer
                 Playlists_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Artists;
+                curr_list_box = Artist_List;
             }
 
             else if (e.Node.Text.Equals("Albums"))
@@ -578,6 +550,8 @@ namespace BearPlayer
         {
             curr_list_box.Items.Clear();
             Albums_View.Controls.Clear();
+
+            // Artist Display 
             if (curr_view == view.Artists)
             {
                 foreach (string s in artist_map.Keys)
@@ -585,6 +559,7 @@ namespace BearPlayer
                     curr_list_box.Items.Add(s);
                 }
             }
+            // Album Display
             else if (curr_view == view.Albums)
             {
                 foreach (List<string> s in album_map.Values)
@@ -594,6 +569,8 @@ namespace BearPlayer
                     GetAlbumArtwork_AlbumView(file);
                 }
             }
+
+            // Song Display
             else if (curr_view == view.Songs)
             {
                 foreach (string s in song_map.Keys)
@@ -604,6 +581,8 @@ namespace BearPlayer
                     //(!play && playing_index < disp_song_paths.Count() ) curr_list_box.SelectedIndex = playing_index;
                 }
             }
+
+            // Queue Display
             else if (curr_view == view.Queue)
             {
                 int size = queue.Count;
@@ -664,6 +643,18 @@ namespace BearPlayer
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
             curr_view = view.Songs;
+        }
+
+        private void Artist_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string artist_name = curr_list_box.SelectedItems[0].Text;
+            List<string> song_list = artist_map[artist_name];
+            foreach (string s in song_list)
+            {
+                TagLib.File file = TagLib.File.Create(s);
+                Artist_Song_List.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
+            }
+
         }
 
         // Method for album view on menu bar
