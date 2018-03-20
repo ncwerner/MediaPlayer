@@ -447,9 +447,6 @@ namespace BearPlayer
 
         private void song_time_Elapsed(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-
-=======
             scrubBar.Value = (int)Player.controls.currentPosition;
             //makes the scrub bar follow the song as it plays
             if (scrubBar.Value % 60 >= 10)
@@ -479,9 +476,7 @@ namespace BearPlayer
             if (blink_count == 20)
             {
                 this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }
-            
->>>>>>> bbfa6be640bc74ffed0655b8831c1a9875f79e6b
+            }          
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
