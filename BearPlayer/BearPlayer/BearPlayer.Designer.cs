@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode29});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +94,7 @@
             this.Artist_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Artist_List = new System.Windows.Forms.ListView();
             this.ArtistList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Artist_Song_List = new System.Windows.Forms.ListView();
             this.ArtistList_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ArtistList_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -105,7 +106,6 @@
             this.previous_button = new System.Windows.Forms.PictureBox();
             this.next_button = new System.Windows.Forms.PictureBox();
             this.playBar = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Artist_Song_View = new System.Windows.Forms.FlowLayoutPanel();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
@@ -113,13 +113,13 @@
             this.Songs_View.SuspendLayout();
             this.Queue_View.SuspendLayout();
             this.Artist_View.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Artist_Song_View.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -405,30 +405,30 @@
             this.treeView1.ItemHeight = 30;
             this.treeView1.Location = new System.Drawing.Point(0, 25);
             this.treeView1.Name = "treeView1";
-            treeNode25.Name = "Artists";
-            treeNode25.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode25.Text = "Artists";
-            treeNode26.Name = "Albums";
-            treeNode26.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode26.Text = "Albums";
-            treeNode27.Name = "Songs";
-            treeNode27.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode27.Text = "Songs";
-            treeNode28.Name = "Queue";
-            treeNode28.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode28.Text = "Queue";
-            treeNode29.Name = "New Playlist";
-            treeNode29.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode29.Text = "New Playlist";
-            treeNode30.Name = "Playlists";
-            treeNode30.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode30.Text = "Playlists";
+            treeNode1.Name = "Artists";
+            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.Text = "Artists";
+            treeNode2.Name = "Albums";
+            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.Text = "Albums";
+            treeNode3.Name = "Songs";
+            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode3.Text = "Songs";
+            treeNode4.Name = "Queue";
+            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode4.Text = "Queue";
+            treeNode5.Name = "New Playlist";
+            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode5.Text = "New Playlist";
+            treeNode6.Name = "Playlists";
+            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode6.Text = "Playlists";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode25,
-            treeNode26,
-            treeNode27,
-            treeNode28,
-            treeNode30});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode6});
             this.treeView1.PathSeparator = "";
             this.treeView1.ShowLines = false;
             this.treeView1.ShowPlusMinus = false;
@@ -640,6 +640,14 @@
             this.ArtistList.Text = "Artist";
             this.ArtistList.Width = 430;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 434);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 2;
+            // 
             // Artist_Song_List
             // 
             this.Artist_Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -699,6 +707,7 @@
             this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.shuffle_toggle.TabIndex = 6;
             this.shuffle_toggle.TabStop = false;
+            this.shuffle_toggle.Click += new System.EventHandler(this.shuffle_toggle_Click);
             // 
             // repeat_button
             // 
@@ -751,14 +760,6 @@
             this.playBar.TabStop = false;
             this.playBar.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 434);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 2;
-            // 
             // Artist_Song_View
             // 
             this.Artist_Song_View.Controls.Add(this.Artist_Song_List);
@@ -804,13 +805,13 @@
             this.Songs_View.ResumeLayout(false);
             this.Queue_View.ResumeLayout(false);
             this.Artist_View.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Artist_Song_View.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

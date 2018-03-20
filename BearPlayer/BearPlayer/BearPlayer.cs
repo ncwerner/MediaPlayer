@@ -40,6 +40,7 @@ namespace BearPlayer
         bool song_selected;
         int blink_count;
         string selected_artist;
+        bool shuffle;
 
         public Bear_Player()
         {
@@ -70,6 +71,7 @@ namespace BearPlayer
             song_selected = false;
             blink_count = 0;
             selected_artist = "";
+            shuffle = false;
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -393,33 +395,6 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
-        //fills queue with selected song and all following songs,takes a song name
-        private void fill_unshuffled_queue(string start_name)
-        {
-            queue.Clear();
-            prev_songs.Clear();
-            curr_song = null;
-            bool found = false;
-
-            for(int i = 0; i < curr_list_box.Items.Count; ++i)
-            {
-                string s = curr_list_box.Items[i].Text.ToString();
-                if (s.Equals(start_name))
-                {
-                    found = true;
-                    queue.Push_Back(s);
-                }
-                else if (found)
-                {
-                    queue.Push_Back(s);
-                }
-                else
-                {
-                    prev_songs.Push(s);
-                }
-            }
-        }
-
 
         private void next_button_Click(object sender, EventArgs e)
         {
@@ -694,17 +669,90 @@ namespace BearPlayer
             int i = curr_list_box.SelectedIndices[0];
             if (i >= 0 && i < curr_list_box.Items.Count)
             {
-                fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
+                if( shuffle )
+                {
+                    fill_shuffled_queue(curr_list_box.Items[i].Text.ToString());
+                }
+                else
+                {
+                    fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
+                }
                 play_next_song();
                 //playing_index = i;
             }
         }
 
+        private void fill_shuffled_queue(string start_name)
+        {
+            queue.Clear();
+            prev_songs.Clear();
+            curr_song = null;
+            bool found = false;
+
+            queue.Push_Back(start_name);
+
+            List<string> songs_arr = new List<string>();
+            for (int i = 0; i < curr_list_box.Items.Count; ++i)
+            {
+                if (!curr_list_box.Items[i].Text.ToString().Equals(start_name))
+                {
+                    songs_arr.Add(curr_list_box.Items[i].Text.ToString());
+                }
+            }
+
+            for (int i = songs_arr.Count - 1; i > 0; i--)
+            {
+                Random ran = new Random();
+                int j = ran.Next() % (i + 1);
+                string temp = songs_arr[i];
+                songs_arr[i] = songs_arr[j];
+                songs_arr[j] = temp;
+            }
+
+            foreach( string s in songs_arr)
+            {
+                queue.Push_Back(s);
+            }
+        }
+
+        //fills queue with selected song and all following songs,takes a song name
+        private void fill_unshuffled_queue(string start_name)
+        {
+            queue.Clear();
+            prev_songs.Clear();
+            curr_song = null;
+            bool found = false;
+
+            for (int i = 0; i < curr_list_box.Items.Count; ++i)
+            {
+                string s = curr_list_box.Items[i].Text.ToString();
+                if (s.Equals(start_name))
+                {
+                    found = true;
+                    queue.Push_Back(s);
+                }
+                else if (found)
+                {
+                    queue.Push_Back(s);
+                }
+                else
+                {
+                    prev_songs.Push(s);
+                }
+            }
+        }
+
+
         private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             //list_item_selected();
         }
-       
+
+        private void shuffle_toggle_Click(object sender, EventArgs e)
+        {
+            shuffle = !shuffle;
+        }
+
         //dequeue for queue
         private class Dequeue
         {
@@ -750,6 +798,16 @@ namespace BearPlayer
             public string ElementAt(int i)
             {
                 return dequeue.ElementAt(i);
+            }
+
+            public void Remove_Element(string s)
+            {
+                dequeue.Remove(s);
+            }
+
+            public string[] ToArray()
+            {
+                return dequeue.ToArray();
             }
         }
     }
