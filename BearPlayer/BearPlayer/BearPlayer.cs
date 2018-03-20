@@ -577,6 +577,7 @@ namespace BearPlayer
         public void update_list_disp()
         {
             curr_list_box.Items.Clear();
+            Albums_View.Controls.Clear();
             if (curr_view == view.Artists)
             {
                 foreach (string s in artist_map.Keys)
