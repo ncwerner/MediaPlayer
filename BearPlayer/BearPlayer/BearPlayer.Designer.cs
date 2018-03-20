@@ -106,6 +106,10 @@
             this.previous_button = new System.Windows.Forms.PictureBox();
             this.next_button = new System.Windows.Forms.PictureBox();
             this.playBar = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.artistLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.curAlbumLabel = new System.Windows.Forms.Label();
             this.Artist_Song_View = new System.Windows.Forms.FlowLayoutPanel();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
@@ -759,7 +763,42 @@
             this.playBar.TabIndex = 2;
             this.playBar.TabStop = false;
             this.playBar.Click += new System.EventHandler(this.pictureBox1_Click);
+            //
+            // pictureBox1
             // 
+            this.pictureBox1.Location = new System.Drawing.Point(20, 626);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(129, 129);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // artistLabel
+            // 
+            this.artistLabel.AutoSize = true;
+            this.artistLabel.Location = new System.Drawing.Point(155, 733);
+            this.artistLabel.Name = "artistLabel";
+            this.artistLabel.Size = new System.Drawing.Size(40, 17);
+            this.artistLabel.TabIndex = 17;
+            this.artistLabel.Text = "Artist";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(155, 682);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(0, 17);
+            this.titleLabel.TabIndex = 18;
+            this.titleLabel.Text = "Song Title";
+            // 
+            // curAlbumLabel
+            // 
+            this.curAlbumLabel.AutoSize = true;
+            this.curAlbumLabel.Location = new System.Drawing.Point(155, 707);
+            this.curAlbumLabel.Name = "curAlbumLabel";
+            this.curAlbumLabel.Size = new System.Drawing.Size(47, 17);
+            this.curAlbumLabel.TabIndex = 19;
+            this.curAlbumLabel.Text = "Album";
+            //  
             // Artist_Song_View
             // 
             this.Artist_Song_View.Controls.Add(this.Artist_Song_List);
@@ -777,6 +816,10 @@
             this.Controls.Add(this.Artist_Song_View);
             this.Controls.Add(this.Artist_View);
             this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.curAlbumLabel);
+            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.artistLabel);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bear_logo);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Song_length_label);
@@ -890,6 +933,10 @@
         private System.Windows.Forms.ColumnHeader ArtistList_Duration;
         private System.Windows.Forms.ColumnHeader ArtistList_Artist;
         private System.Windows.Forms.PictureBox bear_logo;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label artistLabel;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label curAlbumLabel;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.FlowLayoutPanel Artist_Song_View;
     }
