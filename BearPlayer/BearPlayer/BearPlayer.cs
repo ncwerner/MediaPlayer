@@ -484,7 +484,7 @@ namespace BearPlayer
         {
             if (e.Node.Text.Equals("Artists"))
             {
-                Artists_View.Visible = true;
+                Artist_View.Visible = true;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -494,7 +494,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Albums"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = true;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -504,7 +504,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Songs"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = true;
                 Playlists_View.Visible = false;
@@ -515,7 +515,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Playlists"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = true;
@@ -524,7 +524,7 @@ namespace BearPlayer
             }
             else if (e.Node.Text.Equals("Queue"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -621,7 +621,7 @@ namespace BearPlayer
         // Method for list view on menu bar
         private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Artists_View.Visible = false;
+            Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = true;
             Playlists_View.Visible = false;
@@ -632,7 +632,7 @@ namespace BearPlayer
         // Method for album view on menu bar
         private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Artists_View.Visible = false;
+            Artist_View.Visible = false;
             Albums_View.Visible = true;
             Songs_View.Visible = false;
             Playlists_View.Visible = false;
