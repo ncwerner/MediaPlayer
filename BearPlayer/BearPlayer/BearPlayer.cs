@@ -117,8 +117,10 @@ namespace BearPlayer
             
             if(queue.Count() > 0)
             {
+                currentAlbumDisplay();
                 string removed = queue.Pop_Front();
                 play_song( song_map[removed] );
+                update_list_disp();
 
                 if(curr_song != null)
                 {
@@ -175,8 +177,10 @@ namespace BearPlayer
         {
             if(prev_songs.Count != 0)
             {
+                currentAlbumDisplay();
                 string removed = prev_songs.Pop();
                 play_song(song_map[removed]);
+                update_list_disp();
 
                 queue.Push_Front(curr_song);
                 curr_song = removed;
@@ -350,6 +354,21 @@ namespace BearPlayer
         private string getAlbumArtist(TagLib.File file)
         {
             return file.Tag.Performers[0];
+        }
+        
+        //displays album during playback
+        private void currentAlbumDisplay()
+        {
+            
+            string top = queue.view_Top();
+            TagLib.File file = TagLib.File.Create(song_map[top]);
+            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+            pictureBox1.Image = artwork;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            artistLabel.Text = file.Tag.Performers[0];
+            titleLabel.Text = file.Tag.Title;
+            curAlbumLabel.Text = file.Tag.Album;
         }
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -776,6 +795,11 @@ namespace BearPlayer
             {
                 string ret = dequeue[0];
                 dequeue.RemoveAt(0);
+                return ret;
+            }
+            public string view_Top()
+            {
+                string ret = dequeue[0];
                 return ret;
             }
             public void Push_Back(string s)
