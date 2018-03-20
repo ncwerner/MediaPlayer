@@ -16,29 +16,32 @@ namespace BearPlayer
     public partial class Bear_Player : Form
     {
         public bool play;   // Global variable for controling play/pause state
-        //string file_path;   // directory of chosed song
-        //string song_name; //song name pulled from imported file
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
-        //string[] songs = new String[0];
-       // List<string> disp_song_paths = new List<string>();
-        //int playing_index = 0;
+
         Timer song_time;
-        PictureBox[] albums = new PictureBox[50];
-        Label[] albumLabel = new Label[50];
-        Label[] albumArtistLabel = new Label[50];
-        int album_num, album_size = 50;
-        //int album_x = 190;
-        //int album_y = 100;
-        Dictionary<string, string> song_map = new Dictionary<string,string>();
-        Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
-        Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
+        public PictureBox[] albums = new PictureBox[50];
+        public Label[] albumLabel = new Label[50];
+        public Label[] albumArtistLabel = new Label[50];
+        public int album_num = 0, album_size = 50;
+        public Dictionary<string, string> song_map = new Dictionary<string,string>();
+        public Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
+        public Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
         view curr_view;
         Queue<string> queue = new Queue<string>();
         Stack<string> prev_songs = new Stack<string>();
         string curr_song;
         ListView curr_list_box;
-        bool song_selected;
+        public bool song_selected;
         int blink_count;
+
+        //string[] songs = new String[0];
+        //List<string> disp_song_paths = new List<string>();
+        //int playing_index = 0
+        //string file_path;   // directory of chosed song
+        //string song_name; //song name pulled from imported file
+        //int album_x = 190;
+        //int album_y = 100;
+
 
         public Bear_Player()
         {
@@ -98,6 +101,8 @@ namespace BearPlayer
             }
             play = !play;
         }
+
+
         //method sets cure song to next in queue, pushes old curt song to stack
         public void play_next_song()
         {
@@ -122,7 +127,7 @@ namespace BearPlayer
         }
 
         //return false if only resuming
-        private bool play_song(string url)
+        public bool play_song(string url)
         {
             bool new_song = false;
             song_selected = true;
@@ -135,11 +140,13 @@ namespace BearPlayer
             {
                 new_song = false;
             }
+
             Player.controls.play();
             this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             play = false;
             TagLib.File song_file = TagLib.File.Create(url);
             //creates a file to get the duration for the scrub bar
+
             if (song_file.Properties.Duration.Seconds >= 10)
                 //checks the amount of digits in seconds
             {
@@ -149,6 +156,7 @@ namespace BearPlayer
             {
                 Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":0" + song_file.Properties.Duration.Seconds.ToString();
             }
+
             scrubBar.Maximum = song_file.Properties.Duration.Seconds + (song_file.Properties.Duration.Minutes * 60);
             Current_position_label.Text = "0:00";
             scrubBar.Value = 0;
@@ -157,6 +165,8 @@ namespace BearPlayer
 
             return new_song;
         }
+
+
         //pushes cure song to the front of queue, make curr song the pop of the stack 
         private void play_prev_song()
         {
@@ -171,7 +181,9 @@ namespace BearPlayer
                 //plays the file that is currently set as the URL
             }
         }
-         //imports all songs in folder and updates the screen
+
+
+        //imports all songs in folder and updates the screen
         public void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string folder_path = "";
@@ -195,11 +207,14 @@ namespace BearPlayer
             }
             
         }
+
+
         //adds a song too the maps 
-        private void add_new_song(string path)
+        public void add_new_song(string path)
         {
             TagLib.File file = TagLib.File.Create(path);
 
+            // Add to song map
             if (!song_map.ContainsKey(getSongName(file))) //if not in map add it
             {
                 song_map.Add(getSongName(file), path);
@@ -209,6 +224,7 @@ namespace BearPlayer
                 song_map[getSongName(file)] = path;      //if in map make update its url to the new one
             }
 
+            // Add to album map
             if (!album_map.ContainsKey(getAlbumName(file))) //if album not in map, make that key and assign it to a new list containing added song
             {
                 List<string> new_list = new List<string>();
@@ -217,8 +233,12 @@ namespace BearPlayer
             }
             else
             {
-                album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
+                // Avoid adding duplicate songs
+                if(!album_map[getAlbumName(file)].Contains(path))
+                    album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
             }
+
+            // Add to artist map
             foreach (string art in file.Tag.Performers)
             {
                 if (!artist_map.ContainsKey(art))
@@ -229,10 +249,14 @@ namespace BearPlayer
                 }
                 else
                 {
-                    artist_map[art].Add(path);
+                    // Avoid adding duplicate songs 
+                    if(!artist_map[art].Contains(path))
+                        artist_map[art].Add(path);
                 }
             }
         }
+
+
         //imports single song and updates display
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -256,11 +280,11 @@ namespace BearPlayer
         }
         
         //method that gets album artwork of file
-        private void GetAlbumArtwork_AlbumView(TagLib.File file)
-        {
-            album_num++;
+        public void GetAlbumArtwork_AlbumView(TagLib.File file)
+        {      
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
             System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+
             albums[album_num] = new PictureBox
             {
                 Visible = true,
@@ -269,6 +293,7 @@ namespace BearPlayer
                 Image = artwork,
                 SizeMode = PictureBoxSizeMode.StretchImage,
             };
+
             albumLabel[album_num] = new Label
             {
                 Visible = true,
@@ -276,6 +301,7 @@ namespace BearPlayer
                 Size = new Size(100,100),
                 Text = getAlbumName(file),
             };
+            
             albumArtistLabel[album_num] = new Label
             {
                 Visible = true,
@@ -283,9 +309,14 @@ namespace BearPlayer
                 Size = new Size(100, 100),
                 Text = getAlbumArtist(file),
             };
+
             Albums_View.Controls.Add(albums[album_num]);
             Albums_View.Controls.Add(albumLabel[album_num]);
             Albums_View.Controls.Add(albumArtistLabel[album_num]);
+
+            ++album_num;
+            // increase_album_array();
+
             /* album_x = album_x + 350;
             if(album_num % 4 == 0)
             {
@@ -296,7 +327,7 @@ namespace BearPlayer
         }
         
         //increases album array when close to full
-        private void increase_album_array()
+        public void increase_album_array()
         {
             if (album_num >= album_size)
             {
@@ -305,40 +336,41 @@ namespace BearPlayer
                 for (int i = 0; i < album_num; ++i)
                     new_albums[i] = albums[i];
 
-                new_albums = albums;
+                albums = new_albums;
 
                 Label[] new_albumLabel = new Label[album_size];
                 for (int i = 0; i < album_num; ++i)
                     new_albumLabel[i] = albumLabel[i];
 
-                new_albumLabel = albumLabel;
+                albumLabel = new_albumLabel; 
 
                 Label[] new_albumArtist = new Label[album_size];
                 for (int i = 0; i < album_num; ++i)
                     new_albumArtist[i] = albumArtistLabel[i];
 
-                new_albumLabel = albumArtistLabel;
+                albumArtistLabel = new_albumArtist;
             }
         }
 
         //gets song name of file
-        private string getSongName(TagLib.File file)
+        public string getSongName(TagLib.File file)
         {
             return file.Tag.Title;
         }
 
         //gets the album name
-        private string getAlbumName(TagLib.File file)
+        public string getAlbumName(TagLib.File file)
         {
             return file.Tag.Album;
         }
         
         //gets the album artist
-        private string getAlbumArtist(TagLib.File file)
+        public string getAlbumArtist(TagLib.File file)
         {
             return file.Tag.Performers[0];
         }
         
+
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -382,6 +414,8 @@ namespace BearPlayer
             Player.settings.volume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
+
+
         //fills queue with selected song and all following songs,takes a song name
         private void fill_unshuffled_queue(string start_name)
         {
@@ -433,6 +467,7 @@ namespace BearPlayer
             play_prev_song();
         }
 
+
         private void scrubBar_Scroll(object sender, EventArgs e)
         {
             //path.Text = Player.controls.currentPosition.ToString();
@@ -444,6 +479,7 @@ namespace BearPlayer
             //maybe add functionality to change to parts of the song using number keys
 
         }
+
 
         private void song_time_Elapsed(object sender, EventArgs e)
         {
@@ -465,7 +501,7 @@ namespace BearPlayer
             {
                 if (blink_count < 20)
                 {
-                    this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear_blink.png");
+                    //this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear_blink.png");
                     blink_count++;
                 }
             }
@@ -475,16 +511,16 @@ namespace BearPlayer
             }
             if (blink_count == 20)
             {
-                this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }
-            
+                //this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+            }     
         }
+
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (e.Node.Text.Equals("Artists"))
             {
-                Artists_View.Visible = true;
+                Artist_View.Visible = true;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -494,7 +530,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Albums"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = true;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -504,7 +540,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Songs"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = true;
                 Playlists_View.Visible = false;
@@ -515,7 +551,7 @@ namespace BearPlayer
 
             else if (e.Node.Text.Equals("Playlists"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = true;
@@ -524,7 +560,7 @@ namespace BearPlayer
             }
             else if (e.Node.Text.Equals("Queue"))
             {
-                Artists_View.Visible = false;
+                Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
@@ -536,8 +572,9 @@ namespace BearPlayer
             update_list_disp();
         }
 
+
         //updates whatever list box is currently being viewed with the current map information 
-        private void update_list_disp()
+        public void update_list_disp()
         {
             curr_list_box.Items.Clear();
             if (curr_view == view.Artists)
@@ -581,7 +618,7 @@ namespace BearPlayer
 
 
         // Method to retrieve the title, album, artist, and duration information from a song, and add it to a list row
-        private ListViewItem List_Column_Info(ref TagLib.File file)
+        public ListViewItem List_Column_Info(ref TagLib.File file)
         {
             // Create new entry into list table
             ListViewItem item = new ListViewItem();
@@ -603,8 +640,8 @@ namespace BearPlayer
             return item;
         }
 
-
         private enum view { Albums, Artists, Songs, Playlists, Queue };
+
 
         private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -620,7 +657,7 @@ namespace BearPlayer
         // Method for list view on menu bar
         private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Artists_View.Visible = false;
+            Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = true;
             Playlists_View.Visible = false;
@@ -631,7 +668,7 @@ namespace BearPlayer
         // Method for album view on menu bar
         private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Artists_View.Visible = false;
+            Artist_View.Visible = false;
             Albums_View.Visible = true;
             Songs_View.Visible = false;
             Playlists_View.Visible = false;
