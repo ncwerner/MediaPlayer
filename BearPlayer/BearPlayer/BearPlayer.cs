@@ -476,11 +476,11 @@ namespace BearPlayer
             {
                 Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":0" + (scrubBar.Value % 60).ToString();
             }
-            if(scrubBar.Value >= scrubBar.Maximum)
+            if (scrubBar.Value >= scrubBar.Maximum)
             {
                 play_next_song();
             }
-            if(scrubBar.Value % 8 == 5)
+            if (scrubBar.Value % 8 == 5)
             {
                 if (blink_count < 20)
                 {
@@ -495,7 +495,7 @@ namespace BearPlayer
             if (blink_count == 20)
             {
                 this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }          
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -698,7 +698,9 @@ namespace BearPlayer
 
         private void list_item_selected()
         {
-            if (curr_list_box.SelectedIndices.Count <= 0) return;
+            if (curr_list_box.SelectedIndices.Count <= 0)
+                return;
+
             int i = curr_list_box.SelectedIndices[0];
             if (i >= 0 && i < curr_list_box.Items.Count)
             {
@@ -778,7 +780,7 @@ namespace BearPlayer
 
         private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //list_item_selected();
+            list_item_selected();
         }
 
         private void shuffle_toggle_Click(object sender, EventArgs e)
