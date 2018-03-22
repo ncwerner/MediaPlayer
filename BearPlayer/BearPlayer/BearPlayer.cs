@@ -851,6 +851,8 @@ namespace BearPlayer
         private void shuffle_toggle_Click(object sender, EventArgs e)
         {
             shuffle = !shuffle;
+            if( shuffle )   shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+            else            shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
         }
 
         private void repeat_button_Click(object sender, EventArgs e)

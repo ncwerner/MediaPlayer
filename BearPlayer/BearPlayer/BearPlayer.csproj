@@ -141,6 +141,8 @@
   <ItemGroup>
     <Content Include="Resources\bear.png" />
     <Content Include="Resources\Repeat.png" />
+    <Content Include="Resources\shuffleButtonOff.png" />
+    <Content Include="Resources\shuffleButtonOn.png" />
     <None Include="Resources\Repeat1.png" />
     <Content Include="Resources\Repeat_All.png" />
     <Content Include="Resources\Repeat_One.png" />

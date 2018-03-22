@@ -743,7 +743,7 @@
             // 
             this.shuffle_toggle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButton;
+            this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButtonOff;
             this.shuffle_toggle.Location = new System.Drawing.Point(359, 547);
             this.shuffle_toggle.Name = "shuffle_toggle";
             this.shuffle_toggle.Size = new System.Drawing.Size(61, 50);
