@@ -98,9 +98,6 @@
     <None Include="Resources\Previous Button1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Repeat1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\pauseButton1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\bear.png" />
+    <Content Include="Resources\Repeat.png" />
+    <None Include="Resources\Repeat_One1.png" />
+    <None Include="Resources\Repeat1.png" />
+    <Content Include="Resources\Repeat_All.png" />
+    <None Include="Resources\Repeat_All1.png" />
+    <Content Include="Resources\Repeat_One.png" />
     <None Include="Resources\bear_blink1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

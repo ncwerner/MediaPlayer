@@ -858,6 +858,7 @@ namespace BearPlayer
             if( repeat_type == Repeat_Type.Off)
             {
                 repeat_type = Repeat_Type.Repeat_All;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
 
                 Dequeue temp = new Dequeue();
                 int c = prev_songs.Count();
@@ -877,6 +878,7 @@ namespace BearPlayer
             else if ( repeat_type == Repeat_Type.Repeat_All )
             {
                 repeat_type = Repeat_Type.Repeat_One;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
 
                 if (curr_song != null)
                 {
@@ -888,6 +890,7 @@ namespace BearPlayer
             else
             {
                 repeat_type = Repeat_Type.Off;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
             }
             update_list_disp();
         }
