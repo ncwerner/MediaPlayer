@@ -143,49 +143,9 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Repeat_All1 {
-            get {
-                object obj = ResourceManager.GetObject("Repeat_All1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Repeat_One {
             get {
                 object obj = ResourceManager.GetObject("Repeat_One", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Repeat_One1 {
-            get {
-                object obj = ResourceManager.GetObject("Repeat_One1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Repeat1 {
-            get {
-                object obj = ResourceManager.GetObject("Repeat1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Repeat2 {
-            get {
-                object obj = ResourceManager.GetObject("Repeat2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
