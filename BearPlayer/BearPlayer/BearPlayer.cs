@@ -246,17 +246,32 @@ namespace BearPlayer
                 {
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
-                    string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
-                    foreach (string s in songs)
-                    {
-                        TagLib.File file = TagLib.File.Create(s);
-
-                        add_new_song(s);
-
-                    }
-                    update_list_disp();
+                    getSongs(folder_path);
+                    getAlbums(folder_path);
                 }
             }
+        }
+
+        public void getAlbums(string folder_path)
+        {
+            string[] albums = Directory.GetDirectories(@folder_path);
+            foreach (string s in albums)
+            {
+                getSongs(s);
+                getAlbums(s);
+            }
+        }
+
+        public void getSongs(string folder_path)
+        {
+            string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
+            foreach (string s in songs)
+            {
+                TagLib.File file = TagLib.File.Create(s);
+
+                add_new_song(s);
+            }
+            update_list_disp();
         }
 
 
