@@ -901,6 +901,28 @@ namespace BearPlayer
 
         private enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
+        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            if ((e.State & TreeNodeStates.Hot) != 0)
+            {
+
+                using (Brush b = new SolidBrush(Color.FromArgb(unchecked((int)0xFFB3D7F3))))
+                    e.Graphics.FillRectangle(b, e.Bounds);
+                using (Pen p = new Pen(new SolidBrush(Color.FromArgb(unchecked((int)0xFF0078D7)))))
+                {
+                    Rectangle border_bounds = e.Bounds;
+                    border_bounds.Width -= 1;
+                    border_bounds.Height -= 1;
+                    e.Graphics.DrawRectangle(p, border_bounds);
+                }
+                e.Graphics.DrawString(e.Node.Text, e.Node.NodeFont, Brushes.Black, e.Bounds);
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
+
         //dequeue for queue
         private class Dequeue
         {
