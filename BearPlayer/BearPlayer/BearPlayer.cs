@@ -28,7 +28,7 @@ namespace BearPlayer
         ListView curr_list_box;
         bool song_selected;
         int blink_count;
-        string selected_artist;
+        string selected_artist, selected_album;
         bool shuffle;
         Repeat_Type repeat_type;
 
@@ -502,6 +502,7 @@ namespace BearPlayer
             {
                 Artist_View.Visible = true;
                 Albums_View.Visible = false;
+                Album_Song_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
@@ -514,6 +515,7 @@ namespace BearPlayer
             {
                 Artist_View.Visible = false;
                 Albums_View.Visible = true;
+                Album_Song_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
@@ -526,6 +528,7 @@ namespace BearPlayer
             {
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
+                Album_Song_View.Visible = false;
                 Songs_View.Visible = true;
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
@@ -538,6 +541,7 @@ namespace BearPlayer
             {
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
+                Album_Song_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = true;
                 Artist_Song_View.Visible = false;
@@ -551,6 +555,7 @@ namespace BearPlayer
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
+                Album_Song_View.Visible = false;
                 Queue_View.Visible = true;
                 curr_view = view.Queue;
                 curr_list_box = Queue_List;   // Change to queue list box
@@ -614,9 +619,20 @@ namespace BearPlayer
                     curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
                 }
             }
+            // Artist Song Display
             else if (curr_view == view.Artist_Song)
             {
                 List<string> song_list = artist_map[selected_artist];
+                foreach (string s in song_list)
+                {
+                    TagLib.File file = TagLib.File.Create(s);
+                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
+                }
+            }
+            // Album Song Display
+            else if(curr_view == view.Album_Song)
+            {
+                List<string> song_list = album_map[selected_album];
                 foreach (string s in song_list)
                 {
                     TagLib.File file = TagLib.File.Create(s);
@@ -652,10 +668,6 @@ namespace BearPlayer
 
         
 
-        private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            list_item_selected();
-        }
 
         // Method for list view on menu bar
         private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -666,6 +678,7 @@ namespace BearPlayer
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
             curr_view = view.Songs;
         }
 
@@ -677,9 +690,29 @@ namespace BearPlayer
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
             Artist_Song_View.Visible = true;
+            Album_Song_View.Visible = false;
+
+
             selected_artist = curr_list_box.SelectedItems[0].Text;
             curr_view = view.Artist_Song;
             curr_list_box = Artist_Song_List;
+            treeView1.SelectedNode = null;
+            update_list_disp();
+        }
+
+        private void Album_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = true;
+
+            selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
+            curr_view = view.Album_Song;
+            curr_list_box = Album_Song_List;
             treeView1.SelectedNode = null;
             update_list_disp();
         }
@@ -693,10 +726,26 @@ namespace BearPlayer
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
             curr_view = view.Albums;
         }
 
         private void Artist_Song_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list_item_selected();
+        }
+
+        private void Album_Song_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list_item_selected();
+        }
+        
+        private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list_item_selected();
+        }
+
+        private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             list_item_selected();
         }
@@ -779,10 +828,10 @@ namespace BearPlayer
                     temp_deq.Push_Front(s);
                 }
             }
-            if(repeat_type == Repeat_Type.Repeat_All)
+            if (repeat_type == Repeat_Type.Repeat_All)
             {
                 int c = temp_deq.Count();
-                for( int i = 0; i < c; i++)
+                for (int i = 0; i < c; i++)
                 {
                     queue.Push_Back(temp_deq.Pop_Back());
                 }
@@ -794,14 +843,8 @@ namespace BearPlayer
                 {
                     prev_songs.Push(temp_deq.Pop_Back());
                 }
-                   
+
             }
-        }
-
-
-        private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //list_item_selected();
         }
 
         private void shuffle_toggle_Click(object sender, EventArgs e)
@@ -853,7 +896,7 @@ namespace BearPlayer
             update_list_disp();
         }
 
-        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song };
+        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
 
         private enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
