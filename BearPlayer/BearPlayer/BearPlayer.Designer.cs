@@ -478,7 +478,7 @@
             this.volumeSlider.TabIndex = 0;
             this.volumeSlider.TickFrequency = 0;
             this.volumeSlider.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.volumeSlider.Value = 100;
+            this.volumeSlider.Value = 25;
             this.volumeSlider.Scroll += new System.EventHandler(this.volumeSlider_Scroll_1);
             // 
             // scrubBar
@@ -644,7 +644,7 @@
             // 
             // Song_length_label
             // 
-            this.Song_length_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Song_length_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Song_length_label.AutoSize = true;
             this.Song_length_label.Location = new System.Drawing.Point(1005, 522);
             this.Song_length_label.Name = "Song_length_label";
@@ -849,6 +849,8 @@
             // 
             // Album_Song_List
             // 
+            this.Album_Song_List.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Album_Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.AlbumSong_Title,
             this.AlbumSong_Album,
@@ -903,7 +905,6 @@
             this.Controls.Add(this.previous_button);
             this.Controls.Add(this.next_button);
             this.Controls.Add(this.playBar);
-            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
             this.Controls.Add(this.Artist_Song_View);
@@ -912,6 +913,7 @@
             this.Controls.Add(this.Artist_View);
             this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.treeView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
