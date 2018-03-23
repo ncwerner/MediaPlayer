@@ -30,6 +30,7 @@ namespace BearPlayer
         int blink_count;
         string selected_artist;
         bool shuffle;
+        Repeat_Type repeat_type;
 
         //string[] songs = new String[0];
         // List<string> disp_song_paths = new List<string>();
@@ -67,6 +68,7 @@ namespace BearPlayer
             blink_count = 0;
             selected_artist = "";
             shuffle = false;
+            repeat_type = Repeat_Type.Off;
         }
 
         private void BearPlayer_Load(object sender, EventArgs e)
@@ -111,25 +113,54 @@ namespace BearPlayer
         //method sets cure song to next in queue, pushes old curt song to stack
         public void play_next_song()
         {
+            if( repeat_type == Repeat_Type.Repeat_One)
+            {
+                if( curr_song != null || queue.Count() != 0 )
+                {
+                    if (curr_song == null)
+                    {
+                        curr_song = queue.Pop_Front();
+                    }
+                    prev_songs.Clear();
+                    queue.Clear();
+                    queue.Push_Front(curr_song);
+                    play_song(song_map[curr_song]);
+                    currentAlbumDisplay();
+                    return;
+                }
+            }
+            if( repeat_type == Repeat_Type.Repeat_All)
+            {
+                if(queue.Count() == 0 && curr_song != null)
+                {
+                    queue.Push_Front(curr_song);
+                }
+            }
             
             if(queue.Count() > 0)
             {
-                currentAlbumDisplay();
                 string removed = queue.Pop_Front();
                 play_song( song_map[removed] );
-                update_list_disp();
 
                 if(curr_song != null)
                 {
-                    prev_songs.Push(curr_song);
+                    if( repeat_type == Repeat_Type.Repeat_All)
+                    {
+                        queue.Push_Back(curr_song);
+                    }
+                    else
+                    {
+                        prev_songs.Push(curr_song);
+                    }
                 }
 
                 curr_song = removed;
-                
+                currentAlbumDisplay();
                 //sets the URL for the player as the file path
-                
+
                 //plays the file that is currently set as the URL
             }
+            
 
         }
 
@@ -145,6 +176,7 @@ namespace BearPlayer
             }
             else
             {
+                Player.controls.currentPosition = 0;
                 new_song = false;
             }
             Player.controls.play();
@@ -174,15 +206,29 @@ namespace BearPlayer
         //pushes cure song to the front of queue, make curr song the pop of the stack 
         private void play_prev_song()
         {
-            if(prev_songs.Count != 0)
+            if( repeat_type == Repeat_Type.Repeat_One)
             {
-                prevCurrentAlbumDisplay();
+                if (curr_song != null)
+                {
+                    play_song(song_map[curr_song]);
+                }
+            }
+            if (repeat_type == Repeat_Type.Repeat_All)
+            {
+                if(queue.Count() != 0)
+                {
+                    prev_songs.Push(queue.Pop_Back());
+                }
+            }
+            if (prev_songs.Count != 0)
+            {
+                //prevCurrentAlbumDisplay();
                 string removed = prev_songs.Pop();
                 play_song(song_map[removed]);
-                update_list_disp();
 
                 queue.Push_Front(curr_song);
                 curr_song = removed;
+                currentAlbumDisplay();
                 //sets the URL for the player as the file path
                 //plays the file that is currently set as the URL
             }
@@ -309,8 +355,8 @@ namespace BearPlayer
         private void currentAlbumDisplay()
         {
             
-            string top = queue.view_Top();
-            TagLib.File file = TagLib.File.Create(song_map[top]);
+            string curr = curr_song;
+            TagLib.File file = TagLib.File.Create(song_map[curr]);
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
             System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
             pictureBox1.Image = artwork;
@@ -320,7 +366,7 @@ namespace BearPlayer
             curAlbumLabel.Text = file.Tag.Album;
         }
         
-        private void prevCurrentAlbumDisplay()
+       /* private void prevCurrentAlbumDisplay()
         {
 
             string top = prev_songs.Peek();
@@ -332,7 +378,7 @@ namespace BearPlayer
             artistLabel.Text = file.Tag.Performers[0];
             titleLabel.Text = file.Tag.Title;
             curAlbumLabel.Text = file.Tag.Album;
-        }
+        }*/
         
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -387,6 +433,7 @@ namespace BearPlayer
                 curr_list_box.SelectedIndex = playing_index;
             }*/
             play_next_song();
+            update_list_disp();
         }
 
 
@@ -399,6 +446,7 @@ namespace BearPlayer
                  curr_list_box.SelectedIndex = playing_index;
              }*/
             play_prev_song();
+            update_list_disp();
         }
 
         private void scrubBar_Scroll(object sender, EventArgs e)
@@ -425,11 +473,12 @@ namespace BearPlayer
             {
                 Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":0" + (scrubBar.Value % 60).ToString();
             }
-            if (scrubBar.Value >= scrubBar.Maximum)
+            if(scrubBar.Value >= scrubBar.Maximum)
             {
                 play_next_song();
+                update_list_disp();
             }
-            if (scrubBar.Value % 8 == 5)
+            if(scrubBar.Value % 8 == 5)
             {
                 if (blink_count < 20)
                 {
@@ -444,7 +493,7 @@ namespace BearPlayer
             if (blink_count == 20)
             {
                 this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }
+            }          
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -601,7 +650,7 @@ namespace BearPlayer
         }
 
 
-        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song };
+        
 
         private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -654,9 +703,7 @@ namespace BearPlayer
 
         private void list_item_selected()
         {
-            if (curr_list_box.SelectedIndices.Count <= 0)
-                return;
-
+            if (curr_list_box.SelectedIndices.Count <= 0) return;
             int i = curr_list_box.SelectedIndices[0];
             if (i >= 0 && i < curr_list_box.Items.Count)
             {
@@ -713,6 +760,7 @@ namespace BearPlayer
             prev_songs.Clear();
             curr_song = null;
             bool found = false;
+            Dequeue temp_deq = new Dequeue();
 
             for (int i = 0; i < curr_list_box.Items.Count; ++i)
             {
@@ -728,21 +776,86 @@ namespace BearPlayer
                 }
                 else
                 {
-                    prev_songs.Push(s);
+                    temp_deq.Push_Front(s);
                 }
+            }
+            if(repeat_type == Repeat_Type.Repeat_All)
+            {
+                int c = temp_deq.Count();
+                for( int i = 0; i < c; i++)
+                {
+                    queue.Push_Back(temp_deq.Pop_Back());
+                }
+            }
+            else
+            {
+                int c = temp_deq.Count();
+                for (int i = 0; i < c; i++)
+                {
+                    prev_songs.Push(temp_deq.Pop_Back());
+                }
+                   
             }
         }
 
 
         private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            list_item_selected();
+            //list_item_selected();
         }
 
         private void shuffle_toggle_Click(object sender, EventArgs e)
         {
             shuffle = !shuffle;
+            if( shuffle )   shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+            else            shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
         }
+
+        private void repeat_button_Click(object sender, EventArgs e)
+        {
+            if( repeat_type == Repeat_Type.Off)
+            {
+                repeat_type = Repeat_Type.Repeat_All;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
+
+                Dequeue temp = new Dequeue();
+                int c = prev_songs.Count();
+                for (int i = 0; i < c; i++)
+                {
+                    temp.Push_Back(prev_songs.Pop());
+                }
+                for (int i = 0; i < c; i++)
+                {
+                    queue.Push_Back(temp.Pop_Back());
+                }
+                if( c == 0 && queue.Count() == 0)
+                {
+                    queue.Push_Back(curr_song);
+                }
+            }
+            else if ( repeat_type == Repeat_Type.Repeat_All )
+            {
+                repeat_type = Repeat_Type.Repeat_One;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
+
+                if (curr_song != null)
+                {
+                    prev_songs.Clear();
+                    queue.Clear();
+                    queue.Push_Front(curr_song);
+                }
+            }
+            else
+            {
+                repeat_type = Repeat_Type.Off;
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
+            }
+            update_list_disp();
+        }
+
+        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song };
+
+        private enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
         //dequeue for queue
         private class Dequeue
