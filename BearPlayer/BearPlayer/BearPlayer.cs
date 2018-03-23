@@ -246,17 +246,32 @@ namespace BearPlayer
                 {
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
-                    string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
-                    foreach (string s in songs)
-                    {
-                        TagLib.File file = TagLib.File.Create(s);
-
-                        add_new_song(s);
-
-                    }
-                    update_list_disp();
+                    getSongs(folder_path);
+                    getAlbums(folder_path);
                 }
             }
+        }
+
+        public void getAlbums(string folder_path)
+        {
+            string[] albums = Directory.GetDirectories(@folder_path);
+            foreach (string s in albums)
+            {
+                getSongs(s);
+                getAlbums(s);
+            }
+        }
+
+        public void getSongs(string folder_path)
+        {
+            string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
+            foreach (string s in songs)
+            {
+                TagLib.File file = TagLib.File.Create(s);
+
+                add_new_song(s);
+            }
+            update_list_disp();
         }
 
 
@@ -899,6 +914,28 @@ namespace BearPlayer
         private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
 
         private enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
+        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
+        {
+            if ((e.State & TreeNodeStates.Hot) != 0)
+            {
+
+                using (Brush b = new SolidBrush(Color.FromArgb(unchecked((int)0xFFB3D7F3))))
+                    e.Graphics.FillRectangle(b, e.Bounds);
+                using (Pen p = new Pen(new SolidBrush(Color.FromArgb(unchecked((int)0xFF0078D7)))))
+                {
+                    Rectangle border_bounds = e.Bounds;
+                    border_bounds.Width -= 1;
+                    border_bounds.Height -= 1;
+                    e.Graphics.DrawRectangle(p, border_bounds);
+                }
+                e.Graphics.DrawString(e.Node.Text, e.Node.NodeFont, Brushes.Black, e.Bounds);
+            }
+            else
+            {
+                e.DrawDefault = true;
+            }
+        }
 
         //dequeue for queue
         private class Dequeue
