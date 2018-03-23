@@ -16,19 +16,8 @@ namespace BearPlayer
     public partial class Bear_Player : Form
     {
         public bool play;   // Global variable for controling play/pause state
-        //string file_path;   // directory of chosed song
-        //string song_name; //song name pulled from imported file
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
-        //string[] songs = new String[0];
-       // List<string> disp_song_paths = new List<string>();
-        //int playing_index = 0;
         Timer song_time;
-        PictureBox[] albums = new PictureBox[50];
-        Label[] albumLabel = new Label[50];
-        Label[] albumArtistLabel = new Label[50];
-        int album_num, album_size = 50;
-        //int album_x = 190;
-        //int album_y = 100;
         Dictionary<string, string> song_map = new Dictionary<string,string>();
         Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
         Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
@@ -41,6 +30,12 @@ namespace BearPlayer
         int blink_count;
         string selected_artist;
         bool shuffle;
+
+        //string[] songs = new String[0];
+        // List<string> disp_song_paths = new List<string>();
+        //int playing_index = 0;
+        //string file_path;   // directory of chosed song
+        //string song_name; //song name pulled from imported file
 
         public Bear_Player()
         {
@@ -111,6 +106,8 @@ namespace BearPlayer
             }
             play = !play;
         }
+
+
         //method sets cure song to next in queue, pushes old curt song to stack
         public void play_next_song()
         {
@@ -172,6 +169,8 @@ namespace BearPlayer
 
             return new_song;
         }
+
+
         //pushes cure song to the front of queue, make curr song the pop of the stack 
         private void play_prev_song()
         {
@@ -188,6 +187,8 @@ namespace BearPlayer
                 //plays the file that is currently set as the URL
             }
         }
+
+
          //imports all songs in folder and updates the screen
         public void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -210,8 +211,9 @@ namespace BearPlayer
                     update_list_disp();
                 }
             }
-            
         }
+
+
         //adds a song too the maps 
         private void add_new_song(string path)
         {
@@ -231,6 +233,7 @@ namespace BearPlayer
                 List<string> new_list = new List<string>();
                 new_list.Add(path);
                 album_map.Add(getAlbumName(file), new_list);
+                Store_AlbumArtwork(file);   // Add image artwork to image list
             }
             else
             {
@@ -250,6 +253,8 @@ namespace BearPlayer
                 }
             }
         }
+
+
         //imports single song and updates display
         private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -272,72 +277,16 @@ namespace BearPlayer
 
         }
         
+
         //method that gets album artwork of file
-        private void GetAlbumArtwork_AlbumView(TagLib.File file)
+        private void Store_AlbumArtwork(TagLib.File file)
         {
-            album_num++;
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
             System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            albums[album_num] = new PictureBox
-            {
-                Visible = true,
-                //Location = new Point(album_x, album_y),
-                Size = new Size(250,250),
-                Image = artwork,
-                SizeMode = PictureBoxSizeMode.StretchImage,
-            };
-            albumLabel[album_num] = new Label
-            {
-                Visible = true,
-                //Location = new Point(album_x, album_y),
-                Size = new Size(100,100),
-                Text = getAlbumName(file),
-            };
-            albumArtistLabel[album_num] = new Label
-            {
-                Visible = true,
-                //Location = new Point(album_x, album_y),
-                Size = new Size(100, 100),
-                Text = getAlbumArtist(file),
-            };
-            Albums_View.Controls.Add(albums[album_num]);
-            Albums_View.Controls.Add(albumLabel[album_num]);
-            Albums_View.Controls.Add(albumArtistLabel[album_num]);
-            /* album_x = album_x + 350;
-            if(album_num % 4 == 0)
-            {
-                album_x = 190;
-                album_y = album_y + 350;
-            }
-            */
+            Artwork_List.ImageSize = new Size(200, 200);
+            Artwork_List.Images.Add(artwork);
         }
         
-        //increases album array when close to full
-        private void increase_album_array()
-        {
-            if (album_num >= album_size)
-            {
-                album_size = 2 * album_size;
-                PictureBox[] new_albums = new PictureBox[album_size];
-                for (int i = 0; i < album_num; ++i)
-                    new_albums[i] = albums[i];
-
-                new_albums = albums;
-
-                Label[] new_albumLabel = new Label[album_size];
-                for (int i = 0; i < album_num; ++i)
-                    new_albumLabel[i] = albumLabel[i];
-
-                new_albumLabel = albumLabel;
-
-                Label[] new_albumArtist = new Label[album_size];
-                for (int i = 0; i < album_num; ++i)
-                    new_albumArtist[i] = albumArtistLabel[i];
-
-                new_albumLabel = albumArtistLabel;
-            }
-        }
-
         //gets song name of file
         private string getSongName(TagLib.File file)
         {
@@ -509,7 +458,7 @@ namespace BearPlayer
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Artists;
-                curr_list_box = Artist_List;
+                curr_list_box = Artist_List;   // Change to artist list box
             }
 
             else if (e.Node.Text.Equals("Albums"))
@@ -521,6 +470,7 @@ namespace BearPlayer
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Albums;
+                curr_list_box = Album_List;  // Change to album list box
             }
 
             else if (e.Node.Text.Equals("Songs"))
@@ -564,7 +514,6 @@ namespace BearPlayer
         private void update_list_disp()
         {
             curr_list_box.Items.Clear();
-            Albums_View.Controls.Clear();
 
             // Artist Display 
             if (curr_view == view.Artists)
@@ -574,14 +523,21 @@ namespace BearPlayer
                     curr_list_box.Items.Add(s);
                 }
             }
+
             // Album Display
             else if (curr_view == view.Albums)
             {
-                foreach (List<string> s in album_map.Values)
+                int album_count = 0;
+                foreach (string s in album_map.Keys)
                 {
-                    string temp = s.ToArray()[0];
+                    string temp = album_map[s][0];
                     TagLib.File file = TagLib.File.Create(temp);
-                    GetAlbumArtwork_AlbumView(file);
+
+                    Album_List.View = View.LargeIcon;
+                    Album_List.LargeImageList = Artwork_List;
+
+                    Album_List.Items.Add(new ListViewItem { ImageIndex = album_count, Text = getAlbumName(file) + "\n" + getAlbumArtist(file)} );
+                    ++album_count;
                 }
             }
 
@@ -608,8 +564,8 @@ namespace BearPlayer
                     TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
                     curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
                 }
-            }    
-            else if( curr_view == view.Artist_Song)
+            }
+            else if (curr_view == view.Artist_Song)
             {
                 List<string> song_list = artist_map[selected_artist];
                 foreach (string s in song_list)
