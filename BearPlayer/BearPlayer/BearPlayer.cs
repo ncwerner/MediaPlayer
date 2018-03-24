@@ -164,7 +164,7 @@ namespace BearPlayer
 
         }
 
-        //return false if only resuming
+        //return false if only resuming takes a URL
         private bool play_song(string url)
         {
             bool new_song = false;
@@ -460,8 +460,16 @@ namespace BearPlayer
                  play_new_song(disp_song_paths[playing_index]);
                  curr_list_box.SelectedIndex = playing_index;
              }*/
-            play_prev_song();
-            update_list_disp();
+            if (scrubBar.Value <= 5)
+            {
+                play_prev_song();
+                update_list_disp();
+            }
+            else
+            {
+                play_song(song_map[curr_song]);
+            }
+            
         }
 
         private void scrubBar_Scroll(object sender, EventArgs e)
