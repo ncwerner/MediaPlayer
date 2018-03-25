@@ -18,19 +18,32 @@ namespace BearPlayer
         public bool play;   // Global variable for controling play/pause state
         WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
         Timer song_time;
+
+        //Song information
         Dictionary<string, string> song_map = new Dictionary<string,string>();
         Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
         Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
-        view curr_view;
+
         Dequeue queue = new Dequeue();
         Stack<string> prev_songs = new Stack<string>();
+
+        view curr_view;
         string curr_song;
         ListView curr_list_box;
-        bool song_selected;
+        
         int blink_count;
+
+        //Selected Song
         string selected_artist, selected_album;
+        bool song_selected;
+
+        //Special functions
         bool shuffle;
         Repeat_Type repeat_type;
+
+        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
+        private enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
 
         //string[] songs = new String[0];
         // List<string> disp_song_paths = new List<string>();
@@ -76,6 +89,7 @@ namespace BearPlayer
    
         }
 
+        //Pause/play button on click
         public void pictureBox1_Click(object sender, EventArgs e)
         {
             //if (curr_list_box.Items.Count <= 0) return;
@@ -180,6 +194,8 @@ namespace BearPlayer
                 new_song = false;
             }
             Player.controls.play();
+
+
             this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             play = false;
             TagLib.File song_file = TagLib.File.Create(url);
@@ -919,9 +935,7 @@ namespace BearPlayer
             update_list_disp();
         }
 
-        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
-
-        private enum Repeat_Type { Off, Repeat_All, Repeat_One };
+        
 
         private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
         {
