@@ -31,6 +31,8 @@ namespace BearPlayer
         string selected_artist, selected_album;
         bool shuffle;
         Repeat_Type repeat_type;
+        string search_entry;
+        bool found = false;
 
         //string[] songs = new String[0];
         // List<string> disp_song_paths = new List<string>();
@@ -54,6 +56,7 @@ namespace BearPlayer
 
             Artist_View.Visible = false;
             Albums_View.Visible = false;
+            Search_View.Visible = false;
             Songs_View.Visible = true;
             Playlists_View.Visible = false;
             Artist_Song_View.Visible = false;
@@ -67,6 +70,7 @@ namespace BearPlayer
             song_selected = false;
             blink_count = 0;
             selected_artist = "";
+            search_entry = "";
             shuffle = false;
             repeat_type = Repeat_Type.Off;
         }
@@ -528,6 +532,7 @@ namespace BearPlayer
                 Album_Song_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
+                Search_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Artists;
@@ -541,6 +546,7 @@ namespace BearPlayer
                 Album_Song_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
+                Search_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Albums;
@@ -553,6 +559,7 @@ namespace BearPlayer
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
                 Songs_View.Visible = true;
+                Search_View.Visible = false;
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
@@ -568,6 +575,7 @@ namespace BearPlayer
                 Songs_View.Visible = false;
                 Playlists_View.Visible = true;
                 Artist_Song_View.Visible = false;
+                Search_View.Visible = false;
                 Queue_View.Visible = false;
                 curr_view = view.Playlists;
             }
@@ -577,6 +585,7 @@ namespace BearPlayer
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
                 Playlists_View.Visible = false;
+                Search_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Album_Song_View.Visible = false;
                 Queue_View.Visible = true;
@@ -662,6 +671,53 @@ namespace BearPlayer
                     curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
                 }
             }
+            // Seach Display
+            else if(curr_view == view.Search)
+            {
+                HashSet<string> song_set = new HashSet<string>();
+                foreach (string s in song_map.Keys)
+                {
+                    if (s.Contains(search_entry))
+                    {
+                        song_set.Add(song_map[s]);
+                    }
+                }
+                foreach (string s in album_map.Keys)
+                {
+                    if (s.Contains(search_entry))
+                    {
+                        foreach (string song in album_map[s])
+                        {
+                            song_set.Add(song);
+                        }
+                    }
+                }
+                foreach (string s in artist_map.Keys)
+                {
+                    if (s.Contains(search_entry))
+                    {
+                        foreach (string song in artist_map[s])
+                        {
+                            song_set.Add(song);
+                        }
+                    }
+                }
+
+                if(song_set.Count == 0)
+                {
+                    curr_list_box.Items.Add("No results found");
+                    found = false;
+                }
+                else
+                {
+                    found = true;
+                    foreach (string found in song_set)
+                    {
+                        TagLib.File file = TagLib.File.Create(found);
+                        curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
+                    }
+                }
+            }
         }
 
 
@@ -699,6 +755,7 @@ namespace BearPlayer
             Albums_View.Visible = false;
             Songs_View.Visible = true;
             Playlists_View.Visible = false;
+            Search_View.Visible = false;
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
             Album_Song_View.Visible = false;
@@ -710,6 +767,7 @@ namespace BearPlayer
             Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = false;
+            Search_View.Visible = false;
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
             Artist_Song_View.Visible = true;
@@ -727,6 +785,7 @@ namespace BearPlayer
         {
             Artist_View.Visible = false;
             Albums_View.Visible = false;
+            Search_View.Visible = false;
             Songs_View.Visible = false;
             Playlists_View.Visible = false;
             Queue_View.Visible = false;
@@ -744,6 +803,7 @@ namespace BearPlayer
         private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Artist_View.Visible = false;
+            Search_View.Visible = false;
             Albums_View.Visible = true;
             Songs_View.Visible = false;
             Playlists_View.Visible = false;
@@ -919,7 +979,7 @@ namespace BearPlayer
             update_list_disp();
         }
 
-        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
+        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
         private enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
@@ -943,6 +1003,48 @@ namespace BearPlayer
             {
                 e.DrawDefault = true;
             }
+        }
+
+        private void Search_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(found)
+              list_item_selected();
+        }
+        
+
+        private void searchBar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                search_entry = searchBar.Text.Split('\n')[0];
+
+
+                Artist_View.Visible = false;
+                Albums_View.Visible = false;
+                Search_View.Visible = true;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = false;
+                Queue_View.Visible = false;
+                Artist_Song_View.Visible = false;
+                Album_Song_View.Visible = false;
+
+                curr_view = view.Search;
+                curr_list_box = Search_List;
+                treeView1.SelectedNode = null;
+                update_list_disp();
+            }
+        }
+
+
+
+        private void searchBar_Leave(object sender, EventArgs e)
+        {
+            searchBar.Text = "Search";
+        }
+
+        private void searchBar_Enter(object sender, EventArgs e)
+        {
+            searchBar.Text = "";
         }
 
         //dequeue for queue

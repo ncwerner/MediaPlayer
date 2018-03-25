@@ -120,6 +120,13 @@
             this.AlbumSong_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AlbumSong_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AlbumSong_Duration = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Search_View = new System.Windows.Forms.FlowLayoutPanel();
+            this.Search_List = new System.Windows.Forms.ListView();
+            this.SearchTitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SearchArtistColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SearchAlbumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SearchDurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -136,6 +143,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
             this.Album_Song_View.SuspendLayout();
+            this.Search_View.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -456,6 +465,7 @@
             // 
             // searchBar
             // 
+            this.searchBar.AcceptsReturn = true;
             this.searchBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.searchBar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.searchBar.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -464,6 +474,9 @@
             this.searchBar.Size = new System.Drawing.Size(161, 23);
             this.searchBar.TabIndex = 7;
             this.searchBar.Text = "Search ";
+            this.searchBar.Enter += new System.EventHandler(this.searchBar_Enter);
+            this.searchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBar_KeyDown);
+            this.searchBar.Leave += new System.EventHandler(this.searchBar_Leave);
             // 
             // volumeSlider
             // 
@@ -884,12 +897,60 @@
             this.AlbumSong_Duration.Text = "Length";
             this.AlbumSong_Duration.Width = 143;
             // 
+            // Search_View
+            // 
+            this.Search_View.Controls.Add(this.Search_List);
+            this.Search_View.Location = new System.Drawing.Point(136, 75);
+            this.Search_View.Name = "Search_View";
+            this.Search_View.Size = new System.Drawing.Size(900, 428);
+            this.Search_View.TabIndex = 21;
+            // 
+            // Search_List
+            // 
+            this.Search_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SearchTitleColumn,
+            this.SearchArtistColumn,
+            this.SearchAlbumColumn,
+            this.SearchDurationColumn});
+            this.Search_List.FullRowSelect = true;
+            this.Search_List.Location = new System.Drawing.Point(3, 3);
+            this.Search_List.MultiSelect = false;
+            this.Search_List.Name = "Search_List";
+            this.Search_List.Size = new System.Drawing.Size(897, 425);
+            this.Search_List.TabIndex = 0;
+            this.Search_List.UseCompatibleStateImageBehavior = false;
+            this.Search_List.SelectedIndexChanged += new System.EventHandler(this.Search_List_SelectedIndexChanged);
+            // 
+            // SearchTitleColumn
+            // 
+            this.SearchTitleColumn.Text = "Title";
+            this.SearchTitleColumn.Width = 150;
+            // 
+            // SearchArtistColumn
+            // 
+            this.SearchArtistColumn.Text = "Artist";
+            this.SearchArtistColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SearchArtistColumn.Width = 100;
+            // 
+            // SearchAlbumColumn
+            // 
+            this.SearchAlbumColumn.Text = "Album";
+            this.SearchAlbumColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SearchAlbumColumn.Width = 100;
+            // 
+            // SearchDurationColumn
+            // 
+            this.SearchDurationColumn.Text = "Duration";
+            this.SearchDurationColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SearchDurationColumn.Width = 100;
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.Search_View);
             this.Controls.Add(this.Album_Song_View);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.artistLabel);
@@ -937,6 +998,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
             this.Album_Song_View.ResumeLayout(false);
+            this.Search_View.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1027,6 +1090,13 @@
         private System.Windows.Forms.ColumnHeader AlbumSong_Album;
         private System.Windows.Forms.ColumnHeader AlbumSong_Artist;
         private System.Windows.Forms.ColumnHeader AlbumSong_Duration;
+        private System.Windows.Forms.FlowLayoutPanel Search_View;
+        private System.Windows.Forms.ListView Search_List;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ColumnHeader SearchTitleColumn;
+        private System.Windows.Forms.ColumnHeader SearchArtistColumn;
+        private System.Windows.Forms.ColumnHeader SearchAlbumColumn;
+        private System.Windows.Forms.ColumnHeader SearchDurationColumn;
     }
 }
 
