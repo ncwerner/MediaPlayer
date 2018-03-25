@@ -677,14 +677,14 @@ namespace BearPlayer
                 HashSet<string> song_set = new HashSet<string>();
                 foreach (string s in song_map.Keys)
                 {
-                    if (s.Contains(search_entry))
+                    if (s.ToUpper().Contains(search_entry))
                     {
                         song_set.Add(song_map[s]);
                     }
                 }
                 foreach (string s in album_map.Keys)
                 {
-                    if (s.Contains(search_entry))
+                    if (s.ToUpper().Contains(search_entry))
                     {
                         foreach (string song in album_map[s])
                         {
@@ -694,7 +694,7 @@ namespace BearPlayer
                 }
                 foreach (string s in artist_map.Keys)
                 {
-                    if (s.Contains(search_entry))
+                    if (s.ToUpper().Contains(search_entry))
                     {
                         foreach (string song in artist_map[s])
                         {
@@ -1016,7 +1016,7 @@ namespace BearPlayer
         {
             if (e.KeyCode == Keys.Enter)
             {
-                search_entry = searchBar.Text.Split('\n')[0];
+                search_entry = searchBar.Text.Split('\n')[0].ToUpper();
 
 
                 Artist_View.Visible = false;
