@@ -579,7 +579,7 @@
             // ArtistColumn
             // 
             this.ArtistColumn.Text = "Artist";
-            this.ArtistColumn.Width = 194;
+            this.ArtistColumn.Width = 195;
             // 
             // LengthColumn
             // 
@@ -919,30 +919,31 @@
             this.Search_List.Size = new System.Drawing.Size(897, 425);
             this.Search_List.TabIndex = 0;
             this.Search_List.UseCompatibleStateImageBehavior = false;
+            this.Search_List.View = System.Windows.Forms.View.Details;
             this.Search_List.SelectedIndexChanged += new System.EventHandler(this.Search_List_SelectedIndexChanged);
             // 
             // SearchTitleColumn
             // 
             this.SearchTitleColumn.Text = "Title";
-            this.SearchTitleColumn.Width = 150;
+            this.SearchTitleColumn.Width = 265;
             // 
             // SearchArtistColumn
             // 
             this.SearchArtistColumn.Text = "Artist";
             this.SearchArtistColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SearchArtistColumn.Width = 100;
+            this.SearchArtistColumn.Width = 195;
             // 
             // SearchAlbumColumn
             // 
             this.SearchAlbumColumn.Text = "Album";
             this.SearchAlbumColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SearchAlbumColumn.Width = 100;
+            this.SearchAlbumColumn.Width = 195;
             // 
             // SearchDurationColumn
             // 
             this.SearchDurationColumn.Text = "Duration";
             this.SearchDurationColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SearchDurationColumn.Width = 100;
+            this.SearchDurationColumn.Width = 143;
             // 
             // Bear_Player
             // 
