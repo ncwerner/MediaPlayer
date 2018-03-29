@@ -981,6 +981,7 @@
             this.Name = "Bear_Player";
             this.Text = "Bear Player";
             this.Load += new System.EventHandler(this.BearPlayer_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Bear_Player_KeyDown);
             this.MouseHover += new System.EventHandler(this.BearPlayer_Load);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();

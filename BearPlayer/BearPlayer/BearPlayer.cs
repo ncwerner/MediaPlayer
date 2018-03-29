@@ -77,12 +77,16 @@ namespace BearPlayer
 
         private void BearPlayer_Load(object sender, EventArgs e)
         {
-   
+            KeyPreview = true;
         }
 
         public void pictureBox1_Click(object sender, EventArgs e)
         {
-            //if (curr_list_box.Items.Count <= 0) return;
+            play_pause_toggle();
+        }
+
+        private void play_pause_toggle()
+        {
             if (play)
             {
                 //curr_list_box.SelectedIndex = playing_index;
@@ -103,7 +107,7 @@ namespace BearPlayer
                     this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
                     Player.controls.play();
                 }
-                
+
             }
             else
             {
@@ -473,7 +477,6 @@ namespace BearPlayer
             {
                 play_song(song_map[curr_song]);
             }
-            
         }
 
         private void scrubBar_Scroll(object sender, EventArgs e)
@@ -1045,6 +1048,31 @@ namespace BearPlayer
         private void searchBar_Enter(object sender, EventArgs e)
         {
             searchBar.Text = "";
+        }
+
+        private void Bear_Player_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
+            {
+                play_pause_toggle();
+            }
+            else if(e.KeyCode == Keys.MediaNextTrack || (e.KeyCode == Keys.Right && e.Modifiers == Keys.Control))
+            {
+                play_next_song();
+                update_list_disp();
+            }
+            else if (e.KeyCode == Keys.MediaPreviousTrack || (e.KeyCode == Keys.Left && e.Modifiers == Keys.Control))
+            {
+                if (scrubBar.Value <= 5)
+                {
+                    play_prev_song();
+                    update_list_disp();
+                }
+                else
+                {
+                    play_song(song_map[curr_song]);
+                }
+            }
         }
 
         //dequeue for queue
