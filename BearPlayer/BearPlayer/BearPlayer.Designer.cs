@@ -113,7 +113,7 @@
             this.repeat_button = new System.Windows.Forms.PictureBox();
             this.previous_button = new System.Windows.Forms.PictureBox();
             this.next_button = new System.Windows.Forms.PictureBox();
-            this.playBar = new System.Windows.Forms.PictureBox();
+            this.playButton = new System.Windows.Forms.PictureBox();
             this.Album_Song_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Album_Song_List = new System.Windows.Forms.ListView();
             this.AlbumSong_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -141,7 +141,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playButton)).BeginInit();
             this.Album_Song_View.SuspendLayout();
             this.Search_View.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -289,14 +289,14 @@
             this.albumViewToolStripMenuItem.Name = "albumViewToolStripMenuItem";
             this.albumViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.albumViewToolStripMenuItem.Text = "Album View";
-            this.albumViewToolStripMenuItem.Click += new System.EventHandler(this.albumViewToolStripMenuItem_Click);
+            this.albumViewToolStripMenuItem.Click += new System.EventHandler(this.AlbumViewToolStripMenuItem_Click);
             // 
             // listViewToolStripMenuItem
             // 
             this.listViewToolStripMenuItem.Name = "listViewToolStripMenuItem";
             this.listViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.listViewToolStripMenuItem.Text = "List View";
-            this.listViewToolStripMenuItem.Click += new System.EventHandler(this.listViewToolStripMenuItem_Click);
+            this.listViewToolStripMenuItem.Click += new System.EventHandler(this.ListViewToolStripMenuItem_Click);
             // 
             // changeAppearanceToolStripMenuItem
             // 
@@ -460,8 +460,8 @@
             this.treeView1.ShowPlusMinus = false;
             this.treeView1.Size = new System.Drawing.Size(136, 478);
             this.treeView1.TabIndex = 1;
-            this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.treeView1_DrawNode);
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.SideBar_DrawNode);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SideBar_AfterSelect);
             // 
             // searchBar
             // 
@@ -475,7 +475,7 @@
             this.searchBar.TabIndex = 7;
             this.searchBar.Text = "Search ";
             this.searchBar.Enter += new System.EventHandler(this.searchBar_Enter);
-            this.searchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchBar_KeyDown);
+            this.searchBar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyDown);
             this.searchBar.Leave += new System.EventHandler(this.searchBar_Leave);
             // 
             // volumeSlider
@@ -797,7 +797,7 @@
             this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.shuffle_toggle.TabIndex = 6;
             this.shuffle_toggle.TabStop = false;
-            this.shuffle_toggle.Click += new System.EventHandler(this.shuffle_toggle_Click);
+            this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
             // 
             // repeat_button
             // 
@@ -810,7 +810,7 @@
             this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.repeat_button.TabIndex = 5;
             this.repeat_button.TabStop = false;
-            this.repeat_button.Click += new System.EventHandler(this.repeat_button_Click);
+            this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
             // 
             // previous_button
             // 
@@ -840,16 +840,16 @@
             // 
             // playBar
             // 
-            this.playBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.playBar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.playBar.Image = global::BearPlayer.Properties.Resources.playButton;
-            this.playBar.Location = new System.Drawing.Point(520, 544);
-            this.playBar.Name = "playBar";
-            this.playBar.Size = new System.Drawing.Size(56, 49);
-            this.playBar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playBar.TabIndex = 2;
-            this.playBar.TabStop = false;
-            this.playBar.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
+            this.playButton.Location = new System.Drawing.Point(520, 544);
+            this.playButton.Name = "playBar";
+            this.playButton.Size = new System.Drawing.Size(56, 49);
+            this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playButton.TabIndex = 2;
+            this.playButton.TabStop = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // Album_Song_View
             // 
@@ -966,7 +966,7 @@
             this.Controls.Add(this.repeat_button);
             this.Controls.Add(this.previous_button);
             this.Controls.Add(this.next_button);
-            this.Controls.Add(this.playBar);
+            this.Controls.Add(this.playButton);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
             this.Controls.Add(this.Artist_Song_View);
@@ -998,7 +998,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playButton)).EndInit();
             this.Album_Song_View.ResumeLayout(false);
             this.Search_View.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
@@ -1046,7 +1046,7 @@
         private System.Windows.Forms.ToolStripMenuItem switchUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOffToolStripMenuItem;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.PictureBox playBar;
+        private System.Windows.Forms.PictureBox playButton;
         private System.Windows.Forms.PictureBox next_button;
         private System.Windows.Forms.PictureBox previous_button;
         private System.Windows.Forms.PictureBox repeat_button;
