@@ -11,60 +11,51 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace BearPlayer
-{
-    public partial class Bear_Player : Form
-    {
-        public bool play;   // Global variable for controling play/pause state
-        WMPLib.WindowsMediaPlayer Player;   //player object from WMP library
+namespace BearPlayer {
+    public partial class Bear_Player : Form {
         Timer song_time;
 
+        private BearController controller = new BearController();
+
         //Song information
-        Dictionary<string, string> song_map = new Dictionary<string,string>();
-        Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
-        Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
+        SongList songList;
+
+        //Key:Artist Name Value: List of Songs
+        Dictionary<string, List<Song>> artist_map = new Dictionary<string, List<Song>>();
+
+        //Key:Album Name Value: List of Songs
+        Dictionary<string, List<Song>> album_map = new Dictionary<string, List<Song>>();
 
         Dequeue queue = new Dequeue();
         Stack<string> prev_songs = new Stack<string>();
 
+        //Current variables
         view curr_view;
-        string curr_song;
+       
         ListView curr_list_box;
-        
+
         int blink_count;
 
-        //Selected Song
-        string selected_artist, selected_album;
-        bool song_selected;
-
-        //Special functions
-        bool shuffle;
-        Repeat_Type repeat_type;
-
         private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song };
-        private enum Repeat_Type { Off, Repeat_All, Repeat_One };
+       
 
 
-        //string[] songs = new String[0];
-        // List<string> disp_song_paths = new List<string>();
-        //int playing_index = 0;
-        //string file_path;   // directory of chosed song
-        //string song_name; //song name pulled from imported file
-
-        public Bear_Player()
-        {
-            play = true;   // Begin program with play button
+        public Bear_Player() {
+           
+            songList = new SongList();
+            songList.readAllSongs();
 
             //this.WindowState = System.Windows.Forms.FormWindowState.Maximized;   // Opens application maximized
             InitializeComponent();
-            Player = new WMPLib.WindowsMediaPlayer();
-            Player.settings.volume = 25;
-            song_time = new Timer();
-            //timer that will update the scrub bar when the location in the song changes
-            song_time.Interval = 10;
-            song_time.Tick += new EventHandler(song_time_Elapsed);
-            //causes the event to go whenever the timer elapses
 
+            //timer that will update the scrub bar when the location in the song changes
+            song_time = new Timer();
+            song_time.Interval = 10;
+
+            //causes the event to go whenever the timer elapses
+            song_time.Tick += new EventHandler(song_time_Elapsed);
+            
+            //Setup the current view
             Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = true;
@@ -74,96 +65,56 @@ namespace BearPlayer
             curr_view = view.Songs;
             curr_list_box = Song_List;
 
-
-
-            curr_song = null;
-            song_selected = false;
+            //Bear blinking magic
             blink_count = 0;
-            selected_artist = "";
-            shuffle = false;
-            repeat_type = Repeat_Type.Off;
         }
 
-        private void BearPlayer_Load(object sender, EventArgs e)
-        {
-   
+        private void BearPlayer_Load(object sender, EventArgs e) {
+
         }
 
         //Pause/play button on click
-        public void pictureBox1_Click(object sender, EventArgs e)
-        {
-            //if (curr_list_box.Items.Count <= 0) return;
-            if (play)
-            {
-                //curr_list_box.SelectedIndex = playing_index;
-                //string curr_song = curr_list_box.Items[playing_index].ToString();
-                if (!song_selected)
-                {
-                    play = false;                //for case where nothing is selected and they try to click play
-                    /*int i = curr_list_box.SelectedIndices[0];
-                    if (i >= 0 && i < curr_list_box.Items.Count)
-                    {
-                        fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
-                        play_next_song();
-                        //playing_index = i;
-                    }*/
-                }
-                else
-                {
-                    this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
-                    Player.controls.play();
-                }
-                
-            }
+        public void pictureBox1_Click(object sender, EventArgs e) {
+            bool ret = controller.PlayPause();
+
+            //True = Display the pause button, False = display the play button
+            if (ret)
+                this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             else
-            {
                 this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
-                Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
-            }
-            play = !play;
         }
 
 
         //method sets cure song to next in queue, pushes old curt song to stack
-        public void play_next_song()
-        {
-            if( repeat_type == Repeat_Type.Repeat_One)
-            {
-                if( curr_song != null || queue.Count() != 0 )
-                {
-                    if (curr_song == null)
-                    {
+        public void play_next_song() {
+            if (repeat_type == Repeat_Type.Repeat_One) {
+                if (curr_song != null || queue.Count() != 0) {
+                    if (curr_song == null) {
                         curr_song = queue.Pop_Front();
                     }
                     prev_songs.Clear();
                     queue.Clear();
                     queue.Push_Front(curr_song);
-                    play_song(song_map[curr_song]);
+                    play_song(songList.get(curr_song));
                     currentAlbumDisplay();
                     return;
                 }
             }
-            if( repeat_type == Repeat_Type.Repeat_All)
-            {
-                if(queue.Count() == 0 && curr_song != null)
-                {
+            if (repeat_type == Repeat_Type.Repeat_All) {
+                if (queue.Count() == 0 && curr_song != null) {
                     queue.Push_Front(curr_song);
                 }
             }
-            
-            if(queue.Count() > 0)
-            {
-                string removed = queue.Pop_Front();
-                play_song( song_map[removed] );
 
-                if(curr_song != null)
-                {
-                    if( repeat_type == Repeat_Type.Repeat_All)
-                    {
+            if (queue.Count() > 0) {
+                string removed = queue.Pop_Front();
+                play_song(songList.get(removed));
+
+                if (curr_song != null) {
+                    if (repeat_type == Repeat_Type.Repeat_All) {
                         queue.Push_Back(curr_song);
                     }
-                    else
-                    {
+                    else {
                         prev_songs.Push(curr_song);
                     }
                 }
@@ -174,42 +125,32 @@ namespace BearPlayer
 
                 //plays the file that is currently set as the URL
             }
-            
+
 
         }
 
         //return false if only resuming takes a URL
-        private bool play_song(string url)
-        {
+        private bool play_song(Song song) {
             bool new_song = false;
             song_selected = true;
-            if (Player.URL != url)
-            {
-                Player.URL = url;
+            if (controller.PlayerURL != song.Path) {
+                controller.PlayerURL = song.Path;
                 new_song = true;
             }
-            else
-            {
-                Player.controls.currentPosition = 0;
+            else {
+                controller.PlayerPosition = 0;
                 new_song = false;
             }
-            Player.controls.play();
+            controller.playerPlay();
 
 
             this.playBar.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             play = false;
-            TagLib.File song_file = TagLib.File.Create(url);
-            //creates a file to get the duration for the scrub bar
-            if (song_file.Properties.Duration.Seconds >= 10)
-                //checks the amount of digits in seconds
-            {
-                Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":" + song_file.Properties.Duration.Seconds.ToString();
-            }
-            else
-            {
-                Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":0" + song_file.Properties.Duration.Seconds.ToString();
-            }
-            scrubBar.Maximum = song_file.Properties.Duration.Seconds + (song_file.Properties.Duration.Minutes * 60);
+            
+            //Gets the duration for the scrub bar
+            Song_length_label.Text = song.Duration;
+
+            scrubBar.Maximum = song.Length;
             Current_position_label.Text = "0:00";
             scrubBar.Value = 0;
             //sets the starting position to the current label and the scrub bar
@@ -220,27 +161,21 @@ namespace BearPlayer
 
 
         //pushes cure song to the front of queue, make curr song the pop of the stack 
-        private void play_prev_song()
-        {
-            if( repeat_type == Repeat_Type.Repeat_One)
-            {
-                if (curr_song != null)
-                {
-                    play_song(song_map[curr_song]);
+        private void play_prev_song() {
+            if (repeat_type == Repeat_Type.Repeat_One) {
+                if (curr_song != null) {
+                    play_song(songList.get(curr_song));
                 }
             }
-            if (repeat_type == Repeat_Type.Repeat_All)
-            {
-                if(queue.Count() != 0)
-                {
+            if (repeat_type == Repeat_Type.Repeat_All) {
+                if (queue.Count() != 0) {
                     prev_songs.Push(queue.Pop_Back());
                 }
             }
-            if (prev_songs.Count != 0)
-            {
+            if (prev_songs.Count != 0) {
                 //prevCurrentAlbumDisplay();
                 string removed = prev_songs.Pop();
-                play_song(song_map[removed]);
+                play_song(songList.get(removed));
 
                 queue.Push_Front(curr_song);
                 curr_song = removed;
@@ -251,15 +186,12 @@ namespace BearPlayer
         }
 
 
-         //imports all songs in folder and updates the screen
-        public void importToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        //imports all songs in folder and updates the screen
+        public void importToolStripMenuItem_Click(object sender, EventArgs e) {
             string folder_path = "";
             //initializes the folder path
-            using (var folderDialog = new FolderBrowserDialog())
-            {
-                if (folderDialog.ShowDialog() == DialogResult.OK)
-                {
+            using (var folderDialog = new FolderBrowserDialog()) {
+                if (folderDialog.ShowDialog() == DialogResult.OK) {
                     folder_path = folderDialog.SelectedPath;
                     //saves the selected folder as folder path
                     getSongs(folder_path);
@@ -268,21 +200,17 @@ namespace BearPlayer
             }
         }
 
-        public void getAlbums(string folder_path)
-        {
+        public void getAlbums(string folder_path) {
             string[] albums = Directory.GetDirectories(@folder_path);
-            foreach (string s in albums)
-            {
+            foreach (string s in albums) {
                 getSongs(s);
                 getAlbums(s);
             }
         }
 
-        public void getSongs(string folder_path)
-        {
+        public void getSongs(string folder_path) {
             string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
-            foreach (string s in songs)
-            {
+            foreach (string s in songs) {
                 TagLib.File file = TagLib.File.Create(s);
 
                 add_new_song(s);
@@ -292,49 +220,42 @@ namespace BearPlayer
 
 
         //adds a song too the maps 
-        private void add_new_song(string path)
-        {
+        private void add_new_song(string path) {
             TagLib.File file = TagLib.File.Create(path);
+            var song = new Song(path);
 
-            if (!song_map.ContainsKey(getSongName(file))) //if not in map add it
-            {
-                song_map.Add(getSongName(file), path);
-            }
-            else
-            {
-                song_map[getSongName(file)] = path;      //if in map make update its url to the new one
+            if (songList.contains(song)) {
+                songList.remove(song);
             }
 
-            if (!album_map.ContainsKey(getAlbumName(file))) //if album not in map, make that key and assign it to a new list containing added song
-            {
-                List<string> new_list = new List<string>();
-                new_list.Add(path);
-                album_map.Add(getAlbumName(file), new_list);
-                Store_AlbumArtwork(file);   // Add image artwork to image list
+            songList.add(song);
+
+            // if album not in map, make that key and assign it to a new list containing added song
+            if (!album_map.ContainsKey(song.Album)) {
+                var songsInAlbum = new List<Song>();
+                songsInAlbum.Add(new Song(path));
+
+                album_map.Add(song.Album, songsInAlbum);
             }
-            else
-            {
-                album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
+            else {
+                album_map[file.Tag.Album].Add(song);   //if album already in map, add song to the assigned list
             }
-            foreach (string art in file.Tag.Performers)
-            {
-                if (!artist_map.ContainsKey(art))
-                {
-                    List<string> new_list = new List<string>();
-                    new_list.Add(path);
-                    artist_map.Add(art, new_list);
+
+            foreach (string art in file.Tag.Performers) {
+                if (!artist_map.ContainsKey(art)) {
+                    var songsByArtist = new List<Song>();
+                    songsByArtist.Add(new Song(path));
+                    artist_map.Add(art, songsByArtist);
                 }
-                else
-                {
-                    artist_map[art].Add(path);
+                else {
+                    artist_map[art].Add(song);
                 }
             }
         }
 
 
         //imports single song and updates display
-        private void importSongToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void importSongToolStripMenuItem_Click(object sender, EventArgs e) {
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             //creates a new file dialog each time the inport song button is clicked
@@ -343,8 +264,7 @@ namespace BearPlayer
             openFileDialog1.Title = "Select a Song";
             string file_path = "";
             //initializes the file path
-            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 file_path = openFileDialog1.FileName;
                 //get song name from file
                 add_new_song(file_path);
@@ -353,192 +273,114 @@ namespace BearPlayer
             }
 
         }
-        
 
-        //method that gets album artwork of file
-        private void Store_AlbumArtwork(TagLib.File file)
-        {
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            Artwork_List.ImageSize = new Size(200, 200);
-            Artwork_List.Images.Add(artwork);
-        }
-        
-        //gets song name of file
-        private string getSongName(TagLib.File file)
-        {
-            return file.Tag.Title;
-        }
-
-        //gets the album name
-        private string getAlbumName(TagLib.File file)
-        {
-            return file.Tag.Album;
-        }
-        
-        //gets the album artist
-        private string getAlbumArtist(TagLib.File file)
-        {
-            return file.Tag.Performers[0];
-        }
-        
         //displays album during playback
-        private void currentAlbumDisplay()
-        {
-            
-            string curr = curr_song;
-            TagLib.File file = TagLib.File.Create(song_map[curr]);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            pictureBox1.Image = artwork;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            artistLabel.Text = file.Tag.Performers[0];
-            titleLabel.Text = file.Tag.Title;
-            curAlbumLabel.Text = file.Tag.Album;
-        }
-        
-       /* private void prevCurrentAlbumDisplay()
-        {
+        private void currentAlbumDisplay() {
 
-            string top = prev_songs.Peek();
-            TagLib.File file = TagLib.File.Create(song_map[top]);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            pictureBox1.Image = artwork;
+            //Get the current song from the map
+            Song song = songList.get(curr_song);
+         
+            pictureBox1.Image = song.Artwork;
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            artistLabel.Text = file.Tag.Performers[0];
-            titleLabel.Text = file.Tag.Title;
-            curAlbumLabel.Text = file.Tag.Album;
-        }*/
-        
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+            artistLabel.Text = song.Artists[0];
+            titleLabel.Text = song.Name;
+            curAlbumLabel.Text = song.Album;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
             this.Close();
         }
 
 
-        private void volumeUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Player.settings.volume < 90)
-            {
+        private void volumeUpToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (controller.PlayerVolume < 90) {
                 //if the volume can be increased by 10 then it adds ten to volume
-                Player.settings.volume = Player.settings.volume + 10;
+                controller.PlayerVolume = controller.PlayerVolume + 10;
             }
-            else
-            {
+            else {
                 //if volume is greater than 90 already sets the volume to 100
-                Player.settings.volume = 100;
+                controller.PlayerVolume = 100;
             }
-            volumeSlider.Value = Player.settings.volume;
+            volumeSlider.Value = controller.PlayerVolume;
         }
 
 
-        private void volumeDownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Player.settings.volume > 10)
-            {
+        private void volumeDownToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (controller.PlayerVolume > 10) {
                 //if the volume can be decreased by 10 then it subtracts ten from the volume
-                Player.settings.volume = Player.settings.volume - 10;
+                controller.PlayerVolume = controller.PlayerVolume - 10;
             }
-            else
-            {
+            else {
                 //if volume is less than 10 already sets the volume to 0
-                Player.settings.volume = 0;
+                controller.PlayerVolume = 0;
             }
-            volumeSlider.Value = Player.settings.volume;
+            volumeSlider.Value = controller.PlayerVolume;
         }
 
 
-        private void volumeSlider_Scroll_1(object sender, EventArgs e)
-        {
-            Player.settings.volume = volumeSlider.Value;
+        private void volumeSlider_Scroll_1(object sender, EventArgs e) {
+            controller.PlayerVolume = volumeSlider.Value;
             //path.Text = (volumeSlider.Value).ToString();
         }
 
-        private void next_button_Click(object sender, EventArgs e)
-        {
-            /*if( playing_index < disp_song_paths.Count() - 1)
-            {
-                playing_index++;
-                play_new_song(disp_song_paths[playing_index]);
-                curr_list_box.SelectedIndex = playing_index;
-            }*/
+        private void next_button_Click(object sender, EventArgs e) {
+            
             play_next_song();
             update_list_disp();
         }
 
 
-        private void previous_button_Click(object sender, EventArgs e)
-        {
-            /*f (playing_index > 0)
-             {
-                 playing_index--;
-                 play_new_song(disp_song_paths[playing_index]);
-                 curr_list_box.SelectedIndex = playing_index;
-             }*/
-            if (scrubBar.Value <= 5)
-            {
+        private void previous_button_Click(object sender, EventArgs e) {
+            if (scrubBar.Value <= 5) {
                 play_prev_song();
                 update_list_disp();
             }
-            else
-            {
-                play_song(song_map[curr_song]);
+            else {
+                play_song(songList.get(curr_song));
             }
-            
+
         }
 
-        private void scrubBar_Scroll(object sender, EventArgs e)
-        {
-            //path.Text = Player.controls.currentPosition.ToString();
-            //path.Text = scrubBar.Value.ToString();
-            Player.controls.pause();
-            Player.controls.currentPosition = scrubBar.Value;
-            Player.controls.play();
+        private void scrubBar_Scroll(object sender, EventArgs e) {
+
+            controller.playerPause();
+            controller.PlayerPosition = scrubBar.Value;
+
+            controller.playerPlay();
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
 
         }
 
-        private void song_time_Elapsed(object sender, EventArgs e)
-        {
-            scrubBar.Value = (int)Player.controls.currentPosition;
+        private void song_time_Elapsed(object sender, EventArgs e) {
+            scrubBar.Value = (int)controller.PlayerPosition;
             //makes the scrub bar follow the song as it plays
-            if (scrubBar.Value % 60 >= 10)
-            {
+            if (scrubBar.Value % 60 >= 10) {
                 Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":" + (scrubBar.Value % 60).ToString();
             }
-            else
-            {
+            else {
                 Current_position_label.Text = (scrubBar.Value / 60).ToString() + ":0" + (scrubBar.Value % 60).ToString();
             }
-            if(scrubBar.Value >= scrubBar.Maximum)
-            {
+            if (scrubBar.Value >= scrubBar.Maximum) {
                 play_next_song();
                 update_list_disp();
             }
-            if(scrubBar.Value % 8 == 5)
-            {
-                if (blink_count < 20)
-                {
+            if (scrubBar.Value % 8 == 5) {
+                if (blink_count < 20) {
                     this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear_blink.png");
                     blink_count++;
                 }
             }
-            else
-            {
+            else {
                 blink_count = 0;
             }
-            if (blink_count == 20)
-            {
+            if (blink_count == 20) {
                 this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
-            }          
+            }
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            if (e.Node.Text.Equals("Artists"))
-            {
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e) {
+            if (e.Node.Text.Equals("Artists")) {
                 Artist_View.Visible = true;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -550,8 +392,7 @@ namespace BearPlayer
                 curr_list_box = Artist_List;   // Change to artist list box
             }
 
-            else if (e.Node.Text.Equals("Albums"))
-            {
+            else if (e.Node.Text.Equals("Albums")) {
                 Artist_View.Visible = false;
                 Albums_View.Visible = true;
                 Album_Song_View.Visible = false;
@@ -563,8 +404,7 @@ namespace BearPlayer
                 curr_list_box = Album_List;  // Change to album list box
             }
 
-            else if (e.Node.Text.Equals("Songs"))
-            {
+            else if (e.Node.Text.Equals("Songs")) {
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -576,8 +416,7 @@ namespace BearPlayer
                 curr_list_box = Song_List;   // Change to song list box
             }
 
-            else if (e.Node.Text.Equals("Playlists"))
-            {
+            else if (e.Node.Text.Equals("Playlists")) {
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -587,8 +426,7 @@ namespace BearPlayer
                 Queue_View.Visible = false;
                 curr_view = view.Playlists;
             }
-            else if (e.Node.Text.Equals("Queue"))
-            {
+            else if (e.Node.Text.Equals("Queue")) {
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
@@ -604,113 +442,83 @@ namespace BearPlayer
         }
 
         //updates whatever list box is currently being viewed with the current map information 
-        private void update_list_disp()
-        {
+        private void update_list_disp() {
             curr_list_box.Items.Clear();
 
             // Artist Display 
-            if (curr_view == view.Artists)
-            {
-                foreach (string s in artist_map.Keys)
-                {
+            if (curr_view == view.Artists) {
+                foreach (string s in artist_map.Keys) {
                     curr_list_box.Items.Add(s);
                 }
             }
 
             // Album Display
-            else if (curr_view == view.Albums)
-            {
+            else if (curr_view == view.Albums) {
                 int album_count = 0;
-                foreach (string s in album_map.Keys)
-                {
-                    string temp = album_map[s][0];
-                    TagLib.File file = TagLib.File.Create(temp);
+                foreach (string s in album_map.Keys) {
+                    Song song = album_map[s][0];
 
                     Album_List.View = View.LargeIcon;
                     Album_List.LargeImageList = Artwork_List;
 
-                    Album_List.Items.Add(new ListViewItem { ImageIndex = album_count, Text = getAlbumName(file) + "\n" + getAlbumArtist(file)} );
+                    Album_List.Items.Add(new ListViewItem { ImageIndex = album_count, Text = song.Album + "\n" + song.Artists[0] });
                     ++album_count;
                 }
             }
 
             // Song Display
-            else if (curr_view == view.Songs)
-            {
-                foreach (string s in song_map.Keys)
-                {
-                    TagLib.File file = TagLib.File.Create(song_map[s]);
-                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
-
-                    //(!play && playing_index < disp_song_paths.Count() ) curr_list_box.SelectedIndex = playing_index;
+            else if (curr_view == view.Songs) {
+                foreach (Song song in songList) {
+                    curr_list_box.Items.Add(List_Column_Info(song));   // Fill row with song tag information
                 }
             }
 
             // Queue Display
-            else if (curr_view == view.Queue)
-            {
+            else if (curr_view == view.Queue) {
                 int size = queue.Count();
                 // Parse through every element in the queue
-                for (int i = 0; i < size; ++i)
-                {
+                for (int i = 0; i < size; ++i) {
                     string dequeue = queue.ElementAt(i);   // Retrieve each element in queue
-                    TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
-                    curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                    Song song = songList.get(dequeue);   // Map song in queue to file address
+                    curr_list_box.Items.Add(List_Column_Info(song));    // Fill row with song tag information
                 }
             }
             // Artist Song Display
-            else if (curr_view == view.Artist_Song)
-            {
-                List<string> song_list = artist_map[selected_artist];
-                foreach (string s in song_list)
-                {
-                    TagLib.File file = TagLib.File.Create(s);
-                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
+            else if (curr_view == view.Artist_Song) {
+                List<Song> artistSongs = artist_map[selected_artist];
+                foreach (Song song in artistSongs) {
+                    curr_list_box.Items.Add(List_Column_Info(song));   // Fill row with song tag information   
                 }
             }
             // Album Song Display
-            else if(curr_view == view.Album_Song)
-            {
-                List<string> song_list = album_map[selected_album];
-                foreach (string s in song_list)
-                {
-                    TagLib.File file = TagLib.File.Create(s);
-                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information   
+            else if (curr_view == view.Album_Song) {
+                List<Song> albumSongs = album_map[selected_album];
+                foreach (Song song in albumSongs) {
+                    curr_list_box.Items.Add(List_Column_Info(song));   // Fill row with song tag information   
                 }
             }
         }
 
 
         // Method to retrieve the title, album, artist, and duration information from a song, and add it to a list row
-        private ListViewItem List_Column_Info(ref TagLib.File file)
-        {
+        private ListViewItem List_Column_Info(Song song) {
             // Create new entry into list table
             ListViewItem item = new ListViewItem();
-            item.Text =getSongName(file);   // Add title 
-            item.SubItems.Add(getAlbumName(file));   // Add album
-            item.SubItems.Add(file.Tag.FirstPerformer);   // Add artist
+            item.Text = song.Name;   // Add title 
+            item.SubItems.Add(song.Album);   // Add album
+            item.SubItems.Add(song.Artists[0]);   // Add artist
 
-            // Parse minutes and seconds together for duration
-            string duration = file.Properties.Duration.Minutes.ToString();
-            string seconds = ":" + file.Properties.Duration.Seconds.ToString();
-
-            // If seconds is less than 10, add an additional 0 in front
-            if (file.Properties.Duration.Seconds < 10)
-                seconds = ":0" + file.Properties.Duration.Seconds.ToString();
-
-            duration = duration + seconds;
-            item.SubItems.Add(duration);   // Add time
+            item.SubItems.Add(song.Duration);   // Add time
 
             return item;
         }
 
 
-        
+
 
 
         // Method for list view on menu bar
-        private void listViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void listViewToolStripMenuItem_Click(object sender, EventArgs e) {
             Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = true;
@@ -721,8 +529,7 @@ namespace BearPlayer
             curr_view = view.Songs;
         }
 
-        private void Artist_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void Artist_List_SelectedIndexChanged(object sender, EventArgs e) {
             Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = false;
@@ -739,8 +546,7 @@ namespace BearPlayer
             update_list_disp();
         }
 
-        private void Album_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void Album_List_SelectedIndexChanged(object sender, EventArgs e) {
             Artist_View.Visible = false;
             Albums_View.Visible = false;
             Songs_View.Visible = false;
@@ -757,8 +563,7 @@ namespace BearPlayer
         }
 
         // Method for album view on menu bar
-        private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        private void albumViewToolStripMenuItem_Click(object sender, EventArgs e) {
             Artist_View.Visible = false;
             Albums_View.Visible = true;
             Songs_View.Visible = false;
@@ -769,47 +574,37 @@ namespace BearPlayer
             curr_view = view.Albums;
         }
 
-        private void Artist_Song_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void Artist_Song_List_SelectedIndexChanged(object sender, EventArgs e) {
             list_item_selected();
         }
 
-        private void Album_Song_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            list_item_selected();
-        }
-        
-        private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void Album_Song_List_SelectedIndexChanged(object sender, EventArgs e) {
             list_item_selected();
         }
 
-        private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        private void Song_List_SelectedIndexChanged(object sender, EventArgs e) {
             list_item_selected();
         }
 
-        private void list_item_selected()
-        {
+        private void Queue_List_SelectedIndexChanged(object sender, EventArgs e) {
+            list_item_selected();
+        }
+
+        private void list_item_selected() {
             if (curr_list_box.SelectedIndices.Count <= 0) return;
             int i = curr_list_box.SelectedIndices[0];
-            if (i >= 0 && i < curr_list_box.Items.Count)
-            {
-                if( shuffle )
-                {
+            if (i >= 0 && i < curr_list_box.Items.Count) {
+                if (shuffle) {
                     fill_shuffled_queue(curr_list_box.Items[i].Text.ToString());
                 }
-                else
-                {
+                else {
                     fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
                 }
                 play_next_song();
-                //playing_index = i;
             }
         }
 
-        private void fill_shuffled_queue(string start_name)
-        {
+        private void fill_shuffled_queue(string start_name) {
             queue.Clear();
             prev_songs.Clear();
             curr_song = null;
@@ -818,16 +613,13 @@ namespace BearPlayer
             queue.Push_Back(start_name);
 
             List<string> songs_arr = new List<string>();
-            for (int i = 0; i < curr_list_box.Items.Count; ++i)
-            {
-                if (!curr_list_box.Items[i].Text.ToString().Equals(start_name))
-                {
+            for (int i = 0; i < curr_list_box.Items.Count; ++i) {
+                if (!curr_list_box.Items[i].Text.ToString().Equals(start_name)) {
                     songs_arr.Add(curr_list_box.Items[i].Text.ToString());
                 }
             }
 
-            for (int i = songs_arr.Count - 1; i > 0; i--)
-            {
+            for (int i = songs_arr.Count - 1; i > 0; i--) {
                 Random ran = new Random();
                 int j = ran.Next() % (i + 1);
                 string temp = songs_arr[i];
@@ -835,117 +627,95 @@ namespace BearPlayer
                 songs_arr[j] = temp;
             }
 
-            foreach( string s in songs_arr)
-            {
+            foreach (string s in songs_arr) {
                 queue.Push_Back(s);
             }
         }
 
         //fills queue with selected song and all following songs,takes a song name
-        private void fill_unshuffled_queue(string start_name)
-        {
+        private void fill_unshuffled_queue(string start_name) {
             queue.Clear();
             prev_songs.Clear();
             curr_song = null;
             bool found = false;
             Dequeue temp_deq = new Dequeue();
 
-            for (int i = 0; i < curr_list_box.Items.Count; ++i)
-            {
+            for (int i = 0; i < curr_list_box.Items.Count; ++i) {
                 string s = curr_list_box.Items[i].Text.ToString();
-                if (s.Equals(start_name))
-                {
+                if (s.Equals(start_name)) {
                     found = true;
                     queue.Push_Back(s);
                 }
-                else if (found)
-                {
+                else if (found) {
                     queue.Push_Back(s);
                 }
-                else
-                {
+                else {
                     temp_deq.Push_Front(s);
                 }
             }
-            if (repeat_type == Repeat_Type.Repeat_All)
-            {
+            if (repeat_type == Repeat_Type.Repeat_All) {
                 int c = temp_deq.Count();
-                for (int i = 0; i < c; i++)
-                {
+                for (int i = 0; i < c; i++) {
                     queue.Push_Back(temp_deq.Pop_Back());
                 }
             }
-            else
-            {
+            else {
                 int c = temp_deq.Count();
-                for (int i = 0; i < c; i++)
-                {
+                for (int i = 0; i < c; i++) {
                     prev_songs.Push(temp_deq.Pop_Back());
                 }
 
             }
         }
 
-        private void shuffle_toggle_Click(object sender, EventArgs e)
-        {
+        private void shuffle_toggle_Click(object sender, EventArgs e) {
             shuffle = !shuffle;
-            if( shuffle )   shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
-            else            shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+            if (shuffle) shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+            else shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
         }
 
-        private void repeat_button_Click(object sender, EventArgs e)
-        {
-            if( repeat_type == Repeat_Type.Off)
-            {
+        private void repeat_button_Click(object sender, EventArgs e) {
+            if (repeat_type == Repeat_Type.Off) {
                 repeat_type = Repeat_Type.Repeat_All;
                 repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
 
                 Dequeue temp = new Dequeue();
                 int c = prev_songs.Count();
-                for (int i = 0; i < c; i++)
-                {
+                for (int i = 0; i < c; i++) {
                     temp.Push_Back(prev_songs.Pop());
                 }
-                for (int i = 0; i < c; i++)
-                {
+                for (int i = 0; i < c; i++) {
                     queue.Push_Back(temp.Pop_Back());
                 }
-                if( c == 0 && queue.Count() == 0)
-                {
+                if (c == 0 && queue.Count() == 0) {
                     queue.Push_Back(curr_song);
                 }
             }
-            else if ( repeat_type == Repeat_Type.Repeat_All )
-            {
+            else if (repeat_type == Repeat_Type.Repeat_All) {
                 repeat_type = Repeat_Type.Repeat_One;
                 repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
 
-                if (curr_song != null)
-                {
+                if (curr_song != null) {
                     prev_songs.Clear();
                     queue.Clear();
                     queue.Push_Front(curr_song);
                 }
             }
-            else
-            {
+            else {
                 repeat_type = Repeat_Type.Off;
                 repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
             }
             update_list_disp();
         }
 
-        
 
-        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e)
-        {
-            if ((e.State & TreeNodeStates.Hot) != 0)
-            {
+
+        private void treeView1_DrawNode(object sender, DrawTreeNodeEventArgs e) {
+            if ((e.State & TreeNodeStates.Hot) != 0) {
 
                 using (Brush b = new SolidBrush(Color.FromArgb(unchecked((int)0xFFB3D7F3))))
                     e.Graphics.FillRectangle(b, e.Bounds);
-                using (Pen p = new Pen(new SolidBrush(Color.FromArgb(unchecked((int)0xFF0078D7)))))
-                {
+                using (Pen p = new Pen(new SolidBrush(Color.FromArgb(unchecked((int)0xFF0078D7))))) {
                     Rectangle border_bounds = e.Bounds;
                     border_bounds.Width -= 1;
                     border_bounds.Height -= 1;
@@ -953,8 +723,7 @@ namespace BearPlayer
                 }
                 e.Graphics.DrawString(e.Node.Text, e.Node.NodeFont, Brushes.Black, e.Bounds);
             }
-            else
-            {
+            else {
                 e.DrawDefault = true;
             }
         }
