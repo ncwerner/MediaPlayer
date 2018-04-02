@@ -563,6 +563,7 @@
             this.Song_List.TabIndex = 0;
             this.Song_List.UseCompatibleStateImageBehavior = false;
             this.Song_List.View = System.Windows.Forms.View.Details;
+            this.Song_List.Click += new System.EventHandler(this.Song_List_Click);
             this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
             // 
             // TitleColumn
@@ -705,6 +706,7 @@
             this.Artist_Song_List.TabIndex = 1;
             this.Artist_Song_List.UseCompatibleStateImageBehavior = false;
             this.Artist_Song_List.View = System.Windows.Forms.View.Details;
+            this.Artist_Song_List.Click += new System.EventHandler(this.Artist_Song_List_Click);
             this.Artist_Song_List.DoubleClick += new System.EventHandler(this.Artist_Song_List_SelectedIndexChanged);
             // 
             // ArtistList_Title
@@ -838,13 +840,13 @@
             this.next_button.TabStop = false;
             this.next_button.Click += new System.EventHandler(this.next_button_Click);
             // 
-            // playBar
+            // playButton
             // 
             this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
             this.playButton.Location = new System.Drawing.Point(520, 544);
-            this.playButton.Name = "playBar";
+            this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(56, 49);
             this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.playButton.TabIndex = 2;
@@ -875,6 +877,7 @@
             this.Album_Song_List.TabIndex = 0;
             this.Album_Song_List.UseCompatibleStateImageBehavior = false;
             this.Album_Song_List.View = System.Windows.Forms.View.Details;
+            this.Album_Song_List.Click += new System.EventHandler(this.Album_Song_List_Click);
             this.Album_Song_List.DoubleClick += new System.EventHandler(this.Album_Song_List_SelectedIndexChanged);
             // 
             // AlbumSong_Title
@@ -921,6 +924,7 @@
             this.Search_List.UseCompatibleStateImageBehavior = false;
             this.Search_List.View = System.Windows.Forms.View.Details;
             this.Search_List.SelectedIndexChanged += new System.EventHandler(this.Search_List_SelectedIndexChanged);
+            this.Search_List.Click += new System.EventHandler(this.Search_List_Click);
             // 
             // SearchTitleColumn
             // 

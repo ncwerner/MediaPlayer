@@ -278,6 +278,7 @@ namespace BearPlayer
             Player.controls.pause();
             Player.controls.currentPosition = scrubBar.Value;   // Move song location to new scrub bar value
             Player.controls.play();   // Play song from new location
+            this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
 
@@ -475,31 +476,37 @@ namespace BearPlayer
         private void Artist_Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             list_item_selected();
+            play_next_song();
         }
 
         // Method for selecting a song within the album view
         private void Album_Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             list_item_selected();
+            play_next_song();
         }
 
         // Method for selecting a song within the song view
         private void Song_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             list_item_selected();
+            play_next_song();
         }
 
         // Method for selecting a song within the queue view
         private void Queue_List_SelectedIndexChanged(object sender, EventArgs e)
         {
             list_item_selected();
+            play_next_song();
         }
 
         // Method for selecting a song from the search view
         private void Search_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (found)
+            if (found) {
                 list_item_selected();
+                play_next_song();
+            }
         }
 
         // Method for special hover when over side bar
@@ -616,6 +623,10 @@ namespace BearPlayer
                         play_next_song();
                         //playing_index = i;
                     }*/
+                    if (queue.Count() > 0)
+                    {
+                        play_next_song();
+                    }
                 }
                 else
                 {
@@ -1040,7 +1051,7 @@ namespace BearPlayer
                 {
                     fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
                 }
-                play_next_song();
+                //play_next_song();
                 //playing_index = i;
             }
         }
@@ -1127,6 +1138,30 @@ namespace BearPlayer
         private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
         private enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
+        private void Search_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Album_Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Artist_Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
 
 
         //dequeue for queue
