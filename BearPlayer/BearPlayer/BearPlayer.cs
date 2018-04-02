@@ -600,6 +600,9 @@ namespace BearPlayer
 
 
         /* BACKEND METHODS */
+
+        // PLAY SONG:
+              
         private void play_pause_toggle()
         {
             if (play)
@@ -619,24 +622,25 @@ namespace BearPlayer
                 }
                 else
                 {
-                    this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
+                    this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");   // Change picture to pause button
                     Player.controls.play();
                 }
 
             }
             else
             {
-                this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
+                this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");   // Change picture to play button
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
             }
             play = !play;
         }
 
 
-        //method sets cure song to next in queue, pushes old curt song to stack
+        // Method for playing next song in play queue
         public void play_next_song()
         {
-            if( repeat_type == Repeat_Type.Repeat_One)
+            // Check if repeat one toggle is on
+            if(repeat_type == Repeat_Type.Repeat_One)
             {
                 if( curr_song != null || queue.Count() != 0 )
                 {
@@ -652,6 +656,8 @@ namespace BearPlayer
                     return;
                 }
             }
+
+            // Check if repeat all toggle is on
             if( repeat_type == Repeat_Type.Repeat_All)
             {
                 if(queue.Count() == 0 && curr_song != null)
@@ -660,6 +666,7 @@ namespace BearPlayer
                 }
             }
             
+            // Else, play next song in queue
             if(queue.Count() > 0)
             {
                 string removed = queue.Pop_Front();
@@ -687,7 +694,7 @@ namespace BearPlayer
 
         }
 
-        //return false if only resuming takes a URL
+        // Return false if only resuming takes a URL
         private bool play_song(string url)
         {
             bool new_song = false;
