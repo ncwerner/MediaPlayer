@@ -16,32 +16,32 @@ namespace BearPlayer
     public partial class Bear_Player : Form
     {
         /* --- DATA MEMBERS --- */
-        bool play;   // Global variable for controling play/pause state
         WMPLib.WindowsMediaPlayer Player;   // Player object from WMP library
-        Timer song_time;
-        string curr_song;
-        bool song_selected;
-        int blink_count;
+        public bool play;   // Global variable for controling play/pause state
+        public Timer song_time;
+        public string curr_song;
+        public bool song_selected;
+        public int blink_count;
 
         // Hashmaps to song directory address
-        Dictionary<string, string> song_map = new Dictionary<string,string>();
-        Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
-        Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
+        public Dictionary<string, string> song_map = new Dictionary<string,string>();
+        public Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
+        public Dictionary<string, List<string> > album_map = new Dictionary<string, List<string>>();
 
-        Dequeue queue = new Dequeue();   // Dequeue for play queue
-        Stack<string> prev_songs = new Stack<string>();   // Stack for previous songs
+        public Dequeue queue = new Dequeue();   // Dequeue for play queue
+        public Stack<string> prev_songs = new Stack<string>();   // Stack for previous songs
 
         // Variables for current view
-        ListView curr_list_box;
-        view curr_view;
-        string selected_artist, selected_album;
+        public ListView curr_list_box;
+        public view curr_view;
+        public string selected_artist, selected_album;
 
-        bool shuffle;   // Shuffle toggle 
-        Repeat_Type repeat_type;   // Repeat toggle
+        public bool shuffle;   // Shuffle toggle 
+        public Repeat_Type repeat_type;   // Repeat toggle
 
         // Variables for searching
-        string search_entry;
-        bool found;
+        public string search_entry;
+        public bool found;
 
         //string[] songs = new String[0];
         // List<string> disp_song_paths = new List<string>();
@@ -531,6 +531,30 @@ namespace BearPlayer
             }
         }
 
+        private void Search_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Album_Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
+        private void Artist_Song_List_Click(object sender, EventArgs e)
+        {
+            if (song_selected == false)
+                list_item_selected();
+        }
+
 
         // SEARCH BAR:
 
@@ -610,7 +634,7 @@ namespace BearPlayer
 
         // PLAY SONG:
               
-        private void play_pause_toggle()
+        public void play_pause_toggle()
         {
             if (play)
             {
@@ -706,7 +730,7 @@ namespace BearPlayer
         }
 
         // Return false if only resuming takes a URL
-        private bool play_song(string url)
+        public bool play_song(string url)
         {
             bool new_song = false;
             song_selected = true;
@@ -745,7 +769,7 @@ namespace BearPlayer
 
 
         //pushes cure song to the front of queue, make curr song the pop of the stack 
-        private void play_prev_song()
+        public void play_prev_song()
         {
             if( repeat_type == Repeat_Type.Repeat_One)
             {
@@ -799,7 +823,7 @@ namespace BearPlayer
 
 
         //adds a song too the maps 
-        private void add_new_song(string path)
+        public void add_new_song(string path)
         {
             TagLib.File file = TagLib.File.Create(path);
 
@@ -840,7 +864,7 @@ namespace BearPlayer
         
 
         //method that gets album artwork of file
-        private void Store_AlbumArtwork(TagLib.File file)
+        public void Store_AlbumArtwork(TagLib.File file)
         {
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
             System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
@@ -849,27 +873,26 @@ namespace BearPlayer
         }
         
         //gets song name of file
-        private string getSongName(TagLib.File file)
+        public string getSongName(TagLib.File file)
         {
             return file.Tag.Title;
         }
 
         //gets the album name
-        private string getAlbumName(TagLib.File file)
+        public string getAlbumName(TagLib.File file)
         {
             return file.Tag.Album;
         }
         
         //gets the album artist
-        private string getAlbumArtist(TagLib.File file)
+        public string getAlbumArtist(TagLib.File file)
         {
             return file.Tag.Performers[0];
         }
         
         //displays album during playback
-        private void currentAlbumDisplay()
+        public void currentAlbumDisplay()
         {
-            
             string curr = curr_song;
             TagLib.File file = TagLib.File.Create(song_map[curr]);
             MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
@@ -897,7 +920,7 @@ namespace BearPlayer
         
 
         //updates whatever list box is currently being viewed with the current map information 
-        private void update_list_disp()
+        public void update_list_disp()
         {
             curr_list_box.Items.Clear();
 
@@ -1022,7 +1045,7 @@ namespace BearPlayer
 
 
         // Method to retrieve the title, album, artist, and duration information from a song, and add it to a list row
-        private ListViewItem List_Column_Info(ref TagLib.File file)
+        public ListViewItem List_Column_Info(ref TagLib.File file)
         {
             // Create new entry into list table
             ListViewItem item = new ListViewItem();
@@ -1044,7 +1067,7 @@ namespace BearPlayer
             return item;
         }
 
-        private void list_item_selected()
+        public void list_item_selected()
         {
             if (curr_list_box.SelectedIndices.Count <= 0) return;
             int i = curr_list_box.SelectedIndices[0];
@@ -1063,7 +1086,7 @@ namespace BearPlayer
             }
         }
 
-        private void fill_shuffled_queue(string start_name)
+        public void fill_shuffled_queue(string start_name)
         {
             queue.Clear();
             prev_songs.Clear();
@@ -1097,7 +1120,7 @@ namespace BearPlayer
         }
 
         //fills queue with selected song and all following songs,takes a song name
-        private void fill_unshuffled_queue(string start_name)
+        public void fill_unshuffled_queue(string start_name)
         {
             queue.Clear();
             prev_songs.Clear();
@@ -1141,38 +1164,15 @@ namespace BearPlayer
             }
         }
 
+        public enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
-        private enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
+        public enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
-        private enum Repeat_Type { Off, Repeat_All, Repeat_One };
-
-        private void Search_List_Click(object sender, EventArgs e)
-        {
-            if (song_selected == false)
-                list_item_selected();
-        }
-
-        private void Song_List_Click(object sender, EventArgs e)
-        {
-            if (song_selected == false)
-                list_item_selected();
-        }
-
-        private void Album_Song_List_Click(object sender, EventArgs e)
-        {
-            if (song_selected == false)
-                list_item_selected();
-        }
-
-        private void Artist_Song_List_Click(object sender, EventArgs e)
-        {
-            if (song_selected == false)
-                list_item_selected();
-        }
+       
 
 
         //dequeue for queue
-        private class Dequeue
+        public class Dequeue
         {
             private List<string> dequeue;
             public Dequeue()
@@ -1192,14 +1192,18 @@ namespace BearPlayer
 
             public string Pop_Front()
             {
-                string ret = dequeue[0];
-                dequeue.RemoveAt(0);
-                return ret;
+                if (this.Count() > 0)
+                {
+                    string ret = dequeue[0];
+                    dequeue.RemoveAt(0);
+                    return ret;
+                }
+                else
+                    return null;
             }
             public string view_Top()
             {
-                string ret = dequeue[0];
-                return ret;
+                return (this.Count() > 0 ? dequeue[0] : null);
             }
             public void Push_Back(string s)
             {
@@ -1208,9 +1212,14 @@ namespace BearPlayer
 
             public string Pop_Back()
             {
-                string ret = dequeue[dequeue.Count - 1];
-                dequeue.RemoveAt(dequeue.Count - 1);
-                return ret;
+                if (this.Count() > 0)
+                {
+                    string ret = dequeue[dequeue.Count - 1];
+                    dequeue.RemoveAt(dequeue.Count - 1);
+                    return ret;
+                }
+                else
+                    return null;
             }
 
             public void Clear()
@@ -1220,7 +1229,10 @@ namespace BearPlayer
 
             public string ElementAt(int i)
             {
-                return dequeue.ElementAt(i);
+                if (this.Count() > 0 && i < this.Count())
+                    return dequeue.ElementAt(i);
+                else
+                    return null;
             }
 
             public void Remove_Element(string s)

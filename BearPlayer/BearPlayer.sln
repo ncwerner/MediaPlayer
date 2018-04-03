@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearPlayer", "BearPlayer\BearPlayer.csproj", "{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint2_UnitTests", "Sprint2_UnitTests\Sprint2_UnitTests.csproj", "{8B0761B4-813C-43ED-B7F2-2D27C5DB4755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{5B5549AF-4C32-46D5-AF52-F6CD26DE288A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8B0761B4-813C-43ED-B7F2-2D27C5DB4755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8B0761B4-813C-43ED-B7F2-2D27C5DB4755}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8B0761B4-813C-43ED-B7F2-2D27C5DB4755}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B0761B4-813C-43ED-B7F2-2D27C5DB4755}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B5549AF-4C32-46D5-AF52-F6CD26DE288A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B5549AF-4C32-46D5-AF52-F6CD26DE288A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B5549AF-4C32-46D5-AF52-F6CD26DE288A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B5549AF-4C32-46D5-AF52-F6CD26DE288A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
