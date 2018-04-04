@@ -800,6 +800,8 @@
             this.shuffle_toggle.TabIndex = 6;
             this.shuffle_toggle.TabStop = false;
             this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
+            this.shuffle_toggle.MouseEnter += new System.EventHandler(this.shuffle_toggle_MouseEnter);
+            this.shuffle_toggle.MouseLeave += new System.EventHandler(this.shuffle_toggle_MouseLeave);
             // 
             // repeat_button
             // 
@@ -813,6 +815,8 @@
             this.repeat_button.TabIndex = 5;
             this.repeat_button.TabStop = false;
             this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
+            this.repeat_button.MouseEnter += new System.EventHandler(this.repeat_button_MouseEnter);
+            this.repeat_button.MouseLeave += new System.EventHandler(this.repeat_button_MouseLeave);
             // 
             // previous_button
             // 
@@ -826,6 +830,8 @@
             this.previous_button.TabIndex = 4;
             this.previous_button.TabStop = false;
             this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
+            this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
+            this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
             // 
             // next_button
             // 
@@ -839,6 +845,8 @@
             this.next_button.TabIndex = 3;
             this.next_button.TabStop = false;
             this.next_button.Click += new System.EventHandler(this.next_button_Click);
+            this.next_button.MouseEnter += new System.EventHandler(this.next_button_MouseEnter);
+            this.next_button.MouseLeave += new System.EventHandler(this.next_button_MouseLeave);
             // 
             // playButton
             // 
@@ -852,6 +860,8 @@
             this.playButton.TabIndex = 2;
             this.playButton.TabStop = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            this.playButton.MouseEnter += new System.EventHandler(this.playButton_MouseEnter);
+            this.playButton.MouseLeave += new System.EventHandler(this.playButton_MouseLeave);
             // 
             // Album_Song_View
             // 
