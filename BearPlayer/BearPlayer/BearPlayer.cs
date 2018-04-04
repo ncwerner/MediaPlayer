@@ -43,11 +43,7 @@ namespace BearPlayer
         public string search_entry;
         public bool found;
 
-        //string[] songs = new String[0];
-        // List<string> disp_song_paths = new List<string>();
-        //int playing_index = 0;
-        //string file_path;   // directory of chosed song
-        //string song_name; //song name pulled from imported file
+        public List<string> Playlist_Names = new List<string>();    // List of all playlist names
 
 
         /* --- CONSTRUCTOR --- */
@@ -91,6 +87,7 @@ namespace BearPlayer
         private void BearPlayer_Load(object sender, EventArgs e)
         {
             KeyPreview = true;
+            this.MinimumSize = new Size(1064, 656);
         }
 
 
@@ -321,11 +318,10 @@ namespace BearPlayer
             }
         }
 
-        
+
         // VIEWS:
 
-        // Method for changing player view after clicking on side bar
-        private void SideBar_AfterSelect(object sender, TreeViewEventArgs e)
+        void SideBar_MouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             // Clicking on artist view
             if (e.Node.Text.Equals("Artists"))
@@ -338,6 +334,7 @@ namespace BearPlayer
                 Search_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
+                NewPlaylist_Panel.Visible = false;
                 curr_view = view.Artists;
                 curr_list_box = Artist_List;   // Change to artist list box
             }
@@ -353,6 +350,7 @@ namespace BearPlayer
                 Search_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
+                NewPlaylist_Panel.Visible = false;
                 curr_view = view.Albums;
                 curr_list_box = Album_List;  // Change to album list box
             }
@@ -368,22 +366,9 @@ namespace BearPlayer
                 Playlists_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Queue_View.Visible = false;
+                NewPlaylist_Panel.Visible = false;
                 curr_view = view.Songs;
                 curr_list_box = Song_List;   // Change to song list box
-            }
-
-            // Clicking on playlist view
-            else if (e.Node.Text.Equals("Playlists"))
-            {
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = true;
-                Artist_Song_View.Visible = false;
-                Search_View.Visible = false;
-                Queue_View.Visible = false;
-                curr_view = view.Playlists;
             }
 
             // Clicking on play queue view
@@ -397,12 +382,44 @@ namespace BearPlayer
                 Artist_Song_View.Visible = false;
                 Album_Song_View.Visible = false;
                 Queue_View.Visible = true;
+                NewPlaylist_Panel.Visible = false;
                 curr_view = view.Queue;
                 curr_list_box = Queue_List;   // Change to queue list box
             }
 
+            // Clicking on playlist view
+            else if (e.Node.Text.Equals("Playlists"))
+            {
+                // Action?
+            }
+
+            // Clilcking on playlist view
+            else if (e.Node.Text.Equals("New Playlist"))
+            {
+                NewPlaylist_Panel.Visible = true;
+            }
+
+            else
+            {
+                foreach (string playlist in Playlist_Names)
+                    if (playlist.Equals(e.Node.Text))
+                    {
+                        Artist_View.Visible = false;
+                        Albums_View.Visible = false;
+                        Album_Song_View.Visible = false;
+                        Songs_View.Visible = false;
+                        Playlists_View.Visible = true;
+                        Artist_Song_View.Visible = false;
+                        Search_View.Visible = false;
+                        Queue_View.Visible = false;
+                        NewPlaylist_Panel.Visible = false;
+                        curr_view = view.Playlists;
+                    }
+            }
+
             update_list_disp();   // Update list with new view selected
         }
+
 
         // Method for switching to list view on menu bar
         private void ListViewToolStripMenuItem_Click(object sender, EventArgs e)
@@ -448,7 +465,7 @@ namespace BearPlayer
             selected_artist = curr_list_box.SelectedItems[0].Text;
             curr_view = view.Artist_Song;
             curr_list_box = Artist_Song_List;
-            treeView1.SelectedNode = null;
+            SideBar.SelectedNode = null;
             update_list_disp();
         }
 
@@ -468,7 +485,7 @@ namespace BearPlayer
             selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
             curr_view = view.Album_Song;
             curr_list_box = Album_Song_List;
-            treeView1.SelectedNode = null;
+            SideBar.SelectedNode = null;
             update_list_disp();
         }
 
@@ -578,7 +595,7 @@ namespace BearPlayer
 
                 curr_view = view.Search;
                 curr_list_box = Search_List;
-                treeView1.SelectedNode = null;
+                SideBar.SelectedNode = null;
                 update_list_disp();
             }
         }
@@ -594,9 +611,45 @@ namespace BearPlayer
             searchBar.Text = "";
         }
 
+        // NEW PLAYLIST 
+
+        private void NewPlaylist_TextBox_Enter(object sender, EventArgs e)
+        {
+            NewPlaylist_TextBox.Text = "";
+        }
+
+        private void NewPlaylist_TextBox_Leave(object sender, EventArgs e)
+        {
+            NewPlaylist_TextBox.Text = "Name New Playlist";
+        }
+
+        private void NewPlaylist_TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Add_New_Playlist(NewPlaylist_TextBox.Text);
+                NewPlaylist_Panel.Visible = false;
+            }
+        }
+
+
+        // Method for pressing cancel button when creating new playlist
+        private void NewPlaylist_CancelButton_Click(object sender, EventArgs e)
+        {
+            NewPlaylist_Panel.Visible = false;
+        }
+
+
+        // Method for pressing enter button when creating new playlist
+        private void NewPlaylist_EnterButton_Click(object sender, EventArgs e)
+        {
+            Add_New_Playlist(NewPlaylist_TextBox.Text);
+            NewPlaylist_Panel.Visible = false;
+        }
+    
 
         // HOT KEYS:
-        
+
         // Method for hotkeys within the program
         private void Bear_Player_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1164,11 +1217,35 @@ namespace BearPlayer
             }
         }
 
+        // Backend function for adding a new playlist to the program. It inputs the name of the new playlist to be created
+        void Add_New_Playlist(string new_playlist)
+        {
+            // Check thruogh list of playlist names to see if name already exists
+            foreach (string s in Playlist_Names)
+                // If name already exists, abort process
+                if (s.Equals(new_playlist))
+                {
+                    MessageBox.Show("Error - playlist already exists");
+                    return;
+                }
+
+            Playlist_Names.Add(new_playlist);   // Add new name to playlist list
+
+            // Create new node for side bar
+            TreeNode child = new TreeNode();
+            child.Text = new_playlist;
+            child.Name = new_playlist;
+            child.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            // Find Playlists branch in side bar
+            TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
+            nodes[0].Nodes.Add(child);   // Add new playlist name under Playlist branch
+        }
+
+
         public enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
-
-       
 
 
         //dequeue for queue

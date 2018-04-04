@@ -73,7 +73,7 @@
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.SideBar = new System.Windows.Forms.TreeView();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
             this.scrubBar = new System.Windows.Forms.TrackBar();
@@ -127,6 +127,11 @@
             this.SearchAlbumColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SearchDurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.NewPlaylist_Panel = new System.Windows.Forms.Panel();
+            this.NewPlaylist_Label = new System.Windows.Forms.Label();
+            this.NewPlaylist_CancelButton = new System.Windows.Forms.Button();
+            this.NewPlaylist_EnterButton = new System.Windows.Forms.Button();
+            this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -145,6 +150,7 @@
             this.Album_Song_View.SuspendLayout();
             this.Search_View.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.NewPlaylist_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -418,19 +424,19 @@
             this.logOffToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.logOffToolStripMenuItem.Text = "Log Off";
             // 
-            // treeView1
+            // SideBar
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.SideBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.treeView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.treeView1.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
-            this.treeView1.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView1.HotTracking = true;
-            this.treeView1.Indent = 7;
-            this.treeView1.ItemHeight = 30;
-            this.treeView1.Location = new System.Drawing.Point(0, 25);
-            this.treeView1.Name = "treeView1";
+            this.SideBar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.SideBar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SideBar.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
+            this.SideBar.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SideBar.HotTracking = true;
+            this.SideBar.Indent = 7;
+            this.SideBar.ItemHeight = 30;
+            this.SideBar.Location = new System.Drawing.Point(0, 25);
+            this.SideBar.Name = "SideBar";
             treeNode1.Name = "Artists";
             treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode1.Text = "Artists";
@@ -449,19 +455,19 @@
             treeNode6.Name = "Playlists";
             treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             treeNode6.Text = "Playlists";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,
             treeNode2,
             treeNode3,
             treeNode4,
             treeNode6});
-            this.treeView1.PathSeparator = "";
-            this.treeView1.ShowLines = false;
-            this.treeView1.ShowPlusMinus = false;
-            this.treeView1.Size = new System.Drawing.Size(136, 478);
-            this.treeView1.TabIndex = 1;
-            this.treeView1.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.SideBar_DrawNode);
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SideBar_AfterSelect);
+            this.SideBar.PathSeparator = "";
+            this.SideBar.ShowLines = false;
+            this.SideBar.ShowPlusMinus = false;
+            this.SideBar.Size = new System.Drawing.Size(136, 478);
+            this.SideBar.TabIndex = 1;
+            this.SideBar.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.SideBar_DrawNode);
+            this.SideBar.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.SideBar_MouseClick);
             // 
             // searchBar
             // 
@@ -585,7 +591,7 @@
             // LengthColumn
             // 
             this.LengthColumn.Text = "Length";
-            this.LengthColumn.Width = 143;
+            this.LengthColumn.Width = 142;
             // 
             // Queue_View
             // 
@@ -903,9 +909,9 @@
             // Search_View
             // 
             this.Search_View.Controls.Add(this.Search_List);
-            this.Search_View.Location = new System.Drawing.Point(136, 75);
+            this.Search_View.Location = new System.Drawing.Point(180, 75);
             this.Search_View.Name = "Search_View";
-            this.Search_View.Size = new System.Drawing.Size(900, 428);
+            this.Search_View.Size = new System.Drawing.Size(804, 428);
             this.Search_View.TabIndex = 21;
             // 
             // Search_List
@@ -919,7 +925,7 @@
             this.Search_List.Location = new System.Drawing.Point(3, 3);
             this.Search_List.MultiSelect = false;
             this.Search_List.Name = "Search_List";
-            this.Search_List.Size = new System.Drawing.Size(897, 425);
+            this.Search_List.Size = new System.Drawing.Size(801, 425);
             this.Search_List.TabIndex = 0;
             this.Search_List.UseCompatibleStateImageBehavior = false;
             this.Search_List.View = System.Windows.Forms.View.Details;
@@ -934,20 +940,79 @@
             // SearchArtistColumn
             // 
             this.SearchArtistColumn.Text = "Artist";
-            this.SearchArtistColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SearchArtistColumn.Width = 195;
             // 
             // SearchAlbumColumn
             // 
             this.SearchAlbumColumn.Text = "Album";
-            this.SearchAlbumColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.SearchAlbumColumn.Width = 195;
             // 
             // SearchDurationColumn
             // 
-            this.SearchDurationColumn.Text = "Duration";
-            this.SearchDurationColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.SearchDurationColumn.Width = 143;
+            this.SearchDurationColumn.Text = "Length";
+            this.SearchDurationColumn.Width = 140;
+            // 
+            // NewPlaylist_Panel
+            // 
+            this.NewPlaylist_Panel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_Label);
+            this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_CancelButton);
+            this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_EnterButton);
+            this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_TextBox);
+            this.NewPlaylist_Panel.Location = new System.Drawing.Point(359, 206);
+            this.NewPlaylist_Panel.Name = "NewPlaylist_Panel";
+            this.NewPlaylist_Panel.Size = new System.Drawing.Size(366, 134);
+            this.NewPlaylist_Panel.TabIndex = 22;
+            this.NewPlaylist_Panel.Visible = false;
+            // 
+            // NewPlaylist_Label
+            // 
+            this.NewPlaylist_Label.AutoSize = true;
+            this.NewPlaylist_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewPlaylist_Label.Location = new System.Drawing.Point(21, 18);
+            this.NewPlaylist_Label.Name = "NewPlaylist_Label";
+            this.NewPlaylist_Label.Size = new System.Drawing.Size(110, 20);
+            this.NewPlaylist_Label.TabIndex = 3;
+            this.NewPlaylist_Label.Text = "New Playlist";
+            // 
+            // NewPlaylist_CancelButton
+            // 
+            this.NewPlaylist_CancelButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.NewPlaylist_CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NewPlaylist_CancelButton.Location = new System.Drawing.Point(257, 87);
+            this.NewPlaylist_CancelButton.Name = "NewPlaylist_CancelButton";
+            this.NewPlaylist_CancelButton.Size = new System.Drawing.Size(84, 30);
+            this.NewPlaylist_CancelButton.TabIndex = 2;
+            this.NewPlaylist_CancelButton.Text = "Cancel";
+            this.NewPlaylist_CancelButton.UseVisualStyleBackColor = false;
+            this.NewPlaylist_CancelButton.Click += new System.EventHandler(this.NewPlaylist_CancelButton_Click);
+            // 
+            // NewPlaylist_EnterButton
+            // 
+            this.NewPlaylist_EnterButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.NewPlaylist_EnterButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NewPlaylist_EnterButton.Location = new System.Drawing.Point(25, 87);
+            this.NewPlaylist_EnterButton.Name = "NewPlaylist_EnterButton";
+            this.NewPlaylist_EnterButton.Size = new System.Drawing.Size(84, 30);
+            this.NewPlaylist_EnterButton.TabIndex = 1;
+            this.NewPlaylist_EnterButton.Text = "Create";
+            this.NewPlaylist_EnterButton.UseVisualStyleBackColor = false;
+            this.NewPlaylist_EnterButton.Click += new System.EventHandler(this.NewPlaylist_EnterButton_Click);
+            // 
+            // NewPlaylist_TextBox
+            // 
+            this.NewPlaylist_TextBox.AcceptsReturn = true;
+            this.NewPlaylist_TextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NewPlaylist_TextBox.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewPlaylist_TextBox.Location = new System.Drawing.Point(92, 50);
+            this.NewPlaylist_TextBox.MaxLength = 50;
+            this.NewPlaylist_TextBox.Name = "NewPlaylist_TextBox";
+            this.NewPlaylist_TextBox.Size = new System.Drawing.Size(185, 23);
+            this.NewPlaylist_TextBox.TabIndex = 7;
+            this.NewPlaylist_TextBox.Text = "Name New Playlist";
+            this.NewPlaylist_TextBox.Enter += new System.EventHandler(this.NewPlaylist_TextBox_Enter);
+            this.NewPlaylist_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewPlaylist_TextBox_KeyDown);
+            this.NewPlaylist_TextBox.Leave += new System.EventHandler(this.NewPlaylist_TextBox_Leave);
             // 
             // Bear_Player
             // 
@@ -955,8 +1020,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.Search_View);
-            this.Controls.Add(this.Album_Song_View);
+            this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.artistLabel);
             this.Controls.Add(this.titleLabel);
@@ -973,13 +1037,15 @@
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
-            this.Controls.Add(this.Artist_Song_View);
+            this.Controls.Add(this.SideBar);
+            this.Controls.Add(this.Playlists_View);
+            this.Controls.Add(this.Albums_View);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Songs_View);
             this.Controls.Add(this.Artist_View);
-            this.Controls.Add(this.Playlists_View);
-            this.Controls.Add(this.Albums_View);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.Album_Song_View);
+            this.Controls.Add(this.Artist_Song_View);
+            this.Controls.Add(this.Search_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
@@ -1006,6 +1072,8 @@
             this.Album_Song_View.ResumeLayout(false);
             this.Search_View.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.NewPlaylist_Panel.ResumeLayout(false);
+            this.NewPlaylist_Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1049,7 +1117,7 @@
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem switchUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logOffToolStripMenuItem;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView SideBar;
         private System.Windows.Forms.PictureBox playButton;
         private System.Windows.Forms.PictureBox next_button;
         private System.Windows.Forms.PictureBox previous_button;
@@ -1103,6 +1171,12 @@
         private System.Windows.Forms.ColumnHeader SearchArtistColumn;
         private System.Windows.Forms.ColumnHeader SearchAlbumColumn;
         private System.Windows.Forms.ColumnHeader SearchDurationColumn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Panel NewPlaylist_Panel;
+        private System.Windows.Forms.TextBox NewPlaylist_TextBox;
+        private System.Windows.Forms.Label NewPlaylist_Label;
+        private System.Windows.Forms.Button NewPlaylist_CancelButton;
+        private System.Windows.Forms.Button NewPlaylist_EnterButton;
     }
 }
 
