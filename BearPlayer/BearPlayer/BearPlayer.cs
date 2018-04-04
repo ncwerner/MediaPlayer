@@ -1168,7 +1168,99 @@ namespace BearPlayer
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
 
-       
+        private void shuffle_toggle_MouseEnter(object sender, EventArgs e)
+        {
+            if (!shuffle)
+                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+            else
+                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+        }
+
+        private void shuffle_toggle_MouseLeave(object sender, EventArgs e)
+        {
+            if (!shuffle)
+                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+            else
+                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+        }
+
+        private void repeat_button_MouseEnter(object sender, EventArgs e)
+        {
+            if (repeat_type == Repeat_Type.Off)
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
+            }
+            else if (repeat_type == Repeat_Type.Repeat_All)
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
+            }
+            else
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
+            }
+        }
+
+        private void repeat_button_MouseLeave(object sender, EventArgs e)
+        {
+            if (repeat_type == Repeat_Type.Off)
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
+            }
+            else if (repeat_type == Repeat_Type.Repeat_All)
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
+            }
+            else
+            {
+                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
+            }
+        }
+
+        private void playButton_MouseEnter(object sender, EventArgs e)
+        {
+            if(play)
+            {
+                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton3.png");
+            } else
+            {
+                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton2.png");
+            }
+        }
+
+        private void playButton_MouseLeave(object sender, EventArgs e)
+        {
+            if (play)
+            {
+                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
+            }
+            else
+            {
+                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton1.png");
+            }
+        }
+
+        private void previous_button_MouseEnter(object sender, EventArgs e)
+        {
+            previous_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Previous Button2.png");
+        }
+
+        private void previous_button_MouseLeave(object sender, EventArgs e)
+        {
+            previous_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Previous Button1.png");
+
+        }
+
+        private void next_button_MouseEnter(object sender, EventArgs e)
+        {
+            next_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Next-Previous2.png");
+        }
+
+        private void next_button_MouseLeave(object sender, EventArgs e)
+        {
+            next_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Next-Previous1.png");
+        }
+
+
 
 
         //dequeue for queue
