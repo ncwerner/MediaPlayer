@@ -645,7 +645,7 @@
             // 
             // Playlists_View
             // 
-            this.Playlists_View.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Playlists_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Playlists_View.Location = new System.Drawing.Point(136, 75);
             this.Playlists_View.Name = "Playlists_View";
             this.Playlists_View.Size = new System.Drawing.Size(900, 428);
