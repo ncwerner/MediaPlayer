@@ -94,10 +94,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlist_List = new System.Windows.Forms.ListView();
-            this.Playlist_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Playlist_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Playlist_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Playlist_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PlaylistList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Current_position_label = new System.Windows.Forms.Label();
             this.Song_length_label = new System.Windows.Forms.Label();
             this.Artist_View = new System.Windows.Forms.FlowLayoutPanel();
@@ -138,6 +135,13 @@
             this.NewPlaylist_EnterButton = new System.Windows.Forms.Button();
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
             this.View_Label = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Playlist_Song_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.Playlist_Song_List = new System.Windows.Forms.ListView();
+            this.Playlist_Song_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Playlist_Song_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Playlist_Song_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Playlist_Song_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -158,6 +162,7 @@
             this.Search_View.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.NewPlaylist_Panel.SuspendLayout();
+            this.Playlist_Song_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -654,6 +659,7 @@
             // 
             this.Playlists_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Playlists_View.Controls.Add(this.Playlist_List);
+            this.Playlists_View.Controls.Add(this.flowLayoutPanel1);
             this.Playlists_View.Location = new System.Drawing.Point(180, 75);
             this.Playlists_View.Name = "Playlists_View";
             this.Playlists_View.Size = new System.Drawing.Size(804, 417);
@@ -663,10 +669,7 @@
             // Playlist_List
             // 
             this.Playlist_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Playlist_Title,
-            this.Playlist_Album,
-            this.Playlist_Artist,
-            this.Playlist_Length});
+            this.PlaylistList});
             this.Playlist_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_List.Name = "Playlist_List";
             this.Playlist_List.Size = new System.Drawing.Size(801, 413);
@@ -674,25 +677,10 @@
             this.Playlist_List.UseCompatibleStateImageBehavior = false;
             this.Playlist_List.View = System.Windows.Forms.View.Details;
             // 
-            // Playlist_Title
+            // PlaylistList
             // 
-            this.Playlist_Title.Text = "Title";
-            this.Playlist_Title.Width = 265;
-            // 
-            // Playlist_Album
-            // 
-            this.Playlist_Album.Text = "Album";
-            this.Playlist_Album.Width = 195;
-            // 
-            // Playlist_Artist
-            // 
-            this.Playlist_Artist.Text = "Artist";
-            this.Playlist_Artist.Width = 195;
-            // 
-            // Playlist_Length
-            // 
-            this.Playlist_Length.Text = "Length";
-            this.Playlist_Length.Width = 142;
+            this.PlaylistList.Text = "Playlists";
+            this.PlaylistList.Width = 792;
             // 
             // Current_position_label
             // 
@@ -996,6 +984,7 @@
             // 
             // NewPlaylist_Panel
             // 
+            this.NewPlaylist_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NewPlaylist_Panel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_Label);
             this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_CancelButton);
@@ -1066,12 +1055,63 @@
             this.View_Label.TabIndex = 23;
             this.View_Label.Text = "Songs";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 422);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
+            // Playlist_Song_Panel
+            // 
+            this.Playlist_Song_Panel.Controls.Add(this.Playlist_Song_List);
+            this.Playlist_Song_Panel.Location = new System.Drawing.Point(180, 75);
+            this.Playlist_Song_Panel.Name = "Playlist_Song_Panel";
+            this.Playlist_Song_Panel.Size = new System.Drawing.Size(804, 416);
+            this.Playlist_Song_Panel.TabIndex = 24;
+            this.Playlist_Song_Panel.Visible = false;
+            // 
+            // Playlist_Song_List
+            // 
+            this.Playlist_Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Playlist_Song_Title,
+            this.Playlist_Song_Album,
+            this.Playlist_Song_Artist,
+            this.Playlist_Song_Length});
+            this.Playlist_Song_List.Location = new System.Drawing.Point(3, 3);
+            this.Playlist_Song_List.Name = "Playlist_Song_List";
+            this.Playlist_Song_List.Size = new System.Drawing.Size(801, 413);
+            this.Playlist_Song_List.TabIndex = 0;
+            this.Playlist_Song_List.UseCompatibleStateImageBehavior = false;
+            this.Playlist_Song_List.View = System.Windows.Forms.View.Details;
+            // 
+            // Playlist_Song_Title
+            // 
+            this.Playlist_Song_Title.Text = "Title";
+            this.Playlist_Song_Title.Width = 265;
+            // 
+            // Playlist_Song_Album
+            // 
+            this.Playlist_Song_Album.Text = "Album";
+            this.Playlist_Song_Album.Width = 195;
+            // 
+            // Playlist_Song_Artist
+            // 
+            this.Playlist_Song_Artist.Text = "Artist";
+            this.Playlist_Song_Artist.Width = 195;
+            // 
+            // Playlist_Song_Length
+            // 
+            this.Playlist_Song_Length.Text = "Length";
+            this.Playlist_Song_Length.Width = 142;
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.View_Label);
             this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.pictureBox1);
@@ -1128,6 +1168,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.NewPlaylist_Panel.ResumeLayout(false);
             this.NewPlaylist_Panel.PerformLayout();
+            this.Playlist_Song_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1232,11 +1273,15 @@
         private System.Windows.Forms.Button NewPlaylist_CancelButton;
         private System.Windows.Forms.Button NewPlaylist_EnterButton;
         private System.Windows.Forms.ListView Playlist_List;
-        private System.Windows.Forms.ColumnHeader Playlist_Title;
-        private System.Windows.Forms.ColumnHeader Playlist_Album;
-        private System.Windows.Forms.ColumnHeader Playlist_Artist;
-        private System.Windows.Forms.ColumnHeader Playlist_Length;
+        private System.Windows.Forms.ColumnHeader PlaylistList;
         private System.Windows.Forms.Label View_Label;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel Playlist_Song_Panel;
+        private System.Windows.Forms.ListView Playlist_Song_List;
+        private System.Windows.Forms.ColumnHeader Playlist_Song_Title;
+        private System.Windows.Forms.ColumnHeader Playlist_Song_Album;
+        private System.Windows.Forms.ColumnHeader Playlist_Song_Artist;
+        private System.Windows.Forms.ColumnHeader Playlist_Song_Length;
     }
 }
 
