@@ -137,7 +137,6 @@
             this.NewPlaylist_CancelButton = new System.Windows.Forms.Button();
             this.NewPlaylist_EnterButton = new System.Windows.Forms.Button();
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
-            this.View_Label = new System.Windows.Forms.Label();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -538,7 +537,7 @@
             this.Album_List.LargeImageList = this.Artwork_List;
             this.Album_List.Location = new System.Drawing.Point(3, 3);
             this.Album_List.Name = "Album_List";
-            this.Album_List.Size = new System.Drawing.Size(789, 403);
+            this.Album_List.Size = new System.Drawing.Size(801, 413);
             this.Album_List.SmallImageList = this.Artwork_List;
             this.Album_List.TabIndex = 0;
             this.Album_List.UseCompatibleStateImageBehavior = false;
@@ -607,7 +606,7 @@
             this.Queue_View.Location = new System.Drawing.Point(180, 75);
             this.Queue_View.Margin = new System.Windows.Forms.Padding(0);
             this.Queue_View.Name = "Queue_View";
-            this.Queue_View.Size = new System.Drawing.Size(804, 417);
+            this.Queue_View.Size = new System.Drawing.Size(804, 416);
             this.Queue_View.TabIndex = 14;
             this.Queue_View.Visible = false;
             this.Queue_View.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
@@ -656,7 +655,7 @@
             this.Playlists_View.Controls.Add(this.Playlist_List);
             this.Playlists_View.Location = new System.Drawing.Point(180, 75);
             this.Playlists_View.Name = "Playlists_View";
-            this.Playlists_View.Size = new System.Drawing.Size(804, 417);
+            this.Playlists_View.Size = new System.Drawing.Size(804, 416);
             this.Playlists_View.TabIndex = 0;
             this.Playlists_View.Visible = false;
             // 
@@ -812,7 +811,7 @@
             this.Artist_Song_View.Controls.Add(this.Artist_Song_List);
             this.Artist_Song_View.Location = new System.Drawing.Point(180, 75);
             this.Artist_Song_View.Name = "Artist_Song_View";
-            this.Artist_Song_View.Size = new System.Drawing.Size(804, 417);
+            this.Artist_Song_View.Size = new System.Drawing.Size(804, 416);
             this.Artist_Song_View.TabIndex = 16;
             // 
             // pictureBox1
@@ -906,7 +905,7 @@
             this.Album_Song_View.Controls.Add(this.Album_Song_List);
             this.Album_Song_View.Location = new System.Drawing.Point(180, 75);
             this.Album_Song_View.Name = "Album_Song_View";
-            this.Album_Song_View.Size = new System.Drawing.Size(804, 417);
+            this.Album_Song_View.Size = new System.Drawing.Size(804, 416);
             this.Album_Song_View.TabIndex = 20;
             this.Album_Song_View.Visible = false;
             // 
@@ -921,7 +920,7 @@
             this.AlbumSong_Duration});
             this.Album_Song_List.Location = new System.Drawing.Point(3, 3);
             this.Album_Song_List.Name = "Album_Song_List";
-            this.Album_Song_List.Size = new System.Drawing.Size(801, 414);
+            this.Album_Song_List.Size = new System.Drawing.Size(801, 413);
             this.Album_Song_List.TabIndex = 0;
             this.Album_Song_List.UseCompatibleStateImageBehavior = false;
             this.Album_Song_List.View = System.Windows.Forms.View.Details;
@@ -996,6 +995,7 @@
             // 
             // NewPlaylist_Panel
             // 
+            this.NewPlaylist_Panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NewPlaylist_Panel.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_Label);
             this.NewPlaylist_Panel.Controls.Add(this.NewPlaylist_CancelButton);
@@ -1056,23 +1056,13 @@
             this.NewPlaylist_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewPlaylist_TextBox_KeyDown);
             this.NewPlaylist_TextBox.Leave += new System.EventHandler(this.NewPlaylist_TextBox_Leave);
             // 
-            // View_Label
-            // 
-            this.View_Label.AutoSize = true;
-            this.View_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.View_Label.Location = new System.Drawing.Point(177, 32);
-            this.View_Label.Name = "View_Label";
-            this.View_Label.Size = new System.Drawing.Size(109, 35);
-            this.View_Label.TabIndex = 23;
-            this.View_Label.Text = "Songs";
-            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.View_Label);
+            this.Controls.Add(this.Albums_View);
             this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.artistLabel);
@@ -1098,7 +1088,6 @@
             this.Controls.Add(this.Artist_Song_View);
             this.Controls.Add(this.Search_View);
             this.Controls.Add(this.Songs_View);
-            this.Controls.Add(this.Albums_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
@@ -1106,6 +1095,7 @@
             this.Load += new System.EventHandler(this.BearPlayer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Bear_Player_KeyDown);
             this.MouseHover += new System.EventHandler(this.BearPlayer_Load);
+            this.Resize += new System.EventHandler(this.Bear_Player_Resize);
             this.MenuBar.ResumeLayout(false);
             this.MenuBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).EndInit();
@@ -1236,7 +1226,6 @@
         private System.Windows.Forms.ColumnHeader Playlist_Album;
         private System.Windows.Forms.ColumnHeader Playlist_Artist;
         private System.Windows.Forms.ColumnHeader Playlist_Length;
-        private System.Windows.Forms.Label View_Label;
     }
 }
 

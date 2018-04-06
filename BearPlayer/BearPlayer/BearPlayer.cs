@@ -326,8 +326,6 @@ namespace BearPlayer
             // Clicking on artist view
             if (e.Node.Text.Equals("Artists"))
             {
-                View_Label.Text = "Artists";
-
                 Artist_View.Visible = true;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -344,8 +342,6 @@ namespace BearPlayer
             // Clicking on album view
             else if (e.Node.Text.Equals("Albums"))
             {
-                View_Label.Text = "Albums";
-
                 Artist_View.Visible = false;
                 Albums_View.Visible = true;
                 Album_Song_View.Visible = false;
@@ -362,8 +358,6 @@ namespace BearPlayer
             // Clicking on song view
             else if (e.Node.Text.Equals("Songs"))
             {
-                View_Label.Text = "Songs";
-
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -380,8 +374,6 @@ namespace BearPlayer
             // Clicking on play queue view
             else if (e.Node.Text.Equals("Queue"))
             {
-                View_Label.Text = "Queue";
-
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
@@ -398,20 +390,7 @@ namespace BearPlayer
             // Clicking on playlist view
             else if (e.Node.Text.Equals("Playlists"))
             {
-                View_Label.Text = "Playlists";
-
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = true;
-                Artist_Song_View.Visible = false;
-                Search_View.Visible = false;
-                Queue_View.Visible = false;
-                NewPlaylist_Panel.Visible = false;
-
-                curr_view = view.Playlists;
-                curr_list_box = Playlist_List;
+                // Action?
             }
 
             // Clilcking on playlist view
@@ -425,8 +404,6 @@ namespace BearPlayer
                 foreach (string playlist in Playlist_Names)
                     if (playlist.Equals(e.Node.Text))
                     {
-                        View_Label.Text = playlist;
-
                         Artist_View.Visible = false;
                         Albums_View.Visible = false;
                         Album_Song_View.Visible = false;
@@ -436,9 +413,7 @@ namespace BearPlayer
                         Search_View.Visible = false;
                         Queue_View.Visible = false;
                         NewPlaylist_Panel.Visible = false;
-
                         curr_view = view.Playlists;
-                        curr_list_box = Playlist_List;
                     }
             }
 
@@ -706,12 +681,72 @@ namespace BearPlayer
             }
         }
 
+        //RESIZING
+
+        private void Bear_Player_Resize(object sender, EventArgs e)
+        //changes the size of views and panels when changing the GUI
+        {
+            int min_width = this.MinimumSize.Width;
+            int min_height = this.MinimumSize.Height;
+            //1064, 656
+
+            Album_List.Width = this.Width - min_width + 801;
+            Album_List.Height = this.Height - min_height + 413;
+            Album_Song_List.Width = this.Width - min_width + 801;
+            Album_Song_List.Height = this.Height - min_height + 413;
+            Album_Song_View.Width = this.Width - min_width + 804;
+            Album_Song_View.Height = this.Height - min_height + 416;
+            Albums_View.Width = this.Width - min_width + 804;
+            Albums_View.Height = this.Height - min_height + 416;
+
+            Artist_List.Width = this.Width - min_width + 801;
+            Artist_List.Height = this.Height - min_height + 413;
+            Artist_Song_List.Width = this.Width - min_width + 801;
+            Artist_Song_List.Height = this.Height - min_height + 413;
+            Artist_Song_View.Width = this.Width - min_width + 804;
+            Artist_Song_View.Height = this.Height - min_height + 416;
+            Artist_View.Width = this.Width - min_width + 804;
+            Artist_View.Height = this.Height - min_height + 416;
+
+            Playlist_List.Width = this.Width - min_width + 801;
+            Playlist_List.Height = this.Height - min_height + 413;
+            Playlists_View.Width = this.Width - min_width + 804;
+            Playlists_View.Height = this.Height - min_height + 416;
+
+            Queue_List.Width = this.Width - min_width + 801;
+            Queue_List.Height = this.Height - min_height + 413;
+            Queue_View.Width = this.Width - min_width + 804;
+            Queue_View.Height = this.Height - min_height + 416;
+
+            Search_List.Width = this.Width - min_width + 801;
+            Search_List.Height = this.Height - min_height + 413;
+            Search_View.Width = this.Width - min_width + 804;
+            Search_View.Height = this.Height - min_height + 416;
+
+            Song_List.Width = this.Width - min_width + 801;
+            Song_List.Height = this.Height - min_height + 413;
+            Songs_View.Width = this.Width - min_width + 804;
+            Songs_View.Height = this.Height - min_height + 416;
+
+            Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            // Search_List.Refresh();
+        }
+
 
 
         /* BACKEND METHODS */
 
         // PLAY SONG:
-              
+
         public void play_pause_toggle()
         {
             if (play)
@@ -1248,7 +1283,7 @@ namespace BearPlayer
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
                 // If name already exists, abort process
-                if (s.Equals(new_playlist) || new_playlist.Equals("New Playlist"))
+                if (s.Equals(new_playlist))
                 {
                     MessageBox.Show("Error - playlist already exists");
                     return;
