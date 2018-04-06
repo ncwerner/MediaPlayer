@@ -319,6 +319,17 @@ namespace BearPlayer
         }
 
 
+        private void scrubBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            song_time.Enabled = false;
+        }
+
+        private void scrubBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            song_time.Enabled = true;
+        }
+
+
         // VIEWS:
 
         void SideBar_MouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -1306,6 +1317,8 @@ namespace BearPlayer
         public enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
+       
 
 
         //dequeue for queue
