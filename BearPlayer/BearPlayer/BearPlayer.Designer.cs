@@ -520,6 +520,8 @@
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.scrubBar.Scroll += new System.EventHandler(this.scrubBar_Scroll);
+            this.scrubBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scrubBar_MouseDown);
+            this.scrubBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.scrubBar_MouseUp);
             // 
             // Albums_View
             // 
@@ -577,6 +579,7 @@
             this.Song_List.View = System.Windows.Forms.View.Details;
             this.Song_List.Click += new System.EventHandler(this.Song_List_Click);
             this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
+            this.Song_List.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Song_List_MouseDown);
             // 
             // TitleColumn
             // 

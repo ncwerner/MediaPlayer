@@ -318,7 +318,6 @@ namespace BearPlayer
             }
         }
 
-
         private void scrubBar_MouseDown(object sender, MouseEventArgs e)
         {
             song_time.Enabled = false;
@@ -750,6 +749,26 @@ namespace BearPlayer
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             // Search_List.Refresh();
+        }
+
+
+        //RIGHT CLICK FUNCTIONALITY:
+
+        private void Song_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //MessageBox.Show("Right click");
+                ContextMenu cm = new ContextMenu();
+                cm.MenuItems.Add("Play");
+                cm.MenuItems.Add("Play Next");
+                cm.MenuItems.Add("Play Later");
+                cm.MenuItems.Add("Get Tags");
+                cm.MenuItems.Add("Add to Playlist");
+
+                Song_List.ContextMenu = cm;
+            }
+
         }
 
 
@@ -1317,8 +1336,6 @@ namespace BearPlayer
         public enum view { Albums, Artists, Songs, Playlists, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
-
-       
 
 
         //dequeue for queue
