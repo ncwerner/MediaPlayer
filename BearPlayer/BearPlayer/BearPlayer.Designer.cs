@@ -1299,7 +1299,7 @@
         private System.Windows.Forms.ColumnHeader Playlist_Album;
         private System.Windows.Forms.ColumnHeader Playlist_Artist;
         private System.Windows.Forms.ColumnHeader Playlist_Length;
-        private ToolStripMenuItem addToPlaylistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
     }
 }
 
