@@ -659,6 +659,7 @@ namespace BearPlayer
             searchBar.Text = "";
         }
 
+
         // NEW PLAYLIST 
 
         private void NewPlaylist_TextBox_Enter(object sender, EventArgs e)
@@ -691,6 +692,7 @@ namespace BearPlayer
         // Method for pressing enter button when creating new playlist
         private void NewPlaylist_EnterButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(NewPlaylist_TextBox.Text);
             Add_New_Playlist(NewPlaylist_TextBox.Text);
             NewPlaylist_Panel.Visible = false;
         }
@@ -706,12 +708,14 @@ namespace BearPlayer
             {
                 play_pause_toggle();
             }
+
             // Next using CTRL+RIGHT
             else if (e.KeyCode == Keys.MediaNextTrack || (e.KeyCode == Keys.Right && e.Modifiers == Keys.Control))
             {
                 play_next_song();
                 update_list_disp();
             }
+
             // Previous using CTRL+LEFT
             else if (e.KeyCode == Keys.MediaPreviousTrack || (e.KeyCode == Keys.Left && e.Modifiers == Keys.Control))
             {
@@ -721,6 +725,7 @@ namespace BearPlayer
                     play_prev_song();
                     update_list_disp();
                 }
+
                 // Replay song is song is more than 5 seconds in
                 else
                 {

@@ -95,6 +95,7 @@
             this.Playlists_View = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlist_List = new System.Windows.Forms.ListView();
             this.PlaylistList = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Current_position_label = new System.Windows.Forms.Label();
             this.Song_length_label = new System.Windows.Forms.Label();
             this.Artist_View = new System.Windows.Forms.FlowLayoutPanel();
@@ -135,7 +136,6 @@
             this.NewPlaylist_EnterButton = new System.Windows.Forms.Button();
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
             this.View_Label = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlist_Song_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlist_Song_List = new System.Windows.Forms.ListView();
             this.Playlist_Song_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -685,6 +685,13 @@
             this.PlaylistList.Text = "Playlists";
             this.PlaylistList.Width = 792;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 422);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
             // Current_position_label
             // 
             this.Current_position_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -910,6 +917,7 @@
             this.AlbumSong_Album,
             this.AlbumSong_Artist,
             this.AlbumSong_Duration});
+            this.Album_Song_List.FullRowSelect = true;
             this.Album_Song_List.Location = new System.Drawing.Point(3, 3);
             this.Album_Song_List.Name = "Album_Song_List";
             this.Album_Song_List.Size = new System.Drawing.Size(801, 413);
@@ -1057,7 +1065,7 @@
             this.View_Label.Size = new System.Drawing.Size(109, 35);
             this.View_Label.TabIndex = 23;
             this.View_Label.Text = "Songs";
-            //
+            // 
             // Playlist_Song_Panel
             // 
             this.Playlist_Song_Panel.Controls.Add(this.Playlist_Song_List);
@@ -1107,9 +1115,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.View_Label);
-            this.Controls.Add(this.Albums_View);
             this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.artistLabel);
@@ -1135,6 +1141,8 @@
             this.Controls.Add(this.Artist_Song_View);
             this.Controls.Add(this.Search_View);
             this.Controls.Add(this.Songs_View);
+            this.Controls.Add(this.Playlist_Song_Panel);
+            this.Controls.Add(this.Albums_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
