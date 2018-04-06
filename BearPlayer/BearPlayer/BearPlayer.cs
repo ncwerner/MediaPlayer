@@ -1397,6 +1397,10 @@ namespace BearPlayer
             // Find Playlists branch in side bar
             TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
             nodes[0].Nodes.Add(child);   // Add new playlist name under Playlist branch
+            
+            //add to playlist to menu bar
+            ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
+            addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
         }
 
 
