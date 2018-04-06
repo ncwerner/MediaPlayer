@@ -320,6 +320,16 @@ namespace BearPlayer
             }
         }
 
+        private void scrubBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            song_time.Enabled = false;
+        }
+
+        private void scrubBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            song_time.Enabled = true;
+        }
+
 
         // VIEWS:
 
@@ -719,12 +729,92 @@ namespace BearPlayer
             }
         }
 
+        //RESIZING
+
+        private void Bear_Player_Resize(object sender, EventArgs e)
+        //changes the size of views and panels when changing the GUI
+        {
+            int min_width = this.MinimumSize.Width;
+            int min_height = this.MinimumSize.Height;
+            //1064, 656
+
+            Album_List.Width = this.Width - min_width + 798;
+            Album_List.Height = this.Height - min_height + 410;
+            Album_Song_List.Width = this.Width - min_width + 801;
+            Album_Song_List.Height = this.Height - min_height + 413;
+            Album_Song_View.Width = this.Width - min_width + 804;
+            Album_Song_View.Height = this.Height - min_height + 416;
+            Albums_View.Width = this.Width - min_width + 804;
+            Albums_View.Height = this.Height - min_height + 416;
+
+            Artist_List.Width = this.Width - min_width + 801;
+            Artist_List.Height = this.Height - min_height + 413;
+            Artist_Song_List.Width = this.Width - min_width + 801;
+            Artist_Song_List.Height = this.Height - min_height + 413;
+            Artist_Song_View.Width = this.Width - min_width + 804;
+            Artist_Song_View.Height = this.Height - min_height + 416;
+            Artist_View.Width = this.Width - min_width + 804;
+            Artist_View.Height = this.Height - min_height + 416;
+
+            Playlist_List.Width = this.Width - min_width + 801;
+            Playlist_List.Height = this.Height - min_height + 413;
+            Playlists_View.Width = this.Width - min_width + 804;
+            Playlists_View.Height = this.Height - min_height + 416;
+
+            Queue_List.Width = this.Width - min_width + 801;
+            Queue_List.Height = this.Height - min_height + 413;
+            Queue_View.Width = this.Width - min_width + 804;
+            Queue_View.Height = this.Height - min_height + 416;
+
+            Search_List.Width = this.Width - min_width + 801;
+            Search_List.Height = this.Height - min_height + 413;
+            Search_View.Width = this.Width - min_width + 804;
+            Search_View.Height = this.Height - min_height + 416;
+
+            Song_List.Width = this.Width - min_width + 801;
+            Song_List.Height = this.Height - min_height + 413;
+            Songs_View.Width = this.Width - min_width + 804;
+            Songs_View.Height = this.Height - min_height + 416;
+
+            Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            // Search_List.Refresh();
+        }
+
+
+        //RIGHT CLICK FUNCTIONALITY:
+
+        private void Song_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //MessageBox.Show("Right click");
+                ContextMenu cm = new ContextMenu();
+                cm.MenuItems.Add("Play");
+                cm.MenuItems.Add("Play Next");
+                cm.MenuItems.Add("Play Later");
+                cm.MenuItems.Add("Get Tags");
+                cm.MenuItems.Add("Add to Playlist");
+
+                Song_List.ContextMenu = cm;
+            }
+
+        }
+
 
 
         /* BACKEND METHODS */
 
         // PLAY SONG:
-              
+
         public void play_pause_toggle()
         {
             if (play)
@@ -1285,7 +1375,7 @@ namespace BearPlayer
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
                 // If name already exists, abort process
-                if (s.Equals(new_playlist) || new_playlist.Equals("New Playlist"))
+                if (s.Equals(new_playlist))
                 {
                     MessageBox.Show("Error - playlist already exists");
                     return;
