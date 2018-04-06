@@ -137,6 +137,7 @@
             this.NewPlaylist_CancelButton = new System.Windows.Forms.Button();
             this.NewPlaylist_EnterButton = new System.Windows.Forms.Button();
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
+            this.View_Label = new System.Windows.Forms.Label();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -1055,13 +1056,23 @@
             this.NewPlaylist_TextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewPlaylist_TextBox_KeyDown);
             this.NewPlaylist_TextBox.Leave += new System.EventHandler(this.NewPlaylist_TextBox_Leave);
             // 
+            // View_Label
+            // 
+            this.View_Label.AutoSize = true;
+            this.View_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.View_Label.Location = new System.Drawing.Point(177, 32);
+            this.View_Label.Name = "View_Label";
+            this.View_Label.Size = new System.Drawing.Size(109, 35);
+            this.View_Label.TabIndex = 23;
+            this.View_Label.Text = "Songs";
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.View_Label);
             this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.artistLabel);
@@ -1087,6 +1098,7 @@
             this.Controls.Add(this.Artist_Song_View);
             this.Controls.Add(this.Search_View);
             this.Controls.Add(this.Songs_View);
+            this.Controls.Add(this.Albums_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
@@ -1224,6 +1236,7 @@
         private System.Windows.Forms.ColumnHeader Playlist_Album;
         private System.Windows.Forms.ColumnHeader Playlist_Artist;
         private System.Windows.Forms.ColumnHeader Playlist_Length;
+        private System.Windows.Forms.Label View_Label;
     }
 }
 

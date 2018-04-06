@@ -326,6 +326,8 @@ namespace BearPlayer
             // Clicking on artist view
             if (e.Node.Text.Equals("Artists"))
             {
+                View_Label.Text = "Artists";
+
                 Artist_View.Visible = true;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -342,6 +344,8 @@ namespace BearPlayer
             // Clicking on album view
             else if (e.Node.Text.Equals("Albums"))
             {
+                View_Label.Text = "Albums";
+
                 Artist_View.Visible = false;
                 Albums_View.Visible = true;
                 Album_Song_View.Visible = false;
@@ -358,6 +362,8 @@ namespace BearPlayer
             // Clicking on song view
             else if (e.Node.Text.Equals("Songs"))
             {
+                View_Label.Text = "Songs";
+
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Album_Song_View.Visible = false;
@@ -374,6 +380,8 @@ namespace BearPlayer
             // Clicking on play queue view
             else if (e.Node.Text.Equals("Queue"))
             {
+                View_Label.Text = "Queue";
+
                 Artist_View.Visible = false;
                 Albums_View.Visible = false;
                 Songs_View.Visible = false;
@@ -390,7 +398,20 @@ namespace BearPlayer
             // Clicking on playlist view
             else if (e.Node.Text.Equals("Playlists"))
             {
-                // Action?
+                View_Label.Text = "Playlists";
+
+                Artist_View.Visible = false;
+                Albums_View.Visible = false;
+                Album_Song_View.Visible = false;
+                Songs_View.Visible = false;
+                Playlists_View.Visible = true;
+                Artist_Song_View.Visible = false;
+                Search_View.Visible = false;
+                Queue_View.Visible = false;
+                NewPlaylist_Panel.Visible = false;
+
+                curr_view = view.Playlists;
+                curr_list_box = Playlist_List;
             }
 
             // Clilcking on playlist view
@@ -404,6 +425,8 @@ namespace BearPlayer
                 foreach (string playlist in Playlist_Names)
                     if (playlist.Equals(e.Node.Text))
                     {
+                        View_Label.Text = playlist;
+
                         Artist_View.Visible = false;
                         Albums_View.Visible = false;
                         Album_Song_View.Visible = false;
@@ -413,7 +436,9 @@ namespace BearPlayer
                         Search_View.Visible = false;
                         Queue_View.Visible = false;
                         NewPlaylist_Panel.Visible = false;
+
                         curr_view = view.Playlists;
+                        curr_list_box = Playlist_List;
                     }
             }
 
@@ -1223,7 +1248,7 @@ namespace BearPlayer
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
                 // If name already exists, abort process
-                if (s.Equals(new_playlist))
+                if (s.Equals(new_playlist) || new_playlist.Equals("New Playlist"))
                 {
                     MessageBox.Show("Error - playlist already exists");
                     return;
