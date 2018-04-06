@@ -143,6 +143,7 @@
             this.Playlist_Song_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist_Song_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.MenuBar.SuspendLayout();
+            this.addToPlaylistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
             this.Albums_View.SuspendLayout();
@@ -186,6 +187,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newPlaylistToolStripMenuItem,
+            this.addToPlaylistToolStripMenuItem,
             this.importToolStripMenuItem,
             this.importSongToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -1109,6 +1111,12 @@
             this.Playlist_Song_Length.Text = "Length";
             this.Playlist_Song_Length.Width = 142;
             // 
+            // addToPlaylistToolStripMenuItem
+            // 
+            this.addToPlaylistToolStripMenuItem.Name = "addToPlaylistToolStripMenuItem";
+            this.addToPlaylistToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.addToPlaylistToolStripMenuItem.Text = "Add to Playlist";
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1291,6 +1299,7 @@
         private System.Windows.Forms.ColumnHeader Playlist_Album;
         private System.Windows.Forms.ColumnHeader Playlist_Artist;
         private System.Windows.Forms.ColumnHeader Playlist_Length;
+        private ToolStripMenuItem addToPlaylistToolStripMenuItem;
     }
 }
 
