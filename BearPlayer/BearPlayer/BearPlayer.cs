@@ -24,6 +24,7 @@ namespace BearPlayer
         public int blink_count;
         public string songName;
         public int songctr;
+        public string curr_playlist;
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -72,6 +73,7 @@ namespace BearPlayer
             curr_view = view.Songs;
             curr_list_box = Song_List;
 
+            curr_playlist = null;
             curr_song = null;
             song_selected = false;
             blink_count = 0;
@@ -79,7 +81,7 @@ namespace BearPlayer
             search_entry = "";
             shuffle = false;
             repeat_type = Repeat_Type.Off;
-            found = false;
+            found = false;     
         }
 
 
@@ -91,6 +93,7 @@ namespace BearPlayer
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
+            SideBar.NodeMouseClick += new TreeNodeMouseClickEventHandler(SideBar_PlaylistClick);
 
         }
 
@@ -495,7 +498,6 @@ namespace BearPlayer
             else if (e.Node.Text.Equals("Queue"))
                 Change_QueueView();
 
-
             // Clicking on playlist view
             else if (e.Node.Text.Equals("Playlists"))
                 Change_PlaylistView();
@@ -509,38 +511,6 @@ namespace BearPlayer
                 Change_UserPlaylistView(e.Node.Text);
         }
 
-
-        // Method for switching to list view on menu bar
-        private void SongViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Artist_View.Visible = false;
-            Albums_View.Visible = false;
-            Songs_View.Visible = true;
-            Playlists_View.Visible = false;
-            Search_View.Visible = false;
-            Queue_View.Visible = false;
-            Artist_Song_View.Visible = false;
-            Album_Song_View.Visible = false;
-            NewPlaylist_Panel.Visible = false;
-            Playlist_Song_Panel.Visible = false;
-            curr_view = view.Songs;
-        }
-
-        // Method for switching to album view using menu bar
-        private void AlbumViewToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Artist_View.Visible = false;
-            Search_View.Visible = false;
-            Albums_View.Visible = true;
-            Songs_View.Visible = false;
-            Playlists_View.Visible = false;
-            Queue_View.Visible = false;
-            Artist_Song_View.Visible = false;
-            Album_Song_View.Visible = false;
-            NewPlaylist_Panel.Visible = false;
-            Playlist_Song_Panel.Visible = false;
-            curr_view = view.Albums;
-        }
 
         // Method for switching to song list within artist view 
         private void Artist_List_SelectedIndexChanged(object sender, EventArgs e)
@@ -723,6 +693,7 @@ namespace BearPlayer
             {
                 Add_New_Playlist(NewPlaylist_TextBox.Text);
                 NewPlaylist_Panel.Visible = false;
+                update_list_disp();
             }
         }
 
@@ -731,6 +702,7 @@ namespace BearPlayer
         private void NewPlaylist_CancelButton_Click(object sender, EventArgs e)
         {
             NewPlaylist_Panel.Visible = false;
+            update_list_disp();
         }
 
 
@@ -1298,14 +1270,17 @@ namespace BearPlayer
             else if (curr_view == view.Playlists)
             {
                 foreach(string name in Playlist_Names)
-                {
-                    curr_list_box.Items.Add(name);
+                { 
+                    //MessageBox.Show(name);
+                    
+                    
                 }
             }
 
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
+                
 
 
                 // POPULATE LIST 
@@ -1678,7 +1653,10 @@ namespace BearPlayer
             // Searches for name in list of playlists already created
             foreach (string s in Playlist_Names)
                 if (s.Equals(playlist_name))
+                {
                     View_Label.Text = s;
+                    curr_playlist = s;
+                }
 
             Artist_View.Visible = false;
             Albums_View.Visible = false;
@@ -1701,6 +1679,11 @@ namespace BearPlayer
         public enum view { Albums, Artists, Songs, Playlists, Playlists_Song, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
+        private void Playlist_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show(curr_list_box.SelectedItems[0].ToString());
+        }
 
 
         //dequeue for queue

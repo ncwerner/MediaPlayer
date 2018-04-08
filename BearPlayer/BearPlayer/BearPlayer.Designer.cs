@@ -253,14 +253,14 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // getInfoToolStripMenuItem
             // 
             this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.getInfoToolStripMenuItem.Text = "Get Info";
             // 
             // viewToolStripMenuItem
@@ -699,6 +699,7 @@
             this.Playlist_List.TabIndex = 0;
             this.Playlist_List.UseCompatibleStateImageBehavior = false;
             this.Playlist_List.View = System.Windows.Forms.View.Details;
+            this.Playlist_List.SelectedIndexChanged += new System.EventHandler(this.Playlist_List_SelectedIndexChanged);
             // 
             // PlaylistList
             // 
@@ -1154,6 +1155,7 @@
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
             this.Controls.Add(this.SideBar);
+            this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Artist_View);
             this.Controls.Add(this.Album_Song_View);
@@ -1162,7 +1164,6 @@
             this.Controls.Add(this.Songs_View);
             this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.Albums_View);
-            this.Controls.Add(this.Playlists_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
