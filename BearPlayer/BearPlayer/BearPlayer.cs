@@ -1079,7 +1079,7 @@ namespace BearPlayer
 
 
         //adds a song to the maps 
-        private void add_new_song(string path)
+        public void add_new_song(string path)
         {
             try
             {
@@ -1888,10 +1888,16 @@ namespace BearPlayer
                     }
                 }
             }
+            create_new_user(promptValue);
+            
+        }
+
+        public void create_new_user( string user_name)
+        {
             using (System.IO.StreamWriter file =
             new System.IO.StreamWriter(user_file_loc, true))
             {
-                file.WriteLine(promptValue);
+                file.WriteLine(user_name);
                 file.WriteLine(default_side_color.ToArgb());
                 file.WriteLine(default_center_color.ToArgb());
                 file.WriteLine(default_bottom_color.ToArgb());
@@ -1999,6 +2005,7 @@ namespace BearPlayer
             user = Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names );
             open_user_settings(lines, user_names);
         }
+        
 
         public void open_user_settings(string[] all_lines, string[] all_users)
         {
