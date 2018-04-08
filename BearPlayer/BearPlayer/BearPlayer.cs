@@ -1339,12 +1339,20 @@ namespace BearPlayer
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
-                string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Owner\Documents\SCHOOL\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\" + curr_playlist + ".txt");
-                foreach (string line in lines)
+                if (File.Exists(curr_playlist + ".txt"))
                 {
-                    TagLib.File file = TagLib.File.Create(line);
-                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
+                    string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Owner\Documents\SCHOOL\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\" + curr_playlist + ".txt");
+                    foreach (string line in lines)
+                    {
+                        TagLib.File file = TagLib.File.Create(line);
+                        curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
+                    }
                 }
+                else
+                {
+                    //ignore
+                }
+                
             }
 
             // Seach Display
@@ -1547,6 +1555,10 @@ namespace BearPlayer
             ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
             subItem.Click += new EventHandler(addToPlaylist);
+
+            //add playlist as text file
+            StreamWriter sw = new StreamWriter(new_playlist + ".txt");
+            sw.Close();
         }
         
         //Add songs to playlist
