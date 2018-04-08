@@ -637,6 +637,22 @@ namespace Sprint_UnitTests
                 Assert.AreEqual(play_queue.ElementAt(i), i.ToString());
         }
 
+        [TestMethod]
+        public void Test_Add_User()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            string name = "dan";
+
+            // Act
+            player.create_new_user(name);
+
+            // Assert
+            string[] users = player.get_all_users(player.get_all_user_lines());
+            Assert.AreEqual(users[0], name);
+
+        }
+
 
     }
 }
