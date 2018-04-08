@@ -635,6 +635,15 @@ namespace BearPlayer
                 list_item_selected();
         }
 
+        private void Song_List_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (Song_List.Sorting == SortOrder.None || Song_List.Sorting == SortOrder.Descending)
+                Song_List.Sorting = SortOrder.Ascending;
+            else if (Song_List.Sorting == SortOrder.Ascending)
+                Song_List.Sorting = SortOrder.Descending;
+            list_item_selected();
+        }
+
 
         // SEARCH BAR:
 
@@ -820,7 +829,7 @@ namespace BearPlayer
             {
                 //MessageBox.Show("Right click");
                 ContextMenu cm = new ContextMenu();
-                cm.MenuItems.Add("Play");
+                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
                 cm.MenuItems.Add("Play Next");
                 cm.MenuItems.Add("Play Later");
                 cm.MenuItems.Add("Get Tags");
@@ -829,6 +838,37 @@ namespace BearPlayer
                 Song_List.ContextMenu = cm;
             }
 
+        }
+        private void Album_Song_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //MessageBox.Show("Right click");
+                ContextMenu cm = new ContextMenu();
+                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
+                cm.MenuItems.Add("Play Next");
+                cm.MenuItems.Add("Play Later");
+                cm.MenuItems.Add("Get Tags");
+                cm.MenuItems.Add("Add to Playlist");
+
+                Album_Song_List.ContextMenu = cm;
+            }
+        }
+
+        private void Artist_Song_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //MessageBox.Show("Right click");
+                ContextMenu cm = new ContextMenu();
+                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
+                cm.MenuItems.Add("Play Next");
+                cm.MenuItems.Add("Play Later");
+                cm.MenuItems.Add("Get Tags");
+                cm.MenuItems.Add("Add to Playlist");
+
+                Artist_Song_List.ContextMenu = cm;
+            }
         }
 
 
@@ -1137,10 +1177,23 @@ namespace BearPlayer
         //method that gets album artwork of file
         public void Store_AlbumArtwork(TagLib.File file)
         {
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            Artwork_List.ImageSize = new Size(200, 200);
-            Artwork_List.Images.Add(artwork);
+            try
+            {
+                MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+                Artwork_List.ImageSize = new Size(200, 200);
+                Artwork_List.Images.Add(artwork);
+            }
+            catch (ArgumentNullException ex)
+            {
+                //code specifically for a ArgumentNullException
+                Artwork_List.Images.Add(Image.FromFile(@"C:\BearPlayer\Resources\bear.png"));
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                //code specifically for a IndexOutOfRangeException
+                Artwork_List.Images.Add(Image.FromFile(@"C:\BearPlayer\Resources\bear.png"));
+            }
         }
         
         //gets song name of file
