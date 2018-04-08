@@ -93,8 +93,6 @@ namespace BearPlayer
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
-            SideBar.NodeMouseClick += new TreeNodeMouseClickEventHandler(SideBar_PlaylistClick);
-
         }
 
 
