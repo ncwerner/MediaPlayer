@@ -345,38 +345,38 @@
             // nextToolStripMenuItem
             // 
             this.nextToolStripMenuItem.Name = "nextToolStripMenuItem";
-            this.nextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nextToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.nextToolStripMenuItem.Text = "Next";
             this.nextToolStripMenuItem.Click += new System.EventHandler(this.nextToolStripMenuItem_Click);
             // 
             // previousToolStripMenuItem
             // 
             this.previousToolStripMenuItem.Name = "previousToolStripMenuItem";
-            this.previousToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.previousToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.previousToolStripMenuItem.Text = "Previous";
             this.previousToolStripMenuItem.Click += new System.EventHandler(this.previousToolStripMenuItem_Click);
             // 
             // scrubForwardToolStripMenuItem
             // 
             this.scrubForwardToolStripMenuItem.Name = "scrubForwardToolStripMenuItem";
-            this.scrubForwardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scrubForwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.scrubForwardToolStripMenuItem.Text = "Scrub Forward";
             // 
             // scrubBackwardToolStripMenuItem
             // 
             this.scrubBackwardToolStripMenuItem.Name = "scrubBackwardToolStripMenuItem";
-            this.scrubBackwardToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scrubBackwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.scrubBackwardToolStripMenuItem.Text = "Scrub Backward";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(169, 6);
             // 
             // shuffleToolStripMenuItem
             // 
             this.shuffleToolStripMenuItem.Name = "shuffleToolStripMenuItem";
-            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.shuffleToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.shuffleToolStripMenuItem.Text = "Shuffle";
             this.shuffleToolStripMenuItem.Click += new System.EventHandler(this.shuffleToolStripMenuItem_Click);
             // 
@@ -387,46 +387,46 @@
             this.repeatOneToolStripMenuItem,
             this.repeatAllToolStripMenuItem});
             this.repeatToolStripMenuItem.Name = "repeatToolStripMenuItem";
-            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.repeatToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.repeatToolStripMenuItem.Text = "Repeat";
             // 
             // noRepeatToolStripMenuItem
             // 
             this.noRepeatToolStripMenuItem.Name = "noRepeatToolStripMenuItem";
-            this.noRepeatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.noRepeatToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.noRepeatToolStripMenuItem.Text = "No Repeat";
             this.noRepeatToolStripMenuItem.Click += new System.EventHandler(this.noRepeatToolStripMenuItem_Click);
             // 
             // repeatOneToolStripMenuItem
             // 
             this.repeatOneToolStripMenuItem.Name = "repeatOneToolStripMenuItem";
-            this.repeatOneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.repeatOneToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.repeatOneToolStripMenuItem.Text = "Repeat One";
             this.repeatOneToolStripMenuItem.Click += new System.EventHandler(this.repeatOneToolStripMenuItem_Click);
             // 
             // repeatAllToolStripMenuItem
             // 
             this.repeatAllToolStripMenuItem.Name = "repeatAllToolStripMenuItem";
-            this.repeatAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.repeatAllToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.repeatAllToolStripMenuItem.Text = "Repeat All";
             this.repeatAllToolStripMenuItem.Click += new System.EventHandler(this.repeatAllToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(169, 6);
             // 
             // volumeUpToolStripMenuItem
             // 
             this.volumeUpToolStripMenuItem.Name = "volumeUpToolStripMenuItem";
-            this.volumeUpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.volumeUpToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.volumeUpToolStripMenuItem.Text = "Volume Up ";
             this.volumeUpToolStripMenuItem.Click += new System.EventHandler(this.volumeUpToolStripMenuItem_Click);
             // 
             // volumeDownToolStripMenuItem
             // 
             this.volumeDownToolStripMenuItem.Name = "volumeDownToolStripMenuItem";
-            this.volumeDownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.volumeDownToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.volumeDownToolStripMenuItem.Text = "Volume Down";
             this.volumeDownToolStripMenuItem.Click += new System.EventHandler(this.volumeDownToolStripMenuItem_Click);
             // 
@@ -686,8 +686,10 @@
             // 
             // Playlist_List
             // 
+            this.Playlist_List.BackColor = System.Drawing.SystemColors.Window;
             this.Playlist_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PlaylistList});
+            this.Playlist_List.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.Playlist_List.FullRowSelect = true;
             this.Playlist_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_List.Name = "Playlist_List";
@@ -1150,7 +1152,6 @@
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.scrubBar);
             this.Controls.Add(this.SideBar);
-            this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Artist_View);
             this.Controls.Add(this.Album_Song_View);
@@ -1159,6 +1160,7 @@
             this.Controls.Add(this.Songs_View);
             this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.Playlists_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
