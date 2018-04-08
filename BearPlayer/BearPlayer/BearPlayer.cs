@@ -1331,16 +1331,12 @@ namespace BearPlayer
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
-                
-
-
-                // POPULATE LIST 
-                
-
-
-                // CAN USE LIST_COLUMN_INFO(FILE)
-
-
+                string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Owner\Documents\SCHOOL\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\" + curr_playlist + ".txt");
+                foreach (string line in lines)
+                {
+                    TagLib.File file = TagLib.File.Create(line);
+                    curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
+                }
             }
 
             // Seach Display
@@ -1713,7 +1709,7 @@ namespace BearPlayer
             Albums_View.Visible = false;
             Album_Song_View.Visible = false;
             Songs_View.Visible = false;
-            Playlists_View.Visible = true;
+            Playlists_View.Visible = false;
             Artist_Song_View.Visible = false;
             Search_View.Visible = false;
             Queue_View.Visible = false;
