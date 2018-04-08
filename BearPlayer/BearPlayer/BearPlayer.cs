@@ -104,12 +104,6 @@ namespace BearPlayer
         // Method for skipping to next song by clicking on next button
         private void next_button_Click(object sender, EventArgs e)
         {
-            /*if( playing_index < disp_song_paths.Count() - 1)
-            {
-                playing_index++;
-                play_new_song(disp_song_paths[playing_index]);
-                curr_list_box.SelectedIndex = playing_index;
-            }*/
             play_next_song();   // Call function to play next song
             update_list_disp();   // Update display after adjusting play queue
         }
@@ -117,13 +111,6 @@ namespace BearPlayer
         // Method for skipping to previous song by clicking on previous button
         private void previous_button_Click(object sender, EventArgs e)
         {
-            /*f (playing_index > 0)
-             {
-                 playing_index--;
-                 play_new_song(disp_song_paths[playing_index]);
-                 curr_list_box.SelectedIndex = playing_index;
-             }*/
-
             // If scrub bar is less than 5 seconds into song, go to previous song
             if (scrubBar.Value <= 5)
             {
@@ -142,6 +129,8 @@ namespace BearPlayer
             // Change shuffle picture based on toggle
             if (shuffle) shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
             else shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+
+            update_list_disp();
         }
 
         // Method for mouse click on repeat button
@@ -226,8 +215,128 @@ namespace BearPlayer
             }
         }
 
-        
-        // MENU BAR BUTTONS:
+
+        // MENU BAR:
+
+        // Method for creating new playlist from menu bar
+        private void newPlaylistToolStripMenuItem_Click(object sender, EventArgs e) { Change_NewPlaylistView();   }
+
+        // Method for searching for file in application from menu bar
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e) {  searchBar.Focus();   }
+
+        // Method for changing to artist view from menu bar
+        private void ArtistViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_ArtistView();
+        }
+
+        // Method for switching to album view using menu bar
+        private void albumViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_AlbumView();
+        }
+
+        // Method for switching to list view on menu bar
+        private void songViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_SongView();
+        }
+
+        // Method for changing to queue view from menu bar
+        private void QueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_QueueView();
+        }
+
+        // Method for changing to playlist view from menu bar
+        private void PlaylistViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_PlaylistView();
+        }
+
+        // Method for moving to next song in play queue from menu bar
+        private void nextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            play_next_song();
+            update_list_disp();
+        }
+
+        // Method for moving to previous song in play queue from menu bar
+        private void previousToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // If scrub bar is less than 5 seconds into song, go to previous song
+            if (scrubBar.Value <= 5)
+            {
+                play_prev_song();
+                update_list_disp();
+            }
+            // Else, if scrub bar is more than 5 seconds into song, restart song
+            else
+                play_song(song_map[curr_song]);
+        }
+
+        // Shuffle play queue from menu bar
+        private void shuffleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            shuffle = !shuffle;   // Adjust toggle
+            // Change shuffle picture based on toggle
+            if (shuffle) shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+            else shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+
+            update_list_disp();
+        }
+
+        // Method for changing repeat toggle to no repeat from menu bar
+        private void noRepeatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            repeat_type = Repeat_Type.Off;   // ... turn off repeat
+            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");   // Adjust image
+
+            update_list_disp();
+        }
+
+
+        // Method for changing repeat toggle to repeat one from menu bar
+        private void repeatOneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            repeat_type = Repeat_Type.Repeat_One;   // ... toggle to one repeat
+            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");   // Adjust image
+
+            // Adjust play queue to repeat one song
+            if (curr_song != null)
+            {
+                prev_songs.Clear();
+                queue.Clear();
+                queue.Push_Front(curr_song);
+            }
+
+            update_list_disp();
+        }
+
+        // Method for changing repeat toggle to repeat all from menu bar
+        private void repeatAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            repeat_type = Repeat_Type.Repeat_All;   // ... toggle to all repeat
+            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");   // Adjust image
+
+            // Adjust play queue to repeat entire queue
+            Dequeue temp = new Dequeue();
+            int c = prev_songs.Count();
+            for (int i = 0; i < c; i++)
+            {
+                temp.Push_Back(prev_songs.Pop());
+            }
+            for (int i = 0; i < c; i++)
+            {
+                queue.Push_Back(temp.Pop_Back());
+            }
+            if (c == 0 && queue.Count() == 0)
+            {
+                queue.Push_Back(curr_song);
+            }
+
+            update_list_disp();
+        }
 
         // Method for exiting program from menu bar (*IMPORTANT! NEVER, EVER REMOVE*)
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) {  this.Close();   }
@@ -337,140 +446,37 @@ namespace BearPlayer
         {
             // Clicking on artist view
             if (e.Node.Text.Equals("Artists"))
-            {
-                View_Label.Text = "Artists";
-
-                Artist_View.Visible = true;
-                Albums_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = false;
-                Search_View.Visible = false;
-                Artist_Song_View.Visible = false;
-                Queue_View.Visible = false;
-                NewPlaylist_Panel.Visible = false;
-                Playlist_Song_Panel.Visible = false;
-
-                curr_view = view.Artists;
-                curr_list_box = Artist_List;   // Change to artist list box
-            }
+                Change_ArtistView();
 
             // Clicking on album view
             else if (e.Node.Text.Equals("Albums"))
-            {
-                View_Label.Text = "Albums";
-
-                Artist_View.Visible = false;
-                Albums_View.Visible = true;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = false;
-                Search_View.Visible = false;
-                Artist_Song_View.Visible = false;
-                Queue_View.Visible = false;
-                NewPlaylist_Panel.Visible = false;
-                Playlist_Song_Panel.Visible = false;
-
-                curr_view = view.Albums;
-                curr_list_box = Album_List;  // Change to album list box
-            }
+                Change_AlbumView();
 
             // Clicking on song view
             else if (e.Node.Text.Equals("Songs"))
-            {
-                View_Label.Text = "Songs";
-
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = true;
-                Search_View.Visible = false;
-                Playlists_View.Visible = false;
-                Artist_Song_View.Visible = false;
-                Queue_View.Visible = false;
-                NewPlaylist_Panel.Visible = false;
-                Playlist_Song_Panel.Visible = false;
-
-                curr_view = view.Songs;
-                curr_list_box = Song_List;   // Change to song list box
-            }
+                Change_SongView();
 
             // Clicking on play queue view
             else if (e.Node.Text.Equals("Queue"))
-            {
-                View_Label.Text = "Queue";
+                Change_QueueView();
 
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = false;
-                Search_View.Visible = false;
-                Artist_Song_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Queue_View.Visible = true;
-                NewPlaylist_Panel.Visible = false;
-                Playlist_Song_Panel.Visible = false;
-
-                curr_view = view.Queue;
-                curr_list_box = Queue_List;   // Change to queue list box
-            }
 
             // Clicking on playlist view
             else if (e.Node.Text.Equals("Playlists"))
-            {
-                View_Label.Text = "Playlists";
-
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = true;
-                Artist_Song_View.Visible = false;
-                Search_View.Visible = false;
-                Queue_View.Visible = false;
-                NewPlaylist_Panel.Visible = false;
-                Playlist_Song_Panel.Visible = false;
-
-                curr_view = view.Playlists;
-                curr_list_box = Playlist_List;
-            }
+                Change_PlaylistView();
 
             // Clicking on playlist view
             else if (e.Node.Text.Equals("New Playlist"))
-            {
-                NewPlaylist_Panel.Visible = true;
-            }
-            
+                Change_NewPlaylistView();
+
             // Clicking on created playlist
             else
-            {
-                foreach (string playlist in Playlist_Names)
-                    if (playlist.Equals(e.Node.Text))
-                    {
-                        View_Label.Text = playlist;
-
-                        Artist_View.Visible = false;
-                        Albums_View.Visible = false;
-                        Album_Song_View.Visible = false;
-                        Songs_View.Visible = false;
-                        Playlists_View.Visible = true;
-                        Artist_Song_View.Visible = false;
-                        Search_View.Visible = false;
-                        Queue_View.Visible = false;
-                        NewPlaylist_Panel.Visible = false;
-                        Playlist_Song_Panel.Visible = true;
-
-                        curr_view = view.Playlists_Song;
-                        curr_list_box = Playlist_Song_List;
-                    }
-            }
-
-            update_list_disp();   // Update list with new view selected
+                Change_UserPlaylistView(e.Node.Text);
         }
 
 
         // Method for switching to list view on menu bar
-        private void ListViewToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SongViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Artist_View.Visible = false;
             Albums_View.Visible = false;
@@ -480,6 +486,8 @@ namespace BearPlayer
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
             Album_Song_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
             curr_view = view.Songs;
         }
 
@@ -494,6 +502,8 @@ namespace BearPlayer
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
             Album_Song_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
             curr_view = view.Albums;
         }
 
@@ -1296,6 +1306,7 @@ namespace BearPlayer
             }
         }
 
+
         public void fill_shuffled_queue(string start_name)
         {
             queue.Clear();
@@ -1328,6 +1339,7 @@ namespace BearPlayer
                 queue.Push_Back(s);
             }
         }
+
 
         //fills queue with selected song and all following songs,takes a song name
         public void fill_unshuffled_queue(string start_name)
@@ -1403,10 +1415,159 @@ namespace BearPlayer
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
         }
 
+        // Method for changing display to artist view
+        private void Change_ArtistView()
+        {
+            View_Label.Text = "Artists";
+
+            Artist_View.Visible = true;
+            Albums_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Search_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Queue_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
+
+            curr_view = view.Artists;
+            curr_list_box = Artist_List;   // Change to artist list box
+
+            update_list_disp();
+        }
+
+        // Method for changing display to album view
+        private void Change_AlbumView()
+        {
+            View_Label.Text = "Albums";
+
+            Artist_View.Visible = false;
+            Albums_View.Visible = true;
+            Album_Song_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Search_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Queue_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
+
+            curr_view = view.Albums;
+            curr_list_box = Album_List;  // Change to album list box
+
+            update_list_disp();
+        }
+
+        // Method for changing display to song view
+        private void Change_SongView()
+        {
+            // Clicking on song view
+            View_Label.Text = "Songs";
+
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Songs_View.Visible = true;
+            Search_View.Visible = false;
+            Playlists_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Queue_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
+
+            curr_view = view.Songs;
+            curr_list_box = Song_List;   // Change to song list box
+
+            update_list_disp();
+        }
+
+        // Method for changing display to queue view
+        private void Change_QueueView()
+        {
+            View_Label.Text = "Queue";
+
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Search_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Queue_View.Visible = true;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
+
+            curr_view = view.Queue;
+            curr_list_box = Queue_List;   // Change to queue list box
+
+            update_list_disp();
+        }
+
+        // Method for changing display to playlist view
+        private void Change_PlaylistView()
+        {
+            View_Label.Text = "Playlists";
+
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = true;
+            Artist_Song_View.Visible = false;
+            Search_View.Visible = false;
+            Queue_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = false;
+
+            curr_view = view.Playlists;
+            curr_list_box = Playlist_List;
+
+            update_list_disp();
+        }
+
+        // Method for changing display to create new playlist view
+        private void Change_NewPlaylistView()
+        {
+            NewPlaylist_Panel.Visible = true;
+        }
+
+        // Method for changing display to user-created playlist view. 
+        private void Change_UserPlaylistView(string playlist_name)
+        {
+            // Searches for name in list of playlists already created
+            foreach (string s in Playlist_Names)
+                if (s.Equals(playlist_name))
+                    View_Label.Text = s;
+
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = true;
+            Artist_Song_View.Visible = false;
+            Search_View.Visible = false;
+            Queue_View.Visible = false;
+            NewPlaylist_Panel.Visible = false;
+            Playlist_Song_Panel.Visible = true;
+
+            curr_view = view.Playlists_Song;
+            curr_list_box = Playlist_Song_List;
+
+            update_list_disp();
+        }
+
 
         public enum view { Albums, Artists, Songs, Playlists, Playlists_Song, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
+      
+
+
+
+
+
 
 
         //dequeue for queue
