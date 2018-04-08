@@ -22,6 +22,7 @@ namespace BearPlayer
         public string curr_song;
         public bool song_selected;
         public int blink_count;
+        public string songName;
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -88,7 +89,7 @@ namespace BearPlayer
         {
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
-
+            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
 
         }
 
@@ -1413,6 +1414,42 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+        }
+        
+        //Add songs to playlist
+        public void addSongToPlaylist(string fileName, string playListName) //takes in the file name of the song
+        {
+            string songUrl = song_map[fileName];
+            Console.WriteLine(songUrl);
+            if(File.Exists(playListName + ".txt"))
+            {
+                using (var tw = new StreamWriter(playListName + ".txt", true))
+                {
+                    tw.WriteLine(songUrl);
+                    tw.Close();
+                }
+            }
+            else
+            {
+                StreamWriter sw = new StreamWriter(playListName + ".txt");
+                sw.WriteLine(songUrl);
+                sw.Close();
+            }
+            
+        }
+        //add to playlist menu button
+        private void addToPlaylist(object sender, EventArgs e)
+        {
+            addSongToPlaylist(songName, sender.ToString());
+        }
+
+        private void song_list_ItemActivate(Object sender, EventArgs e)
+        {
+            if (curr_list_box.SelectedIndices.Count <= 0) return;
+            int i = curr_list_box.SelectedIndices[0];
+            songName = curr_list_box.Items[i].Text.ToString();
+            //songName = curr_list_box.SelectedItems.ToString();
+            Console.WriteLine(songName);
         }
 
         // Method for changing display to artist view
