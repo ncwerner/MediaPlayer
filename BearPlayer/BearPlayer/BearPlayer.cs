@@ -48,6 +48,13 @@ namespace BearPlayer
 
         public List<string> Playlist_Names = new List<string>();    // List of all playlist names
 
+        //users, goes in order name, sidebar, center, top
+        public int fields = 4;
+        public Color default_side_color = Color.DodgerBlue;
+        public Color default_center_color = Color.White;
+        public Color default_bottom_color = Color.White;
+        string user_file_loc = @"C:\BearPlayer\Resources\Users.txt";
+        string user = "";
 
         /* --- CONSTRUCTOR --- */
         public Bear_Player()
@@ -70,6 +77,7 @@ namespace BearPlayer
             Playlists_View.Visible = false;
             Artist_Song_View.Visible = false;
             Queue_View.Visible = false;
+            Options_Panel.Visible = false;
             curr_view = view.Songs;
             curr_list_box = Song_List;
 
@@ -497,10 +505,6 @@ namespace BearPlayer
                 Change_QueueView();
 
             // Clicking on playlist view
-            else if (e.Node.Text.Equals("Playlists"))
-                Change_PlaylistView();
-
-            // Clicking on playlist view
             else if (e.Node.Text.Equals("New Playlist"))
                 Change_NewPlaylistView();
 
@@ -522,7 +526,8 @@ namespace BearPlayer
             Queue_View.Visible = false;
             Artist_Song_View.Visible = true;
             Album_Song_View.Visible = false;
-        
+            Options_Panel.Visible = false;
+
             selected_artist = curr_list_box.SelectedItems[0].Text;
             curr_view = view.Artist_Song;
             curr_list_box = Artist_Song_List;
@@ -542,6 +547,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             Artist_Song_View.Visible = false;
             Album_Song_View.Visible = true;
+            Options_Panel.Visible = false;
 
             selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
             curr_view = view.Album_Song;
@@ -662,6 +668,8 @@ namespace BearPlayer
                 Queue_View.Visible = false;
                 Artist_Song_View.Visible = false;
                 Album_Song_View.Visible = false;
+                Options_Panel.Visible = false;
+                Options_Panel.Visible = false;
 
                 curr_view = view.Search;
                 curr_list_box = Search_List;
@@ -1010,7 +1018,7 @@ namespace BearPlayer
 
 
         //pushes cure song to the front of queue, make curr song the pop of the stack 
-        public void play_prev_song()
+        public void play_prev_song() 
         {
             if( repeat_type == Repeat_Type.Repeat_One)
             {
@@ -1732,6 +1740,297 @@ namespace BearPlayer
             MessageBox.Show(curr_list_box.SelectedItems[0].ToString());
         }
 
+
+        private void sidebar_color_button_Click(object sender, EventArgs e) {
+            if (sidebar_color_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                set_sidebar_color(sidebar_color_dialog.Color);
+
+                if (user.Equals("")) return;
+
+                string[] lines = get_all_user_lines();
+                string[] users = get_all_users(lines);
+
+                int index = 0;
+                for (int i = 0; i < users.Length; i++)
+                {
+                    if (user.Equals(users[i]))
+                    {
+                        index = i * fields;
+                        break;
+                    }
+                }
+                lines[index + 1] = sidebar_color_dialog.Color.ToArgb().ToString();
+                System.IO.File.WriteAllLines(user_file_loc, lines);
+            }
+        }
+
+        private void optionToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Artist_View.Visible = false;
+            Albums_View.Visible = false; 
+            Search_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Options_Panel.Visible = true;
+            View_Label.Text = "Options";
+        }
+
+        private void center_color_button_Click(object sender, EventArgs e)
+        {
+            if (sidebar_color_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                set_center_color(sidebar_color_dialog.Color);
+
+                if (user.Equals("")) return;
+
+                string[] lines = get_all_user_lines();
+                string[] users = get_all_users(lines);
+
+                int index = 0;
+                for (int i = 0; i < users.Length; i++)
+                {
+                    if (user.Equals(users[i]))
+                    {
+                        index = i * fields;
+                        break;
+                    }
+                }
+                lines[index + 2] = sidebar_color_dialog.Color.ToArgb().ToString();
+                System.IO.File.WriteAllLines(user_file_loc, lines);
+            }
+        }
+
+        private void buttom_color_button_Click(object sender, EventArgs e)
+        {
+            if (sidebar_color_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                set_bottom_color(sidebar_color_dialog.Color);
+
+                if (user.Equals("")) return;
+
+                string[] lines = get_all_user_lines();
+                string[] users = get_all_users(lines);
+
+                int index = 0;
+                for (int i = 0; i < users.Length; i++)
+                {
+                    if (user.Equals(users[i]))
+                    {
+                        index = i * fields;
+                        break;
+                    }
+                }
+                lines[index + 3] = sidebar_color_dialog.Color.ToArgb().ToString();
+                System.IO.File.WriteAllLines(user_file_loc, lines);
+            }
+        }
+
+        private void set_sidebar_color(Color c)
+        {
+            SideBar.BackColor = c;
+            MenuBar.BackColor = c;
+            text_color = c;
+        }
+
+        private void set_center_color(Color c)
+        {
+            Artist_View.BackColor = c;
+            Albums_View.BackColor = c;
+            Search_View.BackColor = c;
+            Songs_View.BackColor = c;
+            Playlists_View.BackColor = c;
+            Queue_View.BackColor = c;
+            Artist_Song_View.BackColor = c;
+            Album_Song_View.BackColor = c;
+            Options_Panel.BackColor = c;
+
+            Album_List.BackColor = c;
+            Album_Song_List.BackColor = c;
+            Artist_List.BackColor = c;
+            Artist_Song_List.BackColor = c;
+            Playlist_List.BackColor = c;
+            Queue_List.BackColor = c;
+            Song_List.BackColor = c;
+
+            this.BackColor = c;
+        }
+
+        private void set_bottom_color(Color c)
+        {
+            bottom_panel.BackColor = c;
+        }
+
+        private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool dup = true;
+            string promptValue = "";
+            while (dup)
+            {
+                dup = false;
+                while (promptValue.Equals(""))
+                {
+                    promptValue = Prompt.ShowDialog("Please input new User Name", "New User");
+                }
+                string[] lines = System.IO.File.ReadAllLines(user_file_loc);
+                int num_users = lines.Length / fields;
+                string[] user_names = new String[num_users];
+                for (int i = 0; i < num_users && !dup; i++)
+                {
+                    if (promptValue.Equals(lines[i * fields]))
+                    {
+                        dup = true;
+                        MessageBox.Show("User Name already taken", "Error");
+                        break;
+                    }
+                }
+            }
+            using (System.IO.StreamWriter file =
+            new System.IO.StreamWriter(user_file_loc, true))
+            {
+                file.WriteLine(promptValue);
+                file.WriteLine(default_side_color.ToArgb());
+                file.WriteLine(default_center_color.ToArgb());
+                file.WriteLine(default_bottom_color.ToArgb());
+            }
+        }
+
+        public static class Prompt
+        {
+            public static string ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 300,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
+                TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 240, Text = "" };
+                Button confirmation = new Button() { Text = "Ok", Left = 100, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+                confirmation.Click += (sender, e) => { if (textBox.Text.Equals("")) { MessageBox.Show("Not Valid Name: Empty", "Error"); }  prompt.Close();  };
+                prompt.Controls.Add(textBox);
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? textBox.Text : "";
+            }
+
+        }
+
+        public static class Radio_Prompt
+        {
+            static RadioButton selectedrb = null;
+            public static string ShowDialog(string text, string caption, string[] options)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 300,
+                    Height = 300,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
+
+                int len = options.Length;
+                prompt.Height = 150 + len * 20;
+                RadioButton[] rads = new RadioButton[len];
+                for (int i = 0; i < len; i++)
+                {
+                    rads[i] = new RadioButton() { Left = 20, Top = 50 + 20 * i, AutoSize = true, Text = options[i], Checked = false };
+                    rads[i].CheckedChanged += new EventHandler(RadioButton_CheckedChanged);
+                }
+                rads[0].Checked = true;
+                Button confirmation = new Button() { Text = "Ok", Left = 50, Width = 100, Top = 70 + 20 * len, DialogResult = DialogResult.OK };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                foreach( RadioButton r in rads)
+                {
+                    prompt.Controls.Add(r);
+                }
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? getSelectedRB() : "";
+            }
+
+            public static void RadioButton_CheckedChanged(object sender, EventArgs e)
+            {
+                RadioButton rb = sender as RadioButton;
+
+                if (rb == null)
+                {
+                    MessageBox.Show("Sender is not a RadioButton");
+                    return;
+                }
+
+                // Ensure that the RadioButton.Checked property
+                // changed to true.
+                if (rb.Checked)
+                {
+                    // Keep track of the selected RadioButton by saving a reference
+                    // to it.
+                    selectedrb = rb;
+                }
+            }
+
+            public static string getSelectedRB()
+            {
+                return selectedrb.Text;
+            }
+        }
+
+        private void switchUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] lines = get_all_user_lines();
+            string[] user_names = get_all_users(lines);
+            if( user_names.Length == 0)
+            {
+                MessageBox.Show("No Users", "Error");
+                return;
+            }
+            user = Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names );
+            open_user_settings(lines, user_names);
+        }
+
+        public void open_user_settings(string[] all_lines, string[] all_users)
+        {
+            int index = 0;
+            for( int i = 0; i < all_users.Length; i++)
+            {
+                if (user.Equals(all_users[i]))
+                {
+                    index = i * fields;
+                    break;
+                }
+            }
+            set_sidebar_color( Color.FromArgb( Int32.Parse(all_lines[index + 1]) ) );
+            set_center_color(Color.FromArgb(Int32.Parse(all_lines[index + 2] )));
+            set_bottom_color(Color.FromArgb(Int32.Parse(all_lines[index + 3])));
+        }
+
+        public string[] get_all_user_lines()
+        {
+            return System.IO.File.ReadAllLines(user_file_loc);
+        }
+
+        public string[] get_all_users(string[] all_lines)
+        {
+            int num_users = all_lines.Length / fields;
+            string[] user_names = new String[num_users];
+            for (int i = 0; i < num_users; i++)
+            {
+                user_names[i] = all_lines[i * fields];
+            }
+            return user_names;
+        }
 
         //dequeue for queue
         public class Dequeue
