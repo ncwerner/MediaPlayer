@@ -253,14 +253,14 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // getInfoToolStripMenuItem
             // 
             this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.getInfoToolStripMenuItem.Text = "Get Info";
             // 
             // viewToolStripMenuItem
@@ -600,6 +600,7 @@
             this.Song_List.TabIndex = 0;
             this.Song_List.UseCompatibleStateImageBehavior = false;
             this.Song_List.View = System.Windows.Forms.View.Details;
+            this.Song_List.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.Song_List_ColumnClick);
             this.Song_List.Click += new System.EventHandler(this.Song_List_Click);
             this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
             this.Song_List.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Song_List_MouseDown);
@@ -772,6 +773,7 @@
             this.Artist_Song_List.View = System.Windows.Forms.View.Details;
             this.Artist_Song_List.Click += new System.EventHandler(this.Artist_Song_List_Click);
             this.Artist_Song_List.DoubleClick += new System.EventHandler(this.Artist_Song_List_SelectedIndexChanged);
+            this.Artist_Song_List.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Artist_Song_List_MouseDown);
             // 
             // ArtistList_Title
             // 
@@ -944,6 +946,7 @@
             this.Album_Song_List.View = System.Windows.Forms.View.Details;
             this.Album_Song_List.Click += new System.EventHandler(this.Album_Song_List_Click);
             this.Album_Song_List.DoubleClick += new System.EventHandler(this.Album_Song_List_SelectedIndexChanged);
+            this.Album_Song_List.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Album_Song_List_MouseDown);
             // 
             // AlbumSong_Title
             // 
