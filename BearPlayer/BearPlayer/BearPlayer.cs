@@ -1516,6 +1516,7 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+            subItem.Click += new EventHandler(addToPlaylist);
         }
         
         //Add songs to playlist
