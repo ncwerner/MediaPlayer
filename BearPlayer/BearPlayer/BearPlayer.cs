@@ -23,6 +23,7 @@ namespace BearPlayer
         public bool song_selected;
         public int blink_count;
         public string songName;
+        public int songctr;
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -440,7 +441,40 @@ namespace BearPlayer
             song_time.Enabled = true;
         }
 
+        // Method for scrubbing forward using the toolbar
+        private void scrubForwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!play)
+            {
+                if (scrubBar.Maximum - scrubBar.Value <= 10)
+                {
+                    scrubBar.Value = scrubBar.Maximum - 1;
+                }
+                else
+                {
+                    scrubBar.Value += 10;
+                }
 
+                Player.controls.currentPosition = scrubBar.Value;
+            }
+        }
+
+        // Method for scrubbing back using the toolbar
+        private void scrubBackwardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!play)
+            {
+                if (scrubBar.Value <= 10)
+                {
+                    scrubBar.Value = 0;
+                }
+                else
+                {
+                    scrubBar.Value -= 10;
+                }
+                Player.controls.currentPosition = scrubBar.Value;
+            }
+        }
         // VIEWS:
 
         void SideBar_MouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -1011,54 +1045,122 @@ namespace BearPlayer
             string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
             foreach (string s in songs)
             {
-                TagLib.File file = TagLib.File.Create(s);
+                try
+                {
+                    TagLib.File file = TagLib.File.Create(s);
 
-                add_new_song(s);
+                    add_new_song(s);
+                }
+                catch (TagLib.CorruptFileException e)
+                {
+                    MessageBox.Show(s + "is corrupt");
+                }
             }
             update_list_disp();
         }
 
 
-        //adds a song too the maps 
-        public void add_new_song(string path)
+        //adds a song to the maps 
+        private void add_new_song(string path)
         {
-            TagLib.File file = TagLib.File.Create(path);
-
-            if (!song_map.ContainsKey(getSongName(file))) //if not in map add it
+            try
             {
-                song_map.Add(getSongName(file), path);
-            }
-            else
-            {
-                song_map[getSongName(file)] = path;      //if in map make update its url to the new one
-            }
-
-            if (!album_map.ContainsKey(getAlbumName(file))) //if album not in map, make that key and assign it to a new list containing added song
-            {
-                List<string> new_list = new List<string>();
-                new_list.Add(path);
-                album_map.Add(getAlbumName(file), new_list);
-                Store_AlbumArtwork(file);   // Add image artwork to image list
-            }
-            else
-            {
-                album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
-            }
-            foreach (string art in file.Tag.Performers)
-            {
-                if (!artist_map.ContainsKey(art))
+                TagLib.File file = TagLib.File.Create(path);
+                try
                 {
-                    List<string> new_list = new List<string>();
-                    new_list.Add(path);
-                    artist_map.Add(art, new_list);
+                    if (!song_map.ContainsKey(getSongName(file))) //if not in map add it
+                    {
+                        song_map.Add(getSongName(file), path);
+                    }
+                    else
+                    {
+                        song_map[getSongName(file)] = path;      //if in map make update its url to the new one
+                    }
                 }
-                else
+                catch (ArgumentNullException e)
                 {
-                    artist_map[art].Add(path);
+
+                    file.Tag.Title = "Unknown Song" + songctr++.ToString();
+                    if (!song_map.ContainsKey(path)) //if not in map add it
+                    {
+                        song_map.Add(path, path);
+                    }
+                    else
+                    {
+                        song_map[path] = path;      //if in map make update its url to the new one
+                    }
+
                 }
+
+
+                try
+                {
+                    if (!album_map.ContainsKey(getAlbumName(file))) //if album not in map, make that key and assign it to a new list containing added song
+                    {
+                        List<string> new_list = new List<string>();
+                        new_list.Add(path);
+                        album_map.Add(getAlbumName(file), new_list);
+                        Store_AlbumArtwork(file);   // Add image artwork to image list
+                    }
+                    else
+                    {
+                        album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
+                    }
+                }
+                catch (ArgumentNullException ex)
+                {
+                    //code specifically for a ArgumentNullException
+                    if (!album_map.ContainsKey("Unknown Album")) //if album not in map, make that key and assign it to a new list containing added song
+                    {
+                        List<string> new_list = new List<string>();
+                        new_list.Add(path);
+                        album_map.Add("Unknown Album", new_list);
+                        Store_AlbumArtwork(file);   // Add image artwork to image list
+                    }
+                    else
+                    {
+                        album_map["Unknown Album"].Add(path);   //if album already in map, add song to the assigned list
+                    }
+                }
+                try
+                {
+                    foreach (string art in file.Tag.Performers)
+                    {
+
+                        if (!artist_map.ContainsKey(art))
+                        {
+                            List<string> new_list = new List<string>();
+                            new_list.Add(path);
+                            artist_map.Add(art, new_list);
+                        }
+                        else
+                        {
+                            artist_map[art].Add(path);
+                        }
+                    }
+                }
+                catch (ArgumentNullException ex)
+                {
+                    //code specifically for a ArgumentNullException
+                    /* if (!artist_map.ContainsKey("Unknown Artist"))
+                     {
+                         List<string> new_list = new List<string>();
+                         new_list.Add(path);
+                         artist_map.Add("Unknown Artist", new_list);
+                     }
+                     else
+                     {
+                         artist_map["Unknown Artist"].Add(path);
+                     }*/
+
+                }
+            }
+            catch (TagLib.CorruptFileException e)
+            {
+
             }
         }
-        
+
 
         //method that gets album artwork of file
         public void Store_AlbumArtwork(TagLib.File file)
@@ -1414,6 +1516,7 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+            subItem.Click += new EventHandler(addToPlaylist);
         }
         
         //Add songs to playlist
@@ -1598,13 +1701,6 @@ namespace BearPlayer
         public enum view { Albums, Artists, Songs, Playlists, Playlists_Song, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
-
-      
-
-
-
-
-
 
 
         //dequeue for queue

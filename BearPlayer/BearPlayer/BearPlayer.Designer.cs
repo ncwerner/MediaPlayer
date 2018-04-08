@@ -253,14 +253,14 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
             // 
             // getInfoToolStripMenuItem
             // 
             this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.getInfoToolStripMenuItem.Text = "Get Info";
             // 
             // viewToolStripMenuItem
@@ -361,12 +361,14 @@
             this.scrubForwardToolStripMenuItem.Name = "scrubForwardToolStripMenuItem";
             this.scrubForwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.scrubForwardToolStripMenuItem.Text = "Scrub Forward";
+            this.scrubForwardToolStripMenuItem.Click += new System.EventHandler(this.scrubForwardToolStripMenuItem_Click);
             // 
             // scrubBackwardToolStripMenuItem
             // 
             this.scrubBackwardToolStripMenuItem.Name = "scrubBackwardToolStripMenuItem";
             this.scrubBackwardToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.scrubBackwardToolStripMenuItem.Text = "Scrub Backward";
+            this.scrubBackwardToolStripMenuItem.Click += new System.EventHandler(this.scrubBackwardToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
