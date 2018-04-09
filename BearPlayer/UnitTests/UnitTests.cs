@@ -654,6 +654,224 @@ namespace Sprint_UnitTests
 
         }
 
+        // Cale's Methods:
+        [TestMethod]
+        public void Test_Add_One_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
 
+            // Act
+            player.Add_New_Playlist("new");
+
+            // Assert
+            Assert.AreEqual(player.Playlist_Names[0], "new");
+        }
+
+        
+        [TestMethod]
+        public void Test_Add_Multiple_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            for (int i = 0; i < 5; ++i)
+                player.Add_New_Playlist(i.ToString());
+
+            // Assert
+            for (int i = 0; i < 5; ++i)
+                Assert.AreEqual(player.Playlist_Names[i], i.ToString());
+        }
+
+        /*
+        [TestMethod]
+        public void Test_Add_Duplicate_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Add_New_Playlist("playlist");
+            player.Add_New_Playlist("playlist");
+
+            // Assert
+            Assert.AreEqual(player.Playlist_Names[0], "playlist");
+            Assert.IsTrue(player.Playlist_Names.Count == 1);
+
+        }
+        */
+
+        [TestMethod]
+        public void Test_Change_ArtistView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_ArtistView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Artists");
+        }
+
+        [TestMethod]
+        public void Test_Change_AlbumView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_AlbumView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Albums");
+        }
+
+        [TestMethod]
+        public void Test_Change_SongView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SongView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Songs");
+        }
+
+
+        [TestMethod]
+        public void Test_Change_QueueView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_QueueView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Queue");
+        }
+
+
+        [TestMethod]
+        public void Test_Change_PlaylistView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_PlaylistView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Playlists");
+        }
+
+        [TestMethod]
+        public void Test_Change_PlaylistSongView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            string playlist = "playlist";
+
+            // Act
+            player.Change_UserPlaylistView(playlist);
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Playlists_Song");
+        }
+
+        [TestMethod]
+        public void Test_Change_SearchView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SearchView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Search");
+        }
+
+        [TestMethod]
+        public void Test_ChangeOptions_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_OptionsView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Options");
+        }
+
+        [TestMethod]
+        public void Test_ChangeArtist_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_ArtistView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Artists");
+        }
+
+        [TestMethod]
+        public void Test_ChangeAlbum_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_AlbumView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Albums");
+        }
+
+        [TestMethod]
+        public void Test_ChangeSongs_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SongView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Songs");
+        }
+
+        [TestMethod]
+        public void Test_ChangeQueue_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_QueueView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Queue");
+        }
+
+        [TestMethod]
+        public void Test_ChangePlaylist_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_PlaylistView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Playlists");
+        }
     }
 }

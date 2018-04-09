@@ -1363,7 +1363,7 @@
         private System.Windows.Forms.ColumnHeader SearchArtistColumn;
         private System.Windows.Forms.ColumnHeader SearchAlbumColumn;
         private System.Windows.Forms.ColumnHeader SearchDurationColumn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        
         private System.Windows.Forms.Panel NewPlaylist_Panel;
         private System.Windows.Forms.TextBox NewPlaylist_TextBox;
         private System.Windows.Forms.Label NewPlaylist_Label;
@@ -1371,7 +1371,7 @@
         private System.Windows.Forms.Button NewPlaylist_EnterButton;
         private System.Windows.Forms.ListView Playlist_List;
         private System.Windows.Forms.ColumnHeader PlaylistList;
-        private System.Windows.Forms.Label View_Label;
+        public System.Windows.Forms.Label View_Label;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel Playlist_Song_Panel;
         private System.Windows.Forms.ListView Playlist_Song_List;
