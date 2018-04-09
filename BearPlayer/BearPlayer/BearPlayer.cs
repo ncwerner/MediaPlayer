@@ -1571,7 +1571,7 @@ namespace BearPlayer
         }
 
         // Backend function for adding a new playlist to the program. It inputs the name of the new playlist to be created
-        void Add_New_Playlist(string new_playlist)
+        public void Add_New_Playlist(string new_playlist)
         {
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
