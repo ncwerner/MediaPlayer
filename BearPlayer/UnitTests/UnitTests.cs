@@ -654,6 +654,20 @@ namespace Sprint_UnitTests
 
         }
 
+        // Andy's Unit Test:
+        [TestMethod]
+        public void Test_Dequeue_ElementAt_NegativeIndex()
+        {
+            // Arrange
+            var play_queue = new BearPlayer.Bear_Player.Dequeue();
+
+            // Act
+            for (int i = 0; i < 3; ++i)
+                play_queue.Push_Back(i.ToString());
+
+            // Assert
+            Assert.IsNull(play_queue.ElementAt(-1));
+        }
 
     }
 }

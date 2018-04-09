@@ -2249,7 +2249,7 @@ namespace BearPlayer
 
             public string ElementAt(int i)
             {
-                if (this.Count() > 0 && i < this.Count())
+                if (this.Count() > 0 && i < this.Count() && i >= 0)
                     return dequeue.ElementAt(i);
                 else
                     return null;
