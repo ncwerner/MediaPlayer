@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.IO;
 
 namespace Sprint_UnitTests
 {
@@ -12,6 +13,8 @@ namespace Sprint_UnitTests
         string file_path1 = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
         string file_path2 = @"C:\BearPlayer\Resources\04 - A Whisper & A Clamor.mp3";
         string file_path_duplicate = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
+        string TrevSong = @"C:\BearPlayer\Resources\01 Intro.mp3";
+        string playlist_loc = @"C:\BearPlayer\Resources\playlists.txt";
 
         [TestMethod]
         public void Test_Play_Song_New_Song()
@@ -653,7 +656,40 @@ namespace Sprint_UnitTests
             Assert.AreEqual(users[0], name);
 
         }
+        
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Playlist_File_Created()
+        {
+            //Arrange
+            var playlist = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
 
+            //Act
+            playlist.Add_New_Playlist(playlistName);
+
+            //Assert
+            Assert.IsTrue(File.Exists(playlistName + ".txt"));
+        }
+        
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Song_URL_Added_To_Playlist_Text_File()
+        {
+            //Arrange
+            var bearPlayer = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+            bearPlayer.Add_New_Playlist(playlistName);
+            bearPlayer.add_new_song(TrevSong);
+
+            //Act
+            bearPlayer.addSongToPlaylist("Intro", playlistName);
+
+            //Assert
+            string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
+            MessageBox.Show(line[0]);
+            Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
+        }
 
     }
 }
