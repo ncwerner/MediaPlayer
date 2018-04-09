@@ -9,9 +9,9 @@ namespace Sprint_UnitTests
     [TestClass]
     public class BearPlayer_UnitTests
     {
-        string file_path1 = @"C:\Users\calec\Music\Cities\02 - Godspeed.mp3";
-        string file_path2 = @"C:\Users\calec\Music\Cities\04 - A Whisper & A Clamor.mp3";
-        string file_path_duplicate = @"C:\Users\calec\Music\Anberlin\Cities\02 - Godspeed.mp3";
+        string file_path1 = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
+        string file_path2 = @"C:\BearPlayer\Resources\04 - A Whisper & A Clamor.mp3";
+        string file_path_duplicate = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
 
         [TestMethod]
         public void Test_Play_Song_New_Song()
@@ -637,6 +637,7 @@ namespace Sprint_UnitTests
                 Assert.AreEqual(play_queue.ElementAt(i), i.ToString());
         }
 
+        // Dan's Unit Test:
         [TestMethod]
         public void Test_Add_User()
         {

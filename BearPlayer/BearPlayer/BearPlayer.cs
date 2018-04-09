@@ -2047,7 +2047,7 @@ namespace BearPlayer
                     break;
                 }
             }
-            set_sidebar_color( Color.FromArgb( Int32.Parse(all_lines[index + 1]) ) );
+            set_sidebar_color( Color.FromArgb(Int32.Parse(all_lines[index + 1]) ) );
             set_center_color(Color.FromArgb(Int32.Parse(all_lines[index + 2] )));
             set_bottom_color(Color.FromArgb(Int32.Parse(all_lines[index + 3])));
         }
