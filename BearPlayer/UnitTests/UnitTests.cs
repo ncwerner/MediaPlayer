@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -689,7 +689,7 @@ namespace Sprint_UnitTests
             string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
             Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
         }
-        
+
         //Ryan's Unit Test
         [TestMethod]
         public void Test_Resize_Song_List()
@@ -699,9 +699,9 @@ namespace Sprint_UnitTests
 
             player.Size = new System.Drawing.Size(1065, 657);
             ListView songs = player.curr_list_box;
-            //MessageBox.Show(songs.Height.ToString());
-            Assert.IsTrue(songs.Width == 1869);
-            Assert.IsTrue(songs.Height == 1073);
+            MessageBox.Show(songs.Width.ToString());
+            Assert.IsTrue(songs.Width == 1866);
+            Assert.IsTrue(songs.Height == 1070);
         }
 
 
