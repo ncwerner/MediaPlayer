@@ -1912,6 +1912,7 @@ namespace BearPlayer
             SideBar.BackColor = c;
             MenuBar.BackColor = c;
             text_color = c;
+            bear_logo.BackColor = c;
         }
 
         private void set_center_color(Color c)
