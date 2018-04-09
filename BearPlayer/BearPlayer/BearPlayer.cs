@@ -1329,7 +1329,7 @@ namespace BearPlayer
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
-                if (File.Exists(curr_playlist + ".txt"))
+                if (File.Exists(playlist_loc +  curr_playlist + ".txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines(playlist_loc + curr_playlist + ".txt");
                     foreach (string line in lines)
