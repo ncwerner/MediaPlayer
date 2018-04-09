@@ -54,6 +54,8 @@ namespace BearPlayer
         public Color default_center_color = Color.White;
         public Color default_bottom_color = Color.White;
         string user_file_loc = @"C:\BearPlayer\Resources\Users.txt";
+        string playlist_file_loc = @"C:\BearPlayer\Resources\Playlists.txt";
+        string playlist_loc = @"C:\BearPlayer\Resources\";
         string user = "";
 
         /* --- CONSTRUCTOR --- */
@@ -1341,7 +1343,7 @@ namespace BearPlayer
             {
                 if (File.Exists(curr_playlist + ".txt"))
                 {
-                    string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Owner\Documents\SCHOOL\MediaPlayer\BearPlayer\BearPlayer\bin\Debug\" + curr_playlist + ".txt");
+                    string[] lines = System.IO.File.ReadAllLines(playlist_loc + curr_playlist + ".txt");
                     foreach (string line in lines)
                     {
                         TagLib.File file = TagLib.File.Create(line);
@@ -1559,6 +1561,16 @@ namespace BearPlayer
             //add playlist as text file
             StreamWriter sw = new StreamWriter(new_playlist + ".txt");
             sw.Close();
+
+            //add playlist name to playlist text file
+            if (File.Exists(playlist_file_loc))
+            {
+                using (var tw = new StreamWriter(playlist_file_loc, true))
+                {
+                    tw.WriteLine(new_playlist);
+                    tw.Close();
+                }
+            }
         }
         
         //Add songs to playlist
@@ -1566,9 +1578,9 @@ namespace BearPlayer
         {
             string songUrl = song_map[fileName];
             Console.WriteLine(songUrl);
-            if(File.Exists(playListName + ".txt"))
+            if(File.Exists(playlist_loc + playListName + ".txt"))
             {
-                using (var tw = new StreamWriter(playListName + ".txt", true))
+                using (var tw = new StreamWriter(playlist_loc + playListName + ".txt", true))
                 {
                     tw.WriteLine(songUrl);
                     tw.Close();
@@ -1576,7 +1588,7 @@ namespace BearPlayer
             }
             else
             {
-                StreamWriter sw = new StreamWriter(playListName + ".txt");
+                StreamWriter sw = new StreamWriter(playlist_loc + playListName + ".txt");
                 sw.WriteLine(songUrl);
                 sw.Close();
             }
