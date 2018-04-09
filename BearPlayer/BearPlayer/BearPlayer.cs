@@ -1547,8 +1547,7 @@ namespace BearPlayer
             subItem.Click += new EventHandler(addToPlaylist);
 
             //add playlist as text file
-            StreamWriter sw = new StreamWriter(new_playlist + ".txt");
-            sw.Close();
+            using (StreamWriter w = File.CreateText(playlist_loc + new_playlist + ".txt"))
 
             //add playlist name to playlist text file
             if (File.Exists(playlist_file_loc))
