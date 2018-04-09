@@ -689,6 +689,20 @@ namespace Sprint_UnitTests
             string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
             Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
         }
+        
+        //Ryan's Unit Test
+        [TestMethod]
+        public void Test_Resize_Song_List()
+        {
+            var player = new BearPlayer.Bear_Player();
+            //1064, 656 min size of player
+
+            player.Size = new System.Drawing.Size(1065, 657);
+            ListView songs = player.curr_list_box;
+            //MessageBox.Show(songs.Height.ToString());
+            Assert.IsTrue(songs.Width == 1869);
+            Assert.IsTrue(songs.Height == 1073);
+        }
 
 
         // Cale's Unit Tests:
