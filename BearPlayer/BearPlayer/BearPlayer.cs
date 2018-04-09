@@ -58,6 +58,9 @@ namespace BearPlayer
         string playlist_loc = @"C:\BearPlayer\Resources\";
         string user = "";
 
+        //saving folder paths
+        public string folder_path_file_loc = @"C:\BearPlayer\Resources\Folder_Paths.txt";
+
         /* --- CONSTRUCTOR --- */
         public Bear_Player()
         {
@@ -103,6 +106,27 @@ namespace BearPlayer
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
+
+            import_saved_folders();
+        }
+
+        public void import_saved_folders()
+        {
+            string[] paths_array = System.IO.File.ReadAllLines(folder_path_file_loc);
+            List<string> paths = new List<string>(paths_array);
+            foreach (string path in paths_array)
+            {
+                try
+                {
+                    import_folder(path);
+                }
+                catch (Exception e)
+                {
+                    paths.Remove(path);
+                }
+            }
+
+            System.IO.File.WriteAllLines(folder_path_file_loc, paths.ToArray<string>());
         }
 
 
@@ -206,11 +230,19 @@ namespace BearPlayer
             {
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    folder_path = folderDialog.SelectedPath;   //saves the selected folder as folder path
-                    getSongs(folder_path);   // Add all songs to map
-                    getAlbums(folder_path);   // Add all albums to map
+                    using (System.IO.StreamWriter file =
+                    new System.IO.StreamWriter(folder_path_file_loc, true))
+                    {
+                        file.WriteLine(folderDialog.SelectedPath);
+                    }
+                    import_folder(folderDialog.SelectedPath);
                 }
             }
+        }
+        public void import_folder(string path)
+        {
+            getSongs(path);   // Add all songs to map
+            getAlbums(path);   // Add all albums to map
         }
 
         // Method for importing single song
@@ -389,7 +421,6 @@ namespace BearPlayer
 
             volumeSlider.Value = Player.settings.volume;    // Set volume slider to new value
         }
-
 
         // SCRUB BAR: 
 
