@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.IO;
 
 namespace Sprint_UnitTests
 {
@@ -12,6 +13,8 @@ namespace Sprint_UnitTests
         string file_path1 = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
         string file_path2 = @"C:\BearPlayer\Resources\04 - A Whisper & A Clamor.mp3";
         string file_path_duplicate = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
+        string TrevSong = @"C:\BearPlayer\Resources\01 Intro.mp3";
+        string playlist_loc = @"C:\BearPlayer\Resources\playlists.txt";
 
         [TestMethod]
         public void Test_Play_Song_New_Song()
@@ -376,7 +379,7 @@ namespace Sprint_UnitTests
             play_queue.Push_Front("3");
             play_queue.Push_Back("4");
             play_queue.Push_Front("5");
-        
+
             Assert.IsTrue(play_queue.Count() == 5);
             Assert.AreEqual(play_queue.view_Top(), "5");
 
@@ -421,7 +424,7 @@ namespace Sprint_UnitTests
 
             string first = play_queue.Pop_Back();
             string second = play_queue.Pop_Back();
-            string third = play_queue.Pop_Back(); 
+            string third = play_queue.Pop_Back();
 
             // Assert
             Assert.IsTrue(play_queue.Count() == 2);
@@ -476,7 +479,7 @@ namespace Sprint_UnitTests
             var play_queue = new BearPlayer.Bear_Player.Dequeue();
 
             // Act
-            
+
             // Assert
             Assert.IsNull(play_queue.view_Top());
 
@@ -654,7 +657,42 @@ namespace Sprint_UnitTests
 
         }
 
-        // Cale's Methods:
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Playlist_File_Created()
+        {
+            //Arrange
+            var playlist = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+
+            //Act
+            playlist.Add_New_Playlist(playlistName);
+
+            //Assert
+            Assert.IsTrue(File.Exists(playlistName + ".txt"));
+        }
+
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Song_URL_Added_To_Playlist_Text_File()
+        {
+            //Arrange
+            var bearPlayer = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+            bearPlayer.Add_New_Playlist(playlistName);
+            bearPlayer.add_new_song(TrevSong);
+
+            //Act
+            bearPlayer.addSongToPlaylist("Intro", playlistName);
+
+            //Assert
+            string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
+            Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
+        }
+
+
+        // Cale's Unit Tests:
+        // [
         [TestMethod]
         public void Test_Add_One_Playlist()
         {
@@ -668,7 +706,7 @@ namespace Sprint_UnitTests
             Assert.AreEqual(player.Playlist_Names[0], "new");
         }
 
-        
+
         [TestMethod]
         public void Test_Add_Multiple_Playlist()
         {
@@ -684,7 +722,7 @@ namespace Sprint_UnitTests
                 Assert.AreEqual(player.Playlist_Names[i], i.ToString());
         }
 
-        /*
+
         [TestMethod]
         public void Test_Add_Duplicate_Playlist()
         {
@@ -700,7 +738,6 @@ namespace Sprint_UnitTests
             Assert.IsTrue(player.Playlist_Names.Count == 1);
 
         }
-        */
 
         [TestMethod]
         public void Test_Change_ArtistView()
@@ -873,5 +910,7 @@ namespace Sprint_UnitTests
             // Assert
             Assert.AreEqual(player.View_Label.Text, "Playlists");
         }
+
+        // ]
     }
 }

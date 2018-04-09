@@ -732,7 +732,7 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 44);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 422);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -1019,6 +1019,8 @@
             // 
             // bottom_panel
             // 
+            this.bottom_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bottom_panel.BackColor = System.Drawing.Color.White;
             this.bottom_panel.Controls.Add(this.pictureBox1);
             this.bottom_panel.Controls.Add(this.shuffle_toggle);
@@ -1059,6 +1061,8 @@
             this.shuffle_toggle.TabIndex = 6;
             this.shuffle_toggle.TabStop = false;
             this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
+            this.shuffle_toggle.MouseEnter += new System.EventHandler(this.shuffle_toggle_MouseEnter);
+            this.shuffle_toggle.MouseLeave += new System.EventHandler(this.shuffle_toggle_MouseLeave);
             // 
             // playButton
             // 
@@ -1072,6 +1076,8 @@
             this.playButton.TabIndex = 2;
             this.playButton.TabStop = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            this.playButton.MouseEnter += new System.EventHandler(this.playButton_MouseEnter);
+            this.playButton.MouseLeave += new System.EventHandler(this.playButton_MouseLeave);
             // 
             // repeat_button
             // 
@@ -1085,6 +1091,8 @@
             this.repeat_button.TabIndex = 5;
             this.repeat_button.TabStop = false;
             this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
+            this.repeat_button.MouseEnter += new System.EventHandler(this.repeat_button_MouseEnter);
+            this.repeat_button.MouseLeave += new System.EventHandler(this.repeat_button_MouseLeave);
             // 
             // next_button
             // 
@@ -1099,6 +1107,8 @@
             this.next_button.TabIndex = 3;
             this.next_button.TabStop = false;
             this.next_button.Click += new System.EventHandler(this.next_button_Click);
+            this.next_button.MouseEnter += new System.EventHandler(this.next_button_MouseEnter);
+            this.next_button.MouseLeave += new System.EventHandler(this.next_button_MouseLeave);
             // 
             // previous_button
             // 
@@ -1112,15 +1122,17 @@
             this.previous_button.TabIndex = 4;
             this.previous_button.TabStop = false;
             this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
+            this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
+            this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
             // 
             // Options_Panel
             // 
             this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
             this.Options_Panel.Controls.Add(this.Center_Color_Select);
             this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(139, 57);
+            this.Options_Panel.Location = new System.Drawing.Point(139, 75);
             this.Options_Panel.Name = "Options_Panel";
-            this.Options_Panel.Size = new System.Drawing.Size(909, 454);
+            this.Options_Panel.Size = new System.Drawing.Size(909, 436);
             this.Options_Panel.TabIndex = 3;
             // 
             // Bottom_Color_Select
@@ -1146,7 +1158,7 @@
             // Sidebar_Color_Button
             // 
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 56);
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
             this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
