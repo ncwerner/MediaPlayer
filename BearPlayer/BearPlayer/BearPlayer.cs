@@ -541,6 +541,11 @@ namespace BearPlayer
             else if (e.Node.Text.Equals("New Playlist"))
                 Change_NewPlaylistView();
 
+            else if(e.Node.Text.Equals("Playlists"))
+            {
+                Change_PlaylistView();
+            }
+
             // Clicking on created playlist
             else
                 Change_UserPlaylistView(e.Node.Text);
@@ -1759,7 +1764,13 @@ namespace BearPlayer
         // Method for changing display to create new playlist view
         private void Change_NewPlaylistView()
         {
-            NewPlaylist_Panel.Visible = true;
+            //NewPlaylist_Panel.Visible = true;
+            string promptValue = "";
+            while (promptValue.Equals(""))
+            {
+                promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
+            }
+            Add_New_Playlist(promptValue);
         }
 
         // Method for changing display to user-created playlist view. 

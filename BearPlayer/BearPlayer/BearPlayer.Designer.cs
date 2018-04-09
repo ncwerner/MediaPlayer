@@ -1019,6 +1019,8 @@
             // 
             // bottom_panel
             // 
+            this.bottom_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bottom_panel.BackColor = System.Drawing.Color.White;
             this.bottom_panel.Controls.Add(this.pictureBox1);
             this.bottom_panel.Controls.Add(this.shuffle_toggle);
@@ -1128,9 +1130,9 @@
             this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
             this.Options_Panel.Controls.Add(this.Center_Color_Select);
             this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(139, 57);
+            this.Options_Panel.Location = new System.Drawing.Point(139, 75);
             this.Options_Panel.Name = "Options_Panel";
-            this.Options_Panel.Size = new System.Drawing.Size(909, 454);
+            this.Options_Panel.Size = new System.Drawing.Size(909, 436);
             this.Options_Panel.TabIndex = 3;
             // 
             // Bottom_Color_Select
@@ -1156,7 +1158,7 @@
             // Sidebar_Color_Button
             // 
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 56);
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
             this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
