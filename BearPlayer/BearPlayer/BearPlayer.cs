@@ -800,6 +800,11 @@ namespace BearPlayer
             Playlists_View.Width = this.Width - min_width + 804;
             Playlists_View.Height = this.Height - min_height + 416;
 
+            Playlist_Song_List.Width = this.Width - min_width + 801;
+            Playlist_Song_List.Height = this.Height - min_height + 413;
+            Playlist_Song_Panel.Width = this.Width - min_width + 804;
+            Playlist_Song_Panel.Height = this.Height - min_height + 416;
+
             Queue_List.Width = this.Width - min_width + 801;
             Queue_List.Height = this.Height - min_height + 413;
             Queue_View.Width = this.Width - min_width + 804;
