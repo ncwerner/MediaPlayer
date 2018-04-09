@@ -687,7 +687,6 @@ namespace Sprint_UnitTests
 
             //Assert
             string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
-            MessageBox.Show(line[0]);
             Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
         }
 
