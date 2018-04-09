@@ -166,7 +166,7 @@ namespace BearPlayer
                 {
                     queue.Push_Back(temp.Pop_Back());
                 }
-                if (c == 0 && queue.Count() == 0)
+                if (c == 0 && queue.Count() == 0 && curr_song != null)
                 {
                     queue.Push_Back(curr_song);
                 }
