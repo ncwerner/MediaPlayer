@@ -669,7 +669,7 @@ namespace Sprint_UnitTests
             playlist.Add_New_Playlist(playlistName);
 
             //Assert
-            Assert.IsTrue(File.Exists((@"C:\BearPlayer\Resources\" + playlistName + ".txt"));
+            Assert.IsTrue(File.Exists((@"C:\BearPlayer\Resources\" + playlistName + ".txt")));
         }
 
         //Trevor's Unit test
