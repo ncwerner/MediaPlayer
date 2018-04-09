@@ -573,9 +573,9 @@
             this.Albums_View.AutoScroll = true;
             this.Albums_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Albums_View.Controls.Add(this.Album_List);
-            this.Albums_View.Location = new System.Drawing.Point(3, 3);
+            this.Albums_View.Location = new System.Drawing.Point(180, 75);
             this.Albums_View.Name = "Albums_View";
-            this.Albums_View.Size = new System.Drawing.Size(909, 434);
+            this.Albums_View.Size = new System.Drawing.Size(804, 416);
             this.Albums_View.TabIndex = 10;
             this.Albums_View.Visible = false;
             // 
@@ -602,9 +602,9 @@
             // 
             this.Songs_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Songs_View.Controls.Add(this.Song_List);
-            this.Songs_View.Location = new System.Drawing.Point(139, 57);
+            this.Songs_View.Location = new System.Drawing.Point(180, 75);
             this.Songs_View.Name = "Songs_View";
-            this.Songs_View.Size = new System.Drawing.Size(909, 434);
+            this.Songs_View.Size = new System.Drawing.Size(804, 416);
             this.Songs_View.TabIndex = 11;
             this.Songs_View.Visible = false;
             // 
@@ -619,7 +619,7 @@
             this.Song_List.FullRowSelect = true;
             this.Song_List.Location = new System.Drawing.Point(3, 3);
             this.Song_List.Name = "Song_List";
-            this.Song_List.Size = new System.Drawing.Size(906, 431);
+            this.Song_List.Size = new System.Drawing.Size(801, 413);
             this.Song_List.TabIndex = 0;
             this.Song_List.UseCompatibleStateImageBehavior = false;
             this.Song_List.View = System.Windows.Forms.View.Details;
@@ -653,7 +653,7 @@
             // 
             this.Queue_View.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Queue_View.Controls.Add(this.Queue_List);
-            this.Queue_View.Location = new System.Drawing.Point(139, 57);
+            this.Queue_View.Location = new System.Drawing.Point(180, 75);
             this.Queue_View.Margin = new System.Windows.Forms.Padding(0);
             this.Queue_View.Name = "Queue_View";
             this.Queue_View.Size = new System.Drawing.Size(804, 416);
@@ -672,7 +672,7 @@
             this.Queue_List.FullRowSelect = true;
             this.Queue_List.Location = new System.Drawing.Point(3, 3);
             this.Queue_List.Name = "Queue_List";
-            this.Queue_List.Size = new System.Drawing.Size(906, 431);
+            this.Queue_List.Size = new System.Drawing.Size(801, 413);
             this.Queue_List.TabIndex = 1;
             this.Queue_List.UseCompatibleStateImageBehavior = false;
             this.Queue_List.View = System.Windows.Forms.View.Details;
@@ -719,7 +719,7 @@
             this.Playlist_List.FullRowSelect = true;
             this.Playlist_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_List.Name = "Playlist_List";
-            this.Playlist_List.Size = new System.Drawing.Size(906, 431);
+            this.Playlist_List.Size = new System.Drawing.Size(801, 413);
             this.Playlist_List.TabIndex = 0;
             this.Playlist_List.UseCompatibleStateImageBehavior = false;
             this.Playlist_List.View = System.Windows.Forms.View.Details;
@@ -732,7 +732,7 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 440);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 44);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(200, 100);
             this.flowLayoutPanel1.TabIndex = 1;
@@ -760,9 +760,9 @@
             // Artist_View
             // 
             this.Artist_View.Controls.Add(this.Artist_List);
-            this.Artist_View.Location = new System.Drawing.Point(139, 57);
+            this.Artist_View.Location = new System.Drawing.Point(180, 75);
             this.Artist_View.Name = "Artist_View";
-            this.Artist_View.Size = new System.Drawing.Size(909, 434);
+            this.Artist_View.Size = new System.Drawing.Size(804, 416);
             this.Artist_View.TabIndex = 15;
             // 
             // Artist_List
@@ -772,7 +772,7 @@
             this.Artist_List.FullRowSelect = true;
             this.Artist_List.Location = new System.Drawing.Point(3, 3);
             this.Artist_List.Name = "Artist_List";
-            this.Artist_List.Size = new System.Drawing.Size(906, 431);
+            this.Artist_List.Size = new System.Drawing.Size(801, 413);
             this.Artist_List.TabIndex = 0;
             this.Artist_List.UseCompatibleStateImageBehavior = false;
             this.Artist_List.View = System.Windows.Forms.View.Details;
@@ -793,7 +793,7 @@
             this.Artist_Song_List.FullRowSelect = true;
             this.Artist_Song_List.Location = new System.Drawing.Point(3, 3);
             this.Artist_Song_List.Name = "Artist_Song_List";
-            this.Artist_Song_List.Size = new System.Drawing.Size(906, 431);
+            this.Artist_Song_List.Size = new System.Drawing.Size(801, 413);
             this.Artist_Song_List.TabIndex = 1;
             this.Artist_Song_List.UseCompatibleStateImageBehavior = false;
             this.Artist_Song_List.View = System.Windows.Forms.View.Details;
@@ -854,7 +854,7 @@
             // Artist_Song_View
             // 
             this.Artist_Song_View.Controls.Add(this.Artist_Song_List);
-            this.Artist_Song_View.Location = new System.Drawing.Point(139, 57);
+            this.Artist_Song_View.Location = new System.Drawing.Point(180, 75);
             this.Artist_Song_View.Name = "Artist_Song_View";
             this.Artist_Song_View.Size = new System.Drawing.Size(804, 416);
             this.Artist_Song_View.TabIndex = 16;
@@ -862,7 +862,7 @@
             // Album_Song_View
             // 
             this.Album_Song_View.Controls.Add(this.Album_Song_List);
-            this.Album_Song_View.Location = new System.Drawing.Point(139, 57);
+            this.Album_Song_View.Location = new System.Drawing.Point(180, 75);
             this.Album_Song_View.Name = "Album_Song_View";
             this.Album_Song_View.Size = new System.Drawing.Size(804, 416);
             this.Album_Song_View.TabIndex = 20;
@@ -1059,8 +1059,6 @@
             this.shuffle_toggle.TabIndex = 6;
             this.shuffle_toggle.TabStop = false;
             this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
-            this.shuffle_toggle.MouseEnter += new System.EventHandler(this.shuffle_toggle_MouseEnter);
-            this.shuffle_toggle.MouseLeave += new System.EventHandler(this.shuffle_toggle_MouseLeave);
             // 
             // playButton
             // 
@@ -1074,8 +1072,6 @@
             this.playButton.TabIndex = 2;
             this.playButton.TabStop = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            this.playButton.MouseEnter += new System.EventHandler(this.playButton_MouseEnter);
-            this.playButton.MouseLeave += new System.EventHandler(this.playButton_MouseLeave);
             // 
             // repeat_button
             // 
@@ -1089,8 +1085,6 @@
             this.repeat_button.TabIndex = 5;
             this.repeat_button.TabStop = false;
             this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
-            this.repeat_button.MouseEnter += new System.EventHandler(this.repeat_button_MouseEnter);
-            this.repeat_button.MouseLeave += new System.EventHandler(this.repeat_button_MouseLeave);
             // 
             // next_button
             // 
@@ -1105,8 +1099,6 @@
             this.next_button.TabIndex = 3;
             this.next_button.TabStop = false;
             this.next_button.Click += new System.EventHandler(this.next_button_Click);
-            this.next_button.MouseEnter += new System.EventHandler(this.next_button_MouseEnter);
-            this.next_button.MouseLeave += new System.EventHandler(this.next_button_MouseLeave);
             // 
             // previous_button
             // 
@@ -1120,8 +1112,6 @@
             this.previous_button.TabIndex = 4;
             this.previous_button.TabStop = false;
             this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
-            this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
-            this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
             // 
             // Options_Panel
             // 
