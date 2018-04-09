@@ -1607,6 +1607,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Artists;
             curr_list_box = Artist_List;   // Change to artist list box
@@ -1629,6 +1630,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Albums;
             curr_list_box = Album_List;  // Change to album list box
@@ -1652,6 +1654,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Songs;
             curr_list_box = Song_List;   // Change to song list box
@@ -1674,6 +1677,7 @@ namespace BearPlayer
             Queue_View.Visible = true;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Queue;
             curr_list_box = Queue_List;   // Change to queue list box
@@ -1696,6 +1700,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Playlists;
             curr_list_box = Playlist_List;
@@ -1736,6 +1741,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = true;
+            Options_Panel.Visible = false;
 
             curr_view = view.Playlists_Song;
             curr_list_box = Playlist_Song_List;

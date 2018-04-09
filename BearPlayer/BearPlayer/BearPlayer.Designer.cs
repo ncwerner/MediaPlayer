@@ -911,9 +911,9 @@
             // Search_View
             // 
             this.Search_View.Controls.Add(this.Search_List);
-            this.Search_View.Location = new System.Drawing.Point(139, 57);
+            this.Search_View.Location = new System.Drawing.Point(180, 75);
             this.Search_View.Name = "Search_View";
-            this.Search_View.Size = new System.Drawing.Size(909, 434);
+            this.Search_View.Size = new System.Drawing.Size(804, 416);
             this.Search_View.TabIndex = 21;
             // 
             // Search_List
@@ -927,7 +927,7 @@
             this.Search_List.Location = new System.Drawing.Point(3, 3);
             this.Search_List.MultiSelect = false;
             this.Search_List.Name = "Search_List";
-            this.Search_List.Size = new System.Drawing.Size(906, 432);
+            this.Search_List.Size = new System.Drawing.Size(801, 413);
             this.Search_List.TabIndex = 0;
             this.Search_List.UseCompatibleStateImageBehavior = false;
             this.Search_List.View = System.Windows.Forms.View.Details;
