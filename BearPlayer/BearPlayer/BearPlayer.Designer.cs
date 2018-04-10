@@ -715,7 +715,7 @@
             this.Playlist_List.BackColor = System.Drawing.SystemColors.Window;
             this.Playlist_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PlaylistList});
-            this.Playlist_List.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Playlist_List.ForeColor = System.Drawing.SystemColors.Desktop;
             this.Playlist_List.FullRowSelect = true;
             this.Playlist_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_List.Name = "Playlist_List";
