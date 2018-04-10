@@ -106,8 +106,29 @@ namespace BearPlayer
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
-
+            
+            import_saved_playlists();
             import_saved_folders();
+        }
+        
+        public void import_saved_playlists()
+        {
+            string[] playlist_names = System.IO.File.ReadAllLines(playlist_file_loc);
+            List<string> plays = new List<string>(playlist_names);
+            foreach (string playlist in playlist_names)
+            {
+                if (!File.Exists(playlist_loc + playlist + ".txt"))
+                {
+                    plays.Remove(playlist);
+                }
+                else
+                {
+                    create_playlist_node(playlist);
+                }
+            }
+
+            System.IO.File.WriteAllLines(playlist_file_loc, plays.ToArray<string>());
+            Playlist_Names = plays;
         }
 
         public void import_saved_folders()
@@ -1320,9 +1341,7 @@ namespace BearPlayer
             {
                 foreach(string name in Playlist_Names)
                 { 
-                    //MessageBox.Show(name);
-                    
-                    
+                    curr_list_box.Items.Add(name);
                 }
             }
 
@@ -1531,20 +1550,7 @@ namespace BearPlayer
 
             Playlist_Names.Add(new_playlist);   // Add new name to playlist list
 
-            // Create new node for side bar
-            TreeNode child = new TreeNode();
-            child.Text = new_playlist;
-            child.Name = new_playlist;
-            child.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-
-            // Find Playlists branch in side bar
-            TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
-            nodes[0].Nodes.Add(child);   // Add new playlist name under Playlist branch
-            
-            //add to playlist to menu bar
-            ToolStripItem subItem = new ToolStripMenuItem(new_playlist);
-            addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
-            subItem.Click += new EventHandler(addToPlaylist);
+            create_playlist_node(new_playlist);
 
             //add playlist as text file
             using (StreamWriter w = File.CreateText(playlist_loc + new_playlist + ".txt"))
@@ -1558,6 +1564,25 @@ namespace BearPlayer
                     tw.Close();
                 }
             }
+        }
+        
+        //adds node for a playlist to the sidebar
+        public void create_playlist_node(string name)
+        {
+            // Create new node for side bar
+            TreeNode child = new TreeNode();
+            child.Text = name;
+            child.Name = name;
+            child.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            // Find Playlists branch in side bar
+            TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
+            nodes[0].Nodes.Add(child);   // Add new playlist name under Playlist branch
+
+            //add to playlist to menu bar
+            ToolStripItem subItem = new ToolStripMenuItem(name);
+            addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+            subItem.Click += new EventHandler(addToPlaylist);
         }
         
         //Add songs to playlist
@@ -1829,7 +1854,7 @@ namespace BearPlayer
 
         private void Playlist_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MessageBox.Show(curr_list_box.SelectedItems[0].ToString());
+            Change_UserPlaylistView(curr_list_box.SelectedItems[0].Text);
         }
 
 

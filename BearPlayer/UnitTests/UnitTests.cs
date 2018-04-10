@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using System.IO;
+using System.Drawing;
 
 namespace Sprint_UnitTests
 {
@@ -712,11 +713,13 @@ namespace Sprint_UnitTests
             var player = new BearPlayer.Bear_Player();
             //1064, 656 min size of player
 
-            player.Size = new System.Drawing.Size(1065, 657);
+            player.Height = 1065;
+            player.Width = 657;
             ListView songs = player.curr_list_box;
-            MessageBox.Show(songs.Width.ToString());
-            Assert.IsTrue(songs.Width == 1866);
-            Assert.IsTrue(songs.Height == 1070);
+            player.Change_ArtistView();
+            MessageBox.Show(songs.Height.ToString());
+            Assert.IsTrue(songs.Width == 1458);
+            Assert.IsTrue(songs.Height == 1201);
         }
 
 
