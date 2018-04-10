@@ -1588,23 +1588,36 @@ namespace BearPlayer
         //Add songs to playlist
         public void addSongToPlaylist(string fileName, string playListName) //takes in the file name of the song
         {
-            string songUrl = song_map[fileName];
-            Console.WriteLine(songUrl);
-            if(File.Exists(playlist_loc + playListName + ".txt"))
+            if(fileName != null) //make sure user has a song selected
             {
-                using (var tw = new StreamWriter(playlist_loc + playListName + ".txt", true))
+                try //make sure the song still exists in map
                 {
-                    tw.WriteLine(songUrl);
-                    tw.Close();
+                    string songUrl = song_map[fileName];
+                    Console.WriteLine(songUrl);
+                    if (File.Exists(playlist_loc + playListName + ".txt"))
+                    {
+                        using (var tw = new StreamWriter(playlist_loc + playListName + ".txt", true))
+                        {
+                            tw.WriteLine(songUrl);
+                            tw.Close();
+                        }
+                    }
+                    else
+                    {
+                        StreamWriter sw = new StreamWriter(playlist_loc + playListName + ".txt");
+                        sw.WriteLine(songUrl);
+                        sw.Close();
+                    }
+                }
+                catch (System.Collections.Generic.KeyNotFoundException)
+                {
+                    MessageBox.Show("File does not Exist");
                 }
             }
             else
             {
-                StreamWriter sw = new StreamWriter(playlist_loc + playListName + ".txt");
-                sw.WriteLine(songUrl);
-                sw.Close();
+                //ingore
             }
-            
         }
 
         private void song_list_ItemActivate(Object sender, EventArgs e)
