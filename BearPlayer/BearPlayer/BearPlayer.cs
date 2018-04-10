@@ -2252,6 +2252,11 @@ namespace BearPlayer
         {
             previous_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Previous Button1.png");
         }
+        
+        public void clear_users()
+        {
+            System.IO.File.Delete(user_file_loc);
+        }
 
         //dequeue for queue
         public class Dequeue
