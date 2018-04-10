@@ -1982,6 +1982,11 @@ namespace BearPlayer
         private void set_bottom_color(Color c)
         {
             bottom_panel.BackColor = c;
+            shuffle_toggle.BackColor = c;
+            repeat_button.BackColor = c;
+            previous_button.BackColor = c;
+            next_button.BackColor = c;
+            playButton.BackColor = c;
         }
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
