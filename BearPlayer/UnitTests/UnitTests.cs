@@ -647,7 +647,8 @@ namespace Sprint_UnitTests
         {
             // Arrange
             var player = new BearPlayer.Bear_Player();
-            string name = "dan";
+            player.clear_users();
+            string name = "bob";
 
             // Act
             player.create_new_user(name);
@@ -657,6 +658,51 @@ namespace Sprint_UnitTests
             Assert.AreEqual(users[0], name);
 
         }
+
+        [TestMethod]
+        public void Test_Get_All_Users()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            player.clear_users();
+
+            // Act
+            player.create_new_user("dan");
+            player.create_new_user("dan2");
+            player.create_new_user("dan3");
+
+            // Assert
+            string[] users = player.get_all_users(player.get_all_user_lines());
+            Assert.AreEqual(users.Length, 3);
+
+        }
+
+        [TestMethod]
+        public void Test_Delete_Users()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            player.clear_users();
+
+            // Act
+            player.create_new_user("dan");
+            player.create_new_user("dan2");
+            player.create_new_user("dan3");
+            player.clear_users();
+
+            // Assert
+            try
+            {
+                string[] users = player.get_all_users(player.get_all_user_lines());
+                Assert.Fail();
+            }
+            catch(Exception e)
+            {
+                Assert.IsTrue(true);
+            }
+
+        }
+
 
         // Andy's Unit Test:
         [TestMethod]
