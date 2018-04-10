@@ -696,7 +696,7 @@ namespace Sprint_UnitTests
                 string[] users = player.get_all_users(player.get_all_user_lines());
                 Assert.Fail();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Assert.IsTrue(true);
             }
@@ -720,6 +720,7 @@ namespace Sprint_UnitTests
         }
 
         //Trevor's Unit test
+        //[
         [TestMethod]
         public void Test_Playlist_File_Created()
         {
@@ -734,7 +735,6 @@ namespace Sprint_UnitTests
             Assert.IsTrue(File.Exists((@"C:\BearPlayer\Resources\" + playlistName + ".txt")));
         }
 
-        //Trevor's Unit test
         [TestMethod]
         public void Test_Song_URL_Added_To_Playlist_Text_File()
         {
@@ -752,6 +752,40 @@ namespace Sprint_UnitTests
             Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
         }
 
+        [TestMethod]
+        public void Test_File_Does_Not_Exist_To_Playlist()
+        {
+            //Arrange
+            var bearPlayer = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+            bearPlayer.Add_New_Playlist(playlistName);
+
+            //Act
+            bearPlayer.addSongToPlaylist("Not_A_Song", playlistName);
+
+            //Assert
+            string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
+            Assert.IsTrue(line.Length == 0); //nothing written to the file
+        }
+
+        [TestMethod]
+        public void Test_Add_Null_Value_To_Playlist()
+        {
+            //Arrange
+            var bearPlayer = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+            bearPlayer.Add_New_Playlist(playlistName);
+
+            //Act
+            bearPlayer.addSongToPlaylist(null, playlistName);
+
+            //Assert
+            string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
+            Assert.IsTrue(line.Length == 0); //nothing written to the file
+        }
+        //]
+
+        
         //Ryan's Unit Test
         [TestMethod]
         public void Test_Resize_Song_List()
