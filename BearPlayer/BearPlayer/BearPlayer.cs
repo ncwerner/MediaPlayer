@@ -840,8 +840,6 @@ namespace BearPlayer
 
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
