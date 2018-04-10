@@ -541,6 +541,11 @@ namespace BearPlayer
             else if (e.Node.Text.Equals("New Playlist"))
                 Change_NewPlaylistView();
 
+            else if(e.Node.Text.Equals("Playlists"))
+            {
+                Change_PlaylistView();
+            }
+
             // Clicking on created playlist
             else
                 Change_UserPlaylistView(e.Node.Text);
@@ -550,43 +555,13 @@ namespace BearPlayer
         // Method for switching to song list within artist view 
         private void Artist_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Change view to artist's song list
-            Artist_View.Visible = false;
-            Albums_View.Visible = false;
-            Songs_View.Visible = false;
-            Search_View.Visible = false;
-            Playlists_View.Visible = false;
-            Queue_View.Visible = false;
-            Artist_Song_View.Visible = true;
-            Album_Song_View.Visible = false;
-            Options_Panel.Visible = false;
-
-            selected_artist = curr_list_box.SelectedItems[0].Text;
-            curr_view = view.Artist_Song;
-            curr_list_box = Artist_Song_List;
-            SideBar.SelectedNode = null;
-            update_list_disp();
+            Change_ArtistSongView(); // Change view to artist's song list
         }
 
         // Method for switching to song list within album list
         private void Album_List_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Change view to album's song list
-            Artist_View.Visible = false;
-            Albums_View.Visible = false;
-            Search_View.Visible = false;
-            Songs_View.Visible = false;
-            Playlists_View.Visible = false;
-            Queue_View.Visible = false;
-            Artist_Song_View.Visible = false;
-            Album_Song_View.Visible = true;
-            Options_Panel.Visible = false;
-
-            selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
-            curr_view = view.Album_Song;
-            curr_list_box = Album_Song_List;
-            SideBar.SelectedNode = null;
-            update_list_disp();
+            Change_AlbumSongView();   // Change view to album's song list
         }
 
         // Method for selecting a song within the artist view
@@ -691,23 +666,7 @@ namespace BearPlayer
             if (e.KeyCode == Keys.Enter)
             {
                 search_entry = searchBar.Text.Split('\n')[0].ToUpper();
-
-                // Change to search view
-                Artist_View.Visible = false;
-                Albums_View.Visible = false;
-                Search_View.Visible = true;
-                Songs_View.Visible = false;
-                Playlists_View.Visible = false;
-                Queue_View.Visible = false;
-                Artist_Song_View.Visible = false;
-                Album_Song_View.Visible = false;
-                Options_Panel.Visible = false;
-                Options_Panel.Visible = false;
-
-                curr_view = view.Search;
-                curr_list_box = Search_List;
-                SideBar.SelectedNode = null;
-                update_list_disp();
+                Change_SearchView();                
             }
         }
 
@@ -798,6 +757,13 @@ namespace BearPlayer
                 }
             }
         }
+
+        //add to playlist menu button
+        private void addToPlaylist(object sender, EventArgs e)
+        {
+            addSongToPlaylist(songName, sender.ToString());
+        }
+
 
         //RESIZING
 
@@ -1271,21 +1237,7 @@ namespace BearPlayer
             titleLabel.Text = file.Tag.Title;
             curAlbumLabel.Text = file.Tag.Album;
         }
-        
-       /* private void prevCurrentAlbumDisplay()
-        {
-
-            string top = prev_songs.Peek();
-            TagLib.File file = TagLib.File.Create(song_map[top]);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            pictureBox1.Image = artwork;
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            artistLabel.Text = file.Tag.Performers[0];
-            titleLabel.Text = file.Tag.Title;
-            curAlbumLabel.Text = file.Tag.Album;
-        }*/
-        
+                
 
         //updates whatever list box is currently being viewed with the current map information 
         public void update_list_disp()
@@ -1377,7 +1329,7 @@ namespace BearPlayer
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
-                if (File.Exists(curr_playlist + ".txt"))
+                if (File.Exists(playlist_loc +  curr_playlist + ".txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines(playlist_loc + curr_playlist + ".txt");
                     foreach (string line in lines)
@@ -1466,6 +1418,7 @@ namespace BearPlayer
             return item;
         }
 
+
         public void list_item_selected()
         {
             if (curr_list_box.SelectedIndices.Count <= 0) return;
@@ -1480,8 +1433,6 @@ namespace BearPlayer
                 {
                     fill_unshuffled_queue(curr_list_box.Items[i].Text.ToString());
                 }
-                //play_next_song();
-                //playing_index = i;
             }
         }
 
@@ -1520,7 +1471,7 @@ namespace BearPlayer
         }
 
 
-        //fills queue with selected song and all following songs,takes a song name
+        //fills queue with selected song and all following songs, takes a song name
         public void fill_unshuffled_queue(string start_name)
         {
             queue.Clear();
@@ -1565,8 +1516,9 @@ namespace BearPlayer
             }
         }
 
+
         // Backend function for adding a new playlist to the program. It inputs the name of the new playlist to be created
-        void Add_New_Playlist(string new_playlist)
+        public void Add_New_Playlist(string new_playlist)
         {
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
@@ -1595,8 +1547,7 @@ namespace BearPlayer
             subItem.Click += new EventHandler(addToPlaylist);
 
             //add playlist as text file
-            StreamWriter sw = new StreamWriter(new_playlist + ".txt");
-            sw.Close();
+            using (StreamWriter w = File.CreateText(playlist_loc + new_playlist + ".txt"))
 
             //add playlist name to playlist text file
             if (File.Exists(playlist_file_loc))
@@ -1630,11 +1581,6 @@ namespace BearPlayer
             }
             
         }
-        //add to playlist menu button
-        private void addToPlaylist(object sender, EventArgs e)
-        {
-            addSongToPlaylist(songName, sender.ToString());
-        }
 
         private void song_list_ItemActivate(Object sender, EventArgs e)
         {
@@ -1646,10 +1592,10 @@ namespace BearPlayer
         }
 
         // Method for changing display to artist view
-        private void Change_ArtistView()
+        public void Change_ArtistView()
         {
             View_Label.Text = "Artists";
-
+            
             Artist_View.Visible = true;
             Albums_View.Visible = false;
             Album_Song_View.Visible = false;
@@ -1660,6 +1606,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Artists;
             curr_list_box = Artist_List;   // Change to artist list box
@@ -1668,7 +1615,7 @@ namespace BearPlayer
         }
 
         // Method for changing display to album view
-        private void Change_AlbumView()
+        public void Change_AlbumView()
         {
             View_Label.Text = "Albums";
 
@@ -1682,6 +1629,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Albums;
             curr_list_box = Album_List;  // Change to album list box
@@ -1690,7 +1638,7 @@ namespace BearPlayer
         }
 
         // Method for changing display to song view
-        private void Change_SongView()
+        public void Change_SongView()
         {
             // Clicking on song view
             View_Label.Text = "Songs";
@@ -1705,6 +1653,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Songs;
             curr_list_box = Song_List;   // Change to song list box
@@ -1713,7 +1662,7 @@ namespace BearPlayer
         }
 
         // Method for changing display to queue view
-        private void Change_QueueView()
+        public void Change_QueueView()
         {
             View_Label.Text = "Queue";
 
@@ -1727,6 +1676,7 @@ namespace BearPlayer
             Queue_View.Visible = true;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Queue;
             curr_list_box = Queue_List;   // Change to queue list box
@@ -1735,7 +1685,7 @@ namespace BearPlayer
         }
 
         // Method for changing display to playlist view
-        private void Change_PlaylistView()
+        public void Change_PlaylistView()
         {
             View_Label.Text = "Playlists";
 
@@ -1749,6 +1699,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
+            Options_Panel.Visible = false;
 
             curr_view = view.Playlists;
             curr_list_box = Playlist_List;
@@ -1757,13 +1708,19 @@ namespace BearPlayer
         }
 
         // Method for changing display to create new playlist view
-        private void Change_NewPlaylistView()
+        public void Change_NewPlaylistView()
         {
-            NewPlaylist_Panel.Visible = true;
+            //NewPlaylist_Panel.Visible = true;
+            string promptValue = "";
+            while (promptValue.Equals(""))
+            {
+                promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
+            }
+            Add_New_Playlist(promptValue);
         }
 
         // Method for changing display to user-created playlist view. 
-        private void Change_UserPlaylistView(string playlist_name)
+        public void Change_UserPlaylistView(string playlist_name)
         {
             // Searches for name in list of playlists already created
             foreach (string s in Playlist_Names)
@@ -1783,6 +1740,7 @@ namespace BearPlayer
             Queue_View.Visible = false;
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = true;
+            Options_Panel.Visible = false;
 
             curr_view = view.Playlists_Song;
             curr_list_box = Playlist_Song_List;
@@ -1790,10 +1748,84 @@ namespace BearPlayer
             update_list_disp();
         }
 
+        // Method for changing view to artist view
+        public void Change_ArtistSongView()
+        {
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Songs_View.Visible = false;
+            Search_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = true;
+            Album_Song_View.Visible = false;
+            Options_Panel.Visible = false;
+
+            selected_artist = curr_list_box.SelectedItems[0].Text;
+            curr_view = view.Artist_Song;
+            curr_list_box = Artist_Song_List;
+            SideBar.SelectedNode = null;
+            update_list_disp();
+        }
+
+        // Method for changing view to album song view
+        public void Change_AlbumSongView()
+        {   
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Search_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = true;
+            Options_Panel.Visible = false;
+
+            selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
+            curr_view = view.Album_Song;
+            curr_list_box = Album_Song_List;
+            SideBar.SelectedNode = null;
+            update_list_disp();
+        }
+
+        public void Change_SearchView()
+        {
+            // Change to search view
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Search_View.Visible = true;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Options_Panel.Visible = false;
+
+            curr_view = view.Search;
+            curr_list_box = Search_List;
+            SideBar.SelectedNode = null;
+            update_list_disp();
+        }
+
+        public void Change_OptionsView()
+        {
+            Artist_View.Visible = false;
+            Albums_View.Visible = false;
+            Search_View.Visible = false;
+            Songs_View.Visible = false;
+            Playlists_View.Visible = false;
+            Queue_View.Visible = false;
+            Artist_Song_View.Visible = false;
+            Album_Song_View.Visible = false;
+            Options_Panel.Visible = true;
+            View_Label.Text = "Options";
+        }
+
 
         public enum view { Albums, Artists, Songs, Playlists, Playlists_Song, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
+
 
         private void Playlist_List_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1827,16 +1859,7 @@ namespace BearPlayer
 
         private void optionToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Artist_View.Visible = false;
-            Albums_View.Visible = false; 
-            Search_View.Visible = false;
-            Songs_View.Visible = false;
-            Playlists_View.Visible = false;
-            Queue_View.Visible = false;
-            Artist_Song_View.Visible = false;
-            Album_Song_View.Visible = false;
-            Options_Panel.Visible = true;
-            View_Label.Text = "Options";
+            Change_OptionsView();
         }
 
         private void center_color_button_Click(object sender, EventArgs e)
@@ -1894,6 +1917,7 @@ namespace BearPlayer
             SideBar.BackColor = c;
             MenuBar.BackColor = c;
             text_color = c;
+            bear_logo.BackColor = c;
         }
 
         private void set_center_color(Color c)

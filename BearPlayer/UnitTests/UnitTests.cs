@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.IO;
 
 namespace Sprint_UnitTests
 {
@@ -12,6 +13,8 @@ namespace Sprint_UnitTests
         string file_path1 = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
         string file_path2 = @"C:\BearPlayer\Resources\04 - A Whisper & A Clamor.mp3";
         string file_path_duplicate = @"C:\BearPlayer\Resources\02 - Godspeed.mp3";
+        string TrevSong = @"C:\BearPlayer\Resources\01 Intro.mp3";
+        string playlist_loc = @"C:\BearPlayer\Resources\playlists.txt";
 
         [TestMethod]
         public void Test_Play_Song_New_Song()
@@ -376,7 +379,7 @@ namespace Sprint_UnitTests
             play_queue.Push_Front("3");
             play_queue.Push_Back("4");
             play_queue.Push_Front("5");
-        
+
             Assert.IsTrue(play_queue.Count() == 5);
             Assert.AreEqual(play_queue.view_Top(), "5");
 
@@ -421,7 +424,7 @@ namespace Sprint_UnitTests
 
             string first = play_queue.Pop_Back();
             string second = play_queue.Pop_Back();
-            string third = play_queue.Pop_Back(); 
+            string third = play_queue.Pop_Back();
 
             // Assert
             Assert.IsTrue(play_queue.Count() == 2);
@@ -476,7 +479,7 @@ namespace Sprint_UnitTests
             var play_queue = new BearPlayer.Bear_Player.Dequeue();
 
             // Act
-            
+
             // Assert
             Assert.IsNull(play_queue.view_Top());
 
@@ -654,6 +657,7 @@ namespace Sprint_UnitTests
 
         }
 
+<<<<<<< HEAD
         // Andy's Unit Test:
         [TestMethod]
         public void Test_Dequeue_ElementAt_NegativeIndex()
@@ -667,7 +671,276 @@ namespace Sprint_UnitTests
 
             // Assert
             Assert.IsNull(play_queue.ElementAt(-1));
+=======
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Playlist_File_Created()
+        {
+            //Arrange
+            var playlist = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+
+            //Act
+            playlist.Add_New_Playlist(playlistName);
+
+            //Assert
+            Assert.IsTrue(File.Exists((@"C:\BearPlayer\Resources\" + playlistName + ".txt")));
         }
 
+        //Trevor's Unit test
+        [TestMethod]
+        public void Test_Song_URL_Added_To_Playlist_Text_File()
+        {
+            //Arrange
+            var bearPlayer = new BearPlayer.Bear_Player();
+            string playlistName = "TrevorPlaylist";
+            bearPlayer.Add_New_Playlist(playlistName);
+            bearPlayer.add_new_song(TrevSong);
+
+            //Act
+            bearPlayer.addSongToPlaylist("Intro", playlistName);
+
+            //Assert
+            string[] line = File.ReadAllLines(@"C:\BearPlayer\Resources\" + playlistName + ".txt");
+            Assert.IsTrue(line[0] == @"C:\BearPlayer\Resources\01 Intro.mp3");
+        }
+
+        //Ryan's Unit Test
+        [TestMethod]
+        public void Test_Resize_Song_List()
+        {
+            var player = new BearPlayer.Bear_Player();
+            //1064, 656 min size of player
+
+            player.Size = new System.Drawing.Size(1065, 657);
+            ListView songs = player.curr_list_box;
+            MessageBox.Show(songs.Width.ToString());
+            Assert.IsTrue(songs.Width == 1866);
+            Assert.IsTrue(songs.Height == 1070);
+        }
+
+
+        // Cale's Unit Tests:
+        // [
+        [TestMethod]
+        public void Test_Add_One_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Add_New_Playlist("new");
+
+            // Assert
+            Assert.AreEqual(player.Playlist_Names[0], "new");
+        }
+
+
+        [TestMethod]
+        public void Test_Add_Multiple_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            for (int i = 0; i < 5; ++i)
+                player.Add_New_Playlist(i.ToString());
+
+            // Assert
+            for (int i = 0; i < 5; ++i)
+                Assert.AreEqual(player.Playlist_Names[i], i.ToString());
+        }
+
+
+        [TestMethod]
+        public void Test_Add_Duplicate_Playlist()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Add_New_Playlist("playlist");
+            player.Add_New_Playlist("playlist");
+
+            // Assert
+            Assert.AreEqual(player.Playlist_Names[0], "playlist");
+            Assert.IsTrue(player.Playlist_Names.Count == 1);
+
+        }
+
+        [TestMethod]
+        public void Test_Change_ArtistView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_ArtistView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Artists");
+        }
+
+        [TestMethod]
+        public void Test_Change_AlbumView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_AlbumView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Albums");
+        }
+
+        [TestMethod]
+        public void Test_Change_SongView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SongView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Songs");
+        }
+
+
+        [TestMethod]
+        public void Test_Change_QueueView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_QueueView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Queue");
+        }
+
+
+        [TestMethod]
+        public void Test_Change_PlaylistView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_PlaylistView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Playlists");
+        }
+
+        [TestMethod]
+        public void Test_Change_PlaylistSongView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            string playlist = "playlist";
+
+            // Act
+            player.Change_UserPlaylistView(playlist);
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Playlists_Song");
+        }
+
+        [TestMethod]
+        public void Test_Change_SearchView()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SearchView();
+
+            // Assert
+            Assert.AreEqual(player.curr_view.ToString(), "Search");
+        }
+
+        [TestMethod]
+        public void Test_ChangeOptions_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_OptionsView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Options");
+        }
+
+        [TestMethod]
+        public void Test_ChangeArtist_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_ArtistView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Artists");
+        }
+
+        [TestMethod]
+        public void Test_ChangeAlbum_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_AlbumView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Albums");
+        }
+
+        [TestMethod]
+        public void Test_ChangeSongs_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_SongView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Songs");
+        }
+
+        [TestMethod]
+        public void Test_ChangeQueue_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_QueueView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Queue");
+        }
+
+        [TestMethod]
+        public void Test_ChangePlaylist_Label()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+
+            // Act
+            player.Change_PlaylistView();
+
+            // Assert
+            Assert.AreEqual(player.View_Label.Text, "Playlists");
+>>>>>>> cdf98170c3add809236a58395fee01413b5eb345
+        }
+
+        // ]
     }
 }

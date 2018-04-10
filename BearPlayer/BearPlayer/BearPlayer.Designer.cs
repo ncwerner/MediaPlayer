@@ -911,9 +911,9 @@
             // Search_View
             // 
             this.Search_View.Controls.Add(this.Search_List);
-            this.Search_View.Location = new System.Drawing.Point(139, 57);
+            this.Search_View.Location = new System.Drawing.Point(180, 75);
             this.Search_View.Name = "Search_View";
-            this.Search_View.Size = new System.Drawing.Size(909, 434);
+            this.Search_View.Size = new System.Drawing.Size(804, 416);
             this.Search_View.TabIndex = 21;
             // 
             // Search_List
@@ -927,7 +927,7 @@
             this.Search_List.Location = new System.Drawing.Point(3, 3);
             this.Search_List.MultiSelect = false;
             this.Search_List.Name = "Search_List";
-            this.Search_List.Size = new System.Drawing.Size(906, 432);
+            this.Search_List.Size = new System.Drawing.Size(801, 413);
             this.Search_List.TabIndex = 0;
             this.Search_List.UseCompatibleStateImageBehavior = false;
             this.Search_List.View = System.Windows.Forms.View.Details;
@@ -1019,6 +1019,8 @@
             // 
             // bottom_panel
             // 
+            this.bottom_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.bottom_panel.BackColor = System.Drawing.Color.White;
             this.bottom_panel.Controls.Add(this.pictureBox1);
             this.bottom_panel.Controls.Add(this.shuffle_toggle);
@@ -1128,9 +1130,9 @@
             this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
             this.Options_Panel.Controls.Add(this.Center_Color_Select);
             this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(139, 57);
+            this.Options_Panel.Location = new System.Drawing.Point(139, 75);
             this.Options_Panel.Name = "Options_Panel";
-            this.Options_Panel.Size = new System.Drawing.Size(909, 454);
+            this.Options_Panel.Size = new System.Drawing.Size(909, 436);
             this.Options_Panel.TabIndex = 3;
             // 
             // Bottom_Color_Select
@@ -1156,7 +1158,7 @@
             // Sidebar_Color_Button
             // 
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 56);
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
             this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
@@ -1373,7 +1375,7 @@
         private System.Windows.Forms.ColumnHeader SearchArtistColumn;
         private System.Windows.Forms.ColumnHeader SearchAlbumColumn;
         private System.Windows.Forms.ColumnHeader SearchDurationColumn;
-        private System.Windows.Forms.GroupBox groupBox1;
+        
         private System.Windows.Forms.Panel NewPlaylist_Panel;
         private System.Windows.Forms.TextBox NewPlaylist_TextBox;
         private System.Windows.Forms.Label NewPlaylist_Label;
@@ -1381,7 +1383,7 @@
         private System.Windows.Forms.Button NewPlaylist_EnterButton;
         private System.Windows.Forms.ListView Playlist_List;
         private System.Windows.Forms.ColumnHeader PlaylistList;
-        private System.Windows.Forms.Label View_Label;
+        public System.Windows.Forms.Label View_Label;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.FlowLayoutPanel Playlist_Song_Panel;
         private System.Windows.Forms.ListView Playlist_Song_List;
