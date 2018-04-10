@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -658,7 +658,6 @@ namespace Sprint_UnitTests
 
         }
 
-<<<<<<< HEAD
         // Andy's Unit Test:
         [TestMethod]
         public void Test_Dequeue_ElementAt_NegativeIndex()
@@ -672,7 +671,8 @@ namespace Sprint_UnitTests
 
             // Assert
             Assert.IsNull(play_queue.ElementAt(-1));
-=======
+        }
+
         //Trevor's Unit test
         [TestMethod]
         public void Test_Playlist_File_Created()
@@ -941,7 +941,6 @@ namespace Sprint_UnitTests
 
             // Assert
             Assert.AreEqual(player.View_Label.Text, "Playlists");
->>>>>>> cdf98170c3add809236a58395fee01413b5eb345
         }
 
         // ]
