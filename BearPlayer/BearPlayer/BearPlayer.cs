@@ -1299,8 +1299,6 @@ namespace BearPlayer
                 {
                     TagLib.File file = TagLib.File.Create(song_map[s]);
                     curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
-
-                    //(!play && playing_index < disp_song_paths.Count() ) curr_list_box.SelectedIndex = playing_index;
                 }
             }
 
@@ -1349,7 +1347,7 @@ namespace BearPlayer
             // Playlist Song Display
             else if (curr_view == view.Playlists_Song)
             {
-                if (File.Exists(playlist_loc +  curr_playlist + ".txt"))
+                if (File.Exists(playlist_loc + curr_playlist + ".txt"))
                 {
                     string[] lines = System.IO.File.ReadAllLines(playlist_loc + curr_playlist + ".txt");
                     foreach (string line in lines)
@@ -1357,10 +1355,6 @@ namespace BearPlayer
                         TagLib.File file = TagLib.File.Create(line);
                         curr_list_box.Items.Add(List_Column_Info(ref file));   // Fill row with song tag information
                     }
-                }
-                else
-                {
-                    //ignore
                 }
                 
             }
@@ -1412,6 +1406,12 @@ namespace BearPlayer
                     }
                 }
             }
+            
+            // Change back color of every list except for albums
+            if(!curr_view.ToString().Equals("Albums"))
+                for (int i = 1; i <= curr_list_box.Items.Count-1; i = (i + 2))
+                    curr_list_box.Items[i].BackColor = Color.Gainsboro;    // Loop through every element in the list and alternate background colors
+
         }
 
 
