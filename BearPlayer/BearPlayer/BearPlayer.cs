@@ -1762,11 +1762,9 @@ namespace BearPlayer
         {
             //NewPlaylist_Panel.Visible = true;
             string promptValue = "";
-            while (promptValue.Equals(""))
-            {
-                promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
-            }
-            Add_New_Playlist(promptValue);
+            promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
+            if(!promptValue.Equals(""))
+                Add_New_Playlist(promptValue);
         }
 
         // Method for changing display to user-created playlist view. 
@@ -2051,10 +2049,13 @@ namespace BearPlayer
                 };
                 Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
                 TextBox textBox = new TextBox() { Left = 20, Top = 50, Width = 240, Text = "" };
-                Button confirmation = new Button() { Text = "Ok", Left = 100, Width = 100, Top = 80, DialogResult = DialogResult.OK };
+                Button confirmation = new Button() { Text = "Ok", Left = 50, Width = 80, Top = 80, DialogResult = DialogResult.OK };
+                Button cancel = new Button() { Text = "Cancel", Left = 170, Width = 80, Top = 80, DialogResult = DialogResult.Cancel };
                 confirmation.Click += (sender, e) => { if (textBox.Text.Equals("")) { MessageBox.Show("Not Valid Name: Empty", "Error"); }  prompt.Close();  };
+                cancel.Click += (sender, e) => { prompt.Close(); };
                 prompt.Controls.Add(textBox);
                 prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(cancel);
                 prompt.Controls.Add(textLabel);
                 prompt.AcceptButton = confirmation;
 
