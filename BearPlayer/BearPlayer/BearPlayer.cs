@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +45,7 @@ namespace BearPlayer
         // Variables for searching
         public string search_entry;
         public bool found;
+        public bool cancel;
 
         public List<string> Playlist_Names = new List<string>();    // List of all playlist names
 
@@ -57,6 +58,8 @@ namespace BearPlayer
         string playlist_file_loc = @"C:\BearPlayer\Resources\Playlists.txt";
         string playlist_loc = @"C:\BearPlayer\Resources\";
         string user = "";
+
+        public ContextMenu cm;
 
         //saving folder paths
         public string folder_path_file_loc = @"C:\BearPlayer\Resources\Folder_Paths.txt";
@@ -96,10 +99,13 @@ namespace BearPlayer
             repeat_type = Repeat_Type.Off;
             found = false;
 
-            import_saved_playlists();
-            import_saved_folders();
+            cm = new ContextMenu();
+            cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
+            cm.MenuItems.Add("Play Next");
+            cm.MenuItems.Add("Play Later");
+            cm.MenuItems.Add("Get Tags");
+            cm.MenuItems.Add("Add to Playlist");
         }
-
 
         /* --- METHODS --- */
 
@@ -863,7 +869,6 @@ namespace BearPlayer
             // Search_List.Refresh();
         }
 
-
         //RIGHT CLICK FUNCTIONALITY:
 
         private void Song_List_MouseDown(object sender, MouseEventArgs e)
@@ -871,13 +876,6 @@ namespace BearPlayer
             if (e.Button == MouseButtons.Right)
             {
                 //MessageBox.Show("Right click");
-                ContextMenu cm = new ContextMenu();
-                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
-                cm.MenuItems.Add("Play Next");
-                cm.MenuItems.Add("Play Later");
-                cm.MenuItems.Add("Get Tags");
-                cm.MenuItems.Add("Add to Playlist");
-
                 Song_List.ContextMenu = cm;
             }
 
@@ -887,13 +885,6 @@ namespace BearPlayer
             if (e.Button == MouseButtons.Right)
             {
                 //MessageBox.Show("Right click");
-                ContextMenu cm = new ContextMenu();
-                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
-                cm.MenuItems.Add("Play Next");
-                cm.MenuItems.Add("Play Later");
-                cm.MenuItems.Add("Get Tags");
-                cm.MenuItems.Add("Add to Playlist");
-
                 Album_Song_List.ContextMenu = cm;
             }
         }
@@ -902,18 +893,10 @@ namespace BearPlayer
         {
             if (e.Button == MouseButtons.Right)
             {
-                //MessageBox.Show("Right click");
-                ContextMenu cm = new ContextMenu();
-                cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
-                cm.MenuItems.Add("Play Next");
-                cm.MenuItems.Add("Play Later");
-                cm.MenuItems.Add("Get Tags");
-                cm.MenuItems.Add("Add to Playlist");
 
                 Artist_Song_List.ContextMenu = cm;
             }
         }
-
 
 
         /* BACKEND METHODS */
