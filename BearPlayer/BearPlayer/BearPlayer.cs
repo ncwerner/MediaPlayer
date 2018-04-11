@@ -322,6 +322,12 @@ namespace BearPlayer
             Change_PlaylistView();
         }
 
+        // Method for changing application appearance from menu bar
+        private void changeAppearanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Change_OptionsView();
+        }
+
         // Method for moving to next song in play queue from menu bar
         private void nextToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1553,7 +1559,6 @@ namespace BearPlayer
         {
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
-                // If name already exists, abort process
                 if (s.Equals(new_playlist))
                 {
                     MessageBox.Show("Error - playlist already exists");
@@ -1901,7 +1906,7 @@ namespace BearPlayer
 
         private void optionToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Change_OptionsView();
+            
         }
 
         private void center_color_button_Click(object sender, EventArgs e)
@@ -2269,6 +2274,7 @@ namespace BearPlayer
         {
             System.IO.File.Delete(user_file_loc);
         }
+
 
 
         //dequeue for queue
