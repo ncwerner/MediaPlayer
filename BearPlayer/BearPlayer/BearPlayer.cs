@@ -1750,11 +1750,9 @@ namespace BearPlayer
         {
             //NewPlaylist_Panel.Visible = true;
             string promptValue = "";
-            while (promptValue.Equals(""))
-            {
-                promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
-            }
-            Add_New_Playlist(promptValue);
+            promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
+            if(!promptValue.Equals(""))
+                Add_New_Playlist(promptValue);
         }
 
         // Method for changing display to user-created playlist view. 
