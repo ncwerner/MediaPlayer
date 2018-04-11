@@ -705,6 +705,13 @@ namespace BearPlayer
 
         // NEW PLAYLIST 
 
+        private void Playlist_Song_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list_item_selected();
+            play_next_song();
+        }
+
+
         private void NewPlaylist_TextBox_Enter(object sender, EventArgs e)
         {
             NewPlaylist_TextBox.Text = "";
@@ -840,8 +847,6 @@ namespace BearPlayer
 
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -1982,6 +1987,11 @@ namespace BearPlayer
         private void set_bottom_color(Color c)
         {
             bottom_panel.BackColor = c;
+            shuffle_toggle.BackColor = c;
+            repeat_button.BackColor = c;
+            previous_button.BackColor = c;
+            next_button.BackColor = c;
+            playButton.BackColor = c;
         }
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2255,6 +2265,7 @@ namespace BearPlayer
         {
             System.IO.File.Delete(user_file_loc);
         }
+
 
         //dequeue for queue
         public class Dequeue
