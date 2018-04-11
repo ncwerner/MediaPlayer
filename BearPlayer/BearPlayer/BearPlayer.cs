@@ -705,6 +705,13 @@ namespace BearPlayer
 
         // NEW PLAYLIST 
 
+        private void Playlist_Song_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list_item_selected();
+            play_next_song();
+        }
+
+
         private void NewPlaylist_TextBox_Enter(object sender, EventArgs e)
         {
             NewPlaylist_TextBox.Text = "";
@@ -2260,6 +2267,7 @@ namespace BearPlayer
         {
             System.IO.File.Delete(user_file_loc);
         }
+
 
         //dequeue for queue
         public class Dequeue

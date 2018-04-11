@@ -1204,12 +1204,14 @@
             this.Playlist_Song_Album,
             this.Playlist_Song_Artist,
             this.Playlist_Song_Length});
+            this.Playlist_Song_List.FullRowSelect = true;
             this.Playlist_Song_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_Song_List.Name = "Playlist_Song_List";
             this.Playlist_Song_List.Size = new System.Drawing.Size(801, 413);
             this.Playlist_Song_List.TabIndex = 0;
             this.Playlist_Song_List.UseCompatibleStateImageBehavior = false;
             this.Playlist_Song_List.View = System.Windows.Forms.View.Details;
+            this.Playlist_Song_List.SelectedIndexChanged += new System.EventHandler(this.Playlist_Song_List_SelectedIndexChanged);
             // 
             // Playlist_Song_Title
             // 
