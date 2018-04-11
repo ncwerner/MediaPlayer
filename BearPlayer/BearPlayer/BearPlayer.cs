@@ -94,7 +94,10 @@ namespace BearPlayer
             search_entry = "";
             shuffle = false;
             repeat_type = Repeat_Type.Off;
-            found = false;     
+            found = false;
+
+            import_saved_playlists();
+            import_saved_folders();
         }
 
 
@@ -107,8 +110,7 @@ namespace BearPlayer
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
             
-            import_saved_playlists();
-            import_saved_folders();
+
         }
         
         public void import_saved_playlists()
@@ -709,6 +711,11 @@ namespace BearPlayer
         {
             list_item_selected();
             play_next_song();
+        }
+
+        private void Playlist_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Change_UserPlaylistView(curr_list_box.SelectedItems[0].Text);
         }
 
 
@@ -1868,12 +1875,6 @@ namespace BearPlayer
         public enum view { Albums, Artists, Songs, Playlists, Playlists_Song, Queue, Artist_Song, Album_Song, Search };
 
         public enum Repeat_Type { Off, Repeat_All, Repeat_One };
-
-
-        private void Playlist_List_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Change_UserPlaylistView(curr_list_box.SelectedItems[0].Text);
-        }
 
 
         private void sidebar_color_button_Click(object sender, EventArgs e) {
