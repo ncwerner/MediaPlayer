@@ -25,6 +25,7 @@ namespace BearPlayer
         public string songName;
         public int songctr;
         public string curr_playlist;
+        public string promptValue = ""; //for playlist creation
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -60,6 +61,7 @@ namespace BearPlayer
         string user = "";
 
         public ContextMenu cm;
+        public MenuItem addToPlaylistCM;
 
         //saving folder paths
         public string folder_path_file_loc = @"C:\BearPlayer\Resources\Folder_Paths.txt";
@@ -104,7 +106,9 @@ namespace BearPlayer
             cm.MenuItems.Add("Play Next");
             cm.MenuItems.Add("Play Later");
             cm.MenuItems.Add("Get Tags");
-            cm.MenuItems.Add("Add to Playlist");
+            addToPlaylistCM = new MenuItem("Add to Playlist");
+            cm.MenuItems.Add(addToPlaylistCM);
+            cm.MenuItems.Add("Add To New Playlist", new EventHandler(add_to_new_playlist_right_click));
         }
 
         /* --- METHODS --- */
@@ -811,6 +815,27 @@ namespace BearPlayer
             addSongToPlaylist(songName, sender.ToString());
         }
 
+        private void add_to_playlist_right_click(object sender, EventArgs e)
+        {
+
+            MenuItem mi = sender as MenuItem;
+            string text = mi.Text;
+            addSongToPlaylist(songName, text);
+        }
+
+        private void add_to_new_playlist_right_click(object sender, EventArgs e)
+        {
+            if (Change_NewPlaylistView() == true)
+            {
+                MenuItem mi = sender as MenuItem;
+                string text = mi.Text;
+                addSongToPlaylist(songName, promptValue);
+            }
+            else
+            {
+                //playlist already exists, song not added to existing playlist
+            }
+        }
 
         //RESIZING
 
@@ -1538,14 +1563,14 @@ namespace BearPlayer
 
 
         // Backend function for adding a new playlist to the program. It inputs the name of the new playlist to be created
-        public void Add_New_Playlist(string new_playlist)
+        public bool Add_New_Playlist(string new_playlist)
         {
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
                 if (s.Equals(new_playlist))
                 {
                     MessageBox.Show("Error - playlist already exists");
-                    return;
+                    return false;
                 }
 
             Playlist_Names.Add(new_playlist);   // Add new name to playlist list
@@ -1564,6 +1589,7 @@ namespace BearPlayer
                     tw.Close();
                 }
             }
+            return true;
         }
         
         //adds node for a playlist to the sidebar
@@ -1582,6 +1608,7 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(name);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+            addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
             subItem.Click += new EventHandler(addToPlaylist);
         }
         
@@ -1746,13 +1773,20 @@ namespace BearPlayer
         }
 
         // Method for changing display to create new playlist view
-        public void Change_NewPlaylistView()
+        public bool Change_NewPlaylistView()
         {
             //NewPlaylist_Panel.Visible = true;
-            string promptValue = "";
+
             promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
-            if(!promptValue.Equals(""))
-                Add_New_Playlist(promptValue);
+            if (!promptValue.Equals(""))
+            {
+                if (Add_New_Playlist(promptValue) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         // Method for changing display to user-created playlist view. 
@@ -1889,7 +1923,7 @@ namespace BearPlayer
 
         private void optionToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            
+            //Change_OptionsView(); ?? was here then wasn't
         }
 
         private void center_color_button_Click(object sender, EventArgs e)
