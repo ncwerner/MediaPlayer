@@ -1279,9 +1279,16 @@ namespace BearPlayer
         {
             string curr = curr_song;
             TagLib.File file = TagLib.File.Create(song_map[curr]);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            pictureBox1.Image = artwork;
+            try
+            {
+                MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+                pictureBox1.Image = artwork;
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                pictureBox1.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+            }
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             artistLabel.Text = file.Tag.Performers[0];
             titleLabel.Text = file.Tag.Title;
