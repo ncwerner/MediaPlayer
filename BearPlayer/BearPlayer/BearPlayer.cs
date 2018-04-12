@@ -2042,7 +2042,10 @@ namespace BearPlayer
                 }
             }
             create_new_user(promptValue);
-            
+
+            string[] lines_up = get_all_user_lines();
+
+            switch_to_user(promptValue, lines_up, get_all_users(lines_up));
         }
 
         public void create_new_user( string user_name)
@@ -2158,8 +2161,13 @@ namespace BearPlayer
                 MessageBox.Show("No Users", "Error");
                 return;
             }
-            user = Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names );
-            open_user_settings(lines, user_names);
+            switch_to_user(Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names), lines, user_names);
+        }
+
+        public void switch_to_user(string name, string[] all_lines, string[] all_users)
+        {
+            user = name;
+            open_user_settings(all_lines, all_users);
         }
         
 
