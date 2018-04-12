@@ -2043,9 +2043,7 @@ namespace BearPlayer
             }
             create_new_user(promptValue);
 
-            string[] lines_up = get_all_user_lines();
-
-            switch_to_user(promptValue, lines_up, get_all_users(lines_up));
+            
         }
 
         public void create_new_user( string user_name)
@@ -2058,6 +2056,12 @@ namespace BearPlayer
                 file.WriteLine(default_center_color.ToArgb());
                 file.WriteLine(default_bottom_color.ToArgb());
             }
+            switch_to_user(user_name);
+        }
+
+        public string get_user()
+        {
+            return user;
         }
 
         public static class Prompt
@@ -2164,12 +2168,39 @@ namespace BearPlayer
             switch_to_user(Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names), lines, user_names);
         }
 
-        public void switch_to_user(string name, string[] all_lines, string[] all_users)
+        public bool switch_to_user(string name, string[] all_lines, string[] all_users)
         {
+            bool found = false;
+            foreach( string s in all_users)
+            {
+                if (s.Equals(name))
+                {
+                    found = true;
+                }
+            }
+            if (!found) return false;
             user = name;
             open_user_settings(all_lines, all_users);
+            return true;
         }
-        
+        public bool switch_to_user(string name)
+        {
+            string[] lines = get_all_user_lines();
+            string[] users = get_all_users(lines);
+            bool found = false;
+            foreach (string s in users)
+            {
+                if (s.Equals(name))
+                {
+                    found = true;
+                }
+            }
+            if (!found) return false;
+            user = name;
+            open_user_settings(lines, users);
+            return true;
+        }
+
 
         public void open_user_settings(string[] all_lines, string[] all_users)
         {
