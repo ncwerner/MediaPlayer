@@ -26,6 +26,7 @@ namespace BearPlayer
         public int songctr;
         public string curr_playlist;
         public string promptValue = ""; //for playlist creation
+        bool in_search_bar = false;
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -713,11 +714,13 @@ namespace BearPlayer
         private void searchBar_Leave(object sender, EventArgs e)
         {
             searchBar.Text = "Search";
+            in_search_bar = false;
         }
 
         private void searchBar_Enter(object sender, EventArgs e)
         {
             searchBar.Text = "";
+            in_search_bar = true;
         }
 
 
@@ -779,7 +782,7 @@ namespace BearPlayer
         private void Bear_Player_KeyDown(object sender, KeyEventArgs e)
         {
             // Play/Pause using SPACE BAR
-            if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.MediaPlayPause || (e.KeyCode == Keys.Space && !in_search_bar))
             {
                 play_pause_toggle();
             }
