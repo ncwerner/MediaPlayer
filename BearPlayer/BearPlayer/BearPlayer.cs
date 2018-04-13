@@ -2038,6 +2038,7 @@ namespace BearPlayer
             Artist_Song_View.BackColor = c;
             Album_Song_View.BackColor = c;
             Options_Panel.BackColor = c;
+            BackButton.BackColor = c;
 
             Album_List.BackColor = c;
             Album_Song_List.BackColor = c;
