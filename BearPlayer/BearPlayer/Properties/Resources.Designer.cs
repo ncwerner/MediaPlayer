@@ -183,9 +183,9 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shuffleButton {
+        internal static System.Drawing.Bitmap shuffleButtonOff {
             get {
-                object obj = ResourceManager.GetObject("shuffleButton", resourceCulture);
+                object obj = ResourceManager.GetObject("shuffleButtonOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shuffleButtonOff {
+        internal static System.Drawing.Bitmap shuffleButtonOn {
             get {
-                object obj = ResourceManager.GetObject("shuffleButtonOff", resourceCulture);
+                object obj = ResourceManager.GetObject("shuffleButtonOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
