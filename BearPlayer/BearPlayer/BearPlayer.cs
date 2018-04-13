@@ -531,7 +531,8 @@ namespace BearPlayer
 
         private void scrubBar_MouseDown(object sender, MouseEventArgs e)
         {
-            song_time.Enabled = false;
+            if(song_selected || curr_song != null)
+                song_time.Enabled = false;
         }
 
         private void scrubBar_MouseUp(object sender, MouseEventArgs e)
@@ -754,7 +755,6 @@ namespace BearPlayer
             Change_UserPlaylistView(curr_list_box.SelectedItems[0].Text);
         }
 
-
         private void NewPlaylist_TextBox_Enter(object sender, EventArgs e)
         {
             NewPlaylist_TextBox.Text = "";
@@ -911,6 +911,8 @@ namespace BearPlayer
 
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Album_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Album_Song_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Artist_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -1054,6 +1056,7 @@ namespace BearPlayer
         {
             bool new_song = false;
             song_selected = true;
+            scrubBar.Enabled = true;
             if (Player.URL != url)
             {
                 Player.URL = url;
@@ -1064,6 +1067,8 @@ namespace BearPlayer
                 Player.controls.currentPosition = 0;
                 new_song = false;
             }
+            Current_position_label.Text = "0:00";
+            scrubBar.Value = 0;
             Player.controls.play();
             this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
             play = false;
@@ -1079,8 +1084,6 @@ namespace BearPlayer
                 Song_length_label.Text = song_file.Properties.Duration.Minutes.ToString() + ":0" + song_file.Properties.Duration.Seconds.ToString();
             }
             scrubBar.Maximum = song_file.Properties.Duration.Seconds + (song_file.Properties.Duration.Minutes * 60);
-            Current_position_label.Text = "0:00";
-            scrubBar.Value = 0;
             //sets the starting position to the current label and the scrub bar
             song_time.Start();
 
@@ -2054,11 +2057,6 @@ namespace BearPlayer
         private void set_bottom_color(Color c)
         {
             bottom_panel.BackColor = c;
-            shuffle_toggle.BackColor = c;
-            repeat_button.BackColor = c;
-            previous_button.BackColor = c;
-            next_button.BackColor = c;
-            playButton.BackColor = c;
         }
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2374,20 +2372,24 @@ namespace BearPlayer
         {
             System.IO.File.Delete(user_file_loc);
         }
-
+        
         private void Song_List_MouseEnter(object sender, EventArgs e)
         {
-            if (curr_list_box.Items.Count > 0) { 
-                Point point = curr_list_box.PointToClient(Cursor.Position);
-                ListViewItem item = curr_list_box.GetItemAt(point.X, point.Y);
-                int size = item.Index;
-                int size1 = curr_list_box.Items.Count;
-                if (item.Index < curr_list_box.Items.Count)
-                    item.BackColor = Color.Aqua;
-            }
+            try
+            {
+                if (curr_list_box.Items.Count > 0)
+                {
+                    Point point = curr_list_box.PointToClient(Cursor.Position);
+                    ListViewItem item = curr_list_box.GetItemAt(point.X, point.Y);
+                    int size = item.Index;
+                    int size1 = curr_list_box.Items.Count;
+                    if (item.Index < curr_list_box.Items.Count)
+                        item.BackColor = Color.Aqua;
+                }
+            } catch(Exception ex) { MessageBox.Show(ex.Message); }
         }
 
-
+       
         //dequeue for queue
         public class Dequeue
         {
