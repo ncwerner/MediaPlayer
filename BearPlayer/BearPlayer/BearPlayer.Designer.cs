@@ -621,6 +621,7 @@
             this.Song_List.Click += new System.EventHandler(this.Song_List_Click);
             this.Song_List.DoubleClick += new System.EventHandler(this.Song_List_SelectedIndexChanged);
             this.Song_List.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Song_List_MouseDown);
+            this.Song_List.MouseEnter += new System.EventHandler(this.Song_List_MouseEnter);
             // 
             // TitleColumn
             // 
@@ -1134,7 +1135,7 @@
             // BackButton
             // 
             this.BackButton.BackColor = System.Drawing.Color.Transparent;
-            this.BackButton.Image = global::BearPlayer.Properties.Resources.BackButton;
+            this.BackButton.Image = ((System.Drawing.Image)(resources.GetObject("BackButton.Image")));
             this.BackButton.Location = new System.Drawing.Point(139, 25);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(84, 50);

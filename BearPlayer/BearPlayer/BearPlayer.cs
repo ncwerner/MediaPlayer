@@ -2375,6 +2375,18 @@ namespace BearPlayer
             System.IO.File.Delete(user_file_loc);
         }
 
+        private void Song_List_MouseEnter(object sender, EventArgs e)
+        {
+            if (curr_list_box.Items.Count > 0) { 
+                Point point = curr_list_box.PointToClient(Cursor.Position);
+                ListViewItem item = curr_list_box.GetItemAt(point.X, point.Y);
+                int size = item.Index;
+                int size1 = curr_list_box.Items.Count;
+                if (item.Index < curr_list_box.Items.Count)
+                    item.BackColor = Color.Aqua;
+            }
+        }
+
 
         //dequeue for queue
         public class Dequeue
