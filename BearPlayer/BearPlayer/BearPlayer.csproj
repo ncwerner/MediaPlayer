@@ -142,6 +142,10 @@
   <ItemGroup>
     <Content Include="Resources\02 - Godspeed.mp3" />
     <Content Include="Resources\04 - A Whisper &amp; A Clamor.mp3" />
+    <None Include="Resources\BackButton.JPG" />
+    <None Include="Resources\BackButton1.JPG" />
+    <None Include="Resources\BackButton2.JPG" />
+    <None Include="Resources\BackButton.png" />
     <Content Include="Resources\bear.png" />
     <Content Include="Resources\Repeat.png" />
     <Content Include="Resources\shuffleButtonOff.png" />

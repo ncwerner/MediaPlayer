@@ -75,7 +75,6 @@
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.switchUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SideBar = new System.Windows.Forms.TreeView();
             this.searchBar = new System.Windows.Forms.TextBox();
             this.volumeSlider = new System.Windows.Forms.TrackBar();
@@ -132,19 +131,11 @@
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
             this.sidebar_color_dialog = new System.Windows.Forms.ColorDialog();
             this.bottom_panel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.shuffle_toggle = new System.Windows.Forms.PictureBox();
-            this.playButton = new System.Windows.Forms.PictureBox();
-            this.repeat_button = new System.Windows.Forms.PictureBox();
-            this.next_button = new System.Windows.Forms.PictureBox();
-            this.previous_button = new System.Windows.Forms.PictureBox();
             this.Options_Panel = new System.Windows.Forms.Panel();
             this.Bottom_Color_Select = new System.Windows.Forms.Button();
             this.Center_Color_Select = new System.Windows.Forms.Button();
             this.Sidebar_Color_Button = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.bear_logo = new System.Windows.Forms.PictureBox();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.View_Label = new System.Windows.Forms.Label();
             this.Playlist_Song_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Playlist_Song_List = new System.Windows.Forms.ListView();
@@ -152,6 +143,15 @@
             this.Playlist_Song_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist_Song_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist_Song_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BackButton = new System.Windows.Forms.PictureBox();
+            this.bear_logo = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.shuffle_toggle = new System.Windows.Forms.PictureBox();
+            this.playButton = new System.Windows.Forms.PictureBox();
+            this.repeat_button = new System.Windows.Forms.PictureBox();
+            this.next_button = new System.Windows.Forms.PictureBox();
+            this.previous_button = new System.Windows.Forms.PictureBox();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -165,16 +165,17 @@
             this.Search_View.SuspendLayout();
             this.NewPlaylist_Panel.SuspendLayout();
             this.bottom_panel.SuspendLayout();
+            this.Options_Panel.SuspendLayout();
+            this.Playlist_Song_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).BeginInit();
-            this.Options_Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.Playlist_Song_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuBar
@@ -335,6 +336,7 @@
             this.changeAppearanceToolStripMenuItem.Name = "changeAppearanceToolStripMenuItem";
             this.changeAppearanceToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.changeAppearanceToolStripMenuItem.Text = "Change Appearance";
+            this.changeAppearanceToolStripMenuItem.Click += new System.EventHandler(this.changeAppearanceToolStripMenuItem_Click);
             // 
             // playbackToolStripMenuItem
             // 
@@ -447,8 +449,7 @@
             // 
             this.accountToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchUserToolStripMenuItem,
-            this.createUserToolStripMenuItem,
-            this.optionToolStripMenuItem});
+            this.createUserToolStripMenuItem});
             this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
             this.accountToolStripMenuItem.Size = new System.Drawing.Size(72, 21);
             this.accountToolStripMenuItem.Text = "Account";
@@ -466,13 +467,6 @@
             this.createUserToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.createUserToolStripMenuItem.Text = "Create User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
-            // 
-            // optionToolStripMenuItem
-            // 
-            this.optionToolStripMenuItem.Name = "optionToolStripMenuItem";
-            this.optionToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.optionToolStripMenuItem.Text = "Options";
-            this.optionToolStripMenuItem.Click += new System.EventHandler(this.optionToolStripMenuItem_Click_1);
             // 
             // SideBar
             // 
@@ -1041,6 +1035,126 @@
             this.bottom_panel.Size = new System.Drawing.Size(1048, 108);
             this.bottom_panel.TabIndex = 24;
             // 
+            // Options_Panel
+            // 
+            this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
+            this.Options_Panel.Controls.Add(this.Center_Color_Select);
+            this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
+            this.Options_Panel.Location = new System.Drawing.Point(180, 75);
+            this.Options_Panel.Name = "Options_Panel";
+            this.Options_Panel.Size = new System.Drawing.Size(804, 416);
+            this.Options_Panel.TabIndex = 3;
+            // 
+            // Bottom_Color_Select
+            // 
+            this.Bottom_Color_Select.Location = new System.Drawing.Point(47, 352);
+            this.Bottom_Color_Select.Name = "Bottom_Color_Select";
+            this.Bottom_Color_Select.Size = new System.Drawing.Size(115, 23);
+            this.Bottom_Color_Select.TabIndex = 2;
+            this.Bottom_Color_Select.Text = "Bottom Color Select";
+            this.Bottom_Color_Select.UseVisualStyleBackColor = true;
+            this.Bottom_Color_Select.Click += new System.EventHandler(this.buttom_color_button_Click);
+            // 
+            // Center_Color_Select
+            // 
+            this.Center_Color_Select.Location = new System.Drawing.Point(47, 199);
+            this.Center_Color_Select.Name = "Center_Color_Select";
+            this.Center_Color_Select.Size = new System.Drawing.Size(115, 23);
+            this.Center_Color_Select.TabIndex = 1;
+            this.Center_Color_Select.Text = "Center Color Select";
+            this.Center_Color_Select.UseVisualStyleBackColor = true;
+            this.Center_Color_Select.Click += new System.EventHandler(this.center_color_button_Click);
+            // 
+            // Sidebar_Color_Button
+            // 
+            this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
+            this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
+            this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
+            this.Sidebar_Color_Button.TabIndex = 0;
+            this.Sidebar_Color_Button.Text = "Sidebar Color Select";
+            this.Sidebar_Color_Button.UseVisualStyleBackColor = true;
+            this.Sidebar_Color_Button.Click += new System.EventHandler(this.sidebar_color_button_Click);
+            // 
+            // View_Label
+            // 
+            this.View_Label.AutoSize = true;
+            this.View_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.View_Label.Location = new System.Drawing.Point(502, 32);
+            this.View_Label.Name = "View_Label";
+            this.View_Label.Size = new System.Drawing.Size(109, 35);
+            this.View_Label.TabIndex = 23;
+            this.View_Label.Text = "Songs";
+            this.View_Label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // Playlist_Song_Panel
+            // 
+            this.Playlist_Song_Panel.Controls.Add(this.Playlist_Song_List);
+            this.Playlist_Song_Panel.Location = new System.Drawing.Point(180, 75);
+            this.Playlist_Song_Panel.Name = "Playlist_Song_Panel";
+            this.Playlist_Song_Panel.Size = new System.Drawing.Size(804, 416);
+            this.Playlist_Song_Panel.TabIndex = 24;
+            this.Playlist_Song_Panel.Visible = false;
+            // 
+            // Playlist_Song_List
+            // 
+            this.Playlist_Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Playlist_Song_Title,
+            this.Playlist_Song_Album,
+            this.Playlist_Song_Artist,
+            this.Playlist_Song_Length});
+            this.Playlist_Song_List.Location = new System.Drawing.Point(3, 3);
+            this.Playlist_Song_List.Name = "Playlist_Song_List";
+            this.Playlist_Song_List.Size = new System.Drawing.Size(801, 413);
+            this.Playlist_Song_List.TabIndex = 0;
+            this.Playlist_Song_List.UseCompatibleStateImageBehavior = false;
+            this.Playlist_Song_List.View = System.Windows.Forms.View.Details;
+            // 
+            // Playlist_Song_Title
+            // 
+            this.Playlist_Song_Title.Text = "Title";
+            this.Playlist_Song_Title.Width = 265;
+            // 
+            // Playlist_Song_Album
+            // 
+            this.Playlist_Song_Album.Text = "Album";
+            this.Playlist_Song_Album.Width = 195;
+            // 
+            // Playlist_Song_Artist
+            // 
+            this.Playlist_Song_Artist.Text = "Artist";
+            this.Playlist_Song_Artist.Width = 195;
+            // 
+            // Playlist_Song_Length
+            // 
+            this.Playlist_Song_Length.Text = "Length";
+            this.Playlist_Song_Length.Width = 142;
+            // 
+            // BackButton
+            // 
+            this.BackButton.BackColor = System.Drawing.Color.Transparent;
+            this.BackButton.Image = global::BearPlayer.Properties.Resources.BackButton;
+            this.BackButton.Location = new System.Drawing.Point(139, 25);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(84, 50);
+            this.BackButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BackButton.TabIndex = 25;
+            this.BackButton.TabStop = false;
+            this.BackButton.Visible = false;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // bear_logo
+            // 
+            this.bear_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.bear_logo.BackColor = System.Drawing.Color.DodgerBlue;
+            this.bear_logo.Image = global::BearPlayer.Properties.Resources.bear;
+            this.bear_logo.Location = new System.Drawing.Point(21, 409);
+            this.bear_logo.Name = "bear_logo";
+            this.bear_logo.Size = new System.Drawing.Size(100, 99);
+            this.bear_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.bear_logo.TabIndex = 0;
+            this.bear_logo.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1126,126 +1240,19 @@
             this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
             this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
             // 
-            // Options_Panel
-            // 
-            this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
-            this.Options_Panel.Controls.Add(this.Center_Color_Select);
-            this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(139, 75);
-            this.Options_Panel.Name = "Options_Panel";
-            this.Options_Panel.Size = new System.Drawing.Size(909, 436);
-            this.Options_Panel.TabIndex = 3;
-            // 
-            // Bottom_Color_Select
-            // 
-            this.Bottom_Color_Select.Location = new System.Drawing.Point(47, 352);
-            this.Bottom_Color_Select.Name = "Bottom_Color_Select";
-            this.Bottom_Color_Select.Size = new System.Drawing.Size(115, 23);
-            this.Bottom_Color_Select.TabIndex = 2;
-            this.Bottom_Color_Select.Text = "Bottom Color Select";
-            this.Bottom_Color_Select.UseVisualStyleBackColor = true;
-            this.Bottom_Color_Select.Click += new System.EventHandler(this.buttom_color_button_Click);
-            // 
-            // Center_Color_Select
-            // 
-            this.Center_Color_Select.Location = new System.Drawing.Point(47, 199);
-            this.Center_Color_Select.Name = "Center_Color_Select";
-            this.Center_Color_Select.Size = new System.Drawing.Size(115, 23);
-            this.Center_Color_Select.TabIndex = 1;
-            this.Center_Color_Select.Text = "Center Color Select";
-            this.Center_Color_Select.UseVisualStyleBackColor = true;
-            this.Center_Color_Select.Click += new System.EventHandler(this.center_color_button_Click);
-            // 
-            // Sidebar_Color_Button
-            // 
-            this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
-            this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
-            this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
-            this.Sidebar_Color_Button.TabIndex = 0;
-            this.Sidebar_Color_Button.Text = "Sidebar Color Select";
-            this.Sidebar_Color_Button.UseVisualStyleBackColor = true;
-            this.Sidebar_Color_Button.Click += new System.EventHandler(this.sidebar_color_button_Click);
-            // 
-            // bear_logo
-            // 
-            this.bear_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.bear_logo.BackColor = System.Drawing.Color.DodgerBlue;
-            this.bear_logo.Image = global::BearPlayer.Properties.Resources.bear;
-            this.bear_logo.Location = new System.Drawing.Point(21, 409);
-            this.bear_logo.Name = "bear_logo";
-            this.bear_logo.Size = new System.Drawing.Size(100, 99);
-            this.bear_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.bear_logo.TabIndex = 0;
-            this.bear_logo.TabStop = false;
-            // 
-            // View_Label
-            // 
-            this.View_Label.AutoSize = true;
-            this.View_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.View_Label.Location = new System.Drawing.Point(177, 32);
-            this.View_Label.Name = "View_Label";
-            this.View_Label.Size = new System.Drawing.Size(109, 35);
-            this.View_Label.TabIndex = 23;
-            this.View_Label.Text = "Songs";
-            // 
-            // Playlist_Song_Panel
-            // 
-            this.Playlist_Song_Panel.Controls.Add(this.Playlist_Song_List);
-            this.Playlist_Song_Panel.Location = new System.Drawing.Point(180, 75);
-            this.Playlist_Song_Panel.Name = "Playlist_Song_Panel";
-            this.Playlist_Song_Panel.Size = new System.Drawing.Size(804, 416);
-            this.Playlist_Song_Panel.TabIndex = 24;
-            this.Playlist_Song_Panel.Visible = false;
-            // 
-            // Playlist_Song_List
-            // 
-            this.Playlist_Song_List.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Playlist_Song_Title,
-            this.Playlist_Song_Album,
-            this.Playlist_Song_Artist,
-            this.Playlist_Song_Length});
-            this.Playlist_Song_List.Location = new System.Drawing.Point(3, 3);
-            this.Playlist_Song_List.Name = "Playlist_Song_List";
-            this.Playlist_Song_List.Size = new System.Drawing.Size(801, 413);
-            this.Playlist_Song_List.TabIndex = 0;
-            this.Playlist_Song_List.UseCompatibleStateImageBehavior = false;
-            this.Playlist_Song_List.View = System.Windows.Forms.View.Details;
-            // 
-            // Playlist_Song_Title
-            // 
-            this.Playlist_Song_Title.Text = "Title";
-            this.Playlist_Song_Title.Width = 265;
-            // 
-            // Playlist_Song_Album
-            // 
-            this.Playlist_Song_Album.Text = "Album";
-            this.Playlist_Song_Album.Width = 195;
-            // 
-            // Playlist_Song_Artist
-            // 
-            this.Playlist_Song_Artist.Text = "Artist";
-            this.Playlist_Song_Artist.Width = 195;
-            // 
-            // Playlist_Song_Length
-            // 
-            this.Playlist_Song_Length.Text = "Length";
-            this.Playlist_Song_Length.Width = 142;
-            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1048, 617);
-            this.Controls.Add(this.Options_Panel);
+            this.Controls.Add(this.BackButton);
             this.Controls.Add(this.View_Label);
             this.Controls.Add(this.NewPlaylist_Panel);
             this.Controls.Add(this.bear_logo);
             this.Controls.Add(this.searchBar);
             this.Controls.Add(this.MenuBar);
             this.Controls.Add(this.SideBar);
-            this.Controls.Add(this.Playlists_View);
             this.Controls.Add(this.Queue_View);
             this.Controls.Add(this.Artist_View);
             this.Controls.Add(this.Album_Song_View);
@@ -1255,6 +1262,8 @@
             this.Controls.Add(this.bottom_panel);
             this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.Albums_View);
+            this.Controls.Add(this.Options_Panel);
+            this.Controls.Add(this.Playlists_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
             this.Name = "Bear_Player";
@@ -1279,16 +1288,17 @@
             this.NewPlaylist_Panel.PerformLayout();
             this.bottom_panel.ResumeLayout(false);
             this.bottom_panel.PerformLayout();
+            this.Options_Panel.ResumeLayout(false);
+            this.Playlist_Song_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
-            this.Options_Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.Playlist_Song_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1321,7 +1331,6 @@
         private System.Windows.Forms.ToolStripMenuItem volumeDownToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem switchUserToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionToolStripMenuItem;
         private System.Windows.Forms.TreeView SideBar;
         private System.Windows.Forms.PictureBox playButton;
         private System.Windows.Forms.PictureBox next_button;
@@ -1416,6 +1425,7 @@
         private System.Windows.Forms.ToolStripMenuItem noRepeatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repeatOneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repeatAllToolStripMenuItem;
+        private System.Windows.Forms.PictureBox BackButton;
     }
 }
 
