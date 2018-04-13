@@ -684,10 +684,11 @@ namespace BearPlayer
 
         private void Song_List_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            if (Song_List.Sorting == SortOrder.None || Song_List.Sorting == SortOrder.Descending)
-                Song_List.Sorting = SortOrder.Ascending;
-            else if (Song_List.Sorting == SortOrder.Ascending)
-                Song_List.Sorting = SortOrder.Descending;
+            if (curr_list_box.Sorting == SortOrder.None || curr_list_box.Sorting == SortOrder.Descending)
+                curr_list_box.Sorting = SortOrder.Ascending;
+            else if (curr_list_box.Sorting == SortOrder.Ascending)
+                curr_list_box.Sorting = SortOrder.Descending;
+
             list_item_selected();
         }
 
@@ -1885,11 +1886,6 @@ namespace BearPlayer
                 lines[index + 1] = sidebar_color_dialog.Color.ToArgb().ToString();
                 System.IO.File.WriteAllLines(user_file_loc, lines);
             }
-        }
-
-        private void optionToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            
         }
 
         private void center_color_button_Click(object sender, EventArgs e)
