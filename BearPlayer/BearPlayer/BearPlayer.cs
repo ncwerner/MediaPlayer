@@ -25,6 +25,8 @@ namespace BearPlayer
         public string songName;
         public int songctr;
         public string curr_playlist;
+        public string promptValue = ""; //for playlist creation
+        bool in_search_bar = false;
 
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
@@ -60,6 +62,7 @@ namespace BearPlayer
         string user = "";
 
         public ContextMenu cm;
+        public MenuItem addToPlaylistCM;
 
         //saving folder paths
         public string folder_path_file_loc = @"C:\BearPlayer\Resources\Folder_Paths.txt";
@@ -104,7 +107,9 @@ namespace BearPlayer
             cm.MenuItems.Add("Play Next");
             cm.MenuItems.Add("Play Later");
             cm.MenuItems.Add("Get Tags");
-            cm.MenuItems.Add("Add to Playlist");
+            addToPlaylistCM = new MenuItem("Add to Playlist");
+            cm.MenuItems.Add(addToPlaylistCM);
+            cm.MenuItems.Add("Add To New Playlist", new EventHandler(add_to_new_playlist_right_click));
         }
 
         /* --- METHODS --- */
@@ -246,6 +251,22 @@ namespace BearPlayer
             }
 
             update_list_disp();
+        }
+
+        // Function for clicking on back button
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            // If on artist song view, return to artist view
+            if (curr_view.ToString().Equals("Artist_Song"))
+                Change_ArtistView();
+
+            // If on album song view, return to album view
+            if (curr_view.ToString().Equals("Album_Song"))
+                Change_AlbumView();
+
+            // If on user playlist view, return to playlist view
+            if (curr_view.ToString().Equals("Playlists_Song"))
+                Change_PlaylistView();
         }
 
 
@@ -710,11 +731,13 @@ namespace BearPlayer
         private void searchBar_Leave(object sender, EventArgs e)
         {
             searchBar.Text = "Search";
+            in_search_bar = false;
         }
 
         private void searchBar_Enter(object sender, EventArgs e)
         {
             searchBar.Text = "";
+            in_search_bar = true;
         }
 
 
@@ -776,7 +799,7 @@ namespace BearPlayer
         private void Bear_Player_KeyDown(object sender, KeyEventArgs e)
         {
             // Play/Pause using SPACE BAR
-            if (e.KeyCode == Keys.MediaPlayPause || e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.MediaPlayPause || (e.KeyCode == Keys.Space && !in_search_bar))
             {
                 play_pause_toggle();
             }
@@ -812,6 +835,27 @@ namespace BearPlayer
             addSongToPlaylist(songName, sender.ToString());
         }
 
+        private void add_to_playlist_right_click(object sender, EventArgs e)
+        {
+
+            MenuItem mi = sender as MenuItem;
+            string text = mi.Text;
+            addSongToPlaylist(songName, text);
+        }
+
+        private void add_to_new_playlist_right_click(object sender, EventArgs e)
+        {
+            if (Change_NewPlaylistView() == true)
+            {
+                MenuItem mi = sender as MenuItem;
+                string text = mi.Text;
+                addSongToPlaylist(songName, promptValue);
+            }
+            else
+            {
+                //playlist already exists, song not added to existing playlist
+            }
+        }
 
         //RESIZING
 
@@ -1252,9 +1296,16 @@ namespace BearPlayer
         {
             string curr = curr_song;
             TagLib.File file = TagLib.File.Create(song_map[curr]);
-            MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-            System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-            pictureBox1.Image = artwork;
+            try
+            {
+                MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+                pictureBox1.Image = artwork;
+            }
+            catch(IndexOutOfRangeException e)
+            {
+                pictureBox1.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+            }
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             artistLabel.Text = file.Tag.Performers[0];
             titleLabel.Text = file.Tag.Title;
@@ -1539,14 +1590,14 @@ namespace BearPlayer
 
 
         // Backend function for adding a new playlist to the program. It inputs the name of the new playlist to be created
-        public void Add_New_Playlist(string new_playlist)
+        public bool Add_New_Playlist(string new_playlist)
         {
             // Check thruogh list of playlist names to see if name already exists
             foreach (string s in Playlist_Names)
                 if (s.Equals(new_playlist))
                 {
                     MessageBox.Show("Error - playlist already exists");
-                    return;
+                    return false;
                 }
 
             Playlist_Names.Add(new_playlist);   // Add new name to playlist list
@@ -1565,6 +1616,7 @@ namespace BearPlayer
                     tw.Close();
                 }
             }
+            return true;
         }
         
         //adds node for a playlist to the sidebar
@@ -1583,6 +1635,7 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(name);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
+            addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
             subItem.Click += new EventHandler(addToPlaylist);
         }
         
@@ -1647,6 +1700,8 @@ namespace BearPlayer
             Playlist_Song_Panel.Visible = false;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = false;   // Remove back button
+
             curr_view = view.Artists;
             curr_list_box = Artist_List;   // Change to artist list box
 
@@ -1669,6 +1724,8 @@ namespace BearPlayer
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
             Options_Panel.Visible = false;
+
+            BackButton.Visible = false;   // Remove back button
 
             curr_view = view.Albums;
             curr_list_box = Album_List;  // Change to album list box
@@ -1694,6 +1751,8 @@ namespace BearPlayer
             Playlist_Song_Panel.Visible = false;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = false;   // Remove back button
+
             curr_view = view.Songs;
             curr_list_box = Song_List;   // Change to song list box
 
@@ -1716,6 +1775,8 @@ namespace BearPlayer
             NewPlaylist_Panel.Visible = false;
             Playlist_Song_Panel.Visible = false;
             Options_Panel.Visible = false;
+
+            BackButton.Visible = false;   // Remove back button
 
             curr_view = view.Queue;
             curr_list_box = Queue_List;   // Change to queue list box
@@ -1740,6 +1801,8 @@ namespace BearPlayer
             Playlist_Song_Panel.Visible = false;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = false;   // Remove back button
+
             curr_view = view.Playlists;
             curr_list_box = Playlist_List;
 
@@ -1747,13 +1810,20 @@ namespace BearPlayer
         }
 
         // Method for changing display to create new playlist view
-        public void Change_NewPlaylistView()
+        public bool Change_NewPlaylistView()
         {
             //NewPlaylist_Panel.Visible = true;
-            string promptValue = "";
+
             promptValue = Prompt.ShowDialog("Please input new playlist name", "New Playlist");
-            if(!promptValue.Equals(""))
-                Add_New_Playlist(promptValue);
+            if (!promptValue.Equals(""))
+            {
+                if (Add_New_Playlist(promptValue) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         // Method for changing display to user-created playlist view. 
@@ -1779,6 +1849,8 @@ namespace BearPlayer
             Playlist_Song_Panel.Visible = true;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = true;   // Place back button
+
             curr_view = view.Playlists_Song;
             curr_list_box = Playlist_Song_List;
 
@@ -1797,6 +1869,8 @@ namespace BearPlayer
             Artist_Song_View.Visible = true;
             Album_Song_View.Visible = false;
             Options_Panel.Visible = false;
+
+            BackButton.Visible = true;   // Place back button
 
             selected_artist = curr_list_box.SelectedItems[0].Text;
             curr_view = view.Artist_Song;
@@ -1818,6 +1892,8 @@ namespace BearPlayer
             Album_Song_View.Visible = true;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = true;   // Place back button
+
             selected_album = curr_list_box.SelectedItems[0].Text.Split('\n')[0];
             curr_view = view.Album_Song;
             curr_list_box = Album_Song_List;
@@ -1838,6 +1914,8 @@ namespace BearPlayer
             Album_Song_View.Visible = false;
             Options_Panel.Visible = false;
 
+            BackButton.Visible = false;   // Removed back button
+
             curr_view = view.Search;
             curr_list_box = Search_List;
             SideBar.SelectedNode = null;
@@ -1855,6 +1933,9 @@ namespace BearPlayer
             Artist_Song_View.Visible = false;
             Album_Song_View.Visible = false;
             Options_Panel.Visible = true;
+
+            BackButton.Visible = false;   // Removed back button
+
             View_Label.Text = "Options";
         }
 
@@ -1887,7 +1968,7 @@ namespace BearPlayer
                 System.IO.File.WriteAllLines(user_file_loc, lines);
             }
         }
-
+        
         private void center_color_button_Click(object sender, EventArgs e)
         {
             if (sidebar_color_dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -2004,6 +2085,7 @@ namespace BearPlayer
                 }
             }
             create_new_user(promptValue);
+
             
         }
 
@@ -2017,6 +2099,12 @@ namespace BearPlayer
                 file.WriteLine(default_center_color.ToArgb());
                 file.WriteLine(default_bottom_color.ToArgb());
             }
+            switch_to_user(user_name);
+        }
+
+        public string get_user()
+        {
+            return user;
         }
 
         public static class Prompt
@@ -2120,10 +2208,42 @@ namespace BearPlayer
                 MessageBox.Show("No Users", "Error");
                 return;
             }
-            user = Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names );
-            open_user_settings(lines, user_names);
+            switch_to_user(Radio_Prompt.ShowDialog("Please select a user", "User Select", user_names), lines, user_names);
         }
-        
+
+        public bool switch_to_user(string name, string[] all_lines, string[] all_users)
+        {
+            bool found = false;
+            foreach( string s in all_users)
+            {
+                if (s.Equals(name))
+                {
+                    found = true;
+                }
+            }
+            if (!found) return false;
+            user = name;
+            open_user_settings(all_lines, all_users);
+            return true;
+        }
+        public bool switch_to_user(string name)
+        {
+            string[] lines = get_all_user_lines();
+            string[] users = get_all_users(lines);
+            bool found = false;
+            foreach (string s in users)
+            {
+                if (s.Equals(name))
+                {
+                    found = true;
+                }
+            }
+            if (!found) return false;
+            user = name;
+            open_user_settings(lines, users);
+            return true;
+        }
+
 
         public void open_user_settings(string[] all_lines, string[] all_users)
         {
@@ -2253,7 +2373,6 @@ namespace BearPlayer
         {
             System.IO.File.Delete(user_file_loc);
         }
-
 
 
         //dequeue for queue

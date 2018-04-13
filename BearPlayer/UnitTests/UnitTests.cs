@@ -678,6 +678,27 @@ namespace Sprint_UnitTests
         }
 
         [TestMethod]
+        public void Test_Switch_To_User()
+        {
+            // Arrange
+            var player = new BearPlayer.Bear_Player();
+            player.clear_users();
+
+            // Act
+            player.create_new_user("dan");
+            player.create_new_user("dan2");
+            player.create_new_user("dan3");
+
+            // Assert
+            Assert.AreEqual(player.get_user(), "dan3");
+            player.switch_to_user("dan2");
+            Assert.AreEqual(player.get_user(), "dan2");
+            Assert.AreEqual(player.switch_to_user("not_a_user"), false);
+
+
+        }
+
+        [TestMethod]
         public void Test_Delete_Users()
         {
             // Arrange
