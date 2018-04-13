@@ -2373,8 +2373,19 @@ namespace BearPlayer
             System.IO.File.Delete(user_file_loc);
         }
         
+    
+        private void BackButton_MouseEnter(object sender, EventArgs e)
+        {
+            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButtonHover.png");
+        }
+
+        private void BackButton_MouseLeave(object sender, EventArgs e)
+        {
+            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButton.png");
+        }
+
         private void Song_List_MouseEnter(object sender, EventArgs e)
-        { 
+        {
             try
             {
                 if (curr_list_box.Items.Count > 0)
@@ -2386,19 +2397,25 @@ namespace BearPlayer
                     if (item.Index < curr_list_box.Items.Count)
                         item.BackColor = Color.Aqua;
                 }
-            } catch(Exception ex) {  }
-        }
-        
-        private void BackButton_MouseEnter(object sender, EventArgs e)
-        {
-            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButtonHover.png");
+            }
+            catch (Exception ex) { }
         }
 
-        private void BackButton_MouseLeave(object sender, EventArgs e)
+        private void Song_List_MouseLeave(object sender, EventArgs e)
         {
-            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButton.png");
+            // Change back color of every list except for albums
+            if (!curr_view.ToString().Equals("Albums"))
+                for (int i = 0; i <= curr_list_box.Items.Count - 1; ++i)
+                {
+                    if (i % 2 == 0)
+                        curr_list_box.Items[i].BackColor = Color.White;
+                    else
+                        curr_list_box.Items[i].BackColor = Color.Gainsboro;    // Loop through every element in the list and alternate background colors
+                }
+
+
         }
-        
+
         //dequeue for queue
         public class Dequeue
         {
