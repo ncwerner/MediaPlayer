@@ -103,6 +103,16 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Next_Previous2 {
+            get {
+                object obj = ResourceManager.GetObject("Next-Previous2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pauseButton {
             get {
                 object obj = ResourceManager.GetObject("pauseButton", resourceCulture);
@@ -126,6 +136,16 @@ namespace BearPlayer.Properties {
         internal static System.Drawing.Bitmap Previous_Button {
             get {
                 object obj = ResourceManager.GetObject("Previous Button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Previous_Button2 {
+            get {
+                object obj = ResourceManager.GetObject("Previous Button2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

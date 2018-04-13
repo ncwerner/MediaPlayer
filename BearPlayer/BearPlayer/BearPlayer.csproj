@@ -150,6 +150,8 @@
     <None Include="Resources\BackButton2.JPG" />
     <None Include="Resources\BackButton.png" />
     <Content Include="Resources\bear.png" />
+    <None Include="Resources\Next-Previous2.png" />
+    <None Include="Resources\Previous Button2.png" />
     <Content Include="Resources\Repeat.png" />
     <Content Include="Resources\shuffleButtonOff.png" />
     <Content Include="Resources\shuffleButtonOn.png" />
