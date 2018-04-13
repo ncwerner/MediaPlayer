@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -481,30 +481,30 @@
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "Queue";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "Queue";
-            treeNode5.Name = "New Playlist";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "New Playlist";
-            treeNode6.Name = "Playlists";
-            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Playlists";
+            treeNode7.Name = "Artists";
+            treeNode7.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode7.Text = "Artists";
+            treeNode8.Name = "Albums";
+            treeNode8.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode8.Text = "Albums";
+            treeNode9.Name = "Songs";
+            treeNode9.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode9.Text = "Songs";
+            treeNode10.Name = "Queue";
+            treeNode10.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode10.Text = "Queue";
+            treeNode11.Name = "New Playlist";
+            treeNode11.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode11.Text = "New Playlist";
+            treeNode12.Name = "Playlists";
+            treeNode12.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode12.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode6});
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode12});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
@@ -1096,9 +1096,9 @@
             this.next_button.BackColor = System.Drawing.SystemColors.Window;
             this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.next_button.Image = global::BearPlayer.Properties.Resources.Next_Previous;
-            this.next_button.Location = new System.Drawing.Point(582, 38);
+            this.next_button.Location = new System.Drawing.Point(582, 47);
             this.next_button.Name = "next_button";
-            this.next_button.Size = new System.Drawing.Size(54, 45);
+            this.next_button.Size = new System.Drawing.Size(32, 32);
             this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.next_button.TabIndex = 3;
             this.next_button.TabStop = false;
@@ -1111,9 +1111,9 @@
             this.previous_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.previous_button.Image = global::BearPlayer.Properties.Resources.Previous_Button;
-            this.previous_button.Location = new System.Drawing.Point(458, 38);
+            this.previous_button.Location = new System.Drawing.Point(482, 47);
             this.previous_button.Name = "previous_button";
-            this.previous_button.Size = new System.Drawing.Size(56, 45);
+            this.previous_button.Size = new System.Drawing.Size(32, 32);
             this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.previous_button.TabIndex = 4;
             this.previous_button.TabStop = false;
@@ -1228,6 +1228,8 @@
             this.BackButton.TabStop = false;
             this.BackButton.Visible = false;
             this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            this.BackButton.MouseEnter += new System.EventHandler(this.BackButton_MouseEnter);
+            this.BackButton.MouseLeave += new System.EventHandler(this.BackButton_MouseLeave);
             // 
             // bear_logo
             // 

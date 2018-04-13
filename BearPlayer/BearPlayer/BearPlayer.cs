@@ -2375,6 +2375,7 @@ namespace BearPlayer
         
         private void Song_List_MouseEnter(object sender, EventArgs e)
         {
+            /*
             try
             {
                 if (curr_list_box.Items.Count > 0)
@@ -2386,10 +2387,19 @@ namespace BearPlayer
                     if (item.Index < curr_list_box.Items.Count)
                         item.BackColor = Color.Aqua;
                 }
-            } catch(Exception ex) { MessageBox.Show(ex.Message); }
+            } catch(Exception ex) { MessageBox.Show(ex.Message); }*/
+        }
+        
+        private void BackButton_MouseEnter(object sender, EventArgs e)
+        {
+            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButtonHover.png");
         }
 
-       
+        private void BackButton_MouseLeave(object sender, EventArgs e)
+        {
+            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButton.png");
+        }
+        
         //dequeue for queue
         public class Dequeue
         {
