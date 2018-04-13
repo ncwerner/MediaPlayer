@@ -556,6 +556,7 @@
             this.scrubBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.scrubBar.AutoSize = false;
             this.scrubBar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.scrubBar.Enabled = false;
             this.scrubBar.LargeChange = 0;
             this.scrubBar.Location = new System.Drawing.Point(169, 8);
             this.scrubBar.Maximum = 100;
@@ -1204,14 +1205,12 @@
             this.Playlist_Song_Album,
             this.Playlist_Song_Artist,
             this.Playlist_Song_Length});
-            this.Playlist_Song_List.FullRowSelect = true;
             this.Playlist_Song_List.Location = new System.Drawing.Point(3, 3);
             this.Playlist_Song_List.Name = "Playlist_Song_List";
             this.Playlist_Song_List.Size = new System.Drawing.Size(801, 413);
             this.Playlist_Song_List.TabIndex = 0;
             this.Playlist_Song_List.UseCompatibleStateImageBehavior = false;
             this.Playlist_Song_List.View = System.Windows.Forms.View.Details;
-            this.Playlist_Song_List.SelectedIndexChanged += new System.EventHandler(this.Playlist_Song_List_SelectedIndexChanged);
             // 
             // Playlist_Song_Title
             // 
