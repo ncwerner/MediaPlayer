@@ -108,8 +108,8 @@ namespace BearPlayer
 
             cm = new ContextMenu();
             cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
-            cm.MenuItems.Add("Play Next");
-            cm.MenuItems.Add("Play Later");
+            cm.MenuItems.Add("Play Next", new EventHandler(right_click_play_next));
+            cm.MenuItems.Add("Enqueue", new EventHandler(right_click_enqueue));
             cm.MenuItems.Add("Get Tags", new EventHandler(Get_Tags_Request));
             addToPlaylistCM = new MenuItem("Add to Playlist");
             cm.MenuItems.Add(addToPlaylistCM);
@@ -122,9 +122,6 @@ namespace BearPlayer
             playlist_loc = curr_directory;
             folder_path_file_loc = curr_directory + "Folder_Paths.txt";
         }
-
-        
-
         /* --- METHODS --- */
 
         /* USER INTERFACE EVENTS */
@@ -141,6 +138,38 @@ namespace BearPlayer
             import_saved_folders();
             import_saved_playlists();
             check_bad_user_file();
+        }
+
+        private void right_click_enqueue(object sender, EventArgs e)
+        {
+            if (curr_list_box.SelectedIndices.Count <= 0) return;
+            int i = curr_list_box.SelectedIndices[0];
+            string text;
+            if (i >= 0 && i < curr_list_box.Items.Count)
+            {
+                text = curr_list_box.Items[i].Text;
+            }
+            else
+            {
+                return;
+            }
+            queue.Push_Back(text);
+        }
+
+        private void right_click_play_next(object sender, EventArgs e)
+        {
+            if (curr_list_box.SelectedIndices.Count <= 0) return;
+            int i = curr_list_box.SelectedIndices[0];
+            string text;
+            if (i >= 0 && i < curr_list_box.Items.Count)
+            {
+                text = curr_list_box.Items[i].Text;
+            }
+            else
+            {
+                return;
+            }
+            queue.Push_Front(text);
         }
 
         private void Get_Tags_Request(object sender, EventArgs e)
