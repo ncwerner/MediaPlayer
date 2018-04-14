@@ -128,6 +128,8 @@ namespace BearPlayer
         /* USER INTERFACE EVENTS */
         private void BearPlayer_Load(object sender, EventArgs e)
         {
+            
+
             //MessageBox.Show(Directory.GetCurrentDirectory());
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
@@ -136,7 +138,16 @@ namespace BearPlayer
 
             import_saved_folders();
             import_saved_playlists();
+            check_bad_user_file();
+        }
 
+        public void check_bad_user_file()
+        {
+            MessageBox.Show("" + get_all_user_lines().Length);
+            if( get_all_user_lines().Length == 2)
+            {
+                clear_users();
+            }
         }
         
         public void import_saved_playlists()
