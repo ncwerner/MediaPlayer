@@ -110,7 +110,7 @@ namespace BearPlayer
             cm.MenuItems.Add("Play", new EventHandler(Song_List_SelectedIndexChanged));
             cm.MenuItems.Add("Play Next");
             cm.MenuItems.Add("Play Later");
-            cm.MenuItems.Add("Get Tags");
+            cm.MenuItems.Add("Get Tags", new EventHandler(Get_Tags_Request));
             addToPlaylistCM = new MenuItem("Add to Playlist");
             cm.MenuItems.Add(addToPlaylistCM);
             cm.MenuItems.Add("Add To New Playlist", new EventHandler(add_to_new_playlist_right_click));
@@ -122,6 +122,8 @@ namespace BearPlayer
             playlist_loc = curr_directory;
             folder_path_file_loc = curr_directory + "Folder_Paths.txt";
         }
+
+        
 
         /* --- METHODS --- */
 
@@ -139,6 +141,48 @@ namespace BearPlayer
             import_saved_folders();
             import_saved_playlists();
             check_bad_user_file();
+        }
+
+        private void Get_Tags_Request(object sender, EventArgs e)
+        {
+            if (curr_list_box.SelectedIndices.Count <= 0) return;
+            int i = curr_list_box.SelectedIndices[0];
+            string text;
+            if (i >= 0 && i < curr_list_box.Items.Count)
+            {
+                text = curr_list_box.Items[i].Text;
+            }
+            else
+            {
+                return;
+            }
+                
+            TagLib.File f = TagLib.File.Create(song_map[text]);
+            string[] tags = Tag_List.ShowDialog(f);
+            if (tags.Length == 1) return;
+
+            f.Tag.Title = tags[0];
+
+            if(f.Tag.Performers.Length != 0)
+            {
+                f.Tag.Performers[0] = tags[1];
+            }
+            else
+            {
+                f.Tag.Performers = new string[] { tags[1] };
+            }
+            
+            f.Tag.Album = tags[2];
+
+            if (f.Tag.Genres.Length != 0)
+            {
+                f.Tag.Genres[0] = tags[3];
+            }
+            else
+            {
+                f.Tag.Genres = new string[] { tags[3] };
+            }
+
         }
 
         public void check_bad_user_file()
@@ -2227,6 +2271,50 @@ namespace BearPlayer
             {
                 return selectedrb.Text;
             }
+        }
+
+        public static class Tag_List
+        {
+            //return in order title, artist, album, genre
+            public static string[] ShowDialog(TagLib.File song_file)
+            {
+                Form tags = new Form()
+                {
+                    Width = 300,
+                    Height = 300,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = "Tags",
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label Title = new Label() { Left = 20, Top = 20, Text = "Title:", AutoSize = true };
+                TextBox Title_text = new TextBox() { Left = 60, Top = 20, Width = 200, Text = song_file.Tag.Title, AutoSize = true };
+                Label Artist = new Label() { Left = 20, Top = 60, Text = "Artist:", AutoSize = true };
+                TextBox Artist_text = new TextBox() { Left = 60, Top = 60, Width = 200, Text = song_file.Tag.FirstPerformer, AutoSize = true };
+                Label Album = new Label() { Left = 20, Top = 100, Text = "Album:", AutoSize = true };
+                TextBox Album_text = new TextBox() { Left = 60, Top = 100, Width = 200, Text = song_file.Tag.Album, AutoSize = true };
+                Label Genre = new Label() { Left = 20, Top = 140, Text = "Genre:", AutoSize = true };
+                TextBox Genre_text = new TextBox() { Left = 60, Top = 140, Width = 200, Text = song_file.Tag.Genres.Length == 0 ? "" : song_file.Tag.Genres[0], AutoSize = true };
+                Label Duration = new Label() { Left = 20, Top = 180, Text = "Duration: " + song_file.Properties.Duration.Minutes.ToString() + ":" + song_file.Properties.Duration.Seconds.ToString(), AutoSize = true };
+                Button confirmation = new Button() { Text = "Ok", Left = 50, Width = 80, Top = 220, DialogResult = DialogResult.OK };
+                Button cancel = new Button() { Text = "Cancel", Left = 170, Width = 80, Top = 220, DialogResult = DialogResult.Cancel };
+                confirmation.Click += (sender, e) => { tags.Close(); };
+                cancel.Click += (sender, e) => { tags.Close(); };
+                tags.Controls.Add(Title);
+                tags.Controls.Add(Title_text);
+                tags.Controls.Add(Album);
+                tags.Controls.Add(Album_text);
+                tags.Controls.Add(Artist);
+                tags.Controls.Add(Artist_text);
+                tags.Controls.Add(Genre);
+                tags.Controls.Add(Genre_text);
+                tags.Controls.Add(Duration);
+                tags.Controls.Add(confirmation);
+                tags.Controls.Add(cancel);
+                tags.AcceptButton = confirmation;
+
+                return tags.ShowDialog() == DialogResult.OK ? new string[] { Title_text.Text, Artist_text.Text, Album_text.Text, Genre_text.Text } : new string[] {null};
+            }
+
         }
 
         private void switchUserToolStripMenuItem_Click(object sender, EventArgs e)
