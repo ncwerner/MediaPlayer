@@ -29,6 +29,9 @@ namespace BearPlayer
         public string promptValue = ""; //for playlist creation
         bool in_search_bar = false;
 
+        //current directory is bin folder
+        string curr_directory;
+
         // Hashmaps to song directory address
         public Dictionary<string, string> song_map = new Dictionary<string,string>();
         public Dictionary<string, List<string> > artist_map = new Dictionary<string, List<string>>();
@@ -57,16 +60,16 @@ namespace BearPlayer
         public Color default_side_color = Color.DodgerBlue;
         public Color default_center_color = Color.White;
         public Color default_bottom_color = Color.White;
-        string user_file_loc = @"C:\BearPlayer\Resources\Users.txt";
-        string playlist_file_loc = @"C:\BearPlayer\Resources\Playlists.txt";
-        string playlist_loc = @"C:\BearPlayer\Resources\";
+        string user_file_loc;// = @"C:\BearPlayer\Resources\Users.txt";
+        string playlist_file_loc;// = @"C:\BearPlayer\Resources\Playlists.txt";
+        string playlist_loc;// = @"C:\BearPlayer\Resources\";
         string user = "";
 
         public ContextMenu cm;
         public MenuItem addToPlaylistCM;
 
         //saving folder paths
-        public string folder_path_file_loc = @"C:\BearPlayer\Resources\Folder_Paths.txt";
+        public string folder_path_file_loc;// = @"C:\BearPlayer\Resources\Folder_Paths.txt";
 
         /* --- CONSTRUCTOR --- */
         public Bear_Player()
@@ -111,6 +114,13 @@ namespace BearPlayer
             addToPlaylistCM = new MenuItem("Add to Playlist");
             cm.MenuItems.Add(addToPlaylistCM);
             cm.MenuItems.Add("Add To New Playlist", new EventHandler(add_to_new_playlist_right_click));
+
+            //directory vars
+            curr_directory = Directory.GetCurrentDirectory() + @"\";
+            user_file_loc = curr_directory + "Users.txt";
+            playlist_file_loc = curr_directory + "Playlists.txt";
+            playlist_loc = curr_directory;
+            folder_path_file_loc = curr_directory + "Folder_Paths.txt";
         }
 
         /* --- METHODS --- */
@@ -118,10 +128,14 @@ namespace BearPlayer
         /* USER INTERFACE EVENTS */
         private void BearPlayer_Load(object sender, EventArgs e)
         {
+            //MessageBox.Show(Directory.GetCurrentDirectory());
             KeyPreview = true;
             this.MinimumSize = new Size(1064, 656);
             curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
-            
+
+
+            import_saved_folders();
+            import_saved_playlists();
 
         }
         
@@ -2049,6 +2063,7 @@ namespace BearPlayer
             Artist_List.BackColor = c;
             Artist_Song_List.BackColor = c;
             Playlist_List.BackColor = c;
+            Playlist_Song_List.BackColor = c;
             Queue_List.BackColor = c;
             Song_List.BackColor = c;
 
@@ -2415,6 +2430,21 @@ namespace BearPlayer
                 }
 
 
+        }
+
+        private void Playlist_Song_List_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                //MessageBox.Show("Right click");
+                Playlist_Song_List.ContextMenu = cm;
+            }
+        }
+
+        private void Playlist_Song_List_DoubleClick(object sender, EventArgs e)
+        {
+            list_item_selected();
+            play_next_song();
         }
 
         //dequeue for queue
