@@ -144,7 +144,7 @@ namespace BearPlayer
         public void check_bad_user_file()
         {
             //MessageBox.Show("" + get_all_user_lines().Length);
-            if( get_all_user_lines().Length == 1)
+            if( get_all_user_lines().Length == 1 || get_all_user_lines().Length % 4 != 0)
             {
                 clear_users();
             }
