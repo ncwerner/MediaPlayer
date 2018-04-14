@@ -143,7 +143,7 @@ namespace BearPlayer
 
         public void check_bad_user_file()
         {
-            MessageBox.Show("" + get_all_user_lines().Length);
+            //MessageBox.Show("" + get_all_user_lines().Length);
             if( get_all_user_lines().Length == 1)
             {
                 clear_users();
@@ -813,7 +813,7 @@ namespace BearPlayer
         // Method for pressing enter button when creating new playlist
         private void NewPlaylist_EnterButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(NewPlaylist_TextBox.Text);
+           // MessageBox.Show(NewPlaylist_TextBox.Text);
             Add_New_Playlist(NewPlaylist_TextBox.Text);
             NewPlaylist_Panel.Visible = false;
         }
@@ -2097,18 +2097,22 @@ namespace BearPlayer
                 {
                     promptValue = Prompt.ShowDialog("Please input new User Name", "New User");
                 }
-                string[] lines = System.IO.File.ReadAllLines(user_file_loc);
-                int num_users = lines.Length / fields;
-                string[] user_names = new String[num_users];
-                for (int i = 0; i < num_users && !dup; i++)
+                if(File.Exists(user_file_loc))
                 {
-                    if (promptValue.Equals(lines[i * fields]))
+                    string[] lines = System.IO.File.ReadAllLines(user_file_loc);
+                    int num_users = lines.Length / fields;
+                    string[] user_names = new String[num_users];
+                    for (int i = 0; i < num_users && !dup; i++)
                     {
-                        dup = true;
-                        MessageBox.Show("User Name already taken", "Error");
-                        break;
+                        if (promptValue.Equals(lines[i * fields]))
+                        {
+                            dup = true;
+                            MessageBox.Show("User Name already taken", "Error");
+                            break;
+                        }
                     }
                 }
+                
             }
             create_new_user(promptValue);
 
@@ -2289,6 +2293,7 @@ namespace BearPlayer
 
         public string[] get_all_user_lines()
         {
+            if (!File.Exists(user_file_loc)) return new string[0];
             return System.IO.File.ReadAllLines(user_file_loc);
         }
 
