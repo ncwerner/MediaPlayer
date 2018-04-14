@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BearPlayer.Properties;
 
 
 namespace BearPlayer
@@ -198,8 +199,8 @@ namespace BearPlayer
         {
             shuffle = !shuffle;   // Adjust toggle
             // Change shuffle picture based on toggle
-            if (shuffle) shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
-            else shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+            if (shuffle) shuffle_toggle.Image = Resources.shuffleButtonOn;
+            else shuffle_toggle.Image = Resources.shuffleButtonOff;
 
             update_list_disp();
         }
@@ -211,7 +212,7 @@ namespace BearPlayer
             if (repeat_type == Repeat_Type.Off)
             {
                 repeat_type = Repeat_Type.Repeat_All;   // ... toggle to all repeat
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");   // Adjust image
+                repeat_button.Image = Resources.Repeat_All;  // Adjust image
 
                 // Adjust play queue to repeat entire queue
                 Dequeue temp = new Dequeue();
@@ -233,7 +234,7 @@ namespace BearPlayer
             else if (repeat_type == Repeat_Type.Repeat_All)
             {
                 repeat_type = Repeat_Type.Repeat_One;   // ... toggle to one repeat
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");   // Adjust image
+                repeat_button.Image = Resources.Repeat_One;   // Adjust image
 
                 // Adjust play queue to repeat one song
                 if (curr_song != null)
@@ -247,7 +248,7 @@ namespace BearPlayer
             else
             {
                 repeat_type = Repeat_Type.Off;   // ... turn off repeat
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");   // Adjust image
+                repeat_button.Image = Resources.Repeat;  // Adjust image
             }
 
             update_list_disp();
@@ -381,8 +382,8 @@ namespace BearPlayer
         {
             shuffle = !shuffle;   // Adjust toggle
             // Change shuffle picture based on toggle
-            if (shuffle) shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
-            else shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+            if (shuffle) shuffle_toggle.Image = Resources.shuffleButtonOn;
+            else shuffle_toggle.Image = Resources.shuffleButtonOff;
 
             update_list_disp();
         }
@@ -391,7 +392,7 @@ namespace BearPlayer
         private void noRepeatToolStripMenuItem_Click(object sender, EventArgs e)
         {
             repeat_type = Repeat_Type.Off;   // ... turn off repeat
-            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");   // Adjust image
+            repeat_button.Image = Resources.Repeat; // Adjust image
 
             update_list_disp();
         }
@@ -401,7 +402,7 @@ namespace BearPlayer
         private void repeatOneToolStripMenuItem_Click(object sender, EventArgs e)
         {
             repeat_type = Repeat_Type.Repeat_One;   // ... toggle to one repeat
-            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");   // Adjust image
+            repeat_button.Image = Resources.Repeat_One;   // Adjust image
 
             // Adjust play queue to repeat one song
             if (curr_song != null)
@@ -418,7 +419,7 @@ namespace BearPlayer
         private void repeatAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             repeat_type = Repeat_Type.Repeat_All;   // ... toggle to all repeat
-            repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");   // Adjust image
+            repeat_button.Image = Resources.Repeat_All;   // Adjust image
 
             // Adjust play queue to repeat entire queue
             Dequeue temp = new Dequeue();
@@ -486,7 +487,7 @@ namespace BearPlayer
             Player.controls.pause();
             Player.controls.currentPosition = scrubBar.Value;   // Move song location to new scrub bar value
             Player.controls.play();   // Play song from new location
-            this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+            this.bear_logo.Image = Resources.bear;
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
 
@@ -515,7 +516,7 @@ namespace BearPlayer
             {
                 if (blink_count < 20)
                 {
-                    this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear_blink.png");
+                    this.bear_logo.Image = Resources.bear_blink;
                     blink_count++;
                 }
             }
@@ -525,7 +526,7 @@ namespace BearPlayer
             }
             if (blink_count == 20)
             {
-                this.bear_logo.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+                this.bear_logo.Image = Resources.bear;
             }
         }
 
@@ -979,14 +980,14 @@ namespace BearPlayer
                 }
                 else
                 {
-                    this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");   // Change picture to pause button
+                    this.playButton.Image = Resources.pauseButton;   // Change picture to pause button
                     Player.controls.play();
                 }
 
             }
             else
             {
-                this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");   // Change picture to play button
+                this.playButton.Image = Resources.playButton; // Change picture to play button
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
             }
             play = !play;
@@ -1070,7 +1071,7 @@ namespace BearPlayer
             Current_position_label.Text = "0:00";
             scrubBar.Value = 0;
             Player.controls.play();
-            this.playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton.png");
+            this.playButton.Image = Resources.pauseButton;
             play = false;
             TagLib.File song_file = TagLib.File.Create(url);
             //creates a file to get the duration for the scrub bar
@@ -1267,12 +1268,12 @@ namespace BearPlayer
             catch (ArgumentNullException ex)
             {
                 //code specifically for a ArgumentNullException
-                Artwork_List.Images.Add(Image.FromFile(@"C:\BearPlayer\Resources\bear.png"));
+                Artwork_List.Images.Add(Resources.bear);
             }
             catch (IndexOutOfRangeException ex)
             {
                 //code specifically for a IndexOutOfRangeException
-                Artwork_List.Images.Add(Image.FromFile(@"C:\BearPlayer\Resources\bear.png"));
+                Artwork_List.Images.Add(Resources.bear);
             }
         }
         
@@ -1307,7 +1308,7 @@ namespace BearPlayer
             }
             catch(IndexOutOfRangeException e)
             {
-                pictureBox1.Image = Image.FromFile(@"C:\BearPlayer\Resources\bear.png");
+                pictureBox1.Image = Resources.bear;
             }
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             artistLabel.Text = file.Tag.Performers[0];
@@ -2279,32 +2280,32 @@ namespace BearPlayer
         private void shuffle_toggle_MouseEnter(object sender, EventArgs e)
         {
             if (!shuffle)
-                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+                shuffle_toggle.Image = Resources.shuffleButtonOn;
             else
-                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+                shuffle_toggle.Image = Resources.shuffleButtonOff;
         }
 
         private void shuffle_toggle_MouseLeave(object sender, EventArgs e)
         {
             if (!shuffle)
-                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOff.png");
+                shuffle_toggle.Image = Resources.shuffleButtonOff;
             else
-                shuffle_toggle.Image = Image.FromFile(@"C:\BearPlayer\Resources\shuffleButtonOn.png");
+                shuffle_toggle.Image = Resources.shuffleButtonOn;
         }
 
         private void repeat_button_MouseEnter(object sender, EventArgs e)
         {
             if (repeat_type == Repeat_Type.Off)
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
+                repeat_button.Image = Resources.Repeat_All;
             }
             else if (repeat_type == Repeat_Type.Repeat_All)
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
+                repeat_button.Image = Resources.Repeat_One;
             }
             else
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
+                repeat_button.Image = Resources.Repeat;
             }
         }
 
@@ -2312,15 +2313,15 @@ namespace BearPlayer
         {
             if (repeat_type == Repeat_Type.Off)
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat.png");
+                repeat_button.Image = Resources.Repeat;
             }
             else if (repeat_type == Repeat_Type.Repeat_All)
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_All.png");
+                repeat_button.Image = Resources.Repeat_All;
             }
             else
             {
-                repeat_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Repeat_One.png");
+                repeat_button.Image = Resources.Repeat_One;
             }
         }
 
@@ -2328,11 +2329,11 @@ namespace BearPlayer
         {
             if (play)
             {
-                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton3.png");
+                playButton.Image = Resources.playButton3;
             }
             else
             {
-                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton2.png");
+                playButton.Image = Resources.pauseButton2;
             }
         }
 
@@ -2340,32 +2341,32 @@ namespace BearPlayer
         {
             if (play)
             {
-                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\playButton1.png");
+                playButton.Image = Resources.playButton;
             }
             else
             {
-                playButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\pauseButton1.png");
+                playButton.Image = Resources.pauseButton;
             }
         }
 
         private void next_button_MouseEnter(object sender, EventArgs e)
         {
-            next_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Next-Previous2.png");
+            next_button.Image = Resources.Next_Previous2;
         }
 
         private void next_button_MouseLeave(object sender, EventArgs e)
         {
-            next_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Next-Previous1.png");
+            next_button.Image = Resources.Next_Previous;
         }
 
         private void previous_button_MouseEnter(object sender, EventArgs e)
         {
-            previous_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Previous Button2.png");
+            previous_button.Image = Resources.Previous_Button2;
         }
 
         private void previous_button_MouseLeave(object sender, EventArgs e)
         {
-            previous_button.Image = Image.FromFile(@"C:\BearPlayer\Resources\Previous Button1.png");
+            previous_button.Image = Resources.Previous_Button;
         }
         
         public void clear_users()
@@ -2376,12 +2377,12 @@ namespace BearPlayer
     
         private void BackButton_MouseEnter(object sender, EventArgs e)
         {
-            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButtonHover.png");
+            BackButton.Image = Resources.BackButtonHover;
         }
 
         private void BackButton_MouseLeave(object sender, EventArgs e)
         {
-            BackButton.Image = Image.FromFile(@"C:\BearPlayer\Resources\BackButton.png");
+            BackButton.Image = Resources.BackButton;
         }
 
         private void Song_List_MouseEnter(object sender, EventArgs e)
