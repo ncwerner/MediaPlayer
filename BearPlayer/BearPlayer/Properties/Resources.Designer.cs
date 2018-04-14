@@ -22,7 +22,7 @@ namespace BearPlayer.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace BearPlayer.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BearPlayer.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace BearPlayer.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BackButton {
+        public static System.Drawing.Bitmap BackButton {
             get {
                 object obj = ResourceManager.GetObject("BackButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,17 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bear {
+        public static System.Drawing.Bitmap BackButtonHover {
+            get {
+                object obj = ResourceManager.GetObject("BackButtonHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap bear {
             get {
                 object obj = ResourceManager.GetObject("bear", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +93,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bear_blink {
+        public static System.Drawing.Bitmap bear_blink {
             get {
                 object obj = ResourceManager.GetObject("bear_blink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +103,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Next_Previous {
+        public static System.Drawing.Bitmap Next_Previous {
             get {
                 object obj = ResourceManager.GetObject("Next-Previous", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +113,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Next_Previous2 {
+        public static System.Drawing.Bitmap Next_Previous2 {
             get {
                 object obj = ResourceManager.GetObject("Next-Previous2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +123,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pauseButton {
+        public static System.Drawing.Bitmap pauseButton {
             get {
                 object obj = ResourceManager.GetObject("pauseButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +133,17 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap playButton {
+        public static System.Drawing.Bitmap pauseButton2 {
+            get {
+                object obj = ResourceManager.GetObject("pauseButton2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap playButton {
             get {
                 object obj = ResourceManager.GetObject("playButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -133,7 +153,17 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Previous_Button {
+        public static System.Drawing.Bitmap playButton3 {
+            get {
+                object obj = ResourceManager.GetObject("playButton3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Previous_Button {
             get {
                 object obj = ResourceManager.GetObject("Previous Button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +173,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Previous_Button2 {
+        public static System.Drawing.Bitmap Previous_Button2 {
             get {
                 object obj = ResourceManager.GetObject("Previous Button2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -153,7 +183,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Repeat {
+        public static System.Drawing.Bitmap Repeat {
             get {
                 object obj = ResourceManager.GetObject("Repeat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -163,7 +193,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Repeat_All {
+        public static System.Drawing.Bitmap Repeat_All {
             get {
                 object obj = ResourceManager.GetObject("Repeat_All", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -173,7 +203,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Repeat_One {
+        public static System.Drawing.Bitmap Repeat_One {
             get {
                 object obj = ResourceManager.GetObject("Repeat_One", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -183,7 +213,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shuffleButtonOff {
+        public static System.Drawing.Bitmap shuffleButtonOff {
             get {
                 object obj = ResourceManager.GetObject("shuffleButtonOff", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -193,7 +223,7 @@ namespace BearPlayer.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shuffleButtonOn {
+        public static System.Drawing.Bitmap shuffleButtonOn {
             get {
                 object obj = ResourceManager.GetObject("shuffleButtonOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

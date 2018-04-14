@@ -160,4 +160,13 @@
   <data name="shuffleButtonOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shuffleButtonOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BackButtonHover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BackButtonHover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pauseButton2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pauseButton2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="playButton3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\playButton3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
