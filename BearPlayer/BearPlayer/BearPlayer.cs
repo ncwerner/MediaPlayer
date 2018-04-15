@@ -71,6 +71,8 @@ namespace BearPlayer
         //saving folder paths
         public string folder_path_file_loc;// = @"C:\BearPlayer\Resources\Folder_Paths.txt";
 
+        private List<string> added_nodes = new List<string>();
+
         /* --- CONSTRUCTOR --- */
         public Bear_Player()
         {
@@ -1718,12 +1720,21 @@ namespace BearPlayer
                     tw.Close();
                 }
             }
+            update_list_disp();
             return true;
         }
         
         //adds node for a playlist to the sidebar
         public void create_playlist_node(string name)
         {
+            if (added_nodes.Contains(name))
+            {
+                return;
+            }
+            else
+            {
+                added_nodes.Add(name);
+            }
             // Create new node for side bar
             TreeNode child = new TreeNode();
             child.Text = name;
@@ -1737,8 +1748,10 @@ namespace BearPlayer
             //add to playlist to menu bar
             ToolStripItem subItem = new ToolStripMenuItem(name);
             addToPlaylistToolStripMenuItem.DropDownItems.Add(subItem);
-            addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
             subItem.Click += new EventHandler(addToPlaylist);
+                
+            addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
+            
         }
         
         //Add songs to playlist
