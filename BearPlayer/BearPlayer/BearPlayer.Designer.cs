@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode47});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -464,30 +464,30 @@
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "Queue";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "Queue";
-            treeNode5.Name = "New Playlist";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "New Playlist";
-            treeNode6.Name = "Playlists";
-            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Playlists";
+            treeNode43.Name = "Artists";
+            treeNode43.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode43.Text = "Artists";
+            treeNode44.Name = "Albums";
+            treeNode44.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode44.Text = "Albums";
+            treeNode45.Name = "Songs";
+            treeNode45.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode45.Text = "Songs";
+            treeNode46.Name = "Queue";
+            treeNode46.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode46.Text = "Queue";
+            treeNode47.Name = "New Playlist";
+            treeNode47.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode47.Text = "New Playlist";
+            treeNode48.Name = "Playlists";
+            treeNode48.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode48.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode6});
+            treeNode43,
+            treeNode44,
+            treeNode45,
+            treeNode46,
+            treeNode48});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
@@ -517,7 +517,7 @@
             this.volumeSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.volumeSlider.AutoSize = false;
             this.volumeSlider.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.volumeSlider.Location = new System.Drawing.Point(577, 52);
+            this.volumeSlider.Location = new System.Drawing.Point(577, 67);
             this.volumeSlider.Maximum = 100;
             this.volumeSlider.Name = "volumeSlider";
             this.volumeSlider.Size = new System.Drawing.Size(195, 28);
@@ -535,7 +535,7 @@
             this.scrubBar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scrubBar.Enabled = false;
             this.scrubBar.LargeChange = 0;
-            this.scrubBar.Location = new System.Drawing.Point(37, 9);
+            this.scrubBar.Location = new System.Drawing.Point(37, 24);
             this.scrubBar.Maximum = 100;
             this.scrubBar.Name = "scrubBar";
             this.scrubBar.Size = new System.Drawing.Size(784, 24);
@@ -718,7 +718,7 @@
             // 
             this.Current_position_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Current_position_label.AutoSize = true;
-            this.Current_position_label.Location = new System.Drawing.Point(9, 12);
+            this.Current_position_label.Location = new System.Drawing.Point(9, 27);
             this.Current_position_label.Name = "Current_position_label";
             this.Current_position_label.Size = new System.Drawing.Size(22, 13);
             this.Current_position_label.TabIndex = 12;
@@ -728,7 +728,7 @@
             // 
             this.Song_length_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Song_length_label.AutoSize = true;
-            this.Song_length_label.Location = new System.Drawing.Point(824, 12);
+            this.Song_length_label.Location = new System.Drawing.Point(824, 27);
             this.Song_length_label.Name = "Song_length_label";
             this.Song_length_label.Size = new System.Drawing.Size(22, 13);
             this.Song_length_label.TabIndex = 13;
@@ -803,7 +803,7 @@
             this.artistLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.artistLabel.AutoEllipsis = true;
             this.artistLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.artistLabel.Location = new System.Drawing.Point(3, 79);
+            this.artistLabel.Location = new System.Drawing.Point(3, 94);
             this.artistLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.artistLabel.Name = "artistLabel";
             this.artistLabel.Size = new System.Drawing.Size(195, 21);
@@ -814,7 +814,7 @@
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.titleLabel.AutoEllipsis = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 38);
+            this.titleLabel.Location = new System.Drawing.Point(3, 53);
             this.titleLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(195, 21);
@@ -825,7 +825,7 @@
             this.curAlbumLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.curAlbumLabel.AutoEllipsis = true;
             this.curAlbumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curAlbumLabel.Location = new System.Drawing.Point(5, 58);
+            this.curAlbumLabel.Location = new System.Drawing.Point(5, 73);
             this.curAlbumLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.curAlbumLabel.Name = "curAlbumLabel";
             this.curAlbumLabel.Size = new System.Drawing.Size(195, 21);
@@ -1014,9 +1014,9 @@
             this.bottom_panel.Controls.Add(this.repeat_button);
             this.bottom_panel.Controls.Add(this.next_button);
             this.bottom_panel.Controls.Add(this.previous_button);
-            this.bottom_panel.Location = new System.Drawing.Point(190, 509);
+            this.bottom_panel.Location = new System.Drawing.Point(190, 494);
             this.bottom_panel.Name = "bottom_panel";
-            this.bottom_panel.Size = new System.Drawing.Size(858, 108);
+            this.bottom_panel.Size = new System.Drawing.Size(858, 123);
             this.bottom_panel.TabIndex = 24;
             // 
             // shuffle_toggle
@@ -1024,7 +1024,7 @@
             this.shuffle_toggle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButtonOff;
-            this.shuffle_toggle.Location = new System.Drawing.Point(204, 39);
+            this.shuffle_toggle.Location = new System.Drawing.Point(204, 54);
             this.shuffle_toggle.Name = "shuffle_toggle";
             this.shuffle_toggle.Size = new System.Drawing.Size(61, 50);
             this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1039,7 +1039,7 @@
             this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
-            this.playButton.Location = new System.Drawing.Point(365, 39);
+            this.playButton.Location = new System.Drawing.Point(365, 54);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(56, 49);
             this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1054,7 +1054,7 @@
             this.repeat_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.repeat_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.repeat_button.Image = global::BearPlayer.Properties.Resources.Repeat;
-            this.repeat_button.Location = new System.Drawing.Point(525, 39);
+            this.repeat_button.Location = new System.Drawing.Point(525, 54);
             this.repeat_button.Name = "repeat_button";
             this.repeat_button.Size = new System.Drawing.Size(45, 45);
             this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1070,7 +1070,7 @@
             this.next_button.BackColor = System.Drawing.SystemColors.Window;
             this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.next_button.Image = global::BearPlayer.Properties.Resources.Next_Previous;
-            this.next_button.Location = new System.Drawing.Point(427, 48);
+            this.next_button.Location = new System.Drawing.Point(427, 63);
             this.next_button.Name = "next_button";
             this.next_button.Size = new System.Drawing.Size(32, 32);
             this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1085,7 +1085,7 @@
             this.previous_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.previous_button.Image = global::BearPlayer.Properties.Resources.Previous_Button;
-            this.previous_button.Location = new System.Drawing.Point(327, 48);
+            this.previous_button.Location = new System.Drawing.Point(327, 63);
             this.previous_button.Name = "previous_button";
             this.previous_button.Size = new System.Drawing.Size(32, 32);
             this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1147,6 +1147,7 @@
             // 
             // View_Label
             // 
+            this.View_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.View_Label.AutoSize = true;
             this.View_Label.Font = new System.Drawing.Font("MS Reference Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.View_Label.Location = new System.Drawing.Point(502, 32);

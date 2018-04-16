@@ -1276,9 +1276,9 @@ namespace BearPlayer
                     {
                         song_map.Add(getSongName(file), path);
                     }
-                    //else
+                    else
                     {
-                      //  song_map[getSongName(file)] = path;      //if in map make update its url to the new one
+                         song_map[getSongName(file)] = path;      //if in map make update its url to the new one
                     }
                 }
                 catch (ArgumentNullException e)
@@ -1289,9 +1289,9 @@ namespace BearPlayer
                     {
                         song_map.Add(path, path);
                     }
-                    //else
+                    else
                     {
-                      //  song_map[path] = path;      //if in map make update its url to the new one
+                        song_map[path] = path;      //if in map make update its url to the new one
                     }
 
                 }
@@ -1306,9 +1306,9 @@ namespace BearPlayer
                         album_map.Add(getAlbumName(file), new_list);
                         Store_AlbumArtwork(file);   // Add image artwork to image list
                     }
-                    //else
+                    else
                     {
-                     //   album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
+                        album_map[file.Tag.Album].Add(path);   //if album already in map, add song to the assigned list
                     }
                 }
                 catch (ArgumentNullException ex)
@@ -1337,9 +1337,9 @@ namespace BearPlayer
                             new_list.Add(path);
                             artist_map.Add(art, new_list);
                         }
-                       // else
+                        else
                         {
-                         //   artist_map[art].Add(path);
+                            artist_map[art].Add(path);
                         }
                     }
                 }
