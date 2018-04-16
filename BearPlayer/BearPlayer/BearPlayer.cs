@@ -137,7 +137,7 @@ namespace BearPlayer
         /* USER INTERFACE EVENTS */
         private void BearPlayer_Load(object sender, EventArgs e)
         {         
-            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate);  //this works for some reason,please leave in here
+            
         }
 
         private void right_click_enqueue(object sender, EventArgs e)
@@ -1431,6 +1431,7 @@ namespace BearPlayer
         //updates whatever list box is currently being viewed with the current map information 
         public void update_list_disp()
         {
+            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate);  //this works for some reason,please leave in here
             curr_list_box.Items.Clear();
 
             // Artist Display 
