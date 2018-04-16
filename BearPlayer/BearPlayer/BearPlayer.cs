@@ -1095,6 +1095,7 @@ namespace BearPlayer
             {
                 this.playButton.Image = Resources.playButton; // Change picture to play button
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
+                this.bear_logo.Image = Resources.bear;
             }
             play = !play;
         }
