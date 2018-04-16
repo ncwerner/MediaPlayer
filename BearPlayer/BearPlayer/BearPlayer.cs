@@ -124,20 +124,20 @@ namespace BearPlayer
             playlist_loc = curr_directory;
             folder_path_file_loc = curr_directory + "Folder_Paths.txt";
 
+            KeyPreview = true;
+            this.MinimumSize = new Size(1064, 656);
 
+            //imports
             import_saved_folders();
             import_saved_playlists();
             check_bad_user_file();
-
-            KeyPreview = true;
-            this.MinimumSize = new Size(1064, 656);
         }
         /* --- METHODS --- */
 
         /* USER INTERFACE EVENTS */
         private void BearPlayer_Load(object sender, EventArgs e)
         {         
-            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
+            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate);  //this works for some reason,please leave in here
         }
 
         private void right_click_enqueue(object sender, EventArgs e)
@@ -251,7 +251,8 @@ namespace BearPlayer
             {
                 try
                 {
-                    import_folder(path);
+                    int imports = import_folder(path);
+                    if (imports == 0) paths.Remove(path);
                 }
                 catch (Exception e)
                 {
@@ -388,10 +389,12 @@ namespace BearPlayer
                 }
             }
         }
-        public void import_folder(string path)
+        public int import_folder(string path)
         {
-            getSongs(path);   // Add all songs to map
-            getAlbums(path);   // Add all albums to map
+            int songs = getSongs(path);   // Add all songs to map
+            songs += getAlbums(path);   // Add all albums to map
+            update_list_disp();
+            return songs;
         }
 
         // Method for importing single song
@@ -1227,18 +1230,21 @@ namespace BearPlayer
             }
         }
 
-        public void getAlbums(string folder_path)
+        public int getAlbums(string folder_path)
         {
+            int num_songs = 0;
             string[] albums = Directory.GetDirectories(@folder_path);
             foreach (string s in albums)
             {
-                getSongs(s);
-                getAlbums(s);
+                num_songs += getSongs(s);
+                num_songs += getAlbums(s);
             }
+            return num_songs;
         }
 
-        public void getSongs(string folder_path)
+        public int getSongs(string folder_path)
         {
+            int song_num = 0;
             string[] songs = Directory.GetFiles(@folder_path, "*.mp3");
             foreach (string s in songs)
             {
@@ -1247,13 +1253,14 @@ namespace BearPlayer
                     TagLib.File file = TagLib.File.Create(s);
 
                     add_new_song(s);
+                    song_num++;
                 }
                 catch (TagLib.CorruptFileException e)
                 {
                     MessageBox.Show(s + "is corrupt");
                 }
             }
-            update_list_disp();
+            return song_num;
         }
 
 
