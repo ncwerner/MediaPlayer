@@ -2190,11 +2190,10 @@ namespace BearPlayer
             string promptValue = "";
             while (dup)
             {
+                promptValue = Prompt.ShowDialog("Please input new User Name", "New User");
+                if (promptValue.Equals(""))
+                    return;
                 dup = false;
-                while (promptValue.Equals(""))
-                {
-                    promptValue = Prompt.ShowDialog("Please input new User Name", "New User");
-                }
                 if(File.Exists(user_file_loc))
                 {
                     string[] lines = System.IO.File.ReadAllLines(user_file_loc);
@@ -2210,11 +2209,8 @@ namespace BearPlayer
                         }
                     }
                 }
-                
             }
-            create_new_user(promptValue);
-
-            
+            create_new_user(promptValue);           
         }
 
         public void create_new_user( string user_name)
