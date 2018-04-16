@@ -152,6 +152,7 @@
     <Content Include="Resources\bear.png" />
     <None Include="Resources\Next-Previous2.png" />
     <None Include="Resources\Previous Button2.png" />
+    <None Include="Resources\Image1.bmp" />
     <Content Include="Resources\Repeat.png" />
     <Content Include="Resources\shuffleButtonOff.png" />
     <Content Include="Resources\shuffleButtonOn.png" />
