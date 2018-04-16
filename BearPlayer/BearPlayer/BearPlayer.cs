@@ -813,6 +813,12 @@ namespace BearPlayer
                 curr_list_box.Sorting = SortOrder.Descending;
 
             list_item_selected();
+                        // Change back color of every list except for albums
+            if(!curr_view.ToString().Equals("Albums"))
+                for (int i = 1; i <= curr_list_box.Items.Count-1; i = (i + 2))
+                    curr_list_box.Items[i].BackColor = Color.Gainsboro;    // Loop through every element in the list and alternate background colors
+            for (int i = 0; i <= curr_list_box.Items.Count - 1; i = (i + 2))
+                curr_list_box.Items[i].BackColor = Color.Transparent;    // Loop through every element in the list and alternate background colors
         }
 
 
