@@ -123,23 +123,21 @@ namespace BearPlayer
             playlist_file_loc = curr_directory + "Playlists.txt";
             playlist_loc = curr_directory;
             folder_path_file_loc = curr_directory + "Folder_Paths.txt";
-        }
-        /* --- METHODS --- */
-
-        /* USER INTERFACE EVENTS */
-        private void BearPlayer_Load(object sender, EventArgs e)
-        {
-            
-
-            //MessageBox.Show(Directory.GetCurrentDirectory());
-            KeyPreview = true;
-            this.MinimumSize = new Size(1064, 656);
-            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
 
 
             import_saved_folders();
             import_saved_playlists();
             check_bad_user_file();
+
+            KeyPreview = true;
+            this.MinimumSize = new Size(1064, 656);
+        }
+        /* --- METHODS --- */
+
+        /* USER INTERFACE EVENTS */
+        private void BearPlayer_Load(object sender, EventArgs e)
+        {         
+            curr_list_box.SelectedIndexChanged += new EventHandler(song_list_ItemActivate); //this works for some reason,please leave in here
         }
 
         private void right_click_enqueue(object sender, EventArgs e)
@@ -1448,7 +1446,7 @@ namespace BearPlayer
 
                     Album_List.View = View.LargeIcon;
                     Album_List.LargeImageList = Artwork_List;
-
+                    
                     Album_List.Items.Add(new ListViewItem { ImageIndex = album_count, Text = getAlbumName(file) + "\n" + getAlbumArtist(file) });
                     ++album_count;
                 }

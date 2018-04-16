@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode29});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,15 +49,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.getInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.artistViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.albumViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.songViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.queueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.playlistsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeAppearanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.playbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.previousToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -152,6 +144,12 @@
             this.BackButton = new System.Windows.Forms.PictureBox();
             this.bear_logo = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.artistViewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.albumViewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.songViewToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.queueToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.playlistsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -257,7 +255,7 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.searchToolStripMenuItem,
-            this.getInfoToolStripMenuItem});
+            this.preferencesToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 21);
             this.editToolStripMenuItem.Text = "Edit";
@@ -265,78 +263,21 @@
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.searchToolStripMenuItem.Text = "Search";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this.searchToolStripMenuItem_Click);
-            // 
-            // getInfoToolStripMenuItem
-            // 
-            this.getInfoToolStripMenuItem.Name = "getInfoToolStripMenuItem";
-            this.getInfoToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.getInfoToolStripMenuItem.Text = "Get Info";
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeViewToolStripMenuItem,
-            this.changeAppearanceToolStripMenuItem});
+            this.artistViewToolStripMenuItem1,
+            this.albumViewToolStripMenuItem1,
+            this.songViewToolStripMenuItem1,
+            this.queueToolStripMenuItem1,
+            this.playlistsToolStripMenuItem1});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(50, 21);
             this.viewToolStripMenuItem.Text = "View";
-            // 
-            // changeViewToolStripMenuItem
-            // 
-            this.changeViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.artistViewToolStripMenuItem,
-            this.albumViewToolStripMenuItem,
-            this.songViewToolStripMenuItem,
-            this.queueToolStripMenuItem,
-            this.playlistsToolStripMenuItem});
-            this.changeViewToolStripMenuItem.Name = "changeViewToolStripMenuItem";
-            this.changeViewToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.changeViewToolStripMenuItem.Text = "Change View";
-            // 
-            // artistViewToolStripMenuItem
-            // 
-            this.artistViewToolStripMenuItem.Name = "artistViewToolStripMenuItem";
-            this.artistViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.artistViewToolStripMenuItem.Text = "Artist View";
-            this.artistViewToolStripMenuItem.Click += new System.EventHandler(this.ArtistViewToolStripMenuItem_Click);
-            // 
-            // albumViewToolStripMenuItem
-            // 
-            this.albumViewToolStripMenuItem.Name = "albumViewToolStripMenuItem";
-            this.albumViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.albumViewToolStripMenuItem.Text = "Album View";
-            this.albumViewToolStripMenuItem.Click += new System.EventHandler(this.albumViewToolStripMenuItem_Click);
-            // 
-            // songViewToolStripMenuItem
-            // 
-            this.songViewToolStripMenuItem.Name = "songViewToolStripMenuItem";
-            this.songViewToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.songViewToolStripMenuItem.Text = "Song View";
-            this.songViewToolStripMenuItem.Click += new System.EventHandler(this.songViewToolStripMenuItem_Click);
-            // 
-            // queueToolStripMenuItem
-            // 
-            this.queueToolStripMenuItem.Name = "queueToolStripMenuItem";
-            this.queueToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.queueToolStripMenuItem.Text = "Queue";
-            this.queueToolStripMenuItem.Click += new System.EventHandler(this.QueueToolStripMenuItem_Click);
-            // 
-            // playlistsToolStripMenuItem
-            // 
-            this.playlistsToolStripMenuItem.Name = "playlistsToolStripMenuItem";
-            this.playlistsToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
-            this.playlistsToolStripMenuItem.Text = "Playlists";
-            this.playlistsToolStripMenuItem.Click += new System.EventHandler(this.PlaylistViewToolStripMenuItem_Click);
-            // 
-            // changeAppearanceToolStripMenuItem
-            // 
-            this.changeAppearanceToolStripMenuItem.Name = "changeAppearanceToolStripMenuItem";
-            this.changeAppearanceToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.changeAppearanceToolStripMenuItem.Text = "Change Appearance";
-            this.changeAppearanceToolStripMenuItem.Click += new System.EventHandler(this.changeAppearanceToolStripMenuItem_Click);
             // 
             // playbackToolStripMenuItem
             // 
@@ -481,30 +422,30 @@
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "Queue";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "Queue";
-            treeNode5.Name = "New Playlist";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "New Playlist";
-            treeNode6.Name = "Playlists";
-            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Playlists";
+            treeNode25.Name = "Artists";
+            treeNode25.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode25.Text = "Artists";
+            treeNode26.Name = "Albums";
+            treeNode26.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode26.Text = "Albums";
+            treeNode27.Name = "Songs";
+            treeNode27.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode27.Text = "Songs";
+            treeNode28.Name = "Queue";
+            treeNode28.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode28.Text = "Queue";
+            treeNode29.Name = "New Playlist";
+            treeNode29.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode29.Text = "New Playlist";
+            treeNode30.Name = "Playlists";
+            treeNode30.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode30.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode6});
+            treeNode25,
+            treeNode26,
+            treeNode27,
+            treeNode28,
+            treeNode30});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
@@ -576,7 +517,6 @@
             // 
             // Album_List
             // 
-            this.Album_List.LabelWrap = false;
             this.Album_List.LargeImageList = this.Artwork_List;
             this.Album_List.Location = new System.Drawing.Point(3, 3);
             this.Album_List.Name = "Album_List";
@@ -1245,6 +1185,48 @@
             this.bear_logo.TabIndex = 0;
             this.bear_logo.TabStop = false;
             // 
+            // preferencesToolStripMenuItem
+            // 
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
+            this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.changeAppearanceToolStripMenuItem_Click);
+            // 
+            // artistViewToolStripMenuItem1
+            // 
+            this.artistViewToolStripMenuItem1.Name = "artistViewToolStripMenuItem1";
+            this.artistViewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.artistViewToolStripMenuItem1.Text = "Artist View";
+            this.artistViewToolStripMenuItem1.Click += new System.EventHandler(this.ArtistViewToolStripMenuItem_Click);
+            // 
+            // albumViewToolStripMenuItem1
+            // 
+            this.albumViewToolStripMenuItem1.Name = "albumViewToolStripMenuItem1";
+            this.albumViewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.albumViewToolStripMenuItem1.Text = "Album View";
+            this.albumViewToolStripMenuItem1.Click += new System.EventHandler(this.albumViewToolStripMenuItem_Click);
+            // 
+            // songViewToolStripMenuItem1
+            // 
+            this.songViewToolStripMenuItem1.Name = "songViewToolStripMenuItem1";
+            this.songViewToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.songViewToolStripMenuItem1.Text = "Song View";
+            this.songViewToolStripMenuItem1.Click += new System.EventHandler(this.songViewToolStripMenuItem_Click);
+            // 
+            // queueToolStripMenuItem1
+            // 
+            this.queueToolStripMenuItem1.Name = "queueToolStripMenuItem1";
+            this.queueToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.queueToolStripMenuItem1.Text = "Queue";
+            this.queueToolStripMenuItem1.Click += new System.EventHandler(this.QueueToolStripMenuItem_Click);
+            // 
+            // playlistsToolStripMenuItem1
+            // 
+            this.playlistsToolStripMenuItem1.Name = "playlistsToolStripMenuItem1";
+            this.playlistsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.playlistsToolStripMenuItem1.Text = "Playlists";
+            this.playlistsToolStripMenuItem1.Click += new System.EventHandler(this.PlaylistViewToolStripMenuItem_Click);
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1319,12 +1301,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem getInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem albumViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem songViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeAppearanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem playbackToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nextToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem previousToolStripMenuItem;
@@ -1420,17 +1397,20 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
 
         private System.Windows.Forms.ToolStripMenuItem addToPlaylistToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem artistViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem queueToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem playlistsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noRepeatToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repeatOneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repeatAllToolStripMenuItem;
         private System.Windows.Forms.PictureBox BackButton;
+        private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem artistViewToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem albumViewToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem songViewToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem queueToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem playlistsToolStripMenuItem1;
     }
 }
 
