@@ -2181,7 +2181,6 @@ namespace BearPlayer
         private void set_bottom_color(Color c)
         {
             bottom_panel.BackColor = c;
-            next_button.BackColor = c;
         }
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
