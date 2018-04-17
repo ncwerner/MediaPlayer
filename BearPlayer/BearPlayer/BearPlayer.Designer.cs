@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode59});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -464,30 +464,30 @@
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode55.Name = "Artists";
-            treeNode55.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode55.Text = "Artists";
-            treeNode56.Name = "Albums";
-            treeNode56.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode56.Text = "Albums";
-            treeNode57.Name = "Songs";
-            treeNode57.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode57.Text = "Songs";
-            treeNode58.Name = "Queue";
-            treeNode58.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode58.Text = "Queue";
-            treeNode59.Name = "New Playlist";
-            treeNode59.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode59.Text = "New Playlist";
-            treeNode60.Name = "Playlists";
-            treeNode60.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode60.Text = "Playlists";
+            treeNode1.Name = "Artists";
+            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.Text = "Artists";
+            treeNode2.Name = "Albums";
+            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.Text = "Albums";
+            treeNode3.Name = "Songs";
+            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode3.Text = "Songs";
+            treeNode4.Name = "Queue";
+            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode4.Text = "Queue";
+            treeNode5.Name = "New Playlist";
+            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode5.Text = "New Playlist";
+            treeNode6.Name = "Playlists";
+            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode6.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode55,
-            treeNode56,
-            treeNode57,
-            treeNode58,
-            treeNode60});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode6});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
@@ -1226,7 +1226,7 @@
             this.bear_logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bear_logo.BackColor = System.Drawing.Color.DodgerBlue;
             this.bear_logo.Image = global::BearPlayer.Properties.Resources.bear;
-            this.bear_logo.Location = new System.Drawing.Point(26, 293);
+            this.bear_logo.Location = new System.Drawing.Point(27, 294);
             this.bear_logo.Name = "bear_logo";
             this.bear_logo.Size = new System.Drawing.Size(136, 136);
             this.bear_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
