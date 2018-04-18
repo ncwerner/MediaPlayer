@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode11});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -467,30 +467,30 @@
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode1.Name = "Artists";
-            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode1.Text = "Artists";
-            treeNode2.Name = "Albums";
-            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode2.Text = "Albums";
-            treeNode3.Name = "Songs";
-            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode3.Text = "Songs";
-            treeNode4.Name = "Queue";
-            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode4.Text = "Queue";
-            treeNode5.Name = "New Playlist";
-            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode5.Text = "New Playlist";
-            treeNode6.Name = "Playlists";
-            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode6.Text = "Playlists";
+            treeNode7.Name = "Artists";
+            treeNode7.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode7.Text = "Artists";
+            treeNode8.Name = "Albums";
+            treeNode8.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode8.Text = "Albums";
+            treeNode9.Name = "Songs";
+            treeNode9.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode9.Text = "Songs";
+            treeNode10.Name = "Queue";
+            treeNode10.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode10.Text = "Queue";
+            treeNode11.Name = "New Playlist";
+            treeNode11.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode11.Text = "New Playlist";
+            treeNode12.Name = "Playlists";
+            treeNode12.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode12.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode6});
+            treeNode7,
+            treeNode8,
+            treeNode9,
+            treeNode10,
+            treeNode12});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
@@ -1126,7 +1126,7 @@
             // 
             this.Bottom_Color_Select.Location = new System.Drawing.Point(150, 352);
             this.Bottom_Color_Select.Name = "Bottom_Color_Select";
-            this.Bottom_Color_Select.Size = new System.Drawing.Size(138, 23);
+            this.Bottom_Color_Select.Size = new System.Drawing.Size(167, 23);
             this.Bottom_Color_Select.TabIndex = 2;
             this.Bottom_Color_Select.Text = "Bottom Color Select";
             this.Bottom_Color_Select.UseVisualStyleBackColor = true;
@@ -1136,7 +1136,7 @@
             // 
             this.Center_Color_Select.Location = new System.Drawing.Point(150, 199);
             this.Center_Color_Select.Name = "Center_Color_Select";
-            this.Center_Color_Select.Size = new System.Drawing.Size(138, 23);
+            this.Center_Color_Select.Size = new System.Drawing.Size(167, 23);
             this.Center_Color_Select.TabIndex = 1;
             this.Center_Color_Select.Text = "Center Color Select";
             this.Center_Color_Select.UseVisualStyleBackColor = true;
@@ -1147,7 +1147,7 @@
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Sidebar_Color_Button.Location = new System.Drawing.Point(150, 45);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
-            this.Sidebar_Color_Button.Size = new System.Drawing.Size(138, 23);
+            this.Sidebar_Color_Button.Size = new System.Drawing.Size(167, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
             this.Sidebar_Color_Button.Text = "Sidebar Color Select";
             this.Sidebar_Color_Button.UseVisualStyleBackColor = true;
@@ -1241,9 +1241,9 @@
             // 
             // delete_playlists
             // 
-            this.delete_playlists.Location = new System.Drawing.Point(554, 45);
+            this.delete_playlists.Location = new System.Drawing.Point(525, 45);
             this.delete_playlists.Name = "delete_playlists";
-            this.delete_playlists.Size = new System.Drawing.Size(138, 23);
+            this.delete_playlists.Size = new System.Drawing.Size(167, 23);
             this.delete_playlists.TabIndex = 3;
             this.delete_playlists.Text = "Delete all Playlists";
             this.delete_playlists.UseVisualStyleBackColor = true;
@@ -1251,9 +1251,9 @@
             // 
             // delete_users_button
             // 
-            this.delete_users_button.Location = new System.Drawing.Point(554, 199);
+            this.delete_users_button.Location = new System.Drawing.Point(525, 199);
             this.delete_users_button.Name = "delete_users_button";
-            this.delete_users_button.Size = new System.Drawing.Size(138, 23);
+            this.delete_users_button.Size = new System.Drawing.Size(167, 23);
             this.delete_users_button.TabIndex = 4;
             this.delete_users_button.Text = "Delete all Users";
             this.delete_users_button.UseVisualStyleBackColor = true;
@@ -1261,9 +1261,9 @@
             // 
             // delete_folder_paths_button
             // 
-            this.delete_folder_paths_button.Location = new System.Drawing.Point(554, 352);
+            this.delete_folder_paths_button.Location = new System.Drawing.Point(525, 352);
             this.delete_folder_paths_button.Name = "delete_folder_paths_button";
-            this.delete_folder_paths_button.Size = new System.Drawing.Size(138, 23);
+            this.delete_folder_paths_button.Size = new System.Drawing.Size(167, 23);
             this.delete_folder_paths_button.TabIndex = 5;
             this.delete_folder_paths_button.Text = "Delete all saved Folder Paths";
             this.delete_folder_paths_button.UseVisualStyleBackColor = true;

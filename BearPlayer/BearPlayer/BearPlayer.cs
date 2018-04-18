@@ -1771,7 +1771,11 @@ namespace BearPlayer
         public void delete_playlist_nodes()
         {
             TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
-            nodes[0].Nodes.Clear();
+            int side_nodes = nodes[0].Nodes.Count;
+            for ( int i = 1; i < side_nodes; i++)
+            {
+                nodes[0].Nodes.RemoveAt(1);
+            }
             addToPlaylistToolStripMenuItem.DropDownItems.Clear();
             addToPlaylistCM.MenuItems.Clear();
             added_nodes.Clear();
@@ -2271,6 +2275,33 @@ namespace BearPlayer
 
         }
 
+        public static class Yes_No_Prompt
+        {
+            public static bool ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 400,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
+                Button confirmation = new Button() { Text = "Yes", Left = 50, Width = 80, Top = 80, DialogResult = DialogResult.OK };
+                Button cancel = new Button() { Text = "Cancel", Left = 170, Width = 80, Top = 80, DialogResult = DialogResult.Cancel };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                cancel.Click += (sender, e) => { prompt.Close(); };
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(cancel);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? true : false;
+            }
+
+        }
+
         public static class Radio_Prompt
         {
             static RadioButton selectedrb = null;
@@ -2614,6 +2645,7 @@ namespace BearPlayer
 
         private void delete_playlists_Click(object sender, EventArgs e)
         {
+            if ( !Yes_No_Prompt.ShowDialog( "Are you sure you'd like to delete all playlists? Cannot be undone.", "Warning")) return;
             foreach (string s in Playlist_Names)
             {
                 System.IO.File.Delete(playlist_loc + s + ".txt" );
@@ -2625,11 +2657,13 @@ namespace BearPlayer
 
         private void delete_users_button_Click(object sender, EventArgs e)
         {
+            if (!Yes_No_Prompt.ShowDialog("Are you sure you'd like to delete all users? Cannot be undone.", "Warning")) return;
             clear_users();
         }
 
         private void delete_folder_paths_button_Click(object sender, EventArgs e)
         {
+            if (!Yes_No_Prompt.ShowDialog("Are you sure you'd like to delete all saved folder paths? Cannot be undone.", "Warning")) return;
             System.IO.File.Delete(folder_path_file_loc);
         }
 
