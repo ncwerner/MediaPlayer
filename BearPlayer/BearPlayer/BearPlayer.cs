@@ -225,6 +225,7 @@ namespace BearPlayer
         
         public void import_saved_playlists()
         {
+            if (!File.Exists(playlist_file_loc)) return;
             string[] playlist_names = System.IO.File.ReadAllLines(playlist_file_loc);
             List<string> plays = new List<string>(playlist_names);
             foreach (string playlist in playlist_names)
@@ -245,6 +246,7 @@ namespace BearPlayer
 
         public void import_saved_folders()
         {
+            if (!File.Exists(folder_path_file_loc)) return;
             string[] paths_array = System.IO.File.ReadAllLines(folder_path_file_loc);
             List<string> paths = new List<string>(paths_array);
             foreach (string path in paths_array)
@@ -1765,6 +1767,15 @@ namespace BearPlayer
             addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
             
         }
+
+        public void delete_playlist_nodes()
+        {
+            TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
+            nodes[0].Nodes.Clear();
+            addToPlaylistToolStripMenuItem.DropDownItems.Clear();
+            addToPlaylistCM.MenuItems.Clear();
+            added_nodes.Clear();
+        }
         
         //Add songs to playlist
         public void addSongToPlaylist(string fileName, string playListName) //takes in the file name of the song
@@ -2599,6 +2610,27 @@ namespace BearPlayer
         {
             list_item_selected();
             play_next_song();
+        }
+
+        private void delete_playlists_Click(object sender, EventArgs e)
+        {
+            foreach (string s in Playlist_Names)
+            {
+                System.IO.File.Delete(playlist_loc + s + ".txt" );
+            }
+            Playlist_Names.Clear();
+            System.IO.File.Delete(playlist_file_loc);
+            delete_playlist_nodes();
+        }
+
+        private void delete_users_button_Click(object sender, EventArgs e)
+        {
+            clear_users();
+        }
+
+        private void delete_folder_paths_button_Click(object sender, EventArgs e)
+        {
+            System.IO.File.Delete(folder_path_file_loc);
         }
 
         //dequeue for queue

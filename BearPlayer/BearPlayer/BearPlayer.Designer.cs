@@ -150,6 +150,9 @@
             this.BackButton = new System.Windows.Forms.PictureBox();
             this.bear_logo = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.delete_playlists = new System.Windows.Forms.Button();
+            this.delete_users_button = new System.Windows.Forms.Button();
+            this.delete_folder_paths_button = new System.Windows.Forms.Button();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -1108,19 +1111,22 @@
             // 
             // Options_Panel
             // 
+            this.Options_Panel.Controls.Add(this.delete_folder_paths_button);
+            this.Options_Panel.Controls.Add(this.delete_users_button);
+            this.Options_Panel.Controls.Add(this.delete_playlists);
             this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
             this.Options_Panel.Controls.Add(this.Center_Color_Select);
             this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(180, 75);
+            this.Options_Panel.Location = new System.Drawing.Point(190, 75);
             this.Options_Panel.Name = "Options_Panel";
-            this.Options_Panel.Size = new System.Drawing.Size(804, 416);
+            this.Options_Panel.Size = new System.Drawing.Size(846, 413);
             this.Options_Panel.TabIndex = 3;
             // 
             // Bottom_Color_Select
             // 
-            this.Bottom_Color_Select.Location = new System.Drawing.Point(47, 352);
+            this.Bottom_Color_Select.Location = new System.Drawing.Point(150, 352);
             this.Bottom_Color_Select.Name = "Bottom_Color_Select";
-            this.Bottom_Color_Select.Size = new System.Drawing.Size(115, 23);
+            this.Bottom_Color_Select.Size = new System.Drawing.Size(138, 23);
             this.Bottom_Color_Select.TabIndex = 2;
             this.Bottom_Color_Select.Text = "Bottom Color Select";
             this.Bottom_Color_Select.UseVisualStyleBackColor = true;
@@ -1128,9 +1134,9 @@
             // 
             // Center_Color_Select
             // 
-            this.Center_Color_Select.Location = new System.Drawing.Point(47, 199);
+            this.Center_Color_Select.Location = new System.Drawing.Point(150, 199);
             this.Center_Color_Select.Name = "Center_Color_Select";
-            this.Center_Color_Select.Size = new System.Drawing.Size(115, 23);
+            this.Center_Color_Select.Size = new System.Drawing.Size(138, 23);
             this.Center_Color_Select.TabIndex = 1;
             this.Center_Color_Select.Text = "Center Color Select";
             this.Center_Color_Select.UseVisualStyleBackColor = true;
@@ -1139,9 +1145,9 @@
             // Sidebar_Color_Button
             // 
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(47, 47);
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(150, 45);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
-            this.Sidebar_Color_Button.Size = new System.Drawing.Size(115, 23);
+            this.Sidebar_Color_Button.Size = new System.Drawing.Size(138, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
             this.Sidebar_Color_Button.Text = "Sidebar Color Select";
             this.Sidebar_Color_Button.UseVisualStyleBackColor = true;
@@ -1233,12 +1239,43 @@
             this.bear_logo.TabIndex = 0;
             this.bear_logo.TabStop = false;
             // 
+            // delete_playlists
+            // 
+            this.delete_playlists.Location = new System.Drawing.Point(554, 45);
+            this.delete_playlists.Name = "delete_playlists";
+            this.delete_playlists.Size = new System.Drawing.Size(138, 23);
+            this.delete_playlists.TabIndex = 3;
+            this.delete_playlists.Text = "Delete all Playlists";
+            this.delete_playlists.UseVisualStyleBackColor = true;
+            this.delete_playlists.Click += new System.EventHandler(this.delete_playlists_Click);
+            // 
+            // delete_users_button
+            // 
+            this.delete_users_button.Location = new System.Drawing.Point(554, 199);
+            this.delete_users_button.Name = "delete_users_button";
+            this.delete_users_button.Size = new System.Drawing.Size(138, 23);
+            this.delete_users_button.TabIndex = 4;
+            this.delete_users_button.Text = "Delete all Users";
+            this.delete_users_button.UseVisualStyleBackColor = true;
+            this.delete_users_button.Click += new System.EventHandler(this.delete_users_button_Click);
+            // 
+            // delete_folder_paths_button
+            // 
+            this.delete_folder_paths_button.Location = new System.Drawing.Point(554, 352);
+            this.delete_folder_paths_button.Name = "delete_folder_paths_button";
+            this.delete_folder_paths_button.Size = new System.Drawing.Size(138, 23);
+            this.delete_folder_paths_button.TabIndex = 5;
+            this.delete_folder_paths_button.Text = "Delete all saved Folder Paths";
+            this.delete_folder_paths_button.UseVisualStyleBackColor = true;
+            this.delete_folder_paths_button.Click += new System.EventHandler(this.delete_folder_paths_button_Click);
+            // 
             // Bear_Player
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1048, 617);
+            this.Controls.Add(this.Options_Panel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.View_Label);
@@ -1256,7 +1293,6 @@
             this.Controls.Add(this.bottom_panel);
             this.Controls.Add(this.Playlist_Song_Panel);
             this.Controls.Add(this.Albums_View);
-            this.Controls.Add(this.Options_Panel);
             this.Controls.Add(this.Playlists_View);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.MenuBar;
@@ -1418,6 +1454,9 @@
         private System.Windows.Forms.ToolStripMenuItem songViewToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem queueToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem playlistsToolStripMenuItem1;
+        private System.Windows.Forms.Button delete_playlists;
+        private System.Windows.Forms.Button delete_users_button;
+        private System.Windows.Forms.Button delete_folder_paths_button;
     }
 }
 
