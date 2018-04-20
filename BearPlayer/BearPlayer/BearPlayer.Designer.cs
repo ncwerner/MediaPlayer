@@ -30,13 +30,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Artists");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Albums");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Songs");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Queue");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("New Playlist");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Artists");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Albums");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Songs");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Queue");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("New Playlist");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Playlists", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bear_Player));
             this.MenuBar = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,6 +136,9 @@
             this.previous_button = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Options_Panel = new System.Windows.Forms.Panel();
+            this.delete_folder_paths_button = new System.Windows.Forms.Button();
+            this.delete_users_button = new System.Windows.Forms.Button();
+            this.delete_playlists = new System.Windows.Forms.Button();
             this.Bottom_Color_Select = new System.Windows.Forms.Button();
             this.Center_Color_Select = new System.Windows.Forms.Button();
             this.Sidebar_Color_Button = new System.Windows.Forms.Button();
@@ -150,9 +153,6 @@
             this.BackButton = new System.Windows.Forms.PictureBox();
             this.bear_logo = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.delete_playlists = new System.Windows.Forms.Button();
-            this.delete_users_button = new System.Windows.Forms.Button();
-            this.delete_folder_paths_button = new System.Windows.Forms.Button();
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scrubBar)).BeginInit();
@@ -461,40 +461,40 @@
             this.SideBar.BackColor = System.Drawing.Color.DodgerBlue;
             this.SideBar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.SideBar.DrawMode = System.Windows.Forms.TreeViewDrawMode.OwnerDrawText;
-            this.SideBar.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SideBar.Font = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SideBar.HotTracking = true;
             this.SideBar.Indent = 7;
             this.SideBar.ItemHeight = 30;
             this.SideBar.Location = new System.Drawing.Point(0, 25);
             this.SideBar.Name = "SideBar";
-            treeNode7.Name = "Artists";
-            treeNode7.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode7.Text = "Artists";
-            treeNode8.Name = "Albums";
-            treeNode8.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode8.Text = "Albums";
-            treeNode9.Name = "Songs";
-            treeNode9.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode9.Text = "Songs";
-            treeNode10.Name = "Queue";
-            treeNode10.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode10.Text = "Queue";
-            treeNode11.Name = "New Playlist";
-            treeNode11.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode11.Text = "New Playlist";
-            treeNode12.Name = "Playlists";
-            treeNode12.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            treeNode12.Text = "Playlists";
+            treeNode1.Name = "Artists";
+            treeNode1.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode1.Text = "Artists";
+            treeNode2.Name = "Albums";
+            treeNode2.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode2.Text = "Albums";
+            treeNode3.Name = "Songs";
+            treeNode3.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode3.Text = "Songs";
+            treeNode4.Name = "Queue";
+            treeNode4.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode4.Text = "Queue";
+            treeNode5.Name = "New Playlist";
+            treeNode5.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode5.Text = "New Playlist";
+            treeNode6.Name = "Playlists";
+            treeNode6.NodeFont = new System.Drawing.Font("MS Reference Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            treeNode6.Text = "Playlists";
             this.SideBar.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode12});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode6});
             this.SideBar.PathSeparator = "";
             this.SideBar.ShowLines = false;
             this.SideBar.ShowPlusMinus = false;
-            this.SideBar.Size = new System.Drawing.Size(187, 411);
+            this.SideBar.Size = new System.Drawing.Size(193, 411);
             this.SideBar.TabIndex = 1;
             this.SideBar.DrawNode += new System.Windows.Forms.DrawTreeNodeEventHandler(this.SideBar_DrawNode);
             this.SideBar.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.SideBar_MouseClick);
@@ -520,7 +520,7 @@
             this.volumeSlider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.volumeSlider.AutoSize = false;
             this.volumeSlider.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.volumeSlider.Location = new System.Drawing.Point(577, 67);
+            this.volumeSlider.Location = new System.Drawing.Point(582, 71);
             this.volumeSlider.Maximum = 100;
             this.volumeSlider.Name = "volumeSlider";
             this.volumeSlider.Size = new System.Drawing.Size(195, 28);
@@ -538,10 +538,10 @@
             this.scrubBar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scrubBar.Enabled = false;
             this.scrubBar.LargeChange = 0;
-            this.scrubBar.Location = new System.Drawing.Point(37, 24);
+            this.scrubBar.Location = new System.Drawing.Point(53, 28);
             this.scrubBar.Maximum = 100;
             this.scrubBar.Name = "scrubBar";
-            this.scrubBar.Size = new System.Drawing.Size(784, 24);
+            this.scrubBar.Size = new System.Drawing.Size(765, 24);
             this.scrubBar.SmallChange = 0;
             this.scrubBar.TabIndex = 8;
             this.scrubBar.TickStyle = System.Windows.Forms.TickStyle.None;
@@ -721,7 +721,7 @@
             // 
             this.Current_position_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Current_position_label.AutoSize = true;
-            this.Current_position_label.Location = new System.Drawing.Point(9, 27);
+            this.Current_position_label.Location = new System.Drawing.Point(13, 31);
             this.Current_position_label.Name = "Current_position_label";
             this.Current_position_label.Size = new System.Drawing.Size(22, 13);
             this.Current_position_label.TabIndex = 12;
@@ -731,7 +731,7 @@
             // 
             this.Song_length_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Song_length_label.AutoSize = true;
-            this.Song_length_label.Location = new System.Drawing.Point(824, 27);
+            this.Song_length_label.Location = new System.Drawing.Point(829, 31);
             this.Song_length_label.Name = "Song_length_label";
             this.Song_length_label.Size = new System.Drawing.Size(22, 13);
             this.Song_length_label.TabIndex = 13;
@@ -807,7 +807,7 @@
             this.artistLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.artistLabel.AutoEllipsis = true;
             this.artistLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.artistLabel.Location = new System.Drawing.Point(3, 94);
+            this.artistLabel.Location = new System.Drawing.Point(7, 98);
             this.artistLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.artistLabel.Name = "artistLabel";
             this.artistLabel.Size = new System.Drawing.Size(195, 21);
@@ -818,7 +818,7 @@
             this.titleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.titleLabel.AutoEllipsis = true;
             this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titleLabel.Location = new System.Drawing.Point(3, 53);
+            this.titleLabel.Location = new System.Drawing.Point(7, 57);
             this.titleLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.titleLabel.Name = "titleLabel";
             this.titleLabel.Size = new System.Drawing.Size(195, 21);
@@ -829,7 +829,7 @@
             this.curAlbumLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.curAlbumLabel.AutoEllipsis = true;
             this.curAlbumLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curAlbumLabel.Location = new System.Drawing.Point(5, 73);
+            this.curAlbumLabel.Location = new System.Drawing.Point(7, 77);
             this.curAlbumLabel.MaximumSize = new System.Drawing.Size(195, 21);
             this.curAlbumLabel.Name = "curAlbumLabel";
             this.curAlbumLabel.Size = new System.Drawing.Size(195, 21);
@@ -1019,9 +1019,9 @@
             this.bottom_panel.Controls.Add(this.repeat_button);
             this.bottom_panel.Controls.Add(this.next_button);
             this.bottom_panel.Controls.Add(this.previous_button);
-            this.bottom_panel.Location = new System.Drawing.Point(190, 494);
+            this.bottom_panel.Location = new System.Drawing.Point(185, 490);
             this.bottom_panel.Name = "bottom_panel";
-            this.bottom_panel.Size = new System.Drawing.Size(858, 123);
+            this.bottom_panel.Size = new System.Drawing.Size(863, 127);
             this.bottom_panel.TabIndex = 24;
             // 
             // shuffle_toggle
@@ -1029,7 +1029,7 @@
             this.shuffle_toggle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
             this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButtonOff;
-            this.shuffle_toggle.Location = new System.Drawing.Point(204, 54);
+            this.shuffle_toggle.Location = new System.Drawing.Point(206, 58);
             this.shuffle_toggle.Name = "shuffle_toggle";
             this.shuffle_toggle.Size = new System.Drawing.Size(61, 50);
             this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1044,7 +1044,7 @@
             this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
-            this.playButton.Location = new System.Drawing.Point(365, 54);
+            this.playButton.Location = new System.Drawing.Point(367, 58);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(56, 49);
             this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1059,7 +1059,7 @@
             this.repeat_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.repeat_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.repeat_button.Image = global::BearPlayer.Properties.Resources.Repeat;
-            this.repeat_button.Location = new System.Drawing.Point(525, 54);
+            this.repeat_button.Location = new System.Drawing.Point(527, 58);
             this.repeat_button.Name = "repeat_button";
             this.repeat_button.Size = new System.Drawing.Size(45, 45);
             this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1075,7 +1075,7 @@
             this.next_button.BackColor = System.Drawing.Color.Transparent;
             this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.next_button.Image = global::BearPlayer.Properties.Resources.Next_Previous;
-            this.next_button.Location = new System.Drawing.Point(427, 63);
+            this.next_button.Location = new System.Drawing.Point(429, 67);
             this.next_button.Name = "next_button";
             this.next_button.Size = new System.Drawing.Size(32, 32);
             this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1090,7 +1090,7 @@
             this.previous_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
             this.previous_button.Image = global::BearPlayer.Properties.Resources.Previous_Button;
-            this.previous_button.Location = new System.Drawing.Point(327, 63);
+            this.previous_button.Location = new System.Drawing.Point(329, 67);
             this.previous_button.Name = "previous_button";
             this.previous_button.Size = new System.Drawing.Size(32, 32);
             this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1105,22 +1105,53 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Location = new System.Drawing.Point(0, 430);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(187, 187);
+            this.pictureBox1.Size = new System.Drawing.Size(193, 193);
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
             // Options_Panel
             // 
+            this.Options_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Options_Panel.Controls.Add(this.delete_folder_paths_button);
             this.Options_Panel.Controls.Add(this.delete_users_button);
             this.Options_Panel.Controls.Add(this.delete_playlists);
             this.Options_Panel.Controls.Add(this.Bottom_Color_Select);
             this.Options_Panel.Controls.Add(this.Center_Color_Select);
             this.Options_Panel.Controls.Add(this.Sidebar_Color_Button);
-            this.Options_Panel.Location = new System.Drawing.Point(190, 75);
+            this.Options_Panel.Location = new System.Drawing.Point(193, 75);
             this.Options_Panel.Name = "Options_Panel";
             this.Options_Panel.Size = new System.Drawing.Size(846, 413);
             this.Options_Panel.TabIndex = 3;
+            // 
+            // delete_folder_paths_button
+            // 
+            this.delete_folder_paths_button.Location = new System.Drawing.Point(525, 352);
+            this.delete_folder_paths_button.Name = "delete_folder_paths_button";
+            this.delete_folder_paths_button.Size = new System.Drawing.Size(167, 23);
+            this.delete_folder_paths_button.TabIndex = 5;
+            this.delete_folder_paths_button.Text = "Delete all saved Folder Paths";
+            this.delete_folder_paths_button.UseVisualStyleBackColor = true;
+            this.delete_folder_paths_button.Click += new System.EventHandler(this.delete_folder_paths_button_Click);
+            // 
+            // delete_users_button
+            // 
+            this.delete_users_button.Location = new System.Drawing.Point(525, 199);
+            this.delete_users_button.Name = "delete_users_button";
+            this.delete_users_button.Size = new System.Drawing.Size(167, 23);
+            this.delete_users_button.TabIndex = 4;
+            this.delete_users_button.Text = "Delete all Users";
+            this.delete_users_button.UseVisualStyleBackColor = true;
+            this.delete_users_button.Click += new System.EventHandler(this.delete_users_button_Click);
+            // 
+            // delete_playlists
+            // 
+            this.delete_playlists.Location = new System.Drawing.Point(525, 45);
+            this.delete_playlists.Name = "delete_playlists";
+            this.delete_playlists.Size = new System.Drawing.Size(167, 23);
+            this.delete_playlists.TabIndex = 3;
+            this.delete_playlists.Text = "Delete all Playlists";
+            this.delete_playlists.UseVisualStyleBackColor = true;
+            this.delete_playlists.Click += new System.EventHandler(this.delete_playlists_Click);
             // 
             // Bottom_Color_Select
             // 
@@ -1145,7 +1176,7 @@
             // Sidebar_Color_Button
             // 
             this.Sidebar_Color_Button.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.Sidebar_Color_Button.Location = new System.Drawing.Point(150, 45);
+            this.Sidebar_Color_Button.Location = new System.Drawing.Point(150, 44);
             this.Sidebar_Color_Button.Name = "Sidebar_Color_Button";
             this.Sidebar_Color_Button.Size = new System.Drawing.Size(167, 23);
             this.Sidebar_Color_Button.TabIndex = 0;
@@ -1238,36 +1269,6 @@
             this.bear_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bear_logo.TabIndex = 0;
             this.bear_logo.TabStop = false;
-            // 
-            // delete_playlists
-            // 
-            this.delete_playlists.Location = new System.Drawing.Point(525, 45);
-            this.delete_playlists.Name = "delete_playlists";
-            this.delete_playlists.Size = new System.Drawing.Size(167, 23);
-            this.delete_playlists.TabIndex = 3;
-            this.delete_playlists.Text = "Delete all Playlists";
-            this.delete_playlists.UseVisualStyleBackColor = true;
-            this.delete_playlists.Click += new System.EventHandler(this.delete_playlists_Click);
-            // 
-            // delete_users_button
-            // 
-            this.delete_users_button.Location = new System.Drawing.Point(525, 199);
-            this.delete_users_button.Name = "delete_users_button";
-            this.delete_users_button.Size = new System.Drawing.Size(167, 23);
-            this.delete_users_button.TabIndex = 4;
-            this.delete_users_button.Text = "Delete all Users";
-            this.delete_users_button.UseVisualStyleBackColor = true;
-            this.delete_users_button.Click += new System.EventHandler(this.delete_users_button_Click);
-            // 
-            // delete_folder_paths_button
-            // 
-            this.delete_folder_paths_button.Location = new System.Drawing.Point(525, 352);
-            this.delete_folder_paths_button.Name = "delete_folder_paths_button";
-            this.delete_folder_paths_button.Size = new System.Drawing.Size(167, 23);
-            this.delete_folder_paths_button.TabIndex = 5;
-            this.delete_folder_paths_button.Text = "Delete all saved Folder Paths";
-            this.delete_folder_paths_button.UseVisualStyleBackColor = true;
-            this.delete_folder_paths_button.Click += new System.EventHandler(this.delete_folder_paths_button_Click);
             // 
             // Bear_Player
             // 
