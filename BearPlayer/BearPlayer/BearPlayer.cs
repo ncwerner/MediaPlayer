@@ -1162,7 +1162,10 @@ namespace BearPlayer
             if(queue.Count() > 0)
             {
                 string removed = queue.Pop_Front();
-                play_song( song_map[removed] );
+                if (song_map.ContainsKey(removed))
+                {
+                    play_song(song_map[removed]);
+                }
 
                 if(curr_song != null)
                 {
@@ -1310,7 +1313,7 @@ namespace BearPlayer
                 }
                 catch (ArgumentNullException e)
                 {
-
+                    /*
                     file.Tag.Title = "Unknown Song" + songctr++.ToString();
                     if (!song_map.ContainsKey(path)) //if not in map add it
                     {
@@ -1320,6 +1323,8 @@ namespace BearPlayer
                     {
                         song_map[path] = path;      //if in map make update its url to the new one
                     }
+                    */
+                    return;
 
                 }
 
@@ -1437,21 +1442,24 @@ namespace BearPlayer
         public void currentAlbumDisplay()
         {
             string curr = curr_song;
-            TagLib.File file = TagLib.File.Create(song_map[curr]);
-            try
+            if (song_map.ContainsKey(curr))
             {
-                MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
-                System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
-                pictureBox1.Image = artwork;
+                TagLib.File file = TagLib.File.Create(song_map[curr]);
+                try
+                {
+                    MemoryStream ms = new MemoryStream(file.Tag.Pictures[0].Data.Data);
+                    System.Drawing.Image artwork = System.Drawing.Image.FromStream(ms);
+                    pictureBox1.Image = artwork;
+                }
+                catch (IndexOutOfRangeException e)
+                {
+                    pictureBox1.Image = Resources.bear_pirate;
+                }
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                artistLabel.Text = file.Tag.Performers[0];
+                titleLabel.Text = file.Tag.Title;
+                curAlbumLabel.Text = file.Tag.Album;
             }
-            catch(IndexOutOfRangeException e)
-            {
-                pictureBox1.Image = Resources.bear_pirate;
-            }
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            artistLabel.Text = file.Tag.Performers[0];
-            titleLabel.Text = file.Tag.Title;
-            curAlbumLabel.Text = file.Tag.Album;
         }
                 
 
