@@ -1430,7 +1430,7 @@ namespace BearPlayer
         //gets the album artist
         public string getAlbumArtist(TagLib.File file)
         {
-            return file.Tag.Performers[0];
+            return file.Tag.FirstAlbumArtist;
         }
         
         //displays album during playback
