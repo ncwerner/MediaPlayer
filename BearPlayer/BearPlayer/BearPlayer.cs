@@ -1072,7 +1072,6 @@ namespace BearPlayer
                 //string curr_song = curr_list_box.Items[playing_index].ToString();
                 if (!song_selected)
                 {
-                    play = false;                //for case where nothing is selected and they try to click play
                     /*int i = curr_list_box.SelectedIndices[0];
                     if (i >= 0 && i < curr_list_box.Items.Count)
                     {
@@ -1083,12 +1082,15 @@ namespace BearPlayer
                     if (queue.Count() > 0)
                     {
                         play_next_song();
+                        this.playButton.Image = Resources.pauseButton;
+                        play = false;
                     }
                 }
                 else
                 {
                     this.playButton.Image = Resources.pauseButton;   // Change picture to pause button
                     Player.controls.play();
+                    play = false;
                 }
 
             }
@@ -1096,8 +1098,8 @@ namespace BearPlayer
             {
                 this.playButton.Image = Resources.playButton; // Change picture to play button
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
+                play = true;
             }
-            play = !play;
         }
 
 
