@@ -587,9 +587,7 @@ namespace BearPlayer
         // Method for scrubbing through song using scrub bar
         private void scrubBar_Scroll(object sender, EventArgs e)
         {
-            Player.controls.pause();
             Player.controls.currentPosition = scrubBar.Value;   // Move song location to new scrub bar value
-            Player.controls.play();   // Play song from new location
             this.bear_logo.Image = Resources.bear;
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
