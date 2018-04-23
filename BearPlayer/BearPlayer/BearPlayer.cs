@@ -1478,8 +1478,11 @@ namespace BearPlayer
                 for (int i = 0; i < size; ++i)
                 {
                     string dequeue = queue.ElementAt(i);   // Retrieve each element in queue
-                    TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
-                    curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                    if (song_map.ContainsKey(dequeue))
+                    {
+                        TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
+                        curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                    }
                 }
             }
             // Artist Song Display
