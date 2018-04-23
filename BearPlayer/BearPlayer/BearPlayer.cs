@@ -588,7 +588,7 @@ namespace BearPlayer
         private void scrubBar_Scroll(object sender, EventArgs e)
         {
             Player.controls.currentPosition = scrubBar.Value;   // Move song location to new scrub bar value
-            this.bear_logo.Image = Resources.bear;
+            this.bear_logo.Image = Resources.bear_headphone;
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
 
@@ -613,20 +613,30 @@ namespace BearPlayer
             }
 
             // Algorithm for blinking bear
-            if (scrubBar.Value % 8 == 5)
+            if (!play)
             {
-                if (blink_count < 20)
+
+                if (scrubBar.Value % 8 == 5)
                 {
-                    this.bear_logo.Image = Resources.bear_blink;
-                    blink_count++;
+                    if (blink_count < 20)
+                    {
+                        this.bear_logo.Image = Resources.bear_headphone_blink;
+                        blink_count++;
+                    }
+                }
+                else
+                {
+                    blink_count = 0;
+                }
+                if (blink_count == 20)
+                {
+                    this.bear_logo.Image = Resources.bear_headphone;
                 }
             }
             else
             {
-                blink_count = 0;
-            }
-            if (blink_count == 20)
-            {
+                this.bear_logo.Height = 136;
+                bear_logo.Location = new Point(27, 294);
                 this.bear_logo.Image = Resources.bear;
             }
         }
@@ -1028,6 +1038,14 @@ namespace BearPlayer
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             Search_List.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             // Search_List.Refresh();
+            if (!play)
+            {
+                this.bear_logo.Image = Resources.bear_headphone;
+            }
+            else
+            {
+                this.bear_logo.Image = Resources.bear;
+            }
         }
 
         //RIGHT CLICK FUNCTIONALITY:
@@ -1072,6 +1090,7 @@ namespace BearPlayer
                 //string curr_song = curr_list_box.Items[playing_index].ToString();
                 if (!song_selected)
                 {
+                                //for case where nothing is selected and they try to click play
                     /*int i = curr_list_box.SelectedIndices[0];
                     if (i >= 0 && i < curr_list_box.Items.Count)
                     {
@@ -1082,7 +1101,6 @@ namespace BearPlayer
                     if (queue.Count() > 0)
                     {
                         play_next_song();
-                        this.playButton.Image = Resources.pauseButton;
                         play = false;
                     }
                 }
@@ -1091,6 +1109,9 @@ namespace BearPlayer
                     this.playButton.Image = Resources.pauseButton;   // Change picture to pause button
                     Player.controls.play();
                     play = false;
+                    this.bear_logo.Height = 169;
+                    bear_logo.Location = new Point(27,261);
+                    this.bear_logo.Image = Resources.bear_headphone;
                 }
 
             }
@@ -1099,7 +1120,11 @@ namespace BearPlayer
                 this.playButton.Image = Resources.playButton; // Change picture to play button
                 Player.controls.pause(); // SHOULD BE CHANGED TO PAUSE EVENTUALLY BUT CURRENTLY PAUSE CAUSES IT TO REPEAT IMMEDIATELY
                 play = true;
+                this.bear_logo.Height = 136;
+                bear_logo.Location = new Point(27,294);
+                this.bear_logo.Image = Resources.bear;
             }
+            
         }
 
 
@@ -1381,12 +1406,12 @@ namespace BearPlayer
             catch (ArgumentNullException ex)
             {
                 //code specifically for a ArgumentNullException
-                Artwork_List.Images.Add(Resources.bear);
+                Artwork_List.Images.Add(Resources.bear_pirate);
             }
             catch (IndexOutOfRangeException ex)
             {
                 //code specifically for a IndexOutOfRangeException
-                Artwork_List.Images.Add(Resources.bear);
+                Artwork_List.Images.Add(Resources.bear_pirate);
             }
         }
         
@@ -1421,7 +1446,7 @@ namespace BearPlayer
             }
             catch(IndexOutOfRangeException e)
             {
-                pictureBox1.Image = Resources.bear;
+                pictureBox1.Image = Resources.bear_pirate;
             }
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             artistLabel.Text = file.Tag.Performers[0];
@@ -1826,6 +1851,9 @@ namespace BearPlayer
             songName = curr_list_box.Items[i].Text.ToString();
             //songName = curr_list_box.SelectedItems.ToString();
             Console.WriteLine(songName);
+            bear_logo.Image = Resources.bear_headphone;
+            this.bear_logo.Height = 169;
+            bear_logo.Location = new Point(27, 261);
         }
 
         // Method for changing display to artist view
@@ -2668,6 +2696,11 @@ namespace BearPlayer
         {
             if (!Yes_No_Prompt.ShowDialog("Are you sure you'd like to delete all saved folder paths? Cannot be undone.", "Warning")) return;
             System.IO.File.Delete(folder_path_file_loc);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
 
         //dequeue for queue

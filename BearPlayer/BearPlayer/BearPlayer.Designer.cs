@@ -129,12 +129,6 @@
             this.NewPlaylist_TextBox = new System.Windows.Forms.TextBox();
             this.sidebar_color_dialog = new System.Windows.Forms.ColorDialog();
             this.bottom_panel = new System.Windows.Forms.Panel();
-            this.shuffle_toggle = new System.Windows.Forms.PictureBox();
-            this.playButton = new System.Windows.Forms.PictureBox();
-            this.repeat_button = new System.Windows.Forms.PictureBox();
-            this.next_button = new System.Windows.Forms.PictureBox();
-            this.previous_button = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Options_Panel = new System.Windows.Forms.Panel();
             this.delete_folder_paths_button = new System.Windows.Forms.Button();
             this.delete_users_button = new System.Windows.Forms.Button();
@@ -150,8 +144,14 @@
             this.Playlist_Song_Album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist_Song_Artist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Playlist_Song_Length = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BackButton = new System.Windows.Forms.PictureBox();
             this.bear_logo = new System.Windows.Forms.PictureBox();
+            this.shuffle_toggle = new System.Windows.Forms.PictureBox();
+            this.playButton = new System.Windows.Forms.PictureBox();
+            this.repeat_button = new System.Windows.Forms.PictureBox();
+            this.next_button = new System.Windows.Forms.PictureBox();
+            this.previous_button = new System.Windows.Forms.PictureBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.MenuBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSlider)).BeginInit();
@@ -166,16 +166,16 @@
             this.Search_View.SuspendLayout();
             this.NewPlaylist_Panel.SuspendLayout();
             this.bottom_panel.SuspendLayout();
+            this.Options_Panel.SuspendLayout();
+            this.Playlist_Song_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.Options_Panel.SuspendLayout();
-            this.Playlist_Song_Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -1024,91 +1024,6 @@
             this.bottom_panel.Size = new System.Drawing.Size(863, 127);
             this.bottom_panel.TabIndex = 24;
             // 
-            // shuffle_toggle
-            // 
-            this.shuffle_toggle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButtonOff;
-            this.shuffle_toggle.Location = new System.Drawing.Point(206, 58);
-            this.shuffle_toggle.Name = "shuffle_toggle";
-            this.shuffle_toggle.Size = new System.Drawing.Size(61, 50);
-            this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.shuffle_toggle.TabIndex = 6;
-            this.shuffle_toggle.TabStop = false;
-            this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
-            this.shuffle_toggle.MouseEnter += new System.EventHandler(this.shuffle_toggle_MouseEnter);
-            this.shuffle_toggle.MouseLeave += new System.EventHandler(this.shuffle_toggle_MouseLeave);
-            // 
-            // playButton
-            // 
-            this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
-            this.playButton.Location = new System.Drawing.Point(367, 58);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(56, 49);
-            this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.playButton.TabIndex = 2;
-            this.playButton.TabStop = false;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            this.playButton.MouseEnter += new System.EventHandler(this.playButton_MouseEnter);
-            this.playButton.MouseLeave += new System.EventHandler(this.playButton_MouseLeave);
-            // 
-            // repeat_button
-            // 
-            this.repeat_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.repeat_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.repeat_button.Image = global::BearPlayer.Properties.Resources.Repeat;
-            this.repeat_button.Location = new System.Drawing.Point(527, 58);
-            this.repeat_button.Name = "repeat_button";
-            this.repeat_button.Size = new System.Drawing.Size(45, 45);
-            this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.repeat_button.TabIndex = 5;
-            this.repeat_button.TabStop = false;
-            this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
-            this.repeat_button.MouseEnter += new System.EventHandler(this.repeat_button_MouseEnter);
-            this.repeat_button.MouseLeave += new System.EventHandler(this.repeat_button_MouseLeave);
-            // 
-            // next_button
-            // 
-            this.next_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.next_button.BackColor = System.Drawing.Color.Transparent;
-            this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.next_button.Image = global::BearPlayer.Properties.Resources.Next_Previous;
-            this.next_button.Location = new System.Drawing.Point(429, 67);
-            this.next_button.Name = "next_button";
-            this.next_button.Size = new System.Drawing.Size(32, 32);
-            this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.next_button.TabIndex = 3;
-            this.next_button.TabStop = false;
-            this.next_button.Click += new System.EventHandler(this.next_button_Click);
-            this.next_button.MouseEnter += new System.EventHandler(this.next_button_MouseEnter);
-            this.next_button.MouseLeave += new System.EventHandler(this.next_button_MouseLeave);
-            // 
-            // previous_button
-            // 
-            this.previous_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.previous_button.Image = global::BearPlayer.Properties.Resources.Previous_Button;
-            this.previous_button.Location = new System.Drawing.Point(329, 67);
-            this.previous_button.Name = "previous_button";
-            this.previous_button.Size = new System.Drawing.Size(32, 32);
-            this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.previous_button.TabIndex = 4;
-            this.previous_button.TabStop = false;
-            this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
-            this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
-            this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 430);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(193, 193);
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
             // Options_Panel
             // 
             this.Options_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1243,6 +1158,16 @@
             this.Playlist_Song_Length.Text = "Length";
             this.Playlist_Song_Length.Width = 142;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 430);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(193, 193);
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
             // BackButton
             // 
             this.BackButton.BackColor = System.Drawing.Color.Transparent;
@@ -1269,6 +1194,82 @@
             this.bear_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bear_logo.TabIndex = 0;
             this.bear_logo.TabStop = false;
+            // 
+            // shuffle_toggle
+            // 
+            this.shuffle_toggle.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.shuffle_toggle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.shuffle_toggle.Image = global::BearPlayer.Properties.Resources.shuffleButtonOff;
+            this.shuffle_toggle.Location = new System.Drawing.Point(206, 58);
+            this.shuffle_toggle.Name = "shuffle_toggle";
+            this.shuffle_toggle.Size = new System.Drawing.Size(61, 50);
+            this.shuffle_toggle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.shuffle_toggle.TabIndex = 6;
+            this.shuffle_toggle.TabStop = false;
+            this.shuffle_toggle.Click += new System.EventHandler(this.Shuffle_Toggle_Click);
+            this.shuffle_toggle.MouseEnter += new System.EventHandler(this.shuffle_toggle_MouseEnter);
+            this.shuffle_toggle.MouseLeave += new System.EventHandler(this.shuffle_toggle_MouseLeave);
+            // 
+            // playButton
+            // 
+            this.playButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.playButton.Image = global::BearPlayer.Properties.Resources.playButton;
+            this.playButton.Location = new System.Drawing.Point(367, 58);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(56, 49);
+            this.playButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.playButton.TabIndex = 2;
+            this.playButton.TabStop = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            this.playButton.MouseEnter += new System.EventHandler(this.playButton_MouseEnter);
+            this.playButton.MouseLeave += new System.EventHandler(this.playButton_MouseLeave);
+            // 
+            // repeat_button
+            // 
+            this.repeat_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.repeat_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.repeat_button.Image = global::BearPlayer.Properties.Resources.Repeat;
+            this.repeat_button.Location = new System.Drawing.Point(527, 58);
+            this.repeat_button.Name = "repeat_button";
+            this.repeat_button.Size = new System.Drawing.Size(45, 45);
+            this.repeat_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.repeat_button.TabIndex = 5;
+            this.repeat_button.TabStop = false;
+            this.repeat_button.Click += new System.EventHandler(this.Repeat_Button_Click);
+            this.repeat_button.MouseEnter += new System.EventHandler(this.repeat_button_MouseEnter);
+            this.repeat_button.MouseLeave += new System.EventHandler(this.repeat_button_MouseLeave);
+            // 
+            // next_button
+            // 
+            this.next_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.next_button.BackColor = System.Drawing.Color.Transparent;
+            this.next_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.next_button.Image = global::BearPlayer.Properties.Resources.Next_Previous;
+            this.next_button.Location = new System.Drawing.Point(429, 67);
+            this.next_button.Name = "next_button";
+            this.next_button.Size = new System.Drawing.Size(32, 32);
+            this.next_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.next_button.TabIndex = 3;
+            this.next_button.TabStop = false;
+            this.next_button.Click += new System.EventHandler(this.next_button_Click);
+            this.next_button.MouseEnter += new System.EventHandler(this.next_button_MouseEnter);
+            this.next_button.MouseLeave += new System.EventHandler(this.next_button_MouseLeave);
+            // 
+            // previous_button
+            // 
+            this.previous_button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.previous_button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.previous_button.Image = global::BearPlayer.Properties.Resources.Previous_Button;
+            this.previous_button.Location = new System.Drawing.Point(329, 67);
+            this.previous_button.Name = "previous_button";
+            this.previous_button.Size = new System.Drawing.Size(32, 32);
+            this.previous_button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.previous_button.TabIndex = 4;
+            this.previous_button.TabStop = false;
+            this.previous_button.Click += new System.EventHandler(this.previous_button_Click);
+            this.previous_button.MouseEnter += new System.EventHandler(this.previous_button_MouseEnter);
+            this.previous_button.MouseLeave += new System.EventHandler(this.previous_button_MouseLeave);
             // 
             // Bear_Player
             // 
@@ -1319,16 +1320,16 @@
             this.NewPlaylist_Panel.PerformLayout();
             this.bottom_panel.ResumeLayout(false);
             this.bottom_panel.PerformLayout();
+            this.Options_Panel.ResumeLayout(false);
+            this.Playlist_Song_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.shuffle_toggle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repeat_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.next_button)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.previous_button)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.Options_Panel.ResumeLayout(false);
-            this.Playlist_Song_Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.BackButton)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bear_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
