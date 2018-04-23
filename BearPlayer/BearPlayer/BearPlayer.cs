@@ -278,7 +278,7 @@ namespace BearPlayer
         private void next_button_Click(object sender, EventArgs e)
         {
             play_next_song();   // Call function to play next song
-            update_list_disp();   // Update display after adjusting play queue
+            if (curr_view == view.Queue) update_list_disp();   // Update display after adjusting play queue
         }
 
         // Method for skipping to previous song by clicking on previous button
@@ -288,7 +288,7 @@ namespace BearPlayer
             if (scrubBar.Value <= 5)
             {
                 play_prev_song();
-                update_list_disp();
+                if (curr_view == view.Queue) update_list_disp();
             }
             // Else, if scrub bar is more than 5 seconds into song, restart song
             else
@@ -302,8 +302,6 @@ namespace BearPlayer
             // Change shuffle picture based on toggle
             if (shuffle) shuffle_toggle.Image = Resources.shuffleButtonOn;
             else shuffle_toggle.Image = Resources.shuffleButtonOff;
-
-            update_list_disp();
         }
 
         // Method for mouse click on repeat button
@@ -352,7 +350,7 @@ namespace BearPlayer
                 repeat_button.Image = Resources.Repeat;  // Adjust image
             }
 
-            update_list_disp();
+            if (curr_view == view.Queue) update_list_disp();
         }
 
         // Function for clicking on back button
@@ -463,7 +461,7 @@ namespace BearPlayer
         private void nextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             play_next_song();
-            update_list_disp();
+            if (curr_view == view.Queue) update_list_disp();
         }
 
         // Method for moving to previous song in play queue from menu bar
@@ -473,7 +471,7 @@ namespace BearPlayer
             if (scrubBar.Value <= 5)
             {
                 play_prev_song();
-                update_list_disp();
+                if (curr_view == view.Queue) update_list_disp();
             }
             // Else, if scrub bar is more than 5 seconds into song, restart song
             else
@@ -497,7 +495,7 @@ namespace BearPlayer
             repeat_type = Repeat_Type.Off;   // ... turn off repeat
             repeat_button.Image = Resources.Repeat; // Adjust image
 
-            update_list_disp();
+            if (curr_view == view.Queue) update_list_disp();
         }
 
 
@@ -515,7 +513,7 @@ namespace BearPlayer
                 queue.Push_Front(curr_song);
             }
 
-            update_list_disp();
+            if (curr_view == view.Queue) update_list_disp();
         }
 
         // Method for changing repeat toggle to repeat all from menu bar
@@ -540,7 +538,7 @@ namespace BearPlayer
                 queue.Push_Back(curr_song);
             }
 
-            update_list_disp();
+            if (curr_view == view.Queue) update_list_disp();
         }
 
         // Method for exiting program from menu bar (*IMPORTANT! NEVER, EVER REMOVE*)
@@ -609,7 +607,7 @@ namespace BearPlayer
             if (scrubBar.Value >= scrubBar.Maximum)
             {
                 play_next_song();
-                update_list_disp();
+                if (curr_view == view.Queue) update_list_disp();
             }
 
             // Algorithm for blinking bear
@@ -889,7 +887,6 @@ namespace BearPlayer
             {
                 Add_New_Playlist(NewPlaylist_TextBox.Text);
                 NewPlaylist_Panel.Visible = false;
-                update_list_disp();
             }
         }
 
@@ -898,7 +895,6 @@ namespace BearPlayer
         private void NewPlaylist_CancelButton_Click(object sender, EventArgs e)
         {
             NewPlaylist_Panel.Visible = false;
-            update_list_disp();
         }
 
 
@@ -926,7 +922,7 @@ namespace BearPlayer
             else if (e.KeyCode == Keys.MediaNextTrack || (e.KeyCode == Keys.Right && e.Modifiers == Keys.Control))
             {
                 play_next_song();
-                update_list_disp();
+                if (curr_view == view.Queue) update_list_disp();
             }
 
             // Previous using CTRL+LEFT
@@ -936,7 +932,7 @@ namespace BearPlayer
                 if (scrubBar.Value <= 5)
                 {
                     play_prev_song();
-                    update_list_disp();
+                    if (curr_view == view.Queue) update_list_disp();
                 }
 
                 // Replay song is song is more than 5 seconds in
