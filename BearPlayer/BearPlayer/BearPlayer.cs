@@ -225,6 +225,7 @@ namespace BearPlayer
         
         public void import_saved_playlists()
         {
+            if (!File.Exists(playlist_file_loc)) return;
             string[] playlist_names = System.IO.File.ReadAllLines(playlist_file_loc);
             List<string> plays = new List<string>(playlist_names);
             foreach (string playlist in playlist_names)
@@ -245,6 +246,7 @@ namespace BearPlayer
 
         public void import_saved_folders()
         {
+            if (!File.Exists(folder_path_file_loc)) return;
             string[] paths_array = System.IO.File.ReadAllLines(folder_path_file_loc);
             List<string> paths = new List<string>(paths_array);
             foreach (string path in paths_array)
@@ -585,9 +587,7 @@ namespace BearPlayer
         // Method for scrubbing through song using scrub bar
         private void scrubBar_Scroll(object sender, EventArgs e)
         {
-            Player.controls.pause();
             Player.controls.currentPosition = scrubBar.Value;   // Move song location to new scrub bar value
-            Player.controls.play();   // Play song from new location
             this.bear_logo.Image = Resources.bear;
             //add clicking onto the slide bar to change to the location
             //maybe add functionality to change to parts of the song using number keys
@@ -1480,8 +1480,11 @@ namespace BearPlayer
                 for (int i = 0; i < size; ++i)
                 {
                     string dequeue = queue.ElementAt(i);   // Retrieve each element in queue
-                    TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
-                    curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                    if (song_map.ContainsKey(dequeue))
+                    {
+                        TagLib.File file = TagLib.File.Create(song_map[dequeue]);   // Map song in queue to file address
+                        curr_list_box.Items.Add(List_Column_Info(ref file));    // Fill row with song tag information
+                    }
                 }
             }
             // Artist Song Display
@@ -1766,6 +1769,19 @@ namespace BearPlayer
                 
             addToPlaylistCM.MenuItems.Add(name, new EventHandler(add_to_playlist_right_click));
             
+        }
+
+        public void delete_playlist_nodes()
+        {
+            TreeNode[] nodes = SideBar.Nodes.Find("Playlists", false);
+            int side_nodes = nodes[0].Nodes.Count;
+            for ( int i = 1; i < side_nodes; i++)
+            {
+                nodes[0].Nodes.RemoveAt(1);
+            }
+            addToPlaylistToolStripMenuItem.DropDownItems.Clear();
+            addToPlaylistCM.MenuItems.Clear();
+            added_nodes.Clear();
         }
         
         //Add songs to playlist
@@ -2262,6 +2278,33 @@ namespace BearPlayer
 
         }
 
+        public static class Yes_No_Prompt
+        {
+            public static bool ShowDialog(string text, string caption)
+            {
+                Form prompt = new Form()
+                {
+                    Width = 400,
+                    Height = 150,
+                    FormBorderStyle = FormBorderStyle.FixedDialog,
+                    Text = caption,
+                    StartPosition = FormStartPosition.CenterScreen
+                };
+                Label textLabel = new Label() { Left = 20, Top = 20, Text = text, AutoSize = true };
+                Button confirmation = new Button() { Text = "Yes", Left = 50, Width = 80, Top = 80, DialogResult = DialogResult.OK };
+                Button cancel = new Button() { Text = "Cancel", Left = 170, Width = 80, Top = 80, DialogResult = DialogResult.Cancel };
+                confirmation.Click += (sender, e) => { prompt.Close(); };
+                cancel.Click += (sender, e) => { prompt.Close(); };
+                prompt.Controls.Add(confirmation);
+                prompt.Controls.Add(cancel);
+                prompt.Controls.Add(textLabel);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? true : false;
+            }
+
+        }
+
         public static class Radio_Prompt
         {
             static RadioButton selectedrb = null;
@@ -2601,6 +2644,30 @@ namespace BearPlayer
         {
             list_item_selected();
             play_next_song();
+        }
+
+        private void delete_playlists_Click(object sender, EventArgs e)
+        {
+            if ( !Yes_No_Prompt.ShowDialog( "Are you sure you'd like to delete all playlists? Cannot be undone.", "Warning")) return;
+            foreach (string s in Playlist_Names)
+            {
+                System.IO.File.Delete(playlist_loc + s + ".txt" );
+            }
+            Playlist_Names.Clear();
+            System.IO.File.Delete(playlist_file_loc);
+            delete_playlist_nodes();
+        }
+
+        private void delete_users_button_Click(object sender, EventArgs e)
+        {
+            if (!Yes_No_Prompt.ShowDialog("Are you sure you'd like to delete all users? Cannot be undone.", "Warning")) return;
+            clear_users();
+        }
+
+        private void delete_folder_paths_button_Click(object sender, EventArgs e)
+        {
+            if (!Yes_No_Prompt.ShowDialog("Are you sure you'd like to delete all saved folder paths? Cannot be undone.", "Warning")) return;
+            System.IO.File.Delete(folder_path_file_loc);
         }
 
         //dequeue for queue
