@@ -1758,13 +1758,10 @@ namespace BearPlayer
             using (StreamWriter w = File.CreateText(playlist_loc + new_playlist + ".txt"))
 
             //add playlist name to playlist text file
-            if (File.Exists(playlist_file_loc))
+            using (var tw = new StreamWriter(playlist_file_loc, true))
             {
-                using (var tw = new StreamWriter(playlist_file_loc, true))
-                {
-                    tw.WriteLine(new_playlist);
-                    tw.Close();
-                }
+                tw.WriteLine(new_playlist);
+                tw.Close();
             }
             update_list_disp();
             return true;
