@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BearPlayer", "BearPlayer\BearPlayer.csproj", "{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint1_UnitTest", "Sprint1_UnitTest\Sprint1_UnitTest.csproj", "{3DC2BFF6-9E01-4EC1-A8EB-87C91BFBA855}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint2_UnitTest", "Sprint2_UnitTest\Sprint2_UnitTest.csproj", "{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sprint1_UnitTest", "Sprint1_UnitTest\Sprint1_UnitTest.csproj", "{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60EDAA2B-DE8A-4C7D-A739-1B142FE53EA6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DC2BFF6-9E01-4EC1-A8EB-87C91BFBA855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DC2BFF6-9E01-4EC1-A8EB-87C91BFBA855}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DC2BFF6-9E01-4EC1-A8EB-87C91BFBA855}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DC2BFF6-9E01-4EC1-A8EB-87C91BFBA855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

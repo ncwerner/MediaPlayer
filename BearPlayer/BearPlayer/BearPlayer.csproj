@@ -140,6 +140,9 @@
   <ItemGroup>
     <Folder Include="WMPLib\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\bear.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if not exist "C:\BearPlayer" mkdir C:\BearPlayer

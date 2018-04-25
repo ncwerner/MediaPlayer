@@ -228,7 +228,7 @@ namespace Sprint1_UnitTest
             player.Set_FilePath(file_directory0);
             TagLib.File file = TagLib.File.Create(player.Get_FilePath());
             string test_artist = file.Tag.FirstAlbumArtist;
-           
+
             // Assert
             Assert.AreEqual(test_artist, artist);
         }

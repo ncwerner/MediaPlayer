@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AEE102D7-8AA0-4ECD-A84C-7671B73485BF}</ProjectGuid>
+    <ProjectGuid>{F7C15BFE-0FF9-4113-BC02-2ACE1B96F019}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sprint1_UnitTest</RootNamespace>
-    <AssemblyName>Sprint1_UnitTest</AssemblyName>
+    <RootNamespace>Sprint2_UnitTest</RootNamespace>
+    <AssemblyName>Sprint2_UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
